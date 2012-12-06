@@ -1,4 +1,4 @@
 ShootManyPunks
 ==============
 
-Punks and the shooting thereof.
+All about punks and shooting thereof.
