@@ -7,15 +7,16 @@
     <unique-id>w2turdg6quee</unique-id>
     <saved-with-version>10802</saved-with-version>
     <used-plugins>
-        <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
+        <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
         <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
         <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
+        <plugin author="Scirra" id="Text" version="1">Text</plugin>
         <plugin author="Rex.Rainbow" id="Rex_TMXImporter" version="0.109999999">TMX Importer</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
-        <plugin author="Scirra" id="Text" version="1">Text</plugin>
     </used-plugins>
     <used-behaviors>
+        <behavior author="Scirra" id="Anchor" version="1">Anchor</behavior>
         <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
         <behavior author="Scirra" id="EightDir" version="1">8 Direction</behavior>
         <behavior author="Scirra" id="bound" version="1">Bound to layout</behavior>
@@ -44,7 +45,7 @@
         <prop name="Sampling">Linear</prop>
         <prop name="Use iOS retina display">iPhone only</prop>
     </configuration-settings>
-    <object-folder expanded="0">
+    <object-folder expanded="1">
         <object-type name="TMXImporter">
             <plugin id="Rex_TMXImporter" />
         </object-type>
@@ -58,6 +59,9 @@
         </object-type>
         <object-type name="Tile">
             <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="isSolid" type="boolean" />
+            </instance-variables>
             <behaviors>
                 <behavior-type name="Solid">
                     <behavior id="solid" />
@@ -80,6 +84,9 @@
             <plugin id="Sprite" />
             <instance-variables>
                 <instance-variable name="weapon" type="string" />
+                <instance-variable name="weapon_damage" type="number" />
+                <instance-variable name="hp" type="number" />
+                <instance-variable name="max_hp" type="number" />
             </instance-variables>
             <behaviors>
                 <behavior-type name="8Direction">
@@ -108,6 +115,9 @@
         </object-type>
         <object-type name="Bullet">
             <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="damage" type="number" />
+            </instance-variables>
             <behaviors>
                 <behavior-type name="Bullet">
                     <behavior id="Bullet" />
@@ -135,19 +145,6 @@
         </object-type>
         <object-type name="MonsterStar">
             <plugin id="Sprite" />
-            <instance-variables>
-                <instance-variable name="health" type="number" />
-                <instance-variable name="moving" type="boolean" />
-                <instance-variable name="range" type="number" />
-            </instance-variables>
-            <behaviors>
-                <behavior-type name="BoundToLayout">
-                    <behavior id="bound" />
-                </behavior-type>
-                <behavior-type name="Bullet">
-                    <behavior id="Bullet" />
-                </behavior-type>
-            </behaviors>
             <animation-folder expanded="1">
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
@@ -178,8 +175,53 @@
         <object-type name="Debug">
             <plugin id="Text" />
         </object-type>
+        <object-type name="SmallMedKit">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                    <frame duration="1" hotspotX="0.493151" hotspotY="0.479532" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="HPBar">
+            <plugin id="Text" />
+            <behaviors>
+                <behavior-type name="Anchor">
+                    <behavior id="Anchor" />
+                </behavior-type>
+            </behaviors>
+        </object-type>
     </object-folder>
-    <families />
+    <families>
+        <family name="Enemy" plugin-id="Sprite">
+            <members>
+                <member>MonsterStar</member>
+            </members>
+            <instance-variables>
+                <instance-variable name="hp" type="number" />
+                <instance-variable name="vision_range" type="number" />
+                <instance-variable name="isMoving" type="boolean" />
+                <instance-variable name="speed" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="BoundToLayout">
+                    <behavior id="bound" />
+                </behavior-type>
+                <behavior-type name="Bullet">
+                    <behavior id="Bullet" />
+                </behavior-type>
+            </behaviors>
+        </family>
+        <family name="Item" plugin-id="Sprite">
+            <members>
+                <member>SmallMedKit</member>
+            </members>
+            <instance-variables>
+                <instance-variable name="boost_type" type="string" />
+                <instance-variable name="boost_value" type="number" />
+            </instance-variables>
+        </family>
+    </families>
     <layout-folder expanded="1">
         <layout>Layout 1.xml</layout>
         <layout>Layout 2.xml</layout>

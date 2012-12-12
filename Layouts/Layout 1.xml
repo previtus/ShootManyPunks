@@ -31,6 +31,9 @@
                         <initial-visibility>Visible</initial-visibility>
                         <initial-frame>0</initial-frame>
                     </properties>
+                    <instance-variables>
+                        <isSolid>false</isSolid>
+                    </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Solid" />
                     </behavior-instances>
@@ -56,6 +59,9 @@
                     </properties>
                     <instance-variables>
                         <weapon>gun</weapon>
+                        <weapon_damage>5</weapon_damage>
+                        <hp>50</hp>
+                        <max_hp>100</max_hp>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="8Direction">
@@ -95,6 +101,9 @@
                         <initial-visibility>Visible</initial-visibility>
                         <initial-frame>0</initial-frame>
                     </properties>
+                    <instance-variables>
+                        <damage>5</damage>
+                    </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
@@ -204,9 +213,10 @@
                         <initial-frame>0</initial-frame>
                     </properties>
                     <instance-variables>
-                        <health>10</health>
-                        <moving>false</moving>
-                        <range>200</range>
+                        <hp>100</hp>
+                        <vision_range>0</vision_range>
+                        <isMoving>false</isMoving>
+                        <speed>100</speed>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="BoundToLayout">
@@ -295,6 +305,67 @@
                     <world>
                         <x>19</x>
                         <y>25</y>
+                        <z>0</z>
+                        <width>200</width>
+                        <height>30</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="SmallMedKit">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                    </properties>
+                    <instance-variables>
+                        <boost_type>hp</boost_type>
+                        <boost_value>10</boost_value>
+                    </instance-variables>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>-224</x>
+                        <y>701</y>
+                        <z>0</z>
+                        <width>18</width>
+                        <height>16</height>
+                        <depth>0</depth>
+                        <hotspotX>0.493150681</hotspotX>
+                        <hotspotY>0.479532152</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="HPBar">
+                    <properties>
+                        <text>Text</text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Arial,-16</font>
+                        <color>0,0,0</color>
+                        <horizontal-alignment>Left</horizontal-alignment>
+                        <vertical-alignment>Top</vertical-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="Anchor">
+                            <properties>
+                                <left-edge>Window left</left-edge>
+                                <top-edge>Window top</top-edge>
+                                <right-edge>None</right-edge>
+                                <bottom-edge>None</bottom-edge>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>440</x>
+                        <y>8</y>
                         <z>0</z>
                         <width>200</width>
                         <height>30</height>
