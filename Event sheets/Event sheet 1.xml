@@ -5,7 +5,7 @@
     <events>
         <variable constant="0" name="experience" static="0" type="number">0</variable>
         <variable constant="0" name="to_load_map" static="0" type="number">1</variable>
-        <event-group description="" title="TiledMap Import">
+        <event-group collapsed="1" description="" title="TiledMap Import">
             <sub-events>
                 <event-block>
                     <conditions>
@@ -165,7 +165,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" title="Main">
+        <event-group collapsed="1" description="" title="Main">
             <sub-events>
                 <event-block any="1">
                     <conditions>
@@ -233,166 +233,189 @@
                         </event-block>
                     </sub-events>
                 </event-block>
-                <event-group description="" title="Enemy">
-                    <sub-events>
-                        <event-block>
-                            <conditions>
-                                <condition id="-8" name="Is boolean instance variable set" type="Enemy">
-                                    <param id="0" name="Instance variable">isMoving</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-22" name="Set angle toward position" type="Enemy">
-                                    <param id="0" name="X">Avatar.X</param>
-                                    <param id="1" name="Y">Avatar.Y</param>
-                                </action>
-                                <action behavior="Bullet" id="0" name="Set speed" type="Enemy">
-                                    <param id="0" name="Speed">Enemy.speed</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <event-block>
-                            <conditions>
-                                <condition id="-11" name="For Each" type="System">
-                                    <param id="0" name="Object">Enemy</param>
-                                </condition>
-                                <condition id="-8" name="Compare two values" type="System">
-                                    <param id="0" name="First value">distance(Avatar.X, Avatar.Y, MonsterStar.X, MonsterStar.Y)</param>
-                                    <param id="1" name="Comparison">2</param>
-                                    <param id="2" name="Second value">Enemy.vision_range</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-13" name="Set boolean" type="Enemy">
-                                    <param id="0" name="Instance variable">isMoving</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <event-block>
-                            <conditions>
-                                <condition id="0" name="On collision with another object" type="Enemy">
-                                    <param id="0" name="Object">Avatar</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-9" name="Destroy" type="Avatar" />
-                            </actions>
-                        </event-block>
-                        <event-block>
-                            <conditions>
-                                <condition id="-7" name="Compare instance variable" type="Enemy">
-                                    <param id="0" name="Instance variable">hp</param>
-                                    <param id="1" name="Comparison">3</param>
-                                    <param id="2" name="Value">0</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="0" name="Spawn another object" type="Enemy">
-                                    <param id="0" name="Object">MonsterKill</param>
-                                    <param id="1" name="Layer">1</param>
-                                    <param id="2" name="Image point">0</param>
-                                </action>
-                                <action id="0" name="Spawn another object" type="Enemy">
-                                    <param id="0" name="Object">SmallMedKit</param>
-                                    <param id="1" name="Layer">0</param>
-                                    <param id="2" name="Image point">0</param>
-                                </action>
-                                <action id="-9" name="Destroy" type="Enemy" />
-                            </actions>
-                        </event-block>
-                    </sub-events>
-                </event-group>
-                <event-group description="" title="Shooting">
-                    <sub-events>
-                        <event-block>
-                            <conditions>
-                                <condition id="2" name="Mouse button is down" type="Mouse">
-                                    <param id="0" name="Mouse button">0</param>
-                                </condition>
-                                <condition id="-7" name="Compare instance variable" type="Avatar">
-                                    <param id="0" name="Instance variable">weapon</param>
-                                    <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Value">&quot;machine_gun&quot;</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="0" name="Spawn another object" type="Avatar">
-                                    <param id="0" name="Object">Bullet</param>
-                                    <param id="1" name="Layer">1</param>
-                                    <param id="2" name="Image point">1</param>
-                                </action>
-                                <action id="-10" name="Set value" type="Bullet">
-                                    <param id="0" name="Instance variable">damage</param>
-                                    <param id="1" name="Value">Avatar.weapon_damage</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <event-block>
-                            <conditions>
-                                <condition id="0" name="On click" type="Mouse">
-                                    <param id="0" name="Mouse button">0</param>
-                                    <param id="1" name="Click type">0</param>
-                                </condition>
-                                <condition id="-7" name="Compare instance variable" type="Avatar">
-                                    <param id="0" name="Instance variable">weapon</param>
-                                    <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Value">&quot;gun&quot;</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="0" name="Spawn another object" type="Avatar">
-                                    <param id="0" name="Object">Bullet</param>
-                                    <param id="1" name="Layer">1</param>
-                                    <param id="2" name="Image point">1</param>
-                                </action>
-                                <action id="-10" name="Set value" type="Bullet">
-                                    <param id="0" name="Instance variable">damage</param>
-                                    <param id="1" name="Value">Avatar.weapon_damage</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <event-block>
-                            <conditions>
-                                <condition id="0" name="On collision with another object" type="Bullet">
-                                    <param id="0" name="Object">Enemy</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="0" name="Spawn another object" type="Enemy">
-                                    <param id="0" name="Object">BloodHit</param>
-                                    <param id="1" name="Layer">1</param>
-                                    <param id="2" name="Image point">0</param>
-                                </action>
-                                <action id="-12" name="Subtract from" type="Enemy">
-                                    <param id="0" name="Instance variable">hp</param>
-                                    <param id="1" name="Value">Bullet.damage</param>
-                                </action>
-                                <action id="-9" name="Destroy" type="Bullet" />
-                                <action id="-13" name="Set boolean" type="Enemy">
-                                    <param id="0" name="Instance variable">isMoving</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <event-block>
-                            <conditions>
-                                <condition id="0" name="On collision with another object" type="Bullet">
-                                    <param id="0" name="Object">Tile</param>
-                                </condition>
-                                <condition id="-8" name="Is boolean instance variable set" type="Tile">
-                                    <param id="0" name="Instance variable">isSolid</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-9" name="Destroy" type="Bullet" />
-                            </actions>
-                        </event-block>
-                    </sub-events>
-                </event-group>
             </sub-events>
         </event-group>
-        <event-group description="" title="Weapon change">
+        <event-group collapsed="1" description="" title="Enemy">
+            <sub-events>
+                <event-block>
+                    <conditions>
+                        <condition id="-8" name="Is boolean instance variable set" type="Enemy">
+                            <param id="0" name="Instance variable">isMoving</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-22" name="Set angle toward position" type="Enemy">
+                            <param id="0" name="X">Avatar.X</param>
+                            <param id="1" name="Y">Avatar.Y</param>
+                        </action>
+                        <action behavior="Bullet" id="0" name="Set speed" type="Enemy">
+                            <param id="0" name="Speed">Enemy.speed</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-11" name="For Each" type="System">
+                            <param id="0" name="Object">Enemy</param>
+                        </condition>
+                        <condition id="-8" name="Compare two values" type="System">
+                            <param id="0" name="First value">distance(Avatar.X, Avatar.Y, Enemy.X, Enemy.Y)</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Second value">Enemy.vision_range</param>
+                        </condition>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Enemy">
+                            <param id="0" name="Instance variable">isMoving</param>
+                        </condition>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Enemy">
+                            <param id="0" name="Instance variable">visionProbeSent</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action disabled="1" id="-13" name="Set boolean" type="Enemy">
+                            <param id="0" name="Instance variable">isMoving</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="0" name="Spawn another object" type="Enemy">
+                            <param id="0" name="Object">VisionBullet</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="-10" name="Set value" type="VisionBullet">
+                            <param id="0" name="Instance variable">source</param>
+                            <param id="1" name="Value">Enemy.UID</param>
+                        </action>
+                        <action id="-22" name="Set angle toward position" type="VisionBullet">
+                            <param id="0" name="X">Avatar.X</param>
+                            <param id="1" name="Y">Avatar.Y</param>
+                        </action>
+                        <action id="-13" name="Set boolean" type="Enemy">
+                            <param id="0" name="Instance variable">visionProbeSent</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On collision with another object" type="Enemy">
+                            <param id="0" name="Object">Avatar</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" type="Avatar" />
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" type="Enemy">
+                            <param id="0" name="Instance variable">hp</param>
+                            <param id="1" name="Comparison">3</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Spawn another object" type="Enemy">
+                            <param id="0" name="Object">MonsterKill</param>
+                            <param id="1" name="Layer">1</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="0" name="Spawn another object" type="Enemy">
+                            <param id="0" name="Object">SmallMedKit</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="-9" name="Destroy" type="Enemy" />
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group collapsed="1" description="" title="Shooting">
+            <sub-events>
+                <event-block>
+                    <conditions>
+                        <condition id="2" name="Mouse button is down" type="Mouse">
+                            <param id="0" name="Mouse button">0</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" type="Avatar">
+                            <param id="0" name="Instance variable">weapon</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;machine_gun&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Spawn another object" type="Avatar">
+                            <param id="0" name="Object">Bullet</param>
+                            <param id="1" name="Layer">1</param>
+                            <param id="2" name="Image point">1</param>
+                        </action>
+                        <action id="-10" name="Set value" type="Bullet">
+                            <param id="0" name="Instance variable">damage</param>
+                            <param id="1" name="Value">Avatar.weapon_damage</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On click" type="Mouse">
+                            <param id="0" name="Mouse button">0</param>
+                            <param id="1" name="Click type">0</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" type="Avatar">
+                            <param id="0" name="Instance variable">weapon</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;gun&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Spawn another object" type="Avatar">
+                            <param id="0" name="Object">Bullet</param>
+                            <param id="1" name="Layer">1</param>
+                            <param id="2" name="Image point">1</param>
+                        </action>
+                        <action id="-10" name="Set value" type="Bullet">
+                            <param id="0" name="Instance variable">damage</param>
+                            <param id="1" name="Value">Avatar.weapon_damage</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On collision with another object" type="Bullet">
+                            <param id="0" name="Object">Enemy</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Spawn another object" type="Enemy">
+                            <param id="0" name="Object">BloodHit</param>
+                            <param id="1" name="Layer">1</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="-12" name="Subtract from" type="Enemy">
+                            <param id="0" name="Instance variable">hp</param>
+                            <param id="1" name="Value">Bullet.damage</param>
+                        </action>
+                        <action id="-9" name="Destroy" type="Bullet" />
+                        <action id="-13" name="Set boolean" type="Enemy">
+                            <param id="0" name="Instance variable">isMoving</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On collision with another object" type="Bullet">
+                            <param id="0" name="Object">Tile</param>
+                        </condition>
+                        <condition id="-8" name="Is boolean instance variable set" type="Tile">
+                            <param id="0" name="Instance variable">isSolid</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" type="Bullet" />
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group collapsed="1" description="" title="Weapon change">
             <sub-events>
                 <event-block>
                     <conditions>
@@ -450,37 +473,166 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" title="Loot Pickup" />
-        <event-block>
-            <conditions>
-                <condition id="0" name="On collision with another object" type="Avatar">
-                    <param id="0" name="Object">Item</param>
-                </condition>
-            </conditions>
-            <actions />
+        <event-group description="" title="Loot Pickup">
             <sub-events>
                 <event-block>
                     <conditions>
-                        <condition id="-7" name="Compare instance variable" type="Item">
-                            <param id="0" name="Instance variable">boost_type</param>
-                            <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Value">&quot;hp&quot;</param>
+                        <condition id="0" name="On collision with another object" type="Avatar">
+                            <param id="0" name="Object">Item</param>
                         </condition>
-                        <condition id="-7" name="Compare instance variable" type="Avatar">
-                            <param id="0" name="Instance variable">hp</param>
-                            <param id="1" name="Comparison">2</param>
-                            <param id="2" name="Value">Avatar.max_hp</param>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" type="Item">
+                                    <param id="0" name="Instance variable">boost_type</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;hp&quot;</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" type="Avatar">
+                                    <param id="0" name="Instance variable">hp</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Value">Avatar.max_hp</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" type="Avatar">
+                                    <param id="0" name="Instance variable">hp</param>
+                                    <param id="1" name="Value">min(Avatar.hp + Item.boost_value, Avatar.max_hp)</param>
+                                </action>
+                                <action id="-9" name="Destroy" type="Item" />
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="3" name="On key released" type="Keyboard">
+                            <param id="0" name="Key">69 (E)</param>
+                        </condition>
+                        <condition id="-15" name="Pick nearest/furthest" type="LootableItem">
+                            <param id="0" name="Which">0</param>
+                            <param id="1" name="X">Avatar.X</param>
+                            <param id="2" name="Y">Avatar.Y</param>
+                        </condition>
+                        <condition id="-8" name="Compare two values" type="System">
+                            <param id="0" name="First value">distance(Avatar.X, Avatar.Y, LootableItem.X, LootableItem.Y)</param>
+                            <param id="1" name="Comparison">3</param>
+                            <param id="2" name="Second value">50</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-8" name="Is boolean instance variable set" type="LootableItem">
+                                    <param id="0" name="Instance variable">looted</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" type="InfoText">
+                                    <param id="0" name="Text">&quot;Box already looted.&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" type="LootableItem">
+                                    <param id="0" name="Instance variable">looted</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" type="InfoText">
+                                    <param id="0" name="Text">&quot;Box looted, mega ultra mini booster found.&quot;</param>
+                                </action>
+                                <action id="-13" name="Set boolean" type="LootableItem">
+                                    <param id="0" name="Instance variable">looted</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="7" name="Execute commands" type="Function">
+                                    <param id="0" name="Commands">&quot;boxOpened,&quot; &amp; LootableItem.UID</param>
+                                </action>
+                                <action id="5" name="Set frame" type="LootableItem">
+                                    <param id="0" name="Frame number">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group collapsed="1" description="" title="Vision Tracing">
+            <sub-events>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On collision with another object" type="VisionBullet">
+                            <param id="0" name="Object">Tile</param>
+                        </condition>
+                        <condition id="-8" name="Is boolean instance variable set" type="Tile">
+                            <param id="0" name="Instance variable">isSolid</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" type="Enemy">
+                            <param id="0" name="Unique ID">VisionBullet.source</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-10" name="Set value" type="Avatar">
-                            <param id="0" name="Instance variable">hp</param>
-                            <param id="1" name="Value">min(Avatar.hp + Item.boost_value, Avatar.max_hp)</param>
+                        <action id="-9" name="Destroy" type="VisionBullet" />
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On collision with another object" type="VisionBullet">
+                            <param id="0" name="Object">Avatar</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" type="Enemy">
+                            <param id="0" name="Unique ID">VisionBullet.source</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" type="Enemy">
+                            <param id="0" name="Instance variable">isMoving</param>
+                            <param id="1" name="Value">1</param>
                         </action>
-                        <action id="-9" name="Destroy" type="Item" />
+                        <action id="-9" name="Destroy" type="VisionBullet" />
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-19" name="On destroyed" type="VisionBullet" />
+                        <condition id="-14" name="Pick by unique ID" type="Enemy">
+                            <param id="0" name="Unique ID">VisionBullet.source</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" type="Enemy">
+                            <param id="0" name="Instance variable">visionProbeSent</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
                     </actions>
                 </event-block>
             </sub-events>
-        </event-block>
+        </event-group>
+        <event-group description="" title="Loot Spawning">
+            <sub-events>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On function" type="Function">
+                            <param id="0" name="Name">&quot;boxOpened&quot;</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" type="LootableItem">
+                            <param id="0" name="Unique ID">Function.Param(0)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Spawn another object" type="LootableItem">
+                            <param id="0" name="Object">SmallMedKit</param>
+                            <param id="1" name="Layer">2</param>
+                            <param id="2" name="Image point">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
     </events>
 </c2eventsheet>

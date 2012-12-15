@@ -214,9 +214,10 @@
                     </properties>
                     <instance-variables>
                         <hp>100</hp>
-                        <vision_range>0</vision_range>
+                        <vision_range>300</vision_range>
                         <isMoving>false</isMoving>
                         <speed>100</speed>
+                        <visionProbeSent>false</visionProbeSent>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="BoundToLayout">
