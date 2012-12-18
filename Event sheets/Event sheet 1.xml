@@ -328,7 +328,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" title="Shooting">
+        <event-group description="" title="Shooting">
             <sub-events>
                 <event-block>
                     <conditions>
@@ -379,6 +379,35 @@
                 </event-block>
                 <event-block>
                     <conditions>
+                        <condition id="0" name="On click" type="Mouse">
+                            <param id="0" name="Mouse button">2</param>
+                            <param id="1" name="Click type">0</param>
+                        </condition>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Avatar">
+                            <param id="0" name="Instance variable">is_melee_atacking</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Spawn another object" type="Avatar">
+                            <param id="0" name="Object">SamuraiSword</param>
+                            <param id="1" name="Layer">1</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="-13" name="Set boolean" type="Avatar">
+                            <param id="0" name="Instance variable">is_melee_atacking</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="6" name="Set speed" type="SamuraiSword">
+                            <param id="0" name="Speed">20</param>
+                        </action>
+                        <action behavior="Pin" id="0" name="Pin to object" type="SamuraiSword">
+                            <param id="0" name="Pin to">Avatar</param>
+                            <param id="1" name="Mode">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
                         <condition id="0" name="On collision with another object" type="Bullet">
                             <param id="0" name="Object">Enemy</param>
                         </condition>
@@ -411,6 +440,42 @@
                     </conditions>
                     <actions>
                         <action id="-9" name="Destroy" type="Bullet" />
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On collision with another object" type="SamuraiSword">
+                            <param id="0" name="Object">Enemy</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Spawn another object" type="Enemy">
+                            <param id="0" name="Object">BloodHit</param>
+                            <param id="1" name="Layer">1</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="-12" name="Subtract from" type="Enemy">
+                            <param id="0" name="Instance variable">hp</param>
+                            <param id="1" name="Value">50</param>
+                        </action>
+                        <action id="-13" name="Set boolean" type="Enemy">
+                            <param id="0" name="Instance variable">isMoving</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="4" name="On finished" type="SamuraiSword">
+                            <param id="0" name="Animation">&quot;Attack&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" type="SamuraiSword" />
+                        <action id="-13" name="Set boolean" type="Avatar">
+                            <param id="0" name="Instance variable">is_melee_atacking</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
                     </actions>
                 </event-block>
             </sub-events>
