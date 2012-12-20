@@ -11,13 +11,14 @@ you probably do not want to add any .uistate.xml files to the repository.-->
     </configurations>
     <open-tabs>
         <layout>Layout 1</layout>
-        <layout active="1">WorldMap</layout>
+        <layout>WorldMap</layout>
         <event-sheet>Event sheet 1</event-sheet>
+        <event-sheet active="1">WorldMapEvents</event-sheet>
     </open-tabs>
     <properties>
         <property expanded="1" name="Project settings" />
         <property expanded="1" name="Window Size" />
-        <property expanded="0" name="Configuration Settings" />
+        <property expanded="1" name="Configuration Settings" />
     </properties>
     <families-expanded root="1">
         <family expanded="1" name="Enemy" />
