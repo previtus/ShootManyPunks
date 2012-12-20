@@ -58,10 +58,6 @@
                         <initial-frame>0</initial-frame>
                     </properties>
                     <instance-variables>
-                        <weapon>gun</weapon>
-                        <weapon_damage>5</weapon_damage>
-                        <hp>50</hp>
-                        <max_hp>100</max_hp>
                         <is_melee_atacking>false</is_melee_atacking>
                     </instance-variables>
                     <behavior-instances>
@@ -267,6 +263,7 @@
                         <visionProbeSent>false</visionProbeSent>
                         <hitFrequency>10</hitFrequency>
                         <hitDelay>0</hitDelay>
+                        <damage>10</damage>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="BoundToLayout">
@@ -461,8 +458,8 @@
                     <properties>
                         <text>Text</text>
                         <initial-visibility>Visible</initial-visibility>
-                        <font>Arial,-16</font>
-                        <color>0,0,0</color>
+                        <font>Arial Narrow,-21,700,0</font>
+                        <color>0,0,255</color>
                         <horizontal-alignment>Left</horizontal-alignment>
                         <vertical-alignment>Top</vertical-alignment>
                         <hotspot>Top-left</hotspot>
@@ -525,7 +522,7 @@
                     <properties>
                         <text>Text</text>
                         <initial-visibility>Visible</initial-visibility>
-                        <font>Arial,-16</font>
+                        <font>Arial,-27,700,1</font>
                         <color>0,0,0</color>
                         <horizontal-alignment>Left</horizontal-alignment>
                         <vertical-alignment>Top</vertical-alignment>
@@ -550,7 +547,7 @@
                         <y>8</y>
                         <z>0</z>
                         <width>200</width>
-                        <height>30</height>
+                        <height>35</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>

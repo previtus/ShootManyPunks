@@ -7,14 +7,14 @@
     <unique-id>w2turdg6quee</unique-id>
     <saved-with-version>10802</saved-with-version>
     <used-plugins>
+        <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
+        <plugin author="Rex.Rainbow" id="Rex_TMXImporter" version="0.109999999">TMX Importer</plugin>
         <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
-        <plugin author="Scirra" id="Button" version="1">Button</plugin>
-        <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
-        <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
         <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
         <plugin author="Rex.Rainbow" id="Rex_Function" version="1">Function</plugin>
-        <plugin author="Rex.Rainbow" id="Rex_TMXImporter" version="0.109999999">TMX Importer</plugin>
-        <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
+        <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
+        <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
+        <plugin author="Scirra" id="Button" version="1">Button</plugin>
         <plugin author="Scirra" id="Text" version="1">Text</plugin>
         <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
     </used-plugins>
@@ -109,10 +109,6 @@
         <object-type name="Avatar">
             <plugin id="Sprite" />
             <instance-variables>
-                <instance-variable name="weapon" type="string" />
-                <instance-variable name="weapon_damage" type="number" />
-                <instance-variable name="hp" type="number" />
-                <instance-variable name="max_hp" type="number" />
                 <instance-variable name="is_melee_atacking" type="boolean" />
             </instance-variables>
             <behaviors>
@@ -405,6 +401,7 @@
                 <instance-variable name="visionProbeSent" type="boolean" />
                 <instance-variable comment="Hits player every (10 frames?) it touches him." name="hitFrequency" type="number" />
                 <instance-variable comment="Count delay of hitting here" name="hitDelay" type="number" />
+                <instance-variable name="damage" type="number" />
             </instance-variables>
             <behaviors>
                 <behavior-type name="BoundToLayout">

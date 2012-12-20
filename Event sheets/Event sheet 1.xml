@@ -3,12 +3,14 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Event sheet 1</name>
     <events>
-        <comment>promenne, ktere ma na sobe avatah (postava hrace) by meli byt glob. promenne - aby byly prenaseny mezi nactenim layoutu</comment>
+        <comment>promenne, ktere ma na sobe avatar (postava hrace) by meli byt glob. promenne - aby byly prenaseny mezi nactenim layoutu</comment>
+        <comment>dostupne i napr. v layoutu WorldMap</comment>
         <variable constant="0" name="avatar_hp" static="0" type="number">50</variable>
         <variable constant="0" name="avatar_max_hp" static="0" type="number">100</variable>
-        <variable constant="0" name="experience" static="0" type="number">0</variable>
+        <variable constant="0" name="avatar_weapon" static="0" type="text">gun</variable>
+        <variable constant="0" name="avatar_weapon_damage" static="0" type="number">10</variable>
         <variable constant="0" name="to_load_map" static="0" type="number">1</variable>
-        <event-group description="" title="TiledMap Import">
+        <event-group collapsed="1" description="" title="TiledMap Import">
             <sub-events>
                 <event-block>
                     <conditions>
@@ -199,9 +201,6 @@
                         <action id="0" name="Set text" type="Debug">
                             <param id="0" name="Text">to_load_map</param>
                         </action>
-                        <action disabled="1" id="0" name="Set text" type="HPBar">
-                            <param id="0" name="Text">Avatar.hp &amp; &quot;/&quot; &amp; Avatar.max_hp</param>
-                        </action>
                         <action id="0" name="Set text" type="HPBar">
                             <param id="0" name="Text">avatar_hp &amp; &quot;/&quot; &amp; avatar_max_hp</param>
                         </action>
@@ -309,7 +308,6 @@
                         </action>
                     </actions>
                 </event-block>
-                <comment>od hrace odecitat tolik zivotu, kolik ma enemy utok (zde napevno a nahodne zvoleno 10) -&gt; radek 19</comment>
                 <event-block>
                     <conditions>
                         <condition id="1" name="Is overlapping another object" type="Enemy">
@@ -325,7 +323,7 @@
                         <action disabled="1" id="-9" name="Destroy" type="Avatar" />
                         <action id="-11" name="Subtract from" type="System">
                             <param id="0" name="Variable">avatar_hp</param>
-                            <param id="1" name="Value">10</param>
+                            <param id="1" name="Value">Enemy.damage</param>
                         </action>
                         <action behavior="Bullet" id="4" name="Bounce off object" type="Enemy">
                             <param id="0" name="Object">Avatar</param>
@@ -402,8 +400,8 @@
                         <condition id="2" name="Mouse button is down" type="Mouse">
                             <param id="0" name="Mouse button">0</param>
                         </condition>
-                        <condition id="-7" name="Compare instance variable" type="Avatar">
-                            <param id="0" name="Instance variable">weapon</param>
+                        <condition id="-14" name="Compare variable" type="System">
+                            <param id="0" name="Variable">avatar_weapon</param>
                             <param id="1" name="Comparison">0</param>
                             <param id="2" name="Value">&quot;machine_gun&quot;</param>
                         </condition>
@@ -414,10 +412,6 @@
                             <param id="1" name="Layer">1</param>
                             <param id="2" name="Image point">1</param>
                         </action>
-                        <action id="-10" name="Set value" type="Bullet">
-                            <param id="0" name="Instance variable">damage</param>
-                            <param id="1" name="Value">Avatar.weapon_damage</param>
-                        </action>
                     </actions>
                 </event-block>
                 <event-block>
@@ -426,8 +420,8 @@
                             <param id="0" name="Mouse button">0</param>
                             <param id="1" name="Click type">0</param>
                         </condition>
-                        <condition id="-7" name="Compare instance variable" type="Avatar">
-                            <param id="0" name="Instance variable">weapon</param>
+                        <condition id="-14" name="Compare variable" type="System">
+                            <param id="0" name="Variable">avatar_weapon</param>
                             <param id="1" name="Comparison">0</param>
                             <param id="2" name="Value">&quot;gun&quot;</param>
                         </condition>
@@ -437,10 +431,6 @@
                             <param id="0" name="Object">Bullet</param>
                             <param id="1" name="Layer">1</param>
                             <param id="2" name="Image point">1</param>
-                        </action>
-                        <action id="-10" name="Set value" type="Bullet">
-                            <param id="0" name="Instance variable">damage</param>
-                            <param id="1" name="Value">Avatar.weapon_damage</param>
                         </action>
                     </actions>
                 </event-block>
@@ -547,7 +537,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" title="Weapon change">
+        <event-group description="" title="Weapon change">
             <sub-events>
                 <event-block>
                     <conditions>
@@ -559,8 +549,8 @@
                     <sub-events>
                         <event-block>
                             <conditions>
-                                <condition id="-7" name="Compare instance variable" type="Avatar">
-                                    <param id="0" name="Instance variable">weapon</param>
+                                <condition id="-14" name="Compare variable" type="System">
+                                    <param id="0" name="Variable">avatar_weapon</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">&quot;gun&quot;</param>
                                 </condition>
@@ -569,20 +559,20 @@
                                 <action id="-16" name="Wait" type="System">
                                     <param id="0" name="Seconds">0</param>
                                 </action>
-                                <action id="-10" name="Set value" type="Avatar">
-                                    <param id="0" name="Instance variable">weapon</param>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">avatar_weapon</param>
                                     <param id="1" name="Value">&quot;machine_gun&quot;</param>
                                 </action>
-                                <action id="-10" name="Set value" type="Avatar">
-                                    <param id="0" name="Instance variable">weapon_damage</param>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">avatar_weapon_damage</param>
                                     <param id="1" name="Value">3</param>
                                 </action>
                             </actions>
                         </event-block>
                         <event-block>
                             <conditions>
-                                <condition id="-7" name="Compare instance variable" type="Avatar">
-                                    <param id="0" name="Instance variable">weapon</param>
+                                <condition id="-14" name="Compare variable" type="System">
+                                    <param id="0" name="Variable">avatar_weapon</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">&quot;machine_gun&quot;</param>
                                 </condition>
@@ -591,12 +581,12 @@
                                 <action id="-16" name="Wait" type="System">
                                     <param id="0" name="Seconds">0</param>
                                 </action>
-                                <action id="-10" name="Set value" type="Avatar">
-                                    <param id="0" name="Instance variable">weapon</param>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">avatar_weapon</param>
                                     <param id="1" name="Value">&quot;gun&quot;</param>
                                 </action>
-                                <action id="-10" name="Set value" type="Avatar">
-                                    <param id="0" name="Instance variable">weapon_damage</param>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">avatar_weapon_damage</param>
                                     <param id="1" name="Value">10</param>
                                 </action>
                             </actions>
@@ -622,17 +612,8 @@
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">&quot;hp&quot;</param>
                                 </condition>
-                                <condition id="-7" name="Compare instance variable" type="Avatar">
-                                    <param id="0" name="Instance variable">hp</param>
-                                    <param id="1" name="Comparison">2</param>
-                                    <param id="2" name="Value">Avatar.max_hp</param>
-                                </condition>
                             </conditions>
                             <actions>
-                                <action disabled="1" id="-10" name="Set value" type="Avatar">
-                                    <param id="0" name="Instance variable">hp</param>
-                                    <param id="1" name="Value">min(Avatar.hp + Item.boost_value, Avatar.max_hp)</param>
-                                </action>
                                 <action id="-9" name="Set value" type="System">
                                     <param id="0" name="Variable">avatar_hp</param>
                                     <param id="1" name="Value">min(avatar_hp + Item.boost_value, avatar_max_hp)</param>
