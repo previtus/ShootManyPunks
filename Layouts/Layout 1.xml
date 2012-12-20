@@ -176,6 +176,9 @@
                         <initial-visibility>Visible</initial-visibility>
                         <initial-frame>0</initial-frame>
                     </properties>
+                    <instance-variables>
+                        <target>0</target>
+                    </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
@@ -214,6 +217,26 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
+                <instance type="WorldMapTransport">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>-198</x>
+                        <y>604</y>
+                        <z>0</z>
+                        <width>34</width>
+                        <height>34</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
             </instances>
             <effects />
         </layer>
@@ -242,6 +265,8 @@
                         <isMoving>false</isMoving>
                         <speed>100</speed>
                         <visionProbeSent>false</visionProbeSent>
+                        <hitFrequency>10</hitFrequency>
+                        <hitDelay>0</hitDelay>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="BoundToLayout">

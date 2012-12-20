@@ -7,14 +7,14 @@
     <unique-id>w2turdg6quee</unique-id>
     <saved-with-version>10802</saved-with-version>
     <used-plugins>
-        <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
-        <plugin author="Scirra" id="Text" version="1">Text</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
         <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
+        <plugin author="Scirra" id="Text" version="1">Text</plugin>
+        <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
         <plugin author="Rex.Rainbow" id="Rex_Function" version="1">Function</plugin>
         <plugin author="Rex.Rainbow" id="Rex_TMXImporter" version="0.109999999">TMX Importer</plugin>
-        <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
+        <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior author="Scirra" id="Anchor" version="1">Anchor</behavior>
@@ -191,6 +191,9 @@
         </object-type>
         <object-type name="Transport">
             <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="target" type="number" />
+            </instance-variables>
             <animation-folder expanded="1">
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
@@ -302,6 +305,17 @@
                 </animation>
             </animation-folder>
         </object-type>
+        <object-type name="WorldMapTransport">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Text">
+            <plugin id="Text" />
+        </object-type>
     </object-folder>
     <families>
         <family name="Enemy" plugin-id="Sprite">
@@ -314,6 +328,8 @@
                 <instance-variable name="isMoving" type="boolean" />
                 <instance-variable name="speed" type="number" />
                 <instance-variable name="visionProbeSent" type="boolean" />
+                <instance-variable comment="Hits player every (10 frames?) it touches him." name="hitFrequency" type="number" />
+                <instance-variable comment="Count delay of hitting here" name="hitDelay" type="number" />
             </instance-variables>
             <behaviors>
                 <behavior-type name="BoundToLayout">
@@ -360,13 +376,13 @@
             </behaviors>
         </family>
     </families>
-    <layout-folder expanded="0">
+    <layout-folder expanded="1">
         <layout>Layout 1.xml</layout>
-        <layout>Layout 2.xml</layout>
+        <layout>WorldMap.xml</layout>
     </layout-folder>
     <event-folder expanded="1">
         <event-sheet>Event sheet 1.xml</event-sheet>
-        <event-sheet>Event sheet 2.xml</event-sheet>
+        <event-sheet>WorldMapEvents.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Mouse" />
