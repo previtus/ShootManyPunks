@@ -59,6 +59,7 @@
                     </properties>
                     <instance-variables>
                         <is_melee_atacking>false</is_melee_atacking>
+                        <is_sprinting>false</is_sprinting>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="8Direction">
@@ -204,11 +205,11 @@
                         <x>-191</x>
                         <y>0</y>
                         <z>0</z>
-                        <width>34</width>
-                        <height>5</height>
+                        <width>5</width>
+                        <height>34</height>
                         <depth>0</depth>
-                        <hotspotX>-0.235294119</hotspotX>
-                        <hotspotY>0.600000024</hotspotY>
+                        <hotspotX>0.600000024</hotspotX>
+                        <hotspotY>1.235294104</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
@@ -548,6 +549,43 @@
                         <z>0</z>
                         <width>200</width>
                         <height>35</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="StaminaBar">
+                    <properties>
+                        <text></text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Arial,-27,400,0</font>
+                        <color>0,0,0</color>
+                        <horizontal-alignment>Left</horizontal-alignment>
+                        <vertical-alignment>Top</vertical-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="Anchor">
+                            <properties>
+                                <left-edge>Window left</left-edge>
+                                <top-edge>Window top</top-edge>
+                                <right-edge>None</right-edge>
+                                <bottom-edge>None</bottom-edge>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>440</x>
+                        <y>68</y>
+                        <z>0</z>
+                        <width>200</width>
+                        <height>30</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>

@@ -5,6 +5,9 @@
     <events>
         <comment>promenne, ktere ma na sobe avatar (postava hrace) by meli byt glob. promenne - aby byly prenaseny mezi nactenim layoutu</comment>
         <comment>dostupne i napr. v layoutu WorldMap</comment>
+        <variable constant="0" name="avatar_stamina_regen" static="0" type="number">3</variable>
+        <variable constant="0" name="avatar_max_stamina" static="0" type="number">100</variable>
+        <variable constant="0" name="avatar_stamina" static="0" type="number">100</variable>
         <variable constant="0" name="avatar_hp" static="0" type="number">50</variable>
         <variable constant="0" name="avatar_max_hp" static="0" type="number">100</variable>
         <variable constant="0" name="avatar_weapon" static="0" type="text">gun</variable>
@@ -204,6 +207,9 @@
                         <action id="0" name="Set text" type="HPBar">
                             <param id="0" name="Text">avatar_hp &amp; &quot;/&quot; &amp; avatar_max_hp</param>
                         </action>
+                        <action id="0" name="Set text" type="StaminaBar">
+                            <param id="0" name="Text">avatar_stamina &amp; &quot;/&quot; &amp; avatar_max_stamina</param>
+                        </action>
                     </actions>
                     <sub-events>
                         <event-block>
@@ -393,6 +399,106 @@
                 </event-block>
             </sub-events>
         </event-group>
+        <event-group description="" title="Actions">
+            <sub-events>
+                <comment>sprint -- rychlosti jsou hausnumera, pokud je budeme menit v Avatarovi, budeme je muset menit i tady</comment>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On key pressed" type="Keyboard">
+                            <param id="0" name="Key">16 (Shift)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="4" name="Set max speed" type="Avatar">
+                            <param id="0" name="Max Speed">250</param>
+                        </action>
+                        <action id="-13" name="Set boolean" type="Avatar">
+                            <param id="0" name="Instance variable">is_sprinting</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="3" name="On key released" type="Keyboard">
+                            <param id="0" name="Key">16 (Shift)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="4" name="Set max speed" type="Avatar">
+                            <param id="0" name="Max Speed">100</param>
+                        </action>
+                        <action id="-13" name="Set boolean" type="Avatar">
+                            <param id="0" name="Instance variable">is_sprinting</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-8" name="Is boolean instance variable set" type="Avatar">
+                            <param id="0" name="Instance variable">is_sprinting</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-11" name="Subtract from" type="System">
+                            <param id="0" name="Variable">avatar_stamina</param>
+                            <param id="1" name="Value">2</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Avatar">
+                            <param id="0" name="Instance variable">is_sprinting</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Add to" type="System">
+                            <param id="0" name="Variable">avatar_stamina</param>
+                            <param id="1" name="Value">avatar_stamina_regen</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-14" name="Compare variable" type="System">
+                            <param id="0" name="Variable">avatar_stamina</param>
+                            <param id="1" name="Comparison">3</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">avatar_stamina</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action behavior="8Direction" id="4" name="Set max speed" type="Avatar">
+                            <param id="0" name="Max Speed">100</param>
+                        </action>
+                        <action id="-13" name="Set boolean" type="Avatar">
+                            <param id="0" name="Instance variable">is_sprinting</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-14" name="Compare variable" type="System">
+                            <param id="0" name="Variable">avatar_stamina</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">avatar_max_stamina</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">avatar_stamina</param>
+                            <param id="1" name="Value">avatar_max_stamina</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
         <event-group description="" title="Shooting">
             <sub-events>
                 <event-block>
@@ -453,6 +559,10 @@
                         <action id="-13" name="Set boolean" type="Avatar">
                             <param id="0" name="Instance variable">is_melee_atacking</param>
                             <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="4" name="Set animation" type="SamuraiSword">
+                            <param id="0" name="Animation">&quot;Attack&quot; &amp; floor(random(2))+1</param>
+                            <param id="1" name="From">1</param>
                         </action>
                         <action id="6" name="Set speed" type="SamuraiSword">
                             <param id="0" name="Speed">20</param>
@@ -523,9 +633,7 @@
                 </event-block>
                 <event-block>
                     <conditions>
-                        <condition id="4" name="On finished" type="SamuraiSword">
-                            <param id="0" name="Animation">&quot;Attack&quot;</param>
-                        </condition>
+                        <condition id="5" name="On any finished" type="SamuraiSword" />
                     </conditions>
                     <actions>
                         <action id="-9" name="Destroy" type="SamuraiSword" />
