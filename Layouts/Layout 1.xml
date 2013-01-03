@@ -234,6 +234,29 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
+                <instance type="Kick">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="Pin" />
+                    </behavior-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>-135</x>
+                        <y>-77</y>
+                        <z>0</z>
+                        <width>30</width>
+                        <height>9</height>
+                        <depth>0</depth>
+                        <hotspotX>-0.200000003</hotspotX>
+                        <hotspotY>1.222222209</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
             </instances>
             <effects />
         </layer>
@@ -265,6 +288,7 @@
                         <hitFrequency>10</hitFrequency>
                         <hitDelay>0</hitDelay>
                         <damage>10</damage>
+                        <stagger>0</stagger>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="BoundToLayout">
