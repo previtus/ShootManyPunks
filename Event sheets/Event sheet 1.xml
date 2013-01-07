@@ -10,6 +10,11 @@
         <variable constant="0" name="avatar_stamina" static="0" type="number">100</variable>
         <variable constant="0" name="avatar_hp" static="0" type="number">50</variable>
         <variable constant="0" name="avatar_max_hp" static="0" type="number">100</variable>
+        <comment>avatar ma dve zbrane; first a second jsou UID prvni a druhe zbrane, current je UID momentalne vybrane zbrane, which je index momentalne vybrane zbrane (0/1)</comment>
+        <variable constant="0" name="avatar_second_weapon" static="0" type="number">0</variable>
+        <variable constant="0" name="avatar_first_weapon" static="0" type="number">0</variable>
+        <variable constant="0" name="avatar_which_weapon" static="0" type="number">0</variable>
+        <variable constant="0" name="avatar_current_weapon" static="0" type="number">0</variable>
         <variable constant="0" name="avatar_weapon" static="0" type="text">gun</variable>
         <variable constant="0" name="avatar_weapon_damage" static="0" type="number">10</variable>
         <variable constant="0" name="to_load_map" static="0" type="number">1</variable>
@@ -42,6 +47,22 @@
                         <action id="-9" name="Destroy" type="Avatar" />
                         <action id="-9" name="Destroy" type="MonsterStar" />
                         <action id="-9" name="Destroy" type="Box" />
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">avatar_first_weapon</param>
+                            <param id="1" name="Value">Shotgun.UID</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">avatar_second_weapon</param>
+                            <param id="1" name="Value">MachineGun.UID</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">avatar_which_weapon</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">avatar_current_weapon</param>
+                            <param id="1" name="Value">avatar_first_weapon</param>
+                        </action>
                     </actions>
                 </event-block>
                 <event-block>
@@ -388,6 +409,41 @@
                         </action>
                     </actions>
                     <sub-events>
+                        <comment>informace o zbrani</comment>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" type="Weapons">
+                                    <param id="0" name="Unique ID">avatar_current_weapon</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" type="Weapons">
+                                            <param id="0" name="Instance variable">reload_timer</param>
+                                            <param id="1" name="Comparison">4</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Set text" type="WeaponInfo">
+                                            <param id="0" name="Text">str(Weapons.reload_timer) &amp; &quot;/&quot; &amp; str(Weapons.reload_interval)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-22" name="Else" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Set text" type="WeaponInfo">
+                                            <param id="0" name="Text">str(Weapons.magazine_current) &amp; &quot;/&quot; &amp; str(Weapons.magazine_size)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
                         <event-block>
                             <conditions>
                                 <condition id="-3" name="Is on-screen" type="Avatar" />
@@ -718,6 +774,7 @@
                         </action>
                     </actions>
                 </event-block>
+                <comment>nepritel je ochromen</comment>
                 <event-block>
                     <conditions>
                         <condition id="-7" name="Compare instance variable" type="Enemy">
@@ -867,43 +924,220 @@
                         <condition id="2" name="Mouse button is down" type="Mouse">
                             <param id="0" name="Mouse button">0</param>
                         </condition>
-                        <condition id="-14" name="Compare variable" type="System">
-                            <param id="0" name="Variable">avatar_weapon</param>
-                            <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Value">&quot;machine_gun&quot;</param>
-                        </condition>
                     </conditions>
                     <actions>
-                        <action id="0" name="Spawn another object" type="Avatar">
-                            <param id="0" name="Object">Bullet</param>
-                            <param id="1" name="Layer">1</param>
-                            <param id="2" name="Image point">1</param>
-                        </action>
-                        <action id="-18" name="Rotate clockwise" type="Bullet">
-                            <param id="0" name="Degrees">random(-2,2)</param>
+                        <action id="7" name="Execute commands" type="Function">
+                            <param id="0" name="Commands">&quot;fireWeapon,&quot; &amp; avatar_current_weapon &amp; &quot;,&quot; &amp; Avatar.ImagePointX(1) &amp; &quot;,&quot; &amp; Avatar.ImagePointY(1) &amp; &quot;,&quot; &amp; Avatar.Angle</param>
                         </action>
                     </actions>
                 </event-block>
                 <event-block>
                     <conditions>
-                        <condition id="0" name="On click" type="Mouse">
-                            <param id="0" name="Mouse button">0</param>
-                            <param id="1" name="Click type">0</param>
+                        <condition id="-22" name="Else" type="System" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <comment>ze zbrane se nestrili, zpetny raz se tlumi</comment>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" type="Weapons">
+                                    <param id="0" name="Unique ID">avatar_current_weapon</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" type="Weapons">
+                                    <param id="0" name="Instance variable">current_spread</param>
+                                    <param id="1" name="Value">max(Weapons.current_spread-Weapons.center_speed, Weapons.min_spread)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>nabijeni</comment>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On key pressed" type="Keyboard">
+                            <param id="0" name="Key">82 (R)</param>
                         </condition>
-                        <condition id="-14" name="Compare variable" type="System">
-                            <param id="0" name="Variable">avatar_weapon</param>
-                            <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Value">&quot;gun&quot;</param>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <comment>jen pokud je zbran prazdna a neni zrovna nabijena</comment>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" type="Weapons">
+                                    <param id="0" name="Unique ID">avatar_current_weapon</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" type="Weapons">
+                                    <param id="0" name="Instance variable">magazine_size</param>
+                                    <param id="1" name="Comparison">1</param>
+                                    <param id="2" name="Value">Weapons.magazine_current</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" type="Weapons">
+                                    <param id="0" name="Instance variable">reload_timer</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" type="Weapons">
+                                    <param id="0" name="Instance variable">reload_timer</param>
+                                    <param id="1" name="Value">Weapons.reload_interval</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>strileci funkce, mozna jsem to trochu pretap</comment>
+                <comment>parametry jsou (v poradi): (0) UID zbrane; (1) x-ova souradnice ze ktere se ma strilet; (2) y-ova souradnice; (3) uhel, pod kterym je zbran zamirena</comment>
+                <variable constant="0" name="firing_x" static="0" type="number">0</variable>
+                <variable constant="0" name="firing_y" static="0" type="number">0</variable>
+                <variable constant="0" name="firing_angle" static="0" type="number">0</variable>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On function" type="Function">
+                            <param id="0" name="Name">&quot;fireWeapon&quot;</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" type="Weapons">
+                            <param id="0" name="Unique ID">Function.Param(0)</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="0" name="Spawn another object" type="Avatar">
-                            <param id="0" name="Object">Bullet</param>
-                            <param id="1" name="Layer">1</param>
-                            <param id="2" name="Image point">1</param>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">firing_x</param>
+                            <param id="1" name="Value">Function.Param(1)</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">firing_y</param>
+                            <param id="1" name="Value">Function.Param(2)</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">firing_angle</param>
+                            <param id="1" name="Value">Function.Param(3)</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <comment>pokud je zbran strelby schopna (ma naboje, neni zrovna uprostred nabijeni ani mezi vystrely)</comment>
+                        <event-block>
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" type="Weapons">
+                                    <param id="0" name="Instance variable">firing_timer</param>
+                                    <param id="1" name="Comparison">3</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" type="Weapons">
+                                    <param id="0" name="Instance variable">reload_timer</param>
+                                    <param id="1" name="Comparison">3</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" type="Weapons">
+                                    <param id="0" name="Instance variable">magazine_current</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-12" name="Subtract from" type="Weapons">
+                                    <param id="0" name="Instance variable">magazine_current</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Weapons">
+                                    <param id="0" name="Instance variable">firing_timer</param>
+                                    <param id="1" name="Value">Weapons.firing_interval</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">firing_angle</param>
+                                    <param id="1" name="Value">random(-Weapons.current_spread, Weapons.current_spread)</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Weapons">
+                                    <param id="0" name="Instance variable">current_spread</param>
+                                    <param id="1" name="Value">min(Weapons.current_spread+Weapons.recoil_per_shot,Weapons.max_spread)</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-10" name="For" type="System">
+                                            <param id="0" name="Name">&quot;&quot;</param>
+                                            <param id="1" name="Start index">1</param>
+                                            <param id="2" name="End index">Weapons.projectiles_per_shot</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Spawn another object" type="Weapons">
+                                            <param id="0" name="Object">Bullet</param>
+                                            <param id="1" name="Layer">1</param>
+                                            <param id="2" name="Image point">0</param>
+                                        </action>
+                                        <action id="-3" name="Set position" type="Bullet">
+                                            <param id="0" name="X">firing_x</param>
+                                            <param id="1" name="Y">firing_y</param>
+                                        </action>
+                                        <action behavior="Bullet" id="3" name="Set angle of motion" type="Bullet">
+                                            <param id="0" name="Angle">firing_angle + random(-Weapons.projectile_spread, Weapons.projectile_spread)</param>
+                                        </action>
+                                        <action behavior="Bullet" id="0" name="Set speed" type="Bullet">
+                                            <param id="0" name="Speed">Weapons.bullet_velocity</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>zbran nemuze strilet (kadence)</comment>
+                <event-block>
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" type="Weapons">
+                            <param id="0" name="Instance variable">firing_timer</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" type="Weapons">
+                            <param id="0" name="Instance variable">firing_timer</param>
+                            <param id="1" name="Value">max(Weapons.firing_timer-1,0)</param>
                         </action>
                     </actions>
                 </event-block>
+                <comment>zbran nemuze strilet (prave se nabiji)</comment>
+                <event-block>
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" type="Weapons">
+                            <param id="0" name="Instance variable">reload_timer</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Avatar">
+                            <param id="0" name="Instance variable">is_melee_atacking</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" type="Weapons">
+                            <param id="0" name="Instance variable">reload_timer</param>
+                            <param id="1" name="Value">max(Weapons.reload_timer-1,0)</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" type="Weapons">
+                                    <param id="0" name="Instance variable">reload_timer</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" type="Weapons">
+                                    <param id="0" name="Instance variable">magazine_current</param>
+                                    <param id="1" name="Value">Weapons.magazine_size</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>pridani stopovky</comment>
                 <event-block>
                     <conditions>
                         <condition id="-18" name="On created" type="Bullet" />
@@ -963,6 +1197,7 @@
                         </event-block>
                     </sub-events>
                 </event-block>
+                <comment>svih mecem</comment>
                 <event-block>
                     <conditions>
                         <condition id="0" name="On click" type="Mouse">
@@ -996,6 +1231,7 @@
                         </action>
                     </actions>
                 </event-block>
+                <comment>kopnuti</comment>
                 <event-block>
                     <conditions>
                         <condition id="0" name="On key pressed" type="Keyboard">
@@ -1155,55 +1391,82 @@
             <sub-events>
                 <event-block>
                     <conditions>
-                        <condition id="3" name="On key released" type="Keyboard">
+                        <condition id="0" name="On key pressed" type="Keyboard">
                             <param id="0" name="Key">32 (Space)</param>
                         </condition>
                     </conditions>
-                    <actions />
+                    <actions>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">avatar_which_weapon</param>
+                            <param id="1" name="Value">(avatar_which_weapon+1)%2</param>
+                        </action>
+                    </actions>
                     <sub-events>
                         <event-block>
                             <conditions>
                                 <condition id="-14" name="Compare variable" type="System">
-                                    <param id="0" name="Variable">avatar_weapon</param>
+                                    <param id="0" name="Variable">avatar_which_weapon</param>
                                     <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Value">&quot;gun&quot;</param>
+                                    <param id="2" name="Value">0</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-16" name="Wait" type="System">
-                                    <param id="0" name="Seconds">0</param>
-                                </action>
                                 <action id="-9" name="Set value" type="System">
-                                    <param id="0" name="Variable">avatar_weapon</param>
-                                    <param id="1" name="Value">&quot;machine_gun&quot;</param>
-                                </action>
-                                <action id="-9" name="Set value" type="System">
-                                    <param id="0" name="Variable">avatar_weapon_damage</param>
-                                    <param id="1" name="Value">3</param>
+                                    <param id="0" name="Variable">avatar_current_weapon</param>
+                                    <param id="1" name="Value">avatar_first_weapon</param>
                                 </action>
                             </actions>
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-14" name="Pick by unique ID" type="Weapons">
+                                            <param id="0" name="Unique ID">avatar_second_weapon</param>
+                                        </condition>
+                                        <condition id="-7" name="Compare instance variable" type="Weapons">
+                                            <param id="0" name="Instance variable">reload_timer</param>
+                                            <param id="1" name="Comparison">4</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" type="Weapons">
+                                            <param id="0" name="Instance variable">reload_timer</param>
+                                            <param id="1" name="Value">Weapons.reload_interval</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
                         </event-block>
                         <event-block>
                             <conditions>
-                                <condition id="-14" name="Compare variable" type="System">
-                                    <param id="0" name="Variable">avatar_weapon</param>
-                                    <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Value">&quot;machine_gun&quot;</param>
-                                </condition>
+                                <condition id="-22" name="Else" type="System" />
                             </conditions>
                             <actions>
-                                <action id="-16" name="Wait" type="System">
-                                    <param id="0" name="Seconds">0</param>
-                                </action>
                                 <action id="-9" name="Set value" type="System">
-                                    <param id="0" name="Variable">avatar_weapon</param>
-                                    <param id="1" name="Value">&quot;gun&quot;</param>
-                                </action>
-                                <action id="-9" name="Set value" type="System">
-                                    <param id="0" name="Variable">avatar_weapon_damage</param>
-                                    <param id="1" name="Value">10</param>
+                                    <param id="0" name="Variable">avatar_current_weapon</param>
+                                    <param id="1" name="Value">avatar_second_weapon</param>
                                 </action>
                             </actions>
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-14" name="Pick by unique ID" type="Weapons">
+                                            <param id="0" name="Unique ID">avatar_first_weapon</param>
+                                        </condition>
+                                        <condition id="-7" name="Compare instance variable" type="Weapons">
+                                            <param id="0" name="Instance variable">reload_timer</param>
+                                            <param id="1" name="Comparison">4</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" type="Weapons">
+                                            <param id="0" name="Instance variable">reload_timer</param>
+                                            <param id="1" name="Value">Weapons.reload_interval</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
                         </event-block>
                     </sub-events>
                 </event-block>

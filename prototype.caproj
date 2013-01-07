@@ -7,16 +7,16 @@
     <unique-id>w2turdg6quee</unique-id>
     <saved-with-version>10802</saved-with-version>
     <used-plugins>
+        <plugin author="Scirra" id="Text" version="1">Text</plugin>
+        <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
+        <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
+        <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
+        <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
+        <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
+        <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
         <plugin author="Rex.Rainbow" id="Rex_Function" version="1">Function</plugin>
         <plugin author="Rex.Rainbow" id="Rex_TMXImporter" version="0.109999999">TMX Importer</plugin>
         <plugin author="Scirra" id="Button" version="1">Button</plugin>
-        <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
-        <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
-        <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
-        <plugin author="Scirra" id="Text" version="1">Text</plugin>
-        <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
-        <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
-        <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior author="Scirra" id="Anchor" version="1">Anchor</behavior>
@@ -85,11 +85,13 @@
                     </behavior-type>
                 </behaviors>
             </object-type>
-
             <object-type name="npc_talking">
                 <plugin id="Text" />
             </object-type>
             <object-type name="FPSText">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="WeaponInfo">
                 <plugin id="Text" />
             </object-type>
         </object-folder>
@@ -517,34 +519,34 @@
                 <animation framecount="4" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
                     <frame duration="1" hotspotX="-0.2" hotspotY="1.22222">
                         <collision-poly>
-                            <point x="0.633333" y="1" />
-                            <point x="0.633333" y="0.777778" />
-                            <point x="0.633333" y="0.777778" />
-                            <point x="0.633333" y="1" />
+                            <point x="0.0416664" y="0.861111" />
+                            <point x="0.0458332" y="0.152778" />
+                            <point x="0.241667" y="0.166667" />
+                            <point x="0.245833" y="0.875" />
                         </collision-poly>
                     </frame>
                     <frame duration="1" hotspotX="-0.2" hotspotY="1.22222">
                         <collision-poly>
-                            <point x="0.475" y="1" />
-                            <point x="0.475" y="0.777778" />
-                            <point x="0.475" y="0.777778" />
-                            <point x="0.475" y="1" />
+                            <point x="0.05" y="0.819444" />
+                            <point x="0.05" y="0.152778" />
+                            <point x="0.579167" y="0.152778" />
+                            <point x="0.579167" y="0.847222" />
                         </collision-poly>
                     </frame>
                     <frame duration="1" hotspotX="-0.2" hotspotY="1.22222">
                         <collision-poly>
-                            <point x="0.316667" y="1" />
-                            <point x="0.316667" y="0.777778" />
-                            <point x="0.316667" y="0.777778" />
-                            <point x="0.316667" y="1" />
+                            <point x="0.0583337" y="0.791667" />
+                            <point x="0.0541669" y="0.166667" />
+                            <point x="0.966667" y="0.0972222" />
+                            <point x="0.966667" y="0.875" />
                         </collision-poly>
                     </frame>
                     <frame duration="1" hotspotX="-0.2" hotspotY="1.22222">
                         <collision-poly>
-                            <point x="0.316667" y="1" />
-                            <point x="0.316667" y="0.777778" />
-                            <point x="0.316667" y="0.777778" />
-                            <point x="0.316667" y="1" />
+                            <point x="0.0583337" y="0.791667" />
+                            <point x="0.0541669" y="0.166667" />
+                            <point x="0.966667" y="0.0972222" />
+                            <point x="0.966667" y="0.875" />
                         </collision-poly>
                     </frame>
                 </animation>
@@ -556,7 +558,6 @@
         <object-type name="text_tmp_exampleplaza">
             <plugin id="Text" />
         </object-type>
-
         <object-type name="npc_simple">
             <plugin id="Sprite" />
             <instance-variables>
@@ -600,7 +601,22 @@
             <plugin id="Particles" />
             <texture />
         </object-type>
-
+        <object-type name="Shotgun">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="MachineGun">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
     </object-folder>
     <families>
         <family name="Enemy" plugin-id="Sprite">
@@ -661,6 +677,29 @@
                     <behavior id="solid" />
                 </behavior-type>
             </behaviors>
+        </family>
+        <family name="Weapons" plugin-id="Sprite">
+            <members>
+                <member>MachineGun</member>
+                <member>Shotgun</member>
+            </members>
+            <instance-variables>
+                <instance-variable name="projectiles_per_shot" type="number" />
+                <instance-variable name="projectile_spread" type="number" />
+                <instance-variable name="min_spread" type="number" />
+                <instance-variable name="max_spread" type="number" />
+                <instance-variable name="current_spread" type="number" />
+                <instance-variable name="recoil_per_shot" type="number" />
+                <instance-variable name="center_speed" type="number" />
+                <instance-variable name="damage" type="number" />
+                <instance-variable name="bullet_velocity" type="number" />
+                <instance-variable name="magazine_size" type="number" />
+                <instance-variable name="magazine_current" type="number" />
+                <instance-variable name="firing_interval" type="number" />
+                <instance-variable name="firing_timer" type="number" />
+                <instance-variable name="reload_interval" type="number" />
+                <instance-variable name="reload_timer" type="number" />
+            </instance-variables>
         </family>
     </families>
     <layout-folder expanded="1">

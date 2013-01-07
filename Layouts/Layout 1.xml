@@ -691,14 +691,12 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-
                 <instance type="FPSText">
                     <properties>
                         <text>oi</text>
                         <initial-visibility>Visible</initial-visibility>
                         <font>Courier New,-27,700,0</font>
                         <color>255,0,0</color>
-
                         <horizontal-alignment>Left</horizontal-alignment>
                         <vertical-alignment>Top</vertical-alignment>
                         <hotspot>Top-left</hotspot>
@@ -713,7 +711,107 @@
                         <z>0</z>
                         <width>95</width>
                         <height>30</height>
-
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="Shotgun">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                    </properties>
+                    <instance-variables>
+                        <projectiles_per_shot>5</projectiles_per_shot>
+                        <projectile_spread>2</projectile_spread>
+                        <min_spread>1</min_spread>
+                        <max_spread>5</max_spread>
+                        <current_spread>1</current_spread>
+                        <recoil_per_shot>5</recoil_per_shot>
+                        <center_speed>1</center_speed>
+                        <damage>8</damage>
+                        <bullet_velocity>1200</bullet_velocity>
+                        <magazine_size>8</magazine_size>
+                        <magazine_current>8</magazine_current>
+                        <firing_interval>60</firing_interval>
+                        <firing_timer>0</firing_timer>
+                        <reload_interval>135</reload_interval>
+                        <reload_timer>0</reload_timer>
+                    </instance-variables>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>187</x>
+                        <y>-253</y>
+                        <z>0</z>
+                        <width>256</width>
+                        <height>256</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="MachineGun">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                    </properties>
+                    <instance-variables>
+                        <projectiles_per_shot>1</projectiles_per_shot>
+                        <projectile_spread>0</projectile_spread>
+                        <min_spread>1</min_spread>
+                        <max_spread>10</max_spread>
+                        <current_spread>2</current_spread>
+                        <recoil_per_shot>1</recoil_per_shot>
+                        <center_speed>2</center_speed>
+                        <damage>17</damage>
+                        <bullet_velocity>1500</bullet_velocity>
+                        <magazine_size>30</magazine_size>
+                        <magazine_current>30</magazine_current>
+                        <firing_interval>6</firing_interval>
+                        <firing_timer>0</firing_timer>
+                        <reload_interval>110</reload_interval>
+                        <reload_timer>0</reload_timer>
+                    </instance-variables>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>56</x>
+                        <y>-207</y>
+                        <z>0</z>
+                        <width>256</width>
+                        <height>256</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="WeaponInfo">
+                    <properties>
+                        <text>Text</text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Arial,-16</font>
+                        <color>255,153,0</color>
+                        <horizontal-alignment>Left</horizontal-alignment>
+                        <vertical-alignment>Top</vertical-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>373</x>
+                        <y>434</y>
+                        <z>0</z>
+                        <width>200</width>
+                        <height>30</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
