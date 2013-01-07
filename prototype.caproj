@@ -91,12 +91,6 @@
             </object-type>
             <object-type name="FPSText">
                 <plugin id="Text" />
-                <behaviors>
-                    <behavior-type name="Anchor">
-                        <behavior id="Anchor" />
-                    </behavior-type>
-                </behaviors>
-
             </object-type>
         </object-folder>
         <object-type name="TMXImporter">
