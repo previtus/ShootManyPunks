@@ -7,13 +7,13 @@
     <unique-id>w2turdg6quee</unique-id>
     <saved-with-version>10802</saved-with-version>
     <used-plugins>
+        <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
+        <plugin author="Scirra" id="Button" version="1">Button</plugin>
+        <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
         <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
-        <plugin author="Rex.Rainbow" id="Rex_TMXImporter" version="0.109999999">TMX Importer</plugin>
         <plugin author="Rex.Rainbow" id="Rex_Function" version="1">Function</plugin>
-        <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
-        <plugin author="Scirra" id="Button" version="1">Button</plugin>
-        <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
+        <plugin author="Rex.Rainbow" id="Rex_TMXImporter" version="0.109999999">TMX Importer</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="Text" version="1">Text</plugin>
         <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
@@ -54,6 +54,11 @@
         <object-folder expanded="1" name="GUI">
             <object-type name="Debug">
                 <plugin id="Text" />
+                <behaviors>
+                    <behavior-type name="Anchor">
+                        <behavior id="Anchor" />
+                    </behavior-type>
+                </behaviors>
             </object-type>
             <object-type name="HPBar">
                 <plugin id="Text" />
@@ -200,6 +205,7 @@
             <plugin id="Sprite" />
             <instance-variables>
                 <instance-variable name="target" type="number" />
+                <instance-variable name="spawnPointTarget" type="number" />
             </instance-variables>
             <animation-folder expanded="1">
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
@@ -412,7 +418,7 @@
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="Text">
+        <object-type name="text_WorldMap">
             <plugin id="Text" />
         </object-type>
         <object-type name="WorldMap">
@@ -531,6 +537,9 @@
                     </frame>
                 </animation>
             </animation-folder>
+        </object-type>
+        <object-type name="text_tmp_example">
+            <plugin id="Text" />
         </object-type>
     </object-folder>
     <families>
