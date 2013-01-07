@@ -383,6 +383,9 @@
                         <action id="0" name="Set text" type="StaminaBar">
                             <param id="0" name="Text">avatar_stamina &amp; &quot;/&quot; &amp; avatar_max_stamina</param>
                         </action>
+                        <action id="0" name="Set text" type="FPSText">
+                            <param id="0" name="Text">str(fps) &amp; &quot; FPS&quot;</param>
+                        </action>
                     </actions>
                     <sub-events>
                         <event-block>
@@ -876,6 +879,9 @@
                             <param id="1" name="Layer">1</param>
                             <param id="2" name="Image point">1</param>
                         </action>
+                        <action id="-18" name="Rotate clockwise" type="Bullet">
+                            <param id="0" name="Degrees">random(-2,2)</param>
+                        </action>
                     </actions>
                 </event-block>
                 <event-block>
@@ -897,6 +903,65 @@
                             <param id="2" name="Image point">1</param>
                         </action>
                     </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-18" name="On created" type="Bullet" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Spawn another object" type="Bullet">
+                            <param id="0" name="Object">BulletTrail</param>
+                            <param id="1" name="Layer">1</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="-10" name="Set value" type="Bullet">
+                            <param id="0" name="Instance variable">trail_UID</param>
+                            <param id="1" name="Value">BulletTrail.UID</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" type="BulletTrail">
+                                    <param id="0" name="Unique ID">Bullet.trail_UID</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-6" name="Set height" type="BulletTrail">
+                                    <param id="0" name="Height">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-11" name="For Each" type="System">
+                            <param id="0" name="Object">Bullet</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" type="BulletTrail">
+                                    <param id="0" name="Unique ID">Bullet.trail_UID</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-5" name="Set width" type="BulletTrail">
+                                    <param id="0" name="Width">Min(Bullet.Bullet.Speed/30,distance(Bullet.ImagePointX(0),Bullet.ImagePointY(0),Avatar.ImagePointX(1),Avatar.ImagePointY(1)))</param>
+                                </action>
+                                <action id="-8" name="Set angle" type="BulletTrail">
+                                    <param id="0" name="Angle">Bullet.Angle-180</param>
+                                </action>
+                                <action id="-3" name="Set position" type="BulletTrail">
+                                    <param id="0" name="X">Bullet.ImagePointX(0)</param>
+                                    <param id="1" name="Y">Bullet.ImagePointY(0)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
                 <event-block>
                     <conditions>
@@ -992,8 +1057,34 @@
                         </condition>
                     </conditions>
                     <actions>
+                        <action behavior="CustomMovement" id="11" name="Push out solid at angle" type="Bullet">
+                            <param id="0" name="Angle">Bullet.Bullet.AngleOfMotion-180</param>
+                        </action>
+                        <action id="0" name="Spawn another object" type="Bullet">
+                            <param id="0" name="Object">BulletHit</param>
+                            <param id="1" name="Layer">1</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
                         <action id="-9" name="Destroy" type="Bullet" />
                     </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-19" name="On destroyed" type="Bullet" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" type="BulletTrail">
+                                    <param id="0" name="Unique ID">Bullet.trail_UID</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" type="BulletTrail" />
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
                 <event-block>
                     <conditions>
