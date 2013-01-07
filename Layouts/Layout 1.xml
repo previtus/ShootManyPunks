@@ -310,8 +310,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>508</x>
-                        <y>364</y>
+                        <x>-193</x>
+                        <y>806</y>
                         <z>0</z>
                         <width>34</width>
                         <height>34</height>
@@ -420,6 +420,35 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
+                <instance type="npc_simple">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                    </properties>
+                    <instance-variables>
+                        <spawnX>0</spawnX>
+                        <spawnY>0</spawnY>
+                        <dialogLine1>&quot;Sovy nejsou, čím se zdají být&quot;</dialogLine1>
+                        <dialogLine2>&quot;Mimochodem, jmenuji se Bob&quot;</dialogLine2>
+                        <stav>0</stav>
+                        <waitingDelay>0</waitingDelay>
+                        <courage>100</courage>
+                    </instance-variables>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>-152.929840088</x>
+                        <y>415.559234619</y>
+                        <z>0</z>
+                        <width>34</width>
+                        <height>34</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
             </instances>
             <effects />
         </layer>
@@ -451,8 +480,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>56</x>
-                        <y>300</y>
+                        <x>-179</x>
+                        <y>711</y>
                         <z>0</z>
                         <width>25</width>
                         <height>25</height>
@@ -621,6 +650,33 @@
                         <z>0</z>
                         <width>200</width>
                         <height>30</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="npc_talking">
+                    <properties>
+                        <text>Text</text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Arial,-16</font>
+                        <color>0,0,0</color>
+                        <horizontal-alignment>Left</horizontal-alignment>
+                        <vertical-alignment>Top</vertical-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>-216</x>
+                        <y>848</y>
+                        <z>0</z>
+                        <width>200</width>
+                        <height>83</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>

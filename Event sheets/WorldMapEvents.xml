@@ -102,7 +102,7 @@
                         <condition id="6" name="On object clicked" type="Mouse">
                             <param id="0" name="Mouse button">0</param>
                             <param id="1" name="Click type">0</param>
-                            <param id="2" name="Object clicked">text_tmp_example</param>
+                            <param id="2" name="Object clicked">text_tmp_examplebackdoor</param>
                         </condition>
                     </conditions>
                     <actions>
@@ -113,6 +113,28 @@
                         <action id="-9" name="Set value" type="System">
                             <param id="0" name="Variable">to_load_spawnpoint</param>
                             <param id="1" name="Value">2</param>
+                        </action>
+                        <action id="-2" name="Go to layout" type="System">
+                            <param id="0" name="Layout">Layout 1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="6" name="On object clicked" type="Mouse">
+                            <param id="0" name="Mouse button">0</param>
+                            <param id="1" name="Click type">0</param>
+                            <param id="2" name="Object clicked">text_tmp_exampleplaza</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">to_load_map</param>
+                            <param id="1" name="Value">3</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">to_load_spawnpoint</param>
+                            <param id="1" name="Value">1</param>
                         </action>
                         <action id="-2" name="Go to layout" type="System">
                             <param id="0" name="Layout">Layout 1</param>
