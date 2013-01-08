@@ -5,6 +5,7 @@
     <events>
         <comment>promenne, ktere ma na sobe avatar (postava hrace) by meli byt glob. promenne - aby byly prenaseny mezi nactenim layoutu</comment>
         <comment>dostupne i napr. v layoutu WorldMap</comment>
+        <variable constant="0" name="avatar_initialized" static="0" type="number">0</variable>
         <variable constant="0" name="avatar_stamina_regen" static="0" type="number">3</variable>
         <variable constant="0" name="avatar_max_stamina" static="0" type="number">100</variable>
         <variable constant="0" name="avatar_stamina" static="0" type="number">100</variable>
@@ -47,23 +48,64 @@
                         <action id="-9" name="Destroy" type="Avatar" />
                         <action id="-9" name="Destroy" type="MonsterStar" />
                         <action id="-9" name="Destroy" type="Box" />
-                        <action id="-9" name="Set value" type="System">
-                            <param id="0" name="Variable">avatar_first_weapon</param>
-                            <param id="1" name="Value">Shotgun.UID</param>
-                        </action>
-                        <action id="-9" name="Set value" type="System">
-                            <param id="0" name="Variable">avatar_second_weapon</param>
-                            <param id="1" name="Value">MachineGun.UID</param>
-                        </action>
-                        <action id="-9" name="Set value" type="System">
-                            <param id="0" name="Variable">avatar_which_weapon</param>
-                            <param id="1" name="Value">0</param>
-                        </action>
-                        <action id="-9" name="Set value" type="System">
-                            <param id="0" name="Variable">avatar_current_weapon</param>
-                            <param id="1" name="Value">avatar_first_weapon</param>
-                        </action>
                     </actions>
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-9" name="Is visible" type="Weapons" />
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" type="Weapons" />
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Compare variable" type="System">
+                                    <param id="0" name="Variable">avatar_initialized</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">avatar_initialized</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="0" name="Spawn another object" type="Avatar">
+                                    <param id="0" name="Object">SubMachineGun</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="-15" name="Set visible" type="SubMachineGun">
+                                    <param id="0" name="Visibility">0</param>
+                                </action>
+                                <action id="0" name="Spawn another object" type="Avatar">
+                                    <param id="0" name="Object">Shotgun</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="-15" name="Set visible" type="Shotgun">
+                                    <param id="0" name="Visibility">0</param>
+                                </action>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">avatar_first_weapon</param>
+                                    <param id="1" name="Value">Shotgun.UID</param>
+                                </action>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">avatar_second_weapon</param>
+                                    <param id="1" name="Value">SubMachineGun.UID</param>
+                                </action>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">avatar_which_weapon</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">avatar_current_weapon</param>
+                                    <param id="1" name="Value">avatar_first_weapon</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
                 <event-block>
                     <conditions>
@@ -322,7 +364,7 @@
                             <actions>
                                 <action id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">Avatar</param>
-                                    <param id="1" name="Layer">0</param>
+                                    <param id="1" name="Layer">1</param>
                                     <param id="2" name="X">TMXImporter.PhysicalX</param>
                                     <param id="3" name="Y">TMXImporter.PhysicalY</param>
                                 </action>
@@ -348,7 +390,7 @@
                             <actions>
                                 <action id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">Avatar</param>
-                                    <param id="1" name="Layer">0</param>
+                                    <param id="1" name="Layer">1</param>
                                     <param id="2" name="X">TMXImporter.PhysicalX</param>
                                     <param id="3" name="Y">TMXImporter.PhysicalY</param>
                                 </action>
@@ -374,7 +416,7 @@
                             <actions>
                                 <action id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">Avatar</param>
-                                    <param id="1" name="Layer">0</param>
+                                    <param id="1" name="Layer">1</param>
                                     <param id="2" name="X">TMXImporter.PhysicalX</param>
                                     <param id="3" name="Y">TMXImporter.PhysicalY</param>
                                 </action>
@@ -812,6 +854,24 @@
                             <param id="1" name="Layer">0</param>
                             <param id="2" name="Image point">0</param>
                         </action>
+                        <action id="0" name="Spawn another object" type="Enemy">
+                            <param id="0" name="Object">Weapons</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="-23" name="Move at angle" type="Weapons">
+                            <param id="0" name="Angle">random(0,360)</param>
+                            <param id="1" name="Distance">random(3,9)</param>
+                        </action>
+                        <action id="-8" name="Set angle" type="Weapons">
+                            <param id="0" name="Angle">random(0,360)</param>
+                        </action>
+                        <action id="9" name="Set scale" type="Weapons">
+                            <param id="0" name="Scale">0.25</param>
+                        </action>
+                        <action id="-15" name="Set visible" type="Weapons">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
                         <action id="-9" name="Destroy" type="Enemy" />
                     </actions>
                 </event-block>
@@ -819,6 +879,54 @@
         </event-group>
         <event-group description="" title="Actions">
             <sub-events>
+                <event-block>
+                    <conditions>
+                        <condition id="2" name="Key is down" type="Keyboard">
+                            <param id="0" name="Key">87 (W)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="7" name="Simulate control" type="Avatar">
+                            <param id="0" name="Control">2</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="2" name="Key is down" type="Keyboard">
+                            <param id="0" name="Key">83 (S)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="7" name="Simulate control" type="Avatar">
+                            <param id="0" name="Control">3</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="2" name="Key is down" type="Keyboard">
+                            <param id="0" name="Key">65 (A)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="7" name="Simulate control" type="Avatar">
+                            <param id="0" name="Control">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="2" name="Key is down" type="Keyboard">
+                            <param id="0" name="Key">68 (D)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="7" name="Simulate control" type="Avatar">
+                            <param id="0" name="Control">1</param>
+                        </action>
+                    </actions>
+                </event-block>
                 <comment>sprint -- rychlosti jsou hausnumera, pokud je budeme menit v Avatarovi, budeme je muset menit i tady</comment>
                 <event-block>
                     <conditions>
@@ -924,6 +1032,11 @@
                         <condition id="2" name="Mouse button is down" type="Mouse">
                             <param id="0" name="Mouse button">0</param>
                         </condition>
+                        <condition id="-14" name="Compare variable" type="System">
+                            <param id="0" name="Variable">avatar_hp</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
                     </conditions>
                     <actions>
                         <action id="7" name="Execute commands" type="Function">
@@ -948,6 +1061,10 @@
                                 <action id="-10" name="Set value" type="Weapons">
                                     <param id="0" name="Instance variable">current_spread</param>
                                     <param id="1" name="Value">max(Weapons.current_spread-Weapons.center_speed, Weapons.min_spread)</param>
+                                </action>
+                                <action id="-13" name="Set boolean" type="Weapons">
+                                    <param id="0" name="Instance variable">single_shot_needs_reset</param>
+                                    <param id="1" name="Value">0</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -993,6 +1110,7 @@
                 <variable constant="0" name="firing_x" static="0" type="number">0</variable>
                 <variable constant="0" name="firing_y" static="0" type="number">0</variable>
                 <variable constant="0" name="firing_angle" static="0" type="number">0</variable>
+                <variable constant="0" name="current_firing_angle" static="0" type="number">0</variable>
                 <event-block>
                     <conditions>
                         <condition id="0" name="On function" type="Function">
@@ -1035,6 +1153,9 @@
                                     <param id="1" name="Comparison">4</param>
                                     <param id="2" name="Value">0</param>
                                 </condition>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Weapons">
+                                    <param id="0" name="Instance variable">single_shot_needs_reset</param>
+                                </condition>
                             </conditions>
                             <actions>
                                 <action id="-12" name="Subtract from" type="Weapons">
@@ -1069,15 +1190,35 @@
                                             <param id="1" name="Layer">1</param>
                                             <param id="2" name="Image point">0</param>
                                         </action>
+                                        <action id="-9" name="Set value" type="System">
+                                            <param id="0" name="Variable">current_firing_angle</param>
+                                            <param id="1" name="Value">firing_angle + random(-Weapons.projectile_spread, Weapons.projectile_spread)</param>
+                                        </action>
                                         <action id="-3" name="Set position" type="Bullet">
                                             <param id="0" name="X">firing_x</param>
                                             <param id="1" name="Y">firing_y</param>
                                         </action>
+                                        <action id="-8" name="Set angle" type="Bullet">
+                                            <param id="0" name="Angle">current_firing_angle</param>
+                                        </action>
                                         <action behavior="Bullet" id="3" name="Set angle of motion" type="Bullet">
-                                            <param id="0" name="Angle">firing_angle + random(-Weapons.projectile_spread, Weapons.projectile_spread)</param>
+                                            <param id="0" name="Angle">current_firing_angle</param>
                                         </action>
                                         <action behavior="Bullet" id="0" name="Set speed" type="Bullet">
-                                            <param id="0" name="Speed">Weapons.bullet_velocity</param>
+                                            <param id="0" name="Speed">Weapons.bullet_velocity + random(0,50)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-8" name="Is boolean instance variable set" type="Weapons">
+                                            <param id="0" name="Instance variable">is_single_shot</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-13" name="Set boolean" type="Weapons">
+                                            <param id="0" name="Instance variable">single_shot_needs_reset</param>
+                                            <param id="1" name="Value">1</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -1275,6 +1416,10 @@
                         <action id="-12" name="Subtract from" type="Enemy">
                             <param id="0" name="Instance variable">hp</param>
                             <param id="1" name="Value">Bullet.damage</param>
+                        </action>
+                        <action id="-23" name="Move at angle" type="Enemy">
+                            <param id="0" name="Angle">Enemy.Angle-180</param>
+                            <param id="1" name="Distance">0.2*Bullet.damage</param>
                         </action>
                         <action id="-9" name="Destroy" type="Bullet" />
                         <action id="-13" name="Set boolean" type="Enemy">
@@ -1549,6 +1694,98 @@
                                 </action>
                                 <action id="5" name="Set frame" type="LootableItem">
                                     <param id="0" name="Frame number">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>sebrani zbrane ze zeme</comment>
+                <variable constant="0" name="weapon_pos_y" static="0" type="number">0</variable>
+                <variable constant="0" name="weapon_pos_x" static="0" type="number">0</variable>
+                <variable constant="0" name="weapon_uid" static="0" type="number">0</variable>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On key pressed" type="Keyboard">
+                            <param id="0" name="Key">70 (F)</param>
+                        </condition>
+                        <condition id="-9" name="Is visible" type="Weapons" />
+                        <condition id="-15" name="Pick nearest/furthest" type="Weapons">
+                            <param id="0" name="Which">0</param>
+                            <param id="1" name="X">Avatar.X</param>
+                            <param id="2" name="Y">Avatar.Y</param>
+                        </condition>
+                        <condition id="-8" name="Compare two values" type="System">
+                            <param id="0" name="First value">distance(Avatar.X,Avatar.Y,Weapons.X,Weapons.Y)</param>
+                            <param id="1" name="Comparison">3</param>
+                            <param id="2" name="Second value">50</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">weapon_pos_x</param>
+                            <param id="1" name="Value">Weapons.X</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">weapon_pos_y</param>
+                            <param id="1" name="Value">Weapons.Y</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">weapon_uid</param>
+                            <param id="1" name="Value">Weapons.UID</param>
+                        </action>
+                        <action id="-15" name="Set visible" type="Weapons">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                        <action disabled="1" id="0" name="Set text" type="InfoText">
+                            <param id="0" name="Text">&quot;Picking up weapon &quot; &amp; weapon_uid</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-19" name="Pick all" type="System">
+                                    <param id="0" name="Object">Weapons</param>
+                                </condition>
+                                <condition id="-14" name="Pick by unique ID" type="Weapons">
+                                    <param id="0" name="Unique ID">avatar_current_weapon</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action disabled="1" id="1" name="Append text" type="InfoText">
+                                    <param id="0" name="Text">&quot; | Dropping weapon &quot; &amp; avatar_current_weapon</param>
+                                </action>
+                                <action id="-15" name="Set visible" type="Weapons">
+                                    <param id="0" name="Visibility">1</param>
+                                </action>
+                                <action id="-3" name="Set position" type="Weapons">
+                                    <param id="0" name="X">weapon_pos_x</param>
+                                    <param id="1" name="Y">weapon_pos_y</param>
+                                </action>
+                                <action id="9" name="Set scale" type="Weapons">
+                                    <param id="0" name="Scale">0.25</param>
+                                </action>
+                                <action id="-8" name="Set angle" type="Weapons">
+                                    <param id="0" name="Angle">random(0,360)</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Weapons">
+                                    <param id="0" name="Instance variable">current_spread</param>
+                                    <param id="1" name="Value">Weapons.min_spread</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Weapons">
+                                    <param id="0" name="Instance variable">firing_timer</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Weapons">
+                                    <param id="0" name="Instance variable">reload_timer</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-13" name="Set boolean" type="Weapons">
+                                    <param id="0" name="Instance variable">single_shot_needs_reset</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">avatar_current_weapon</param>
+                                    <param id="1" name="Value">weapon_uid</param>
                                 </action>
                             </actions>
                         </event-block>

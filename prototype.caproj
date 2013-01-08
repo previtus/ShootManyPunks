@@ -7,16 +7,16 @@
     <unique-id>w2turdg6quee</unique-id>
     <saved-with-version>10802</saved-with-version>
     <used-plugins>
-        <plugin author="Scirra" id="Text" version="1">Text</plugin>
-        <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
-        <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
-        <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
-        <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
+        <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
         <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
         <plugin author="Rex.Rainbow" id="Rex_Function" version="1">Function</plugin>
         <plugin author="Rex.Rainbow" id="Rex_TMXImporter" version="0.109999999">TMX Importer</plugin>
+        <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
+        <plugin author="Scirra" id="Text" version="1">Text</plugin>
+        <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
         <plugin author="Scirra" id="Button" version="1">Button</plugin>
+        <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior author="Scirra" id="Anchor" version="1">Anchor</behavior>
@@ -601,19 +601,116 @@
             <plugin id="Particles" />
             <texture />
         </object-type>
-        <object-type name="Shotgun">
+        <object-type global="1" name="Shotgun">
             <plugin id="Sprite" />
             <animation-folder expanded="1">
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    <frame duration="1" hotspotX="0.503226" hotspotY="0.508475">
+                        <collision-poly>
+                            <point x="0.0387097" y="0.101695" />
+                            <point x="0.496774" y="0.0847458" />
+                            <point x="0.922581" y="0.20339" />
+                            <point x="0.916129" y="0.491525" />
+                            <point x="0.974194" y="0.932203" />
+                            <point x="0.496774" y="0.440678" />
+                            <point x="0.167742" y="0.559322" />
+                            <point x="0.167742" y="0.491525" />
+                        </collision-poly>
+                    </frame>
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="MachineGun">
+        <object-type global="1" name="MachineGun">
             <plugin id="Sprite" />
             <animation-folder expanded="1">
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    <frame duration="1" hotspotX="0.503876" hotspotY="0.506173">
+                        <collision-poly>
+                            <point x="0.147287" y="0.234568" />
+                            <point x="0.496124" y="0.037037" />
+                            <point x="0.899225" y="0.160494" />
+                            <point x="0.968992" y="0.493827" />
+                            <point x="0.906977" y="0.851852" />
+                            <point x="0.496124" y="0.938272" />
+                            <point x="0.139535" y="0.777778" />
+                            <point x="0.0852713" y="0.493827" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type global="1" name="SubMachineGun">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                    <frame duration="1" hotspotX="0.502762" hotspotY="0.504854">
+                        <collision-poly>
+                            <point x="0.0165746" y="0.0291262" />
+                            <point x="0.497238" y="0.0776699" />
+                            <point x="0.801105" y="0.349515" />
+                            <point x="0.983425" y="0.495146" />
+                            <point x="0.662983" y="0.407767" />
+                            <point x="0.497238" y="0.92233" />
+                            <point x="0.160221" y="0.718447" />
+                            <point x="0.104972" y="0.495146" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type global="1" name="SubMachineGun2">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                    <frame duration="1" hotspotX="0.50365" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.131387" y="0.236842" />
+                            <point x="0.49635" y="0.118421" />
+                            <point x="0.89781" y="0.184211" />
+                            <point x="0.956204" y="0.5" />
+                            <point x="0.49635" y="0.697368" />
+                            <point x="0.167883" y="0.697368" />
+                            <point x="0.0875912" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type global="1" name="Pistol_">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                    <frame duration="1" hotspotX="0.506024" hotspotY="0.506667">
+                        <collision-poly>
+                            <point x="0.108434" y="0.12" />
+                            <point x="0.493976" y="0.133333" />
+                            <point x="0.951807" y="0.0533333" />
+                            <point x="0.86747" y="0.493333" />
+                            <point x="0.927711" y="0.92" />
+                            <point x="0.493976" y="0.586667" />
+                            <point x="0.373494" y="0.586667" />
+                            <point x="0.0722892" y="0.493333" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type global="1" name="Revolver">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                    <frame duration="1" hotspotX="0.509091" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0636364" y="0.0945946" />
+                            <point x="0.5" y="0.0405405" />
+                            <point x="0.863636" y="0.202703" />
+                            <point x="0.936364" y="0.5" />
+                            <point x="0.909091" y="0.864865" />
+                            <point x="0.5" y="0.702703" />
+                            <point x="0.345455" y="0.486486" />
+                            <point x="0.345455" y="0.5" />
+                        </collision-poly>
+                    </frame>
                 </animation>
             </animation-folder>
         </object-type>
@@ -681,24 +778,30 @@
         <family name="Weapons" plugin-id="Sprite">
             <members>
                 <member>MachineGun</member>
+                <member>Pistol_</member>
+                <member>Revolver</member>
                 <member>Shotgun</member>
+                <member>SubMachineGun</member>
+                <member>SubMachineGun2</member>
             </members>
             <instance-variables>
-                <instance-variable name="projectiles_per_shot" type="number" />
-                <instance-variable name="projectile_spread" type="number" />
-                <instance-variable name="min_spread" type="number" />
-                <instance-variable name="max_spread" type="number" />
-                <instance-variable name="current_spread" type="number" />
-                <instance-variable name="recoil_per_shot" type="number" />
-                <instance-variable name="center_speed" type="number" />
-                <instance-variable name="damage" type="number" />
-                <instance-variable name="bullet_velocity" type="number" />
-                <instance-variable name="magazine_size" type="number" />
-                <instance-variable name="magazine_current" type="number" />
-                <instance-variable name="firing_interval" type="number" />
-                <instance-variable name="firing_timer" type="number" />
-                <instance-variable name="reload_interval" type="number" />
-                <instance-variable name="reload_timer" type="number" />
+                <instance-variable comment="pocet projektilu (pro brokovnice &gt;1)" name="projectiles_per_shot" type="number" />
+                <instance-variable comment="rozptyl projektilu" name="projectile_spread" type="number" />
+                <instance-variable comment="minimalni rozptyl zbrane" name="min_spread" type="number" />
+                <instance-variable comment="maximalni rozptyl zbrane" name="max_spread" type="number" />
+                <instance-variable comment="momentalni rozptyl zbrane" name="current_spread" type="number" />
+                <instance-variable comment="prirustek rozptylu pri vystrelu" name="recoil_per_shot" type="number" />
+                <instance-variable comment="rychlost ubytku rozptylu, pokud se nestrili" name="center_speed" type="number" />
+                <instance-variable comment="co asi?" name="damage" type="number" />
+                <instance-variable comment="rychlost strely" name="bullet_velocity" type="number" />
+                <instance-variable comment="kapacita zasobniku" name="magazine_size" type="number" />
+                <instance-variable comment="momentalni stav zasobniku" name="magazine_current" type="number" />
+                <instance-variable comment="jak dlouho trva, nez muze zbran znovu vystrelit" name="firing_interval" type="number" />
+                <instance-variable comment="kolik jeste zbyva, nez bude moci zbran znovu vystrelit" name="firing_timer" type="number" />
+                <instance-variable comment="jak dlouho trva zbran nabit" name="reload_interval" type="number" />
+                <instance-variable comment="kolik jeste zbyva, nez bude zbran nabita" name="reload_timer" type="number" />
+                <instance-variable comment="je zbran poloautomaticka (tj. pistole a brokovnice maji true)" name="is_single_shot" type="boolean" />
+                <instance-variable comment="pokud je zbran poloautomaticka, je potreba pustit pred dalsim vystrelem spoust?" name="single_shot_needs_reset" type="boolean" />
             </instance-variables>
         </family>
     </families>
