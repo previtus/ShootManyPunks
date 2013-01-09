@@ -26,5 +26,7 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <family expanded="1" name="Weapon" />
         <family expanded="1" name="LootableItem" />
         <family expanded="1" name="Weapons" />
+        <family expanded="1" name="QuestGivers" />
+        <family expanded="1" name="NPC" />
     </families-expanded>
 </c2uistate>

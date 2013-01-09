@@ -30,6 +30,7 @@
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
                         <isSolid>false</isSolid>
@@ -56,6 +57,7 @@
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
                         <is_melee_atacking>false</is_melee_atacking>
@@ -98,6 +100,7 @@
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
                         <damage>5</damage>
@@ -179,6 +182,7 @@
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
                         <target>0</target>
@@ -203,6 +207,7 @@
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
                     </properties>
                     <behavior-instances>
                         <behavior-instance type="Pin" />
@@ -226,6 +231,7 @@
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
                     </properties>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -246,6 +252,7 @@
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
                     </properties>
                     <behavior-instances>
                         <behavior-instance type="Pin" />
@@ -286,6 +293,7 @@
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
                         <hp>100</hp>
@@ -297,6 +305,7 @@
                         <hitDelay>0</hitDelay>
                         <damage>10</damage>
                         <stagger>0</stagger>
+                        <is_quest_npc>0</is_quest_npc>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="BoundToLayout">
@@ -372,6 +381,7 @@
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
                         <boost_type>hp</boost_type>
@@ -394,8 +404,9 @@
                 </instance>
                 <instance type="VisionBullet">
                     <properties>
-                        <initial-visibility>Visible</initial-visibility>
+                        <initial-visibility>Invisible</initial-visibility>
                         <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
                         <source>0</source>
@@ -404,7 +415,7 @@
                         <behavior-instance type="DestroyOutsideLayout" />
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>500</speed>
+                                <speed>1000</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -431,8 +442,10 @@
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
+                        <is_quest_npc>0</is_quest_npc>
                         <spawnX>0</spawnX>
                         <spawnY>0</spawnY>
                         <dialogLine1>&quot;Sovy nejsou, čím se zdají být&quot;</dialogLine1>
@@ -477,6 +490,7 @@
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
                         <looted>false</looted>
@@ -503,6 +517,7 @@
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
                         <projectiles_per_shot>1</projectiles_per_shot>
@@ -542,6 +557,7 @@
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
                         <projectiles_per_shot>5</projectiles_per_shot>
@@ -581,6 +597,7 @@
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
                         <projectiles_per_shot>1</projectiles_per_shot>
@@ -620,6 +637,7 @@
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
                         <projectiles_per_shot>1</projectiles_per_shot>
@@ -659,6 +677,7 @@
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
                         <projectiles_per_shot>1</projectiles_per_shot>
@@ -698,6 +717,7 @@
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
                         <projectiles_per_shot>1</projectiles_per_shot>
@@ -728,6 +748,30 @@
                         <height>74</height>
                         <depth>0</depth>
                         <hotspotX>0.5090909</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="QuestGiver">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <instance-variables>
+                        <status>0</status>
+                    </instance-variables>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>159</x>
+                        <y>402</y>
+                        <z>0</z>
+                        <width>34</width>
+                        <height>34</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
@@ -979,6 +1023,30 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
+                <instance type="QuestArrow">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <instance-variables>
+                        <boundQuestGiver>0</boundQuestGiver>
+                    </instance-variables>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>-359</x>
+                        <y>651</y>
+                        <z>0</z>
+                        <width>34</width>
+                        <height>34</height>
+                        <depth>0</depth>
+                        <hotspotX>-0.0078125</hotspotX>
+                        <hotspotY>0.45703125</hotspotY>
+                        <angle>0</angle>
+                        <opacity>0.5</opacity>
+                    </world>
+                </instance>
             </instances>
             <effects />
         </layer>
@@ -1000,6 +1068,7 @@
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
                         <bullet_UID>0</bullet_UID>

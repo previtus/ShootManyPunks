@@ -20,6 +20,11 @@
         <variable constant="0" name="avatar_weapon_damage" static="0" type="number">10</variable>
         <variable constant="0" name="to_load_map" static="0" type="number">1</variable>
         <variable constant="0" name="to_load_spawnpoint" static="0" type="number">1</variable>
+        <comment>promenne souvisejici s questy</comment>
+        <variable constant="0" name="is_on_quest" static="0" type="number">0</variable>
+        <variable constant="0" name="quest_target_location" static="0" type="number">0</variable>
+        <variable constant="0" name="quest_type" static="0" type="number">0</variable>
+        <variable constant="0" name="remaining_quest_enemies" static="0" type="number">0</variable>
         <event-group description="" title="TiledMap Import">
             <sub-events>
                 <comment>Loading correct tmx string - correct location</comment>
@@ -39,7 +44,7 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="-2" name="On start of layout" type="System" />
                     </conditions>
@@ -430,7 +435,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" title="Main">
+        <event-group collapsed="1" description="" title="Main">
             <sub-events>
                 <event-block any="1">
                     <conditions>
@@ -723,6 +728,7 @@
                         <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Enemy">
                             <param id="0" name="Instance variable">visionProbeSent</param>
                         </condition>
+                        <condition id="-3" name="Is on-screen" type="Enemy" />
                     </conditions>
                     <actions>
                         <action disabled="1" id="-13" name="Set boolean" type="Enemy">
@@ -874,10 +880,30 @@
                         </action>
                         <action id="-9" name="Destroy" type="Enemy" />
                     </actions>
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" type="Enemy">
+                                    <param id="0" name="Instance variable">is_quest_npc</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-11" name="Subtract from" type="System">
+                                    <param id="0" name="Variable">remaining_quest_enemies</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="0" name="Set text" type="InfoText">
+                                    <param id="0" name="Text">&quot;Remaining enemies:&quot; &amp; remaining_quest_enemies</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" title="Actions">
+        <event-group collapsed="1" description="" title="Actions">
             <sub-events>
                 <event-block>
                     <conditions>
@@ -1025,7 +1051,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" title="Combat">
+        <event-group collapsed="1" description="" title="Combat">
             <sub-events>
                 <event-block>
                     <conditions>
@@ -1532,7 +1558,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" title="Weapon change">
+        <event-group collapsed="1" description="" title="Weapon change">
             <sub-events>
                 <event-block>
                     <conditions>
@@ -1617,7 +1643,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" title="Loot Pickup">
+        <event-group collapsed="1" description="" title="Loot Pickup">
             <sub-events>
                 <event-block>
                     <conditions>
@@ -1844,7 +1870,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" title="Loot Spawning">
+        <event-group collapsed="1" description="" title="Loot Spawning">
             <sub-events>
                 <event-block>
                     <conditions>
@@ -1865,5 +1891,413 @@
                 </event-block>
             </sub-events>
         </event-group>
+        <event-group description="" title="Quests" />
+        <event-block>
+            <conditions>
+                <condition id="-2" name="On start of layout" type="System" />
+                <condition id="-14" name="Compare variable" type="System">
+                    <param id="0" name="Variable">is_on_quest</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+                <condition id="-11" name="For Each" type="System">
+                    <param id="0" name="Object">QuestGivers</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" type="Avatar">
+                    <param id="0" name="Object">QuestArrow</param>
+                    <param id="1" name="Layer">3</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-10" name="Set value" type="QuestArrow">
+                    <param id="0" name="Instance variable">boundQuestGiver</param>
+                    <param id="1" name="Value">QuestGivers.UID</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block collapsed="1">
+            <conditions>
+                <condition id="-1" name="Every tick" type="System" />
+                <condition id="-11" name="For Each" type="System">
+                    <param id="0" name="Object">QuestArrow</param>
+                </condition>
+                <condition id="-14" name="Pick by unique ID" type="QuestGivers">
+                    <param id="0" name="Unique ID">QuestArrow.boundQuestGiver</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block>
+                    <conditions>
+                        <condition id="-3" inverted="1" name="Is on-screen" type="QuestGivers" />
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Set position" type="QuestArrow">
+                            <param id="0" name="X">QuestGivers.X</param>
+                            <param id="1" name="Y">QuestGivers.Y</param>
+                        </action>
+                        <action id="-22" name="Set angle toward position" type="QuestArrow">
+                            <param id="0" name="X">scrollx</param>
+                            <param id="1" name="Y">scrolly</param>
+                        </action>
+                        <action id="-17" name="Move forward" type="QuestArrow">
+                            <param id="0" name="Distance">distance(QuestGivers.X, QuestGivers.Y,scrollx, scrolly) - 50</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-3" name="Is on-screen" type="QuestGivers" />
+                    </conditions>
+                    <actions>
+                        <action id="-4" name="Set position to another object" type="QuestArrow">
+                            <param id="0" name="Object">QuestGivers</param>
+                            <param id="1" name="Image point (optional)">0</param>
+                        </action>
+                        <action id="-22" name="Set angle toward position" type="QuestArrow">
+                            <param id="0" name="X">QuestGivers.X</param>
+                            <param id="1" name="Y">QuestGivers.Y</param>
+                        </action>
+                        <action id="-17" name="Move forward" type="QuestArrow">
+                            <param id="0" name="Distance">-50</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="3" name="On key released" type="Keyboard">
+                    <param id="0" name="Key">69 (E)</param>
+                </condition>
+                <condition id="-15" name="Pick nearest/furthest" type="QuestGiver">
+                    <param id="0" name="Which">0</param>
+                    <param id="1" name="X">Avatar.X</param>
+                    <param id="2" name="Y">Avatar.Y</param>
+                </condition>
+                <condition id="-8" name="Compare two values" type="System">
+                    <param id="0" name="First value">distance(Avatar.X, Avatar.Y, QuestGivers.X, QuestGivers.Y)</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Second value">50</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block>
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" type="QuestGiver">
+                            <param id="0" name="Instance variable">status</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" type="System">
+                            <param id="0" name="Variable">is_on_quest</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-16" name="Wait" type="System">
+                            <param id="0" name="Seconds">0</param>
+                        </action>
+                        <action id="0" name="Set text" type="InfoText">
+                            <param id="0" name="Text">&quot;Hele troubo, něco bych od tebe potřeboval.&quot;</param>
+                        </action>
+                        <action id="-10" name="Set value" type="QuestGiver">
+                            <param id="0" name="Instance variable">status</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">quest_type</param>
+                            <param id="1" name="Value">round(random(1,2))</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" type="QuestGiver">
+                            <param id="0" name="Instance variable">status</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" type="System">
+                            <param id="0" name="Variable">is_on_quest</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" type="QuestGiver">
+                            <param id="0" name="Instance variable">status</param>
+                            <param id="1" name="Value">2</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">is_on_quest</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">quest_target_location</param>
+                            <param id="1" name="Value">3</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Compare variable" type="System">
+                                    <param id="0" name="Variable">quest_type</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" type="InfoText">
+                                    <param id="0" name="Text">&quot;Došla mi trpělivost s pár volama, skoncuj to s nima.&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Compare variable" type="System">
+                                    <param id="0" name="Variable">quest_type</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">2</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" type="InfoText">
+                                    <param id="0" name="Text">&quot;Vidím, že máš zájem, tak dobrá, dones mi zmrzlinu od Zmrzlináře Franka.&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-22" name="Else" type="System" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Compare variable" type="System">
+                                    <param id="0" name="Variable">is_on_quest</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">2</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">is_on_quest</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" type="System">
+                                            <param id="0" name="Variable">quest_type</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">1</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Set text" type="InfoText">
+                                            <param id="0" name="Text">&quot;Dobrá práce, ti už mě prudit nebudou, tady máš nějaký prachy.&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" type="System">
+                                            <param id="0" name="Variable">quest_type</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">2</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Set text" type="InfoText">
+                                            <param id="0" name="Text">&quot;Sice jsem chtěl šmoulovou, ale dobrá, tady máš nějaký prachy.&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-22" name="Else" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" type="InfoText">
+                                    <param id="0" name="Text">&quot;Neotravuj a běž pracovat.&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="-2" name="On start of layout" type="System" />
+                <condition id="-14" name="Compare variable" type="System">
+                    <param id="0" name="Variable">is_on_quest</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+                <condition id="-14" name="Compare variable" type="System">
+                    <param id="0" name="Variable">quest_target_location</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">to_load_map</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block>
+                    <conditions>
+                        <condition id="-14" name="Compare variable" type="System">
+                            <param id="0" name="Variable">quest_type</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">2</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" type="InfoText">
+                            <param id="0" name="Text">&quot;Spawning Quest NPC&quot;</param>
+                        </action>
+                        <action id="-3" name="Create object" type="System">
+                            <param id="0" name="Object to create">npc_simple</param>
+                            <param id="1" name="Layer">2</param>
+                            <param id="2" name="X">random(50,LayoutWidth-50)</param>
+                            <param id="3" name="Y">random(50,LayoutHeight-50)</param>
+                        </action>
+                        <action id="-10" name="Set value" type="npc_simple">
+                            <param id="0" name="Instance variable">is_quest_npc</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-14" name="Compare variable" type="System">
+                            <param id="0" name="Variable">quest_type</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                        <condition id="-10" name="For" type="System">
+                            <param id="0" name="Name">&quot;Spawn Enemy Quest NPC&quot;</param>
+                            <param id="1" name="Start index">0</param>
+                            <param id="2" name="End index">random(2,5)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" type="System">
+                            <param id="0" name="Object to create">MonsterStar</param>
+                            <param id="1" name="Layer">1</param>
+                            <param id="2" name="X">random(50, LayoutWidth-50)</param>
+                            <param id="3" name="Y">random(50,LayoutHeight-50)</param>
+                        </action>
+                        <action id="-10" name="Set value" type="MonsterStar">
+                            <param id="0" name="Instance variable">is_quest_npc</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-10" name="Add to" type="System">
+                            <param id="0" name="Variable">remaining_quest_enemies</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="3" name="On key released" type="Keyboard">
+                    <param id="0" name="Key">69 (E)</param>
+                </condition>
+                <condition id="-15" name="Pick nearest/furthest" type="NPC">
+                    <param id="0" name="Which">0</param>
+                    <param id="1" name="X">Avatar.X</param>
+                    <param id="2" name="Y">Avatar.Y</param>
+                </condition>
+                <condition id="-8" name="Compare two values" type="System">
+                    <param id="0" name="First value">distance(Avatar.X, Avatar.Y, NPC.X, NPC.Y)</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Second value">50</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block>
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" type="NPC">
+                            <param id="0" name="Instance variable">is_quest_npc</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" type="System">
+                            <param id="0" name="Variable">is_on_quest</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" type="InfoText">
+                            <param id="0" name="Text">&quot;Ahoj, já jsem Zmrzlinář Frank, tady máš zmrzlinu pro Bosse.&quot;</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">is_on_quest</param>
+                            <param id="1" name="Value">2</param>
+                        </action>
+                        <action id="-10" name="Set value" type="NPC">
+                            <param id="0" name="Instance variable">is_quest_npc</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-22" name="Else" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" type="InfoText">
+                            <param id="0" name="Text">&quot;Neotravuj mě.&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="-14" name="Compare variable" type="System">
+                    <param id="0" name="Variable">is_on_quest</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+                <condition id="-14" name="Compare variable" type="System">
+                    <param id="0" name="Variable">quest_type</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+                <condition id="-14" name="Compare variable" type="System">
+                    <param id="0" name="Variable">quest_target_location</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">to_load_map</param>
+                </condition>
+                <condition id="-14" name="Compare variable" type="System">
+                    <param id="0" name="Variable">remaining_quest_enemies</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" type="InfoText">
+                    <param id="0" name="Text">&quot;Už jsem je vyřídil všechny.&quot;</param>
+                </action>
+                <action id="-9" name="Set value" type="System">
+                    <param id="0" name="Variable">is_on_quest</param>
+                    <param id="1" name="Value">2</param>
+                </action>
+            </actions>
+        </event-block>
     </events>
 </c2eventsheet>
