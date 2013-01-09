@@ -44,7 +44,7 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="-2" name="On start of layout" type="System" />
                     </conditions>
@@ -61,53 +61,6 @@
                             </conditions>
                             <actions>
                                 <action id="-9" name="Destroy" type="Weapons" />
-                            </actions>
-                        </event-block>
-                        <event-block>
-                            <conditions>
-                                <condition id="-14" name="Compare variable" type="System">
-                                    <param id="0" name="Variable">avatar_initialized</param>
-                                    <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Value">0</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-9" name="Set value" type="System">
-                                    <param id="0" name="Variable">avatar_initialized</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                                <action id="0" name="Spawn another object" type="Avatar">
-                                    <param id="0" name="Object">SubMachineGun</param>
-                                    <param id="1" name="Layer">0</param>
-                                    <param id="2" name="Image point">0</param>
-                                </action>
-                                <action id="-15" name="Set visible" type="SubMachineGun">
-                                    <param id="0" name="Visibility">0</param>
-                                </action>
-                                <action id="0" name="Spawn another object" type="Avatar">
-                                    <param id="0" name="Object">Shotgun</param>
-                                    <param id="1" name="Layer">0</param>
-                                    <param id="2" name="Image point">0</param>
-                                </action>
-                                <action id="-15" name="Set visible" type="Shotgun">
-                                    <param id="0" name="Visibility">0</param>
-                                </action>
-                                <action id="-9" name="Set value" type="System">
-                                    <param id="0" name="Variable">avatar_first_weapon</param>
-                                    <param id="1" name="Value">Shotgun.UID</param>
-                                </action>
-                                <action id="-9" name="Set value" type="System">
-                                    <param id="0" name="Variable">avatar_second_weapon</param>
-                                    <param id="1" name="Value">SubMachineGun.UID</param>
-                                </action>
-                                <action id="-9" name="Set value" type="System">
-                                    <param id="0" name="Variable">avatar_which_weapon</param>
-                                    <param id="1" name="Value">0</param>
-                                </action>
-                                <action id="-9" name="Set value" type="System">
-                                    <param id="0" name="Variable">avatar_current_weapon</param>
-                                    <param id="1" name="Value">avatar_first_weapon</param>
-                                </action>
                             </actions>
                         </event-block>
                     </sub-events>
@@ -435,8 +388,56 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" title="Main">
+        <event-group description="" title="Main">
             <sub-events>
+                <event-block>
+                    <conditions>
+                        <condition id="-18" name="On created" type="Avatar" />
+                        <condition id="-14" name="Compare variable" type="System">
+                            <param id="0" name="Variable">avatar_initialized</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">avatar_initialized</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="0" name="Spawn another object" type="Avatar">
+                            <param id="0" name="Object">SubMachineGun</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="-15" name="Set visible" type="SubMachineGun">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                        <action id="0" name="Spawn another object" type="Avatar">
+                            <param id="0" name="Object">Shotgun</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="-15" name="Set visible" type="Shotgun">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">avatar_first_weapon</param>
+                            <param id="1" name="Value">Shotgun.UID</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">avatar_second_weapon</param>
+                            <param id="1" name="Value">SubMachineGun.UID</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">avatar_which_weapon</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">avatar_current_weapon</param>
+                            <param id="1" name="Value">avatar_first_weapon</param>
+                        </action>
+                    </actions>
+                </event-block>
                 <event-block any="1">
                     <conditions>
                         <condition id="-1" name="Every tick" type="System" />
@@ -1051,7 +1052,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" title="Combat">
+        <event-group description="" title="Combat">
             <sub-events>
                 <event-block>
                     <conditions>
@@ -1219,6 +1220,10 @@
                                         <action id="-9" name="Set value" type="System">
                                             <param id="0" name="Variable">current_firing_angle</param>
                                             <param id="1" name="Value">firing_angle + random(-Weapons.projectile_spread, Weapons.projectile_spread)</param>
+                                        </action>
+                                        <action id="-10" name="Set value" type="Bullet">
+                                            <param id="0" name="Instance variable">damage</param>
+                                            <param id="1" name="Value">Weapons.damage</param>
                                         </action>
                                         <action id="-3" name="Set position" type="Bullet">
                                             <param id="0" name="X">firing_x</param>
@@ -1558,7 +1563,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" title="Weapon change">
+        <event-group description="" title="Weapon change">
             <sub-events>
                 <event-block>
                     <conditions>
@@ -1643,7 +1648,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" title="Loot Pickup">
+        <event-group description="" title="Loot Pickup">
             <sub-events>
                 <event-block>
                     <conditions>
@@ -1814,6 +1819,34 @@
                                     <param id="1" name="Value">weapon_uid</param>
                                 </action>
                             </actions>
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" type="System">
+                                            <param id="0" name="Variable">avatar_which_weapon</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" type="System">
+                                            <param id="0" name="Variable">avatar_first_weapon</param>
+                                            <param id="1" name="Value">weapon_uid</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-22" name="Else" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" type="System">
+                                            <param id="0" name="Variable">avatar_second_weapon</param>
+                                            <param id="1" name="Value">weapon_uid</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
                         </event-block>
                     </sub-events>
                 </event-block>
@@ -1916,7 +1949,7 @@
                 </action>
             </actions>
         </event-block>
-        <event-block collapsed="1">
+        <event-block>
             <conditions>
                 <condition id="-1" name="Every tick" type="System" />
                 <condition id="-11" name="For Each" type="System">
