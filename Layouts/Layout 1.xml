@@ -186,6 +186,8 @@
                         <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
+                        <interact_func>interact_transport</interact_func>
+                        <interact_description>Leave location</interact_description>
                         <target>0</target>
                         <spawnPointTarget>0</spawnPointTarget>
                     </instance-variables>
@@ -234,6 +236,10 @@
                         <initial-frame>0</initial-frame>
                         <collisions>Enabled</collisions>
                     </properties>
+                    <instance-variables>
+                        <interact_func>interact_world_transport</interact_func>
+                        <interact_description>Go to map</interact_description>
+                    </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
@@ -448,6 +454,8 @@
                     </properties>
                     <instance-variables>
                         <is_quest_npc>0</is_quest_npc>
+                        <interact_func>interact_npc</interact_func>
+                        <interact_description>Talk</interact_description>
                         <spawnX>0</spawnX>
                         <spawnY>0</spawnY>
                         <dialogLine1>&quot;Sovy nejsou, čím se zdají být&quot;</dialogLine1>
@@ -496,6 +504,8 @@
                     </properties>
                     <instance-variables>
                         <looted>false</looted>
+                        <interact_func>interact_box</interact_func>
+                        <interact_description>Open box</interact_description>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Solid" />
@@ -539,6 +549,8 @@
                         <reload_timer>0</reload_timer>
                         <is_single_shot>false</is_single_shot>
                         <single_shot_needs_reset>false</single_shot_needs_reset>
+                        <interact_func>interact_weapon</interact_func>
+                        <interact_description>Pick up AR57 rifle</interact_description>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -579,6 +591,8 @@
                         <reload_timer>0</reload_timer>
                         <is_single_shot>true</is_single_shot>
                         <single_shot_needs_reset>false</single_shot_needs_reset>
+                        <interact_func>interact_weapon</interact_func>
+                        <interact_description>Pick up Scattergun S1</interact_description>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -619,6 +633,8 @@
                         <reload_timer>0</reload_timer>
                         <is_single_shot>false</is_single_shot>
                         <single_shot_needs_reset>false</single_shot_needs_reset>
+                        <interact_func>interact_weapon</interact_func>
+                        <interact_description>Pick up MP74</interact_description>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -659,6 +675,8 @@
                         <reload_timer>0</reload_timer>
                         <is_single_shot>false</is_single_shot>
                         <single_shot_needs_reset>false</single_shot_needs_reset>
+                        <interact_func>interact_weapon</interact_func>
+                        <interact_description>Pick up MP70</interact_description>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -675,7 +693,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="Pistol_">
+                <instance type="Pistol">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-frame>0</initial-frame>
@@ -699,6 +717,8 @@
                         <reload_timer>0</reload_timer>
                         <is_single_shot>true</is_single_shot>
                         <single_shot_needs_reset>false</single_shot_needs_reset>
+                        <interact_func>interact_weapon</interact_func>
+                        <interact_description>Pick up Ares Light Fire 70</interact_description>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -739,6 +759,8 @@
                         <reload_timer>0</reload_timer>
                         <is_single_shot>true</is_single_shot>
                         <single_shot_needs_reset>false</single_shot_needs_reset>
+                        <interact_func>interact_weapon</interact_func>
+                        <interact_description>Pick up Diamondback</interact_description>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -763,6 +785,8 @@
                     </properties>
                     <instance-variables>
                         <status>0</status>
+                        <interact_func>interact_quest</interact_func>
+                        <interact_description>Talk</interact_description>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -796,6 +820,33 @@
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="InteractText">
+                    <properties>
+                        <text>Text</text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Arial,-16,700,0</font>
+                        <color>255,255,204</color>
+                        <horizontal-alignment>Left</horizontal-alignment>
+                        <vertical-alignment>Top</vertical-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>275</x>
+                        <y>-168</y>
+                        <z>0</z>
+                        <width>200</width>
+                        <height>30</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>

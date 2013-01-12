@@ -8,15 +8,15 @@
     <saved-with-version>11400</saved-with-version>
     <used-plugins>
         <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
+        <plugin author="Scirra" id="Button" version="1">Button</plugin>
+        <plugin author="Scirra" id="Function" version="1">Function</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
+        <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
+        <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
         <plugin author="Rex.Rainbow" id="Rex_TMXImporter" version="0.109999999">TMX Importer</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="Text" version="1">Text</plugin>
         <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
-        <plugin author="Scirra" id="Function" version="1">Function</plugin>
-        <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
-        <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
-        <plugin author="Scirra" id="Button" version="1">Button</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior author="Scirra" id="Anchor" version="1">Anchor</behavior>
@@ -26,7 +26,6 @@
         <behavior author="Scirra" id="bound" version="1">Bound to layout</behavior>
         <behavior author="Scirra" id="custom" version="1">Custom Movement</behavior>
         <behavior author="Scirra" id="destroy" version="1">Destroy outside layout</behavior>
-        <behavior author="JohnJ" id="jj_Weapon" version="1">jj_Weapon</behavior>
         <behavior author="Scirra" id="scrollto" version="1">Scroll To</behavior>
         <behavior author="Scirra" id="solid" version="1">Solid</behavior>
     </used-behaviors>
@@ -94,6 +93,9 @@
             <object-type name="WeaponInfo">
                 <plugin id="Text" />
             </object-type>
+            <object-type name="InteractText">
+                <plugin id="Text" />
+            </object-type>
         </object-folder>
         <object-folder expanded="0" name="Guns">
             <object-type global="1" name="MachineGun">
@@ -115,7 +117,7 @@
                     </animation>
                 </animation-folder>
             </object-type>
-            <object-type global="1" name="Pistol_">
+            <object-type global="1" name="Pistol">
                 <plugin id="Sprite" />
                 <animation-folder expanded="1">
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
@@ -348,16 +350,6 @@
             <animation-folder expanded="1">
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
                     <frame duration="1" hotspotX="0.493151" hotspotY="0.479532" />
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="Pistol">
-            <plugin id="Sprite" />
-            <animation-folder expanded="1">
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
-                    <frame duration="1" hotspotX="0.538462" hotspotY="0.92623">
-                        <image-point name="Imagepoint 1" x="0.538462" y="-0.0163934" />
-                    </frame>
                 </animation>
             </animation-folder>
         </object-type>
@@ -788,19 +780,6 @@
                 <instance-variable name="boost_value" type="number" />
             </instance-variables>
         </family>
-        <family name="Weapon" plugin-id="Sprite">
-            <members>
-                <member>Pistol</member>
-            </members>
-            <behaviors>
-                <behavior-type name="jj_Weapon">
-                    <behavior id="jj_Weapon" />
-                </behavior-type>
-                <behavior-type name="Pin">
-                    <behavior id="Pin" />
-                </behavior-type>
-            </behaviors>
-        </family>
         <family name="LootableItem" plugin-id="Sprite">
             <members>
                 <member>Box</member>
@@ -814,10 +793,10 @@
                 </behavior-type>
             </behaviors>
         </family>
-        <family name="Weapons" plugin-id="Sprite">
+        <family name="Weapon" plugin-id="Sprite">
             <members>
                 <member>MachineGun</member>
-                <member>Pistol_</member>
+                <member>Pistol</member>
                 <member>Revolver</member>
                 <member>Shotgun</member>
                 <member>SubMachineGun</member>
@@ -857,6 +836,25 @@
             </members>
             <instance-variables>
                 <instance-variable name="is_quest_npc" type="number" />
+            </instance-variables>
+        </family>
+        <family name="Interactable" plugin-id="Sprite">
+            <members>
+                <member>Box</member>
+                <member>MachineGun</member>
+                <member>npc_simple</member>
+                <member>Pistol</member>
+                <member>QuestGiver</member>
+                <member>Revolver</member>
+                <member>Shotgun</member>
+                <member>SubMachineGun</member>
+                <member>SubMachineGun2</member>
+                <member>Transport</member>
+                <member>WorldMapTransport</member>
+            </members>
+            <instance-variables>
+                <instance-variable name="interact_func" type="string" />
+                <instance-variable name="interact_description" type="string" />
             </instance-variables>
         </family>
     </families>
