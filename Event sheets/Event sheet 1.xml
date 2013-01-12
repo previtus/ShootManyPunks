@@ -1013,7 +1013,7 @@
                             <param id="0" name="Visibility">1</param>
                         </action>
                         <action id="0" name="Set text" type="InteractText">
-                            <param id="0" name="Text">&quot;[F] &quot; &amp; Interactable.interact_description</param>
+                            <param id="0" name="Text">&quot;[E] &quot; &amp; Interactable.interact_description</param>
                         </action>
                         <action id="-4" name="Set position to another object" type="InteractText">
                             <param id="0" name="Object">Interactable</param>
