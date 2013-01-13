@@ -1333,7 +1333,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" title="Actions">
+        <event-group collapsed="1" description="" title="Actions">
             <sub-events>
                 <event-block>
                     <conditions>
@@ -1563,7 +1563,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" title="Combat">
+        <event-group description="" title="Combat">
             <sub-events>
                 <event-block>
                     <conditions>
@@ -2125,11 +2125,24 @@
                             <param id="0" name="Instance variable">hp</param>
                             <param id="1" name="Value">50</param>
                         </action>
-                        <action id="-10" name="Set value" type="Enemy">
-                            <param id="0" name="Instance variable">state</param>
-                            <param id="1" name="Value">&quot;approach&quot;</param>
-                        </action>
                     </actions>
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" type="Enemy">
+                                    <param id="0" name="Instance variable">state</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;sleep&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" type="Enemy">
+                                    <param id="0" name="Instance variable">state</param>
+                                    <param id="1" name="Value">&quot;approach&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
                 <event-block>
                     <conditions>
@@ -2142,41 +2155,23 @@
                             <param id="0" name="Acceleration">-300</param>
                         </action>
                         <action id="-10" name="Set value" type="Enemy">
-                            <param id="0" name="Instance variable">state</param>
-                            <param id="1" name="Value">&quot;approach&quot;</param>
+                            <param id="0" name="Instance variable">stagger</param>
+                            <param id="1" name="Value">60</param>
                         </action>
                     </actions>
                     <sub-events>
                         <event-block>
                             <conditions>
                                 <condition id="-7" name="Compare instance variable" type="Enemy">
-                                    <param id="0" name="Instance variable">stagger</param>
+                                    <param id="0" name="Instance variable">state</param>
                                     <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Value">0</param>
-                                </condition>
-                                <condition behavior="Bullet" id="0" name="Compare speed" type="Enemy">
-                                    <param id="0" name="Comparison">3</param>
-                                    <param id="1" name="Speed">1</param>
+                                    <param id="2" name="Value">&quot;sleep&quot;</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action behavior="Bullet" id="4" name="Bounce off object" type="Enemy">
-                                    <param id="0" name="Object">Kick</param>
-                                </action>
                                 <action id="-10" name="Set value" type="Enemy">
-                                    <param id="0" name="Instance variable">stagger</param>
-                                    <param id="1" name="Value">60</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <event-block>
-                            <conditions>
-                                <condition id="-22" name="Else" type="System" />
-                            </conditions>
-                            <actions>
-                                <action id="-10" name="Set value" type="Enemy">
-                                    <param id="0" name="Instance variable">stagger</param>
-                                    <param id="1" name="Value">60</param>
+                                    <param id="0" name="Instance variable">state</param>
+                                    <param id="1" name="Value">&quot;approach&quot;</param>
                                 </action>
                             </actions>
                         </event-block>
