@@ -11,8 +11,8 @@
         <variable constant="0" name="avatar_stamina_delay_timer" static="0" type="number">0</variable>
         <variable constant="0" name="avatar_max_stamina" static="0" type="number">100</variable>
         <variable constant="0" name="avatar_stamina" static="0" type="number">100</variable>
-        <variable constant="0" name="avatar_hp" static="0" type="number">50</variable>
-        <variable constant="0" name="avatar_max_hp" static="0" type="number">100</variable>
+        <variable constant="0" name="avatar_hp" static="0" type="number">5000</variable>
+        <variable constant="0" name="avatar_max_hp" static="0" type="number">10000</variable>
         <comment>avatar ma dve zbrane; first a second jsou UID prvni a druhe zbrane, current je UID momentalne vybrane zbrane, which je index momentalne vybrane zbrane (0/1)</comment>
         <variable constant="0" name="avatar_second_weapon" static="0" type="number">0</variable>
         <variable constant="0" name="avatar_first_weapon" static="0" type="number">0</variable>
@@ -264,12 +264,36 @@
                                     <param id="2" name="X">-100</param>
                                     <param id="3" name="Y">-100</param>
                                 </action>
+                                <action id="-10" name="Set value" type="EnemyDude">
+                                    <param id="0" name="Instance variable">stand_x</param>
+                                    <param id="1" name="Value">EnemyDude.ImagePointX(0)</param>
+                                </action>
+                                <action id="-10" name="Set value" type="EnemyDude">
+                                    <param id="0" name="Instance variable">stand_y</param>
+                                    <param id="1" name="Value">EnemyDude.ImagePointY(0)</param>
+                                </action>
+                                <action id="-10" name="Set value" type="EnemyDude">
+                                    <param id="0" name="Instance variable">target_x</param>
+                                    <param id="1" name="Value">EnemyDude.stand_x + random(-5,5)</param>
+                                </action>
+                                <action id="-10" name="Set value" type="EnemyDude">
+                                    <param id="0" name="Instance variable">target_y</param>
+                                    <param id="1" name="Value">EnemyDude.stand_y + random(-5,5)</param>
+                                </action>
                                 <action id="-8" name="Set angle" type="EnemyDude">
                                     <param id="0" name="Angle">random(0,360)</param>
                                 </action>
                                 <action id="-10" name="Set value" type="EnemyDude">
                                     <param id="0" name="Instance variable">weapon_uid</param>
                                     <param id="1" name="Value">Weapon.UID</param>
+                                </action>
+                                <action id="-10" name="Set value" type="EnemyDude">
+                                    <param id="0" name="Instance variable">state_switch_timer</param>
+                                    <param id="1" name="Value">random(100,400)</param>
+                                </action>
+                                <action id="-10" name="Set value" type="EnemyDude">
+                                    <param id="0" name="Instance variable">state</param>
+                                    <param id="1" name="Value">&quot;sleep&quot;</param>
                                 </action>
                                 <action id="-9" name="Destroy" type="Tile" />
                             </actions>
@@ -721,109 +745,483 @@
         </event-group>
         <event-group description="" title="Enemy">
             <sub-events>
-                <event-block>
-                    <conditions>
-                        <condition id="-8" name="Is boolean instance variable set" type="Enemy">
-                            <param id="0" name="Instance variable">isMoving</param>
-                        </condition>
-                        <condition id="-7" name="Compare instance variable" type="Enemy">
-                            <param id="0" name="Instance variable">stagger</param>
-                            <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Value">0</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-22" name="Set angle toward position" type="Enemy">
-                            <param id="0" name="X">Avatar.X</param>
-                            <param id="1" name="Y">Avatar.Y</param>
-                        </action>
-                        <action behavior="Bullet" id="0" name="Set speed" type="Enemy">
-                            <param id="0" name="Speed">Enemy.speed</param>
-                        </action>
-                        <action behavior="Bullet" id="1" name="Set acceleration" type="Enemy">
-                            <param id="0" name="Acceleration">0</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block>
+                <comment>AI nepratel</comment>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="-11" name="For Each" type="System">
                             <param id="0" name="Object">Enemy</param>
                         </condition>
-                        <condition id="-3" name="Is on-screen" type="Enemy" />
-                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Enemy">
-                            <param id="0" name="Instance variable">isMoving</param>
-                        </condition>
-                        <condition id="-8" name="Compare two values" type="System">
-                            <param id="0" name="First value">distance(Avatar.X, Avatar.Y, Enemy.X, Enemy.Y)</param>
-                            <param id="1" name="Comparison">2</param>
-                            <param id="2" name="Second value">Enemy.vision_range</param>
-                        </condition>
-                        <condition id="-8" name="Compare two values" type="System">
-                            <param id="0" name="First value">Function.Call(&quot;checkLOS&quot;,Enemy.X,Enemy.Y,Avatar.X,Avatar.Y)</param>
-                            <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Second value">1</param>
-                        </condition>
-                        <condition id="-11" name="Is within angle" type="Enemy">
-                            <param id="0" name="Within">75</param>
-                            <param id="1" name="Angle">angle(Enemy.ImagePointX(0), Enemy.ImagePointY(0), Avatar.ImagePointX(0), Avatar.ImagePointY(0))</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-13" name="Set boolean" type="Enemy">
-                            <param id="0" name="Instance variable">isMoving</param>
-                            <param id="1" name="Value">1</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block>
-                    <conditions>
-                        <condition id="1" name="Is overlapping another object" type="Enemy">
-                            <param id="0" name="Object">Avatar</param>
-                        </condition>
-                        <condition id="-7" name="Compare instance variable" type="Enemy">
-                            <param id="0" name="Instance variable">hitDelay</param>
-                            <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Value">0</param>
-                        </condition>
                         <condition id="-7" name="Compare instance variable" type="Enemy">
                             <param id="0" name="Instance variable">stagger</param>
-                            <param id="1" name="Comparison">0</param>
+                            <param id="1" name="Comparison">3</param>
                             <param id="2" name="Value">0</param>
                         </condition>
                     </conditions>
-                    <actions>
-                        <action disabled="1" id="-9" name="Destroy" type="Avatar" />
-                        <action id="-11" name="Subtract from" type="System">
-                            <param id="0" name="Variable">avatar_hp</param>
-                            <param id="1" name="Value">Enemy.damage</param>
-                        </action>
-                        <action behavior="Bullet" id="4" name="Bounce off object" type="Enemy">
-                            <param id="0" name="Object">Avatar</param>
-                        </action>
-                        <action id="-10" name="Set value" type="Enemy">
-                            <param id="0" name="Instance variable">hitDelay</param>
-                            <param id="1" name="Value">Enemy.hitFrequency</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block>
-                    <conditions>
-                        <condition id="1" name="Is overlapping another object" type="Enemy">
-                            <param id="0" name="Object">Avatar</param>
-                        </condition>
-                        <condition id="-7" name="Compare instance variable" type="Enemy">
-                            <param id="0" name="Instance variable">hitDelay</param>
-                            <param id="1" name="Comparison">4</param>
-                            <param id="2" name="Value">0</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-12" name="Subtract from" type="Enemy">
-                            <param id="0" name="Instance variable">hitDelay</param>
-                            <param id="1" name="Value">1</param>
-                        </action>
-                    </actions>
+                    <actions />
+                    <sub-events>
+                        <comment>sleep - nepritel neni probuzeny, pochoduje kolem sveho mistecka</comment>
+                        <event-block collapsed="1">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" type="Enemy">
+                                    <param id="0" name="Instance variable">state</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;sleep&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-12" name="Subtract from" type="Enemy">
+                                    <param id="0" name="Instance variable">state_switch_timer</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <comment>vidi hrace - jde po nem (approach)</comment>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-3" name="Is on-screen" type="Enemy" />
+                                        <condition id="-8" name="Compare two values" type="System">
+                                            <param id="0" name="First value">distance(Avatar.X, Avatar.Y, Enemy.X, Enemy.Y)</param>
+                                            <param id="1" name="Comparison">2</param>
+                                            <param id="2" name="Second value">Enemy.vision_range</param>
+                                        </condition>
+                                        <condition id="-8" name="Compare two values" type="System">
+                                            <param id="0" name="First value">Function.Call(&quot;checkLOS&quot;,Enemy.X,Enemy.Y,Avatar.X,Avatar.Y)</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">1</param>
+                                        </condition>
+                                        <condition id="-11" name="Is within angle" type="Enemy">
+                                            <param id="0" name="Within">75</param>
+                                            <param id="1" name="Angle">angle(Enemy.ImagePointX(0), Enemy.ImagePointY(0), Avatar.ImagePointX(0), Avatar.ImagePointY(0))</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" type="Enemy">
+                                            <param id="0" name="Instance variable">state</param>
+                                            <param id="1" name="Value">&quot;approach&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <comment>je spokojeny s novym mistem</comment>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-22" name="Else" type="System" />
+                                        <condition id="-8" name="Compare two values" type="System">
+                                            <param id="0" name="First value">distance(Enemy.ImagePointX(0),Enemy.ImagePointY(0),Enemy.target_x,Enemy.target_y)</param>
+                                            <param id="1" name="Comparison">3</param>
+                                            <param id="2" name="Second value">1</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action behavior="Bullet" id="0" name="Set speed" type="Enemy">
+                                            <param id="0" name="Speed">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <comment>nedosahl noveho mista</comment>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-22" name="Else" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action behavior="Bullet" id="0" name="Set speed" type="Enemy">
+                                            <param id="0" name="Speed">Enemy.speed</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <comment>je cas na zmenu noveho mista (to je kolem puvodniho mista +-25 px)</comment>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" type="Enemy">
+                                            <param id="0" name="Instance variable">state_switch_timer</param>
+                                            <param id="1" name="Comparison">3</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" type="Enemy">
+                                            <param id="0" name="Instance variable">target_x</param>
+                                            <param id="1" name="Value">Enemy.stand_x + random(-25,25)</param>
+                                        </action>
+                                        <action id="-10" name="Set value" type="Enemy">
+                                            <param id="0" name="Instance variable">target_y</param>
+                                            <param id="1" name="Value">Enemy.stand_y + random(-25,25)</param>
+                                        </action>
+                                        <action id="-10" name="Set value" type="Enemy">
+                                            <param id="0" name="Instance variable">state_switch_timer</param>
+                                            <param id="1" name="Value">random(400,1000)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <comment>approach - hrac je videt, ale neni na dostrel</comment>
+                        <event-block collapsed="1">
+                            <conditions>
+                                <condition id="-22" name="Else" type="System" />
+                                <condition id="-7" name="Compare instance variable" type="Enemy">
+                                    <param id="0" name="Instance variable">state</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;approach&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" type="Enemy">
+                                    <param id="0" name="Instance variable">target_x</param>
+                                    <param id="1" name="Value">Avatar.ImagePointX(0)</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Enemy">
+                                    <param id="0" name="Instance variable">target_y</param>
+                                    <param id="1" name="Value">Avatar.ImagePointY(0)</param>
+                                </action>
+                                <action behavior="Bullet" id="0" name="Set speed" type="Enemy">
+                                    <param id="0" name="Speed">Enemy.speed</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <comment>hrac zmizel z dohledu - bez na posledni misto, kde byl videt (catch_up)</comment>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" type="System">
+                                            <param id="0" name="First value">Function.Call(&quot;checkLOS&quot;,Enemy.ImagePointX(0),Enemy.ImagePointY(0),Avatar.ImagePointX(0),Avatar.ImagePointY(0))</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" type="Enemy">
+                                            <param id="0" name="Instance variable">state</param>
+                                            <param id="1" name="Value">&quot;catch_up&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <comment>hrac je na dostrel - strilej po nem! (shoot)</comment>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-22" name="Else" type="System" />
+                                        <condition id="-8" name="Compare two values" type="System">
+                                            <param id="0" name="First value">distance(Enemy.ImagePointX(0),Enemy.ImagePointY(0),Avatar.ImagePointX(0),Avatar.ImagePointY(0))</param>
+                                            <param id="1" name="Comparison">2</param>
+                                            <param id="2" name="Second value">Enemy.shooting_range</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" type="Enemy">
+                                            <param id="0" name="Instance variable">state</param>
+                                            <param id="1" name="Value">&quot;shoot&quot;</param>
+                                        </action>
+                                        <action id="-10" name="Set value" type="Enemy">
+                                            <param id="0" name="Instance variable">state_switch_timer</param>
+                                            <param id="1" name="Value">random(120,720)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <comment>shoot - hrac je na dostrel</comment>
+                        <event-block collapsed="1">
+                            <conditions>
+                                <condition id="-22" name="Else" type="System" />
+                                <condition id="-7" name="Compare instance variable" type="Enemy">
+                                    <param id="0" name="Instance variable">state</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;shoot&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" type="Enemy">
+                                    <param id="0" name="Instance variable">target_x</param>
+                                    <param id="1" name="Value">Avatar.ImagePointX(0)</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Enemy">
+                                    <param id="0" name="Instance variable">target_y</param>
+                                    <param id="1" name="Value">Avatar.ImagePointY(0)</param>
+                                </action>
+                                <action id="0" name="Call function" type="Function">
+                                    <param id="0" name="Name">&quot;fireWeapon&quot;</param>
+                                    <param id="1" name="Parameter {n}">Enemy.weapon_uid{###}Enemy.ImagePointX(0){###}Enemy.ImagePointY(0){###}Enemy.Angle{###}1</param>
+                                </action>
+                                <action id="-12" name="Subtract from" type="Enemy">
+                                    <param id="0" name="Instance variable">state_switch_timer</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action behavior="Bullet" id="0" name="Set speed" type="Enemy">
+                                    <param id="0" name="Speed">0</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <comment>manipulace se zbrani</comment>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-19" name="Pick all" type="System">
+                                            <param id="0" name="Object">Weapon</param>
+                                        </condition>
+                                        <condition id="-14" name="Pick by unique ID" type="Weapon">
+                                            <param id="0" name="Unique ID">Enemy.weapon_uid</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-13" name="Set boolean" type="Weapon">
+                                            <param id="0" name="Instance variable">single_shot_needs_reset</param>
+                                            <param id="1" name="Value">0</param>
+                                        </action>
+                                    </actions>
+                                    <sub-events>
+                                        <event-block>
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" type="Weapon">
+                                                    <param id="0" name="Instance variable">magazine_current</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
+                                                <condition id="-7" name="Compare instance variable" type="Weapon">
+                                                    <param id="0" name="Instance variable">reload_timer</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-10" name="Set value" type="Weapon">
+                                                    <param id="0" name="Instance variable">reload_timer</param>
+                                                    <param id="1" name="Value">Weapon.reload_interval</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                                <comment>uz stoji moc dlouho na miste, je treba se premistit (displace)</comment>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" type="Enemy">
+                                            <param id="0" name="Instance variable">state_switch_timer</param>
+                                            <param id="1" name="Comparison">3</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" type="Enemy">
+                                            <param id="0" name="Instance variable">state</param>
+                                            <param id="1" name="Value">&quot;displace&quot;</param>
+                                        </action>
+                                        <action id="-10" name="Set value" type="Enemy">
+                                            <param id="0" name="Instance variable">target_x</param>
+                                            <param id="1" name="Value">Enemy.ImagePointX(0) + random(-50,50)</param>
+                                        </action>
+                                        <action id="-10" name="Set value" type="Enemy">
+                                            <param id="0" name="Instance variable">target_y</param>
+                                            <param id="1" name="Value">Enemy.ImagePointY(0) + random(-50,50)</param>
+                                        </action>
+                                        <action id="-10" name="Set value" type="Enemy">
+                                            <param id="0" name="Instance variable">state_switch_timer</param>
+                                            <param id="1" name="Value">200</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <comment>hrac zmizel, dozen ho (catch_up)</comment>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-22" name="Else" type="System" />
+                                        <condition id="-8" name="Compare two values" type="System">
+                                            <param id="0" name="First value">Function.Call(&quot;checkLOS&quot;,Enemy.ImagePointX(0),Enemy.ImagePointY(0),Avatar.ImagePointX(0),Avatar.ImagePointY(0))</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" type="Enemy">
+                                            <param id="0" name="Instance variable">state</param>
+                                            <param id="1" name="Value">&quot;catch_up&quot;</param>
+                                        </action>
+                                        <action id="-10" name="Set value" type="Enemy">
+                                            <param id="0" name="Instance variable">target_x</param>
+                                            <param id="1" name="Value">Avatar.ImagePointX(0)</param>
+                                        </action>
+                                        <action id="-10" name="Set value" type="Enemy">
+                                            <param id="0" name="Instance variable">target_y</param>
+                                            <param id="1" name="Value">Avatar.ImagePointY(0)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <comment>hrac je moc daleko, pribliz se (approach)</comment>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-22" name="Else" type="System" />
+                                        <condition id="-8" name="Compare two values" type="System">
+                                            <param id="0" name="First value">distance(Enemy.ImagePointX(0),Enemy.ImagePointY(0),Avatar.ImagePointX(0),Avatar.ImagePointY(0))</param>
+                                            <param id="1" name="Comparison">5</param>
+                                            <param id="2" name="Second value">Enemy.shooting_range + 50</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" type="Enemy">
+                                            <param id="0" name="Instance variable">state</param>
+                                            <param id="1" name="Value">&quot;approach&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <comment>displace - je potreba trochu popojit (aby nepritel nestal prilis dlouho na jednom miste)</comment>
+                        <event-block collapsed="1">
+                            <conditions>
+                                <condition id="-22" name="Else" type="System" />
+                                <condition id="-7" name="Compare instance variable" type="Enemy">
+                                    <param id="0" name="Instance variable">state</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;displace&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Bullet" id="0" name="Set speed" type="Enemy">
+                                    <param id="0" name="Speed">Enemy.speed</param>
+                                </action>
+                                <action id="-12" name="Subtract from" type="Enemy">
+                                    <param id="0" name="Instance variable">state_switch_timer</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <comment>dosahl mista urceni (nebo uz je moc dlouho zasekly o zed) - muzes strilet (shoot)</comment>
+                                <event-block any="1">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" type="System">
+                                            <param id="0" name="First value">distance(Enemy.ImagePointX(0),Enemy.ImagePointY(0),Enemy.target_x,Enemy.target_y)</param>
+                                            <param id="1" name="Comparison">3</param>
+                                            <param id="2" name="Second value">1</param>
+                                        </condition>
+                                        <condition id="-7" name="Compare instance variable" type="Enemy">
+                                            <param id="0" name="Instance variable">state_switch_timer</param>
+                                            <param id="1" name="Comparison">3</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" type="Enemy">
+                                            <param id="0" name="Instance variable">state</param>
+                                            <param id="1" name="Value">&quot;shoot&quot;</param>
+                                        </action>
+                                        <action id="-10" name="Set value" type="Enemy">
+                                            <param id="0" name="Instance variable">state_switch_timer</param>
+                                            <param id="1" name="Value">random(120,720)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <comment>hrac zmizel z dohledu, za nim (catch_up)</comment>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-22" name="Else" type="System" />
+                                        <condition id="-8" name="Compare two values" type="System">
+                                            <param id="0" name="First value">Function.Call(&quot;checkLOS&quot;,Enemy.ImagePointX(0),Enemy.ImagePointY(0),Avatar.ImagePointX(0),Avatar.ImagePointY(0))</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" type="Enemy">
+                                            <param id="0" name="Instance variable">state</param>
+                                            <param id="1" name="Value">&quot;catch_up&quot;</param>
+                                        </action>
+                                        <action id="-10" name="Set value" type="Enemy">
+                                            <param id="0" name="Instance variable">target_x</param>
+                                            <param id="1" name="Value">Avatar.ImagePointX(0)</param>
+                                        </action>
+                                        <action id="-10" name="Set value" type="Enemy">
+                                            <param id="0" name="Instance variable">target_y</param>
+                                            <param id="1" name="Value">Avatar.ImagePointY(0)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <comment>hrac je moc daleko, je treba se priblizit (approach)</comment>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-22" name="Else" type="System" />
+                                        <condition id="-8" name="Compare two values" type="System">
+                                            <param id="0" name="First value">distance(Enemy.ImagePointX(0),Enemy.ImagePointY(0),Avatar.ImagePointX(0),Avatar.ImagePointY(0))</param>
+                                            <param id="1" name="Comparison">5</param>
+                                            <param id="2" name="Second value">Enemy.shooting_range + 50</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" type="Enemy">
+                                            <param id="0" name="Instance variable">state</param>
+                                            <param id="1" name="Value">&quot;approach&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <comment>catch_up - hrac zmizel, jde se na misto, kde byl videt naposled</comment>
+                        <event-block collapsed="1">
+                            <conditions>
+                                <condition id="-22" name="Else" type="System" />
+                                <condition id="-7" name="Compare instance variable" type="Enemy">
+                                    <param id="0" name="Instance variable">state</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;catch_up&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Bullet" id="0" name="Set speed" type="Enemy">
+                                    <param id="0" name="Speed">Enemy.speed</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <comment>hrac je videt, je vse v poradku (approach)</comment>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" type="System">
+                                            <param id="0" name="First value">Function.Call(&quot;checkLOS&quot;,Enemy.ImagePointX(0),Enemy.ImagePointY(0),Avatar.ImagePointX(0),Avatar.ImagePointY(0))</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">1</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" type="Enemy">
+                                            <param id="0" name="Instance variable">state</param>
+                                            <param id="1" name="Value">&quot;approach&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <comment>nepritel dosel tam, kde hrace videl naposled, po hraci ani vidu ani slechu, jde se spat (sleep)</comment>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-22" name="Else" type="System" />
+                                        <condition id="-8" name="Compare two values" type="System">
+                                            <param id="0" name="First value">distance(Enemy.ImagePointX(0),Enemy.ImagePointY(0),Enemy.target_x,Enemy.target_y)</param>
+                                            <param id="1" name="Comparison">3</param>
+                                            <param id="2" name="Second value">1</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" type="Enemy">
+                                            <param id="0" name="Instance variable">stand_x</param>
+                                            <param id="1" name="Value">Enemy.target_x</param>
+                                        </action>
+                                        <action id="-10" name="Set value" type="Enemy">
+                                            <param id="0" name="Instance variable">stand_y</param>
+                                            <param id="1" name="Value">Enemy.target_y</param>
+                                        </action>
+                                        <action id="-10" name="Set value" type="Enemy">
+                                            <param id="0" name="Instance variable">state</param>
+                                            <param id="1" name="Value">&quot;sleep&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <comment>tohle se provede vzdycky, ale az nakonec</comment>
+                        <event-block>
+                            <conditions />
+                            <actions>
+                                <action id="-22" name="Set angle toward position" type="Enemy">
+                                    <param id="0" name="X">Enemy.target_x</param>
+                                    <param id="1" name="Y">Enemy.target_y</param>
+                                </action>
+                                <action behavior="Bullet" id="1" name="Set acceleration" type="Enemy">
+                                    <param id="0" name="Acceleration">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
                 <comment>toto by mozna melo byt nekde v Main, zde ale vice logicke (reseni co s mrtvym hracem hned za odecitanim zivotu)</comment>
                 <event-block>
@@ -1045,7 +1443,7 @@
                     </conditions>
                     <actions>
                         <action behavior="8Direction" id="4" name="Set max speed" type="Avatar">
-                            <param id="0" name="Max Speed">250</param>
+                            <param id="0" name="Max Speed">500</param>
                         </action>
                         <action id="-13" name="Set boolean" type="Avatar">
                             <param id="0" name="Instance variable">is_sprinting</param>
@@ -1061,7 +1459,7 @@
                     </conditions>
                     <actions>
                         <action behavior="8Direction" id="4" name="Set max speed" type="Avatar">
-                            <param id="0" name="Max Speed">100</param>
+                            <param id="0" name="Max Speed">200</param>
                         </action>
                         <action id="-13" name="Set boolean" type="Avatar">
                             <param id="0" name="Instance variable">is_sprinting</param>
@@ -1340,6 +1738,10 @@
                                             <param id="0" name="Instance variable">damage</param>
                                             <param id="1" name="Value">Weapon.damage</param>
                                         </action>
+                                        <action id="-10" name="Set value" type="Bullet">
+                                            <param id="0" name="Instance variable">team_id</param>
+                                            <param id="1" name="Value">Function.Param(4)</param>
+                                        </action>
                                         <action id="-8" name="Set angle" type="Bullet">
                                             <param id="0" name="Angle">current_firing_angle</param>
                                         </action>
@@ -1376,8 +1778,10 @@
                                             <param id="0" name="Object">Enemy</param>
                                         </condition>
                                         <condition id="-3" name="Is on-screen" type="Enemy" />
-                                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Enemy">
-                                            <param id="0" name="Instance variable">isMoving</param>
+                                        <condition id="-7" name="Compare instance variable" type="Enemy">
+                                            <param id="0" name="Instance variable">state</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">&quot;sleep&quot;</param>
                                         </condition>
                                         <condition id="-8" name="Compare two values" type="System">
                                             <param id="0" name="First value">distance(Enemy.X,Enemy.Y,firing_x,firing_y)</param>
@@ -1391,9 +1795,9 @@
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="-13" name="Set boolean" type="Enemy">
-                                            <param id="0" name="Instance variable">isMoving</param>
-                                            <param id="1" name="Value">1</param>
+                                        <action id="-10" name="Set value" type="Enemy">
+                                            <param id="0" name="Instance variable">state</param>
+                                            <param id="1" name="Value">&quot;approach&quot;</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -1424,9 +1828,6 @@
                             <param id="0" name="Instance variable">reload_timer</param>
                             <param id="1" name="Comparison">4</param>
                             <param id="2" name="Value">0</param>
-                        </condition>
-                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Avatar">
-                            <param id="0" name="Instance variable">is_melee_atacking</param>
                         </condition>
                     </conditions>
                     <actions>
@@ -1500,7 +1901,7 @@
                             </conditions>
                             <actions>
                                 <action id="-5" name="Set width" type="BulletTrail">
-                                    <param id="0" name="Width">Min(Bullet.Bullet.Speed/30,distance(Bullet.ImagePointX(0),Bullet.ImagePointY(0),Avatar.ImagePointX(1),Avatar.ImagePointY(1)))</param>
+                                    <param id="0" name="Width">Min(Bullet.Bullet.Speed/30,Bullet.Bullet.DistanceTravelled)</param>
                                 </action>
                                 <action id="-8" name="Set angle" type="BulletTrail">
                                     <param id="0" name="Angle">Bullet.Angle-180</param>
@@ -1618,6 +2019,11 @@
                         <condition id="0" name="On collision with another object" type="Bullet">
                             <param id="0" name="Object">Enemy</param>
                         </condition>
+                        <condition id="-7" name="Compare instance variable" type="Bullet">
+                            <param id="0" name="Instance variable">team_id</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
                     </conditions>
                     <actions>
                         <action id="0" name="Spawn another object" type="Enemy">
@@ -1634,10 +2040,34 @@
                             <param id="1" name="Distance">0.2*Bullet.damage</param>
                         </action>
                         <action id="-9" name="Destroy" type="Bullet" />
-                        <action id="-13" name="Set boolean" type="Enemy">
-                            <param id="0" name="Instance variable">isMoving</param>
-                            <param id="1" name="Value">1</param>
+                        <action id="-10" name="Set value" type="Enemy">
+                            <param id="0" name="Instance variable">state</param>
+                            <param id="1" name="Value">&quot;approach&quot;</param>
                         </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On collision with another object" type="Bullet">
+                            <param id="0" name="Object">Avatar</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" type="Bullet">
+                            <param id="0" name="Instance variable">team_id</param>
+                            <param id="1" name="Comparison">1</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Spawn another object" type="Avatar">
+                            <param id="0" name="Object">BloodHit</param>
+                            <param id="1" name="Layer">1</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="-11" name="Subtract from" type="System">
+                            <param id="0" name="Variable">avatar_hp</param>
+                            <param id="1" name="Value">Bullet.damage</param>
+                        </action>
+                        <action id="-9" name="Destroy" type="Bullet" />
                     </actions>
                 </event-block>
                 <event-block>
@@ -1695,9 +2125,9 @@
                             <param id="0" name="Instance variable">hp</param>
                             <param id="1" name="Value">50</param>
                         </action>
-                        <action id="-13" name="Set boolean" type="Enemy">
-                            <param id="0" name="Instance variable">isMoving</param>
-                            <param id="1" name="Value">1</param>
+                        <action id="-10" name="Set value" type="Enemy">
+                            <param id="0" name="Instance variable">state</param>
+                            <param id="1" name="Value">&quot;approach&quot;</param>
                         </action>
                     </actions>
                 </event-block>
@@ -1711,6 +2141,10 @@
                         <action behavior="Bullet" id="1" name="Set acceleration" type="Enemy">
                             <param id="0" name="Acceleration">-300</param>
                         </action>
+                        <action id="-10" name="Set value" type="Enemy">
+                            <param id="0" name="Instance variable">state</param>
+                            <param id="1" name="Value">&quot;approach&quot;</param>
+                        </action>
                     </actions>
                     <sub-events>
                         <event-block>
@@ -1719,6 +2153,10 @@
                                     <param id="0" name="Instance variable">stagger</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">0</param>
+                                </condition>
+                                <condition behavior="Bullet" id="0" name="Compare speed" type="Enemy">
+                                    <param id="0" name="Comparison">3</param>
+                                    <param id="1" name="Speed">1</param>
                                 </condition>
                             </conditions>
                             <actions>
@@ -1770,7 +2208,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" title="Weapon change">
+        <event-group collapsed="1" description="" title="Weapon change">
             <sub-events>
                 <event-block>
                     <conditions>
@@ -1855,7 +2293,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" title="Loot Pickup">
+        <event-group collapsed="1" description="" title="Loot Pickup">
             <sub-events>
                 <event-block>
                     <conditions>
@@ -2128,7 +2566,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" title="Quests">
+        <event-group collapsed="1" description="" title="Quests">
             <sub-events>
                 <event-block>
                     <conditions>

@@ -66,7 +66,7 @@
                     <behavior-instances>
                         <behavior-instance type="8Direction">
                             <properties>
-                                <max-speed>100</max-speed>
+                                <max-speed>200</max-speed>
                                 <acceleration>600</acceleration>
                                 <deceleration>1200</deceleration>
                                 <directions>8 directions</directions>
@@ -305,15 +305,18 @@
                     <instance-variables>
                         <hp>100</hp>
                         <vision_range>500</vision_range>
-                        <isMoving>false</isMoving>
                         <speed>100</speed>
-                        <visionProbeSent>false</visionProbeSent>
-                        <hitFrequency>10</hitFrequency>
-                        <hitDelay>0</hitDelay>
                         <damage>10</damage>
                         <stagger>0</stagger>
                         <is_quest_npc>0</is_quest_npc>
                         <weapon_uid>0</weapon_uid>
+                        <state>&quot;sleep&quot;</state>
+                        <stand_x>0</stand_x>
+                        <stand_y>0</stand_y>
+                        <target_x>0</target_x>
+                        <target_y>0</target_y>
+                        <shooting_range>300</shooting_range>
+                        <state_switch_timer>0</state_switch_timer>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="BoundToLayout">
@@ -393,7 +396,7 @@
                     </properties>
                     <instance-variables>
                         <boost_type>hp</boost_type>
-                        <boost_value>10</boost_value>
+                        <boost_value>100</boost_value>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
