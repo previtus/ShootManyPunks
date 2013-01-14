@@ -317,6 +317,7 @@
                         <target_y>0</target_y>
                         <shooting_range>300</shooting_range>
                         <state_switch_timer>0</state_switch_timer>
+                        <quest_circle>0</quest_circle>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="BoundToLayout">
@@ -459,6 +460,7 @@
                         <is_quest_npc>0</is_quest_npc>
                         <interact_func>interact_npc</interact_func>
                         <interact_description>Talk</interact_description>
+                        <quest_circle>0</quest_circle>
                         <spawnX>0</spawnX>
                         <spawnY>0</spawnY>
                         <dialogLine1>&quot;Sovy nejsou, čím se zdají být&quot;</dialogLine1>
@@ -790,6 +792,7 @@
                         <status>0</status>
                         <interact_func>interact_quest</interact_func>
                         <interact_description>Talk</interact_description>
+                        <quest_circle>0</quest_circle>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -850,6 +853,27 @@
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="QuestCircle">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>-376</x>
+                        <y>437</y>
+                        <z>0</z>
+                        <width>34</width>
+                        <height>34</height>
+                        <depth>0</depth>
+                        <hotspotX>0.4921875</hotspotX>
+                        <hotspotY>0.5</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>

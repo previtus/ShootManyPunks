@@ -26,7 +26,7 @@
         <variable constant="0" name="quest_target_location" static="0" type="number">0</variable>
         <variable constant="0" name="quest_type" static="0" type="number">0</variable>
         <variable constant="0" name="remaining_quest_enemies" static="0" type="number">0</variable>
-        <event-group description="" title="TiledMap Import">
+        <event-group collapsed="1" description="" title="TiledMap Import">
             <sub-events>
                 <comment>Loading correct tmx string - correct location</comment>
                 <event-block>
@@ -428,7 +428,7 @@
         </event-group>
         <event-group description="" title="Main">
             <sub-events>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="-18" name="On created" type="Avatar" />
                     </conditions>
@@ -485,7 +485,7 @@
                         </event-block>
                     </sub-events>
                 </event-block>
-                <event-block any="1">
+                <event-block any="1" collapsed="1">
                     <conditions>
                         <condition id="-1" name="Every tick" type="System" />
                     </conditions>
@@ -743,10 +743,10 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" title="Enemy">
+        <event-group collapsed="1" description="" title="Enemy">
             <sub-events>
                 <comment>AI nepratel</comment>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="-11" name="For Each" type="System">
                             <param id="0" name="Object">Enemy</param>
@@ -1312,6 +1312,12 @@
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">1</param>
                                 </condition>
+                                <condition id="-14" name="Pick by unique ID" type="Questable">
+                                    <param id="0" name="Unique ID">Enemy.UID</param>
+                                </condition>
+                                <condition id="-14" name="Pick by unique ID" type="QuestCircle">
+                                    <param id="0" name="Unique ID">Questable.quest_circle</param>
+                                </condition>
                             </conditions>
                             <actions>
                                 <action id="-11" name="Subtract from" type="System">
@@ -1321,6 +1327,7 @@
                                 <action id="0" name="Set text" type="InfoText">
                                     <param id="0" name="Text">&quot;Remaining enemies:&quot; &amp; remaining_quest_enemies</param>
                                 </action>
+                                <action id="-9" name="Destroy" type="QuestCircle" />
                             </actions>
                         </event-block>
                         <event-block>
@@ -1563,7 +1570,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" title="Combat">
+        <event-group collapsed="1" description="" title="Combat">
             <sub-events>
                 <event-block>
                     <conditions>
@@ -1855,7 +1862,7 @@
                     </sub-events>
                 </event-block>
                 <comment>pridani stopovky</comment>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="-18" name="On created" type="Bullet" />
                     </conditions>
@@ -1885,7 +1892,7 @@
                         </event-block>
                     </sub-events>
                 </event-block>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="-11" name="For Each" type="System">
                             <param id="0" name="Object">Bullet</param>
@@ -1915,7 +1922,7 @@
                     </sub-events>
                 </event-block>
                 <comment>svih mecem</comment>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="0" name="On click" type="Mouse">
                             <param id="0" name="Mouse button">2</param>
@@ -2288,7 +2295,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" title="Loot Pickup">
+        <event-group description="" title="Loot Pickup">
             <sub-events>
                 <event-block>
                     <conditions>
@@ -2354,8 +2361,8 @@
                                     <param id="1" name="Value">1</param>
                                 </action>
                                 <action id="0" name="Call function" type="Function">
-                                    <param id="0" name="Name">&quot;boxOpened&quot;</param>
-                                    <param id="1" name="Parameter {n}">LootableItem.UID</param>
+                                    <param id="0" name="Name">&quot;RandomLootDrop&quot;</param>
+                                    <param id="1" name="Parameter {n}">Avatar.X{###}Avatar.Y{###}Random(0,7)</param>
                                 </action>
                                 <action id="5" name="Set frame" type="LootableItem">
                                     <param id="0" name="Frame number">1</param>
@@ -2540,7 +2547,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" title="Loot Spawning">
+        <event-group description="" title="Loot Spawning">
             <sub-events>
                 <event-block>
                     <conditions>
@@ -2552,16 +2559,16 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="0" name="Spawn another object" type="LootableItem">
+                        <action id="0" name="Spawn another object" type="Avatar">
                             <param id="0" name="Object">SmallMedKit</param>
                             <param id="1" name="Layer">2</param>
-                            <param id="2" name="Image point">1</param>
+                            <param id="2" name="Image point">0</param>
                         </action>
                     </actions>
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" title="Quests">
+        <event-group description="" title="Quests">
             <sub-events>
                 <event-block>
                     <conditions>
@@ -2576,18 +2583,18 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="0" name="Spawn another object" type="Avatar">
-                            <param id="0" name="Object">QuestArrow</param>
-                            <param id="1" name="Layer">3</param>
+                        <action id="0" name="Spawn another object" type="QuestGiver">
+                            <param id="0" name="Object">QuestCircle</param>
+                            <param id="1" name="Layer">2</param>
                             <param id="2" name="Image point">0</param>
                         </action>
-                        <action id="-10" name="Set value" type="QuestArrow">
-                            <param id="0" name="Instance variable">boundQuestGiver</param>
-                            <param id="1" name="Value">QuestGivers.UID</param>
+                        <action id="-10" name="Set value" type="QuestGiver">
+                            <param id="0" name="Instance variable">quest_circle</param>
+                            <param id="1" name="Value">QuestCircle.UID</param>
                         </action>
                     </actions>
                 </event-block>
-                <event-block>
+                <event-block collapsed="1" disabled="1">
                     <conditions>
                         <condition id="-1" name="Every tick" type="System" />
                         <condition id="-11" name="For Each" type="System">
@@ -2599,7 +2606,7 @@
                     </conditions>
                     <actions />
                     <sub-events>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
                                 <condition id="-3" inverted="1" name="Is on-screen" type="QuestGivers" />
                             </conditions>
@@ -2617,7 +2624,7 @@
                                 </action>
                             </actions>
                         </event-block>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
                                 <condition id="-3" name="Is on-screen" type="QuestGivers" />
                             </conditions>
@@ -2690,6 +2697,9 @@
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">0</param>
                                 </condition>
+                                <condition id="-14" name="Pick by unique ID" type="QuestCircle">
+                                    <param id="0" name="Unique ID">QuestGiver.quest_circle</param>
+                                </condition>
                             </conditions>
                             <actions>
                                 <action id="-10" name="Set value" type="QuestGiver">
@@ -2704,6 +2714,7 @@
                                     <param id="0" name="Variable">quest_target_location</param>
                                     <param id="1" name="Value">3</param>
                                 </action>
+                                <action id="-9" name="Destroy" type="QuestCircle" />
                             </actions>
                             <sub-events>
                                 <event-block>
@@ -2754,6 +2765,10 @@
                                         <action id="-9" name="Set value" type="System">
                                             <param id="0" name="Variable">is_on_quest</param>
                                             <param id="1" name="Value">0</param>
+                                        </action>
+                                        <action id="0" name="Call function" type="Function">
+                                            <param id="0" name="Name">&quot;RandomLootDrop&quot;</param>
+                                            <param id="1" name="Parameter {n}">Avatar.X{###}Avatar.Y{###}Random(4,7)</param>
                                         </action>
                                     </actions>
                                     <sub-events>
@@ -2839,6 +2854,15 @@
                                     <param id="0" name="Instance variable">is_quest_npc</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
+                                <action id="0" name="Spawn another object" type="npc_simple">
+                                    <param id="0" name="Object">QuestCircle</param>
+                                    <param id="1" name="Layer">2</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="-10" name="Set value" type="npc_simple">
+                                    <param id="0" name="Instance variable">quest_circle</param>
+                                    <param id="1" name="Value">QuestCircle.UID</param>
+                                </action>
                             </actions>
                         </event-block>
                         <event-block>
@@ -2869,6 +2893,18 @@
                                     <param id="0" name="Variable">remaining_quest_enemies</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
+                                <action id="0" name="Spawn another object" type="EnemyDude">
+                                    <param id="0" name="Object">QuestCircle</param>
+                                    <param id="1" name="Layer">2</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="5" name="Set frame" type="QuestCircle">
+                                    <param id="0" name="Frame number">1</param>
+                                </action>
+                                <action id="-10" name="Set value" type="EnemyDude">
+                                    <param id="0" name="Instance variable">quest_circle</param>
+                                    <param id="1" name="Value">QuestCircle.UID</param>
+                                </action>
                             </actions>
                         </event-block>
                     </sub-events>
@@ -2896,6 +2932,9 @@
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">1</param>
                                 </condition>
+                                <condition id="-14" name="Pick by unique ID" type="QuestCircle">
+                                    <param id="0" name="Unique ID">npc_simple.quest_circle</param>
+                                </condition>
                             </conditions>
                             <actions>
                                 <action id="0" name="Set text" type="InfoText">
@@ -2909,6 +2948,7 @@
                                     <param id="0" name="Instance variable">is_quest_npc</param>
                                     <param id="1" name="Value">0</param>
                                 </action>
+                                <action id="-9" name="Destroy" type="QuestCircle" />
                             </actions>
                         </event-block>
                         <event-block>
@@ -2958,5 +2998,158 @@
                 </event-block>
             </sub-events>
         </event-group>
+        <event-block collapsed="1">
+            <conditions>
+                <condition id="0" name="On function" type="Function">
+                    <param id="0" name="Name">&quot;RandomLootDrop&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block>
+                    <conditions>
+                        <condition id="-8" name="Compare two values" type="System">
+                            <param id="0" name="First value">Function.Param(2)</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Second value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" type="System">
+                            <param id="0" name="Object to create">SmallMedKit</param>
+                            <param id="1" name="Layer">2</param>
+                            <param id="2" name="X">Function.Param(0)</param>
+                            <param id="3" name="Y">Function.Param(1)</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-22" name="Else" type="System" />
+                        <condition id="-8" name="Compare two values" type="System">
+                            <param id="0" name="First value">Function.Param(2)</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Second value">2</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" type="System">
+                            <param id="0" name="Object to create">Pistol</param>
+                            <param id="1" name="Layer">2</param>
+                            <param id="2" name="X">Function.Param(0)</param>
+                            <param id="3" name="Y">Function.Param(1)</param>
+                        </action>
+                        <action id="9" name="Set scale" type="Pistol">
+                            <param id="0" name="Scale">0.25</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-22" name="Else" type="System" />
+                        <condition id="-8" name="Compare two values" type="System">
+                            <param id="0" name="First value">Function.Param(2)</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Second value">3</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" type="System">
+                            <param id="0" name="Object to create">Revolver</param>
+                            <param id="1" name="Layer">2</param>
+                            <param id="2" name="X">Function.Param(0)</param>
+                            <param id="3" name="Y">Function.Param(1)</param>
+                        </action>
+                        <action id="9" name="Set scale" type="Revolver">
+                            <param id="0" name="Scale">0.25</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-22" name="Else" type="System" />
+                        <condition id="-8" name="Compare two values" type="System">
+                            <param id="0" name="First value">Function.Param(2)</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Second value">4</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" type="System">
+                            <param id="0" name="Object to create">Shotgun</param>
+                            <param id="1" name="Layer">2</param>
+                            <param id="2" name="X">Function.Param(0)</param>
+                            <param id="3" name="Y">Function.Param(1)</param>
+                        </action>
+                        <action id="9" name="Set scale" type="Shotgun">
+                            <param id="0" name="Scale">0.25</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-22" name="Else" type="System" />
+                        <condition id="-8" name="Compare two values" type="System">
+                            <param id="0" name="First value">Function.Param(2)</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Second value">5</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" type="System">
+                            <param id="0" name="Object to create">SubMachineGun</param>
+                            <param id="1" name="Layer">2</param>
+                            <param id="2" name="X">Function.Param(0)</param>
+                            <param id="3" name="Y">Function.Param(1)</param>
+                        </action>
+                        <action id="9" name="Set scale" type="SubMachineGun">
+                            <param id="0" name="Scale">0.25</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-22" name="Else" type="System" />
+                        <condition id="-8" name="Compare two values" type="System">
+                            <param id="0" name="First value">Function.Param(2)</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Second value">6</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" type="System">
+                            <param id="0" name="Object to create">SubMachineGun2</param>
+                            <param id="1" name="Layer">2</param>
+                            <param id="2" name="X">Function.Param(0)</param>
+                            <param id="3" name="Y">Function.Param(1)</param>
+                        </action>
+                        <action id="9" name="Set scale" type="SubMachineGun2">
+                            <param id="0" name="Scale">0.25</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-22" name="Else" type="System" />
+                        <condition id="-8" name="Compare two values" type="System">
+                            <param id="0" name="First value">Function.Param(2)</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Second value">7</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" type="System">
+                            <param id="0" name="Object to create">MachineGun</param>
+                            <param id="1" name="Layer">2</param>
+                            <param id="2" name="X">Function.Param(0)</param>
+                            <param id="3" name="Y">Function.Param(1)</param>
+                        </action>
+                        <action id="9" name="Set scale" type="MachineGun">
+                            <param id="0" name="Scale">0.25</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
     </events>
 </c2eventsheet>
