@@ -317,6 +317,8 @@
                         <target_y>0</target_y>
                         <shooting_range>300</shooting_range>
                         <state_switch_timer>0</state_switch_timer>
+                        <is_melee>false</is_melee>
+                        <is_melee_attacking>false</is_melee_attacking>
                         <quest_circle>0</quest_circle>
                     </instance-variables>
                     <behavior-instances>
@@ -344,8 +346,8 @@
                         <width>34</width>
                         <height>34</height>
                         <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.488372087</hotspotY>
+                        <hotspotX>0.354651153</hotspotX>
+                        <hotspotY>0.45348838</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
@@ -480,6 +482,62 @@
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="EnemyDudeMelee">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <instance-variables>
+                        <hp>100</hp>
+                        <vision_range>500</vision_range>
+                        <speed>100</speed>
+                        <damage>10</damage>
+                        <stagger>0</stagger>
+                        <is_quest_npc>0</is_quest_npc>
+                        <weapon_uid>0</weapon_uid>
+                        <state>&quot;sleep&quot;</state>
+                        <stand_x>0</stand_x>
+                        <stand_y>0</stand_y>
+                        <target_x>0</target_x>
+                        <target_y>0</target_y>
+                        <shooting_range>40</shooting_range>
+                        <state_switch_timer>0</state_switch_timer>
+                        <is_melee>true</is_melee>
+                        <is_melee_attacking>false</is_melee_attacking>
+                        <quest_circle>0</quest_circle>
+                    </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="BoundToLayout">
+                            <properties>
+                                <bound-by>Edge</bound-by>
+                            </properties>
+                        </behavior-instance>
+                        <behavior-instance type="Bullet">
+                            <properties>
+                                <speed>0</speed>
+                                <acceleration>0</acceleration>
+                                <gravity>0</gravity>
+                                <bounce-off-solids>Yes</bounce-off-solids>
+                                <set-angle>Yes</set-angle>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>-134</x>
+                        <y>806</y>
+                        <z>0</z>
+                        <width>34</width>
+                        <height>34</height>
+                        <depth>0</depth>
+                        <hotspotX>0.354651153</hotspotX>
+                        <hotspotY>0.45348838</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
@@ -878,6 +936,30 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
+                <instance type="SamuraiSwordEnemy">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="Pin" />
+                    </behavior-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>-222</x>
+                        <y>-7</y>
+                        <z>0</z>
+                        <width>5</width>
+                        <height>34</height>
+                        <depth>0</depth>
+                        <hotspotX>0.600000024</hotspotX>
+                        <hotspotY>1.235294104</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
             </instances>
             <effects />
         </layer>
@@ -1058,8 +1140,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>-216</x>
-                        <y>848</y>
+                        <x>-296</x>
+                        <y>841</y>
                         <z>0</z>
                         <width>200</width>
                         <height>83</height>
