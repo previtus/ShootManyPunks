@@ -62,6 +62,7 @@
                     <instance-variables>
                         <is_melee_atacking>false</is_melee_atacking>
                         <is_sprinting>false</is_sprinting>
+                        <is_dodging>false</is_dodging>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="8Direction">
@@ -78,6 +79,21 @@
                         <behavior-instance type="BoundToLayout">
                             <properties>
                                 <bound-by>Edge</bound-by>
+                            </properties>
+                        </behavior-instance>
+                        <behavior-instance type="Bullet">
+                            <properties>
+                                <speed>0</speed>
+                                <acceleration>-5000</acceleration>
+                                <gravity>0</gravity>
+                                <bounce-off-solids>Yes</bounce-off-solids>
+                                <set-angle>No</set-angle>
+                            </properties>
+                        </behavior-instance>
+                        <behavior-instance type="CustomMovement">
+                            <properties>
+                                <stepping-mode>None</stepping-mode>
+                                <pixels-per-step>5</pixels-per-step>
                             </properties>
                         </behavior-instance>
                     </behavior-instances>
