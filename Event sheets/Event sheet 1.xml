@@ -6,19 +6,47 @@
         <comment>promenne, ktere ma na sobe avatar (postava hrace) by meli byt glob. promenne - aby byly prenaseny mezi nactenim layoutu</comment>
         <comment>dostupne i napr. v layoutu WorldMap</comment>
         <variable constant="0" name="avatar_initialized" static="0" type="number">0</variable>
+        <comment>stamina</comment>
         <variable constant="0" name="avatar_stamina_regen" static="0" type="number">2</variable>
         <variable constant="0" name="avatar_stamina_delay_interval" static="0" type="number">60</variable>
         <variable constant="0" name="avatar_stamina_delay_timer" static="0" type="number">0</variable>
-        <variable constant="0" name="avatar_dodge_timer" static="0" type="number">0</variable>
         <variable constant="0" name="avatar_max_stamina" static="0" type="number">100</variable>
         <variable constant="0" name="avatar_stamina" static="0" type="number">100</variable>
-        <variable constant="0" name="avatar_hp" static="0" type="number">5000</variable>
+        <comment>dodge</comment>
+        <variable constant="0" name="avatar_dodge_chance" static="0" type="number">0</variable>
+        <variable constant="0" name="avatar_dodge_timer" static="0" type="number">0</variable>
+        <comment>hp</comment>
         <variable constant="0" name="avatar_max_hp" static="0" type="number">10000</variable>
+        <variable constant="0" name="avatar_hp" static="0" type="number">5000</variable>
+        <comment>bioenergie</comment>
+        <variable constant="0" name="avatar_current_bio_drain" static="0" type="number">0</variable>
+        <variable constant="0" name="avatar_bioenergy_regen" static="0" type="number">0.3</variable>
+        <variable constant="0" name="avatar_bioenergy_delay_timer" static="0" type="number">0</variable>
+        <variable constant="0" name="avatar_bioenergy_delay_interval" static="0" type="number">60</variable>
+        <variable constant="0" name="avatar_max_bioenergy" static="0" type="number">500</variable>
+        <variable constant="0" name="avatar_bioenergy" static="0" type="number">500</variable>
+        <comment>cpu</comment>
+        <variable constant="0" name="avatar_max_cpu" static="0" type="number">100</variable>
+        <variable constant="0" name="avatar_cpu" static="0" type="number">100</variable>
         <comment>avatar ma dve zbrane; first a second jsou UID prvni a druhe zbrane, current je UID momentalne vybrane zbrane, which je index momentalne vybrane zbrane (0/1)</comment>
         <variable constant="0" name="avatar_second_weapon" static="0" type="number">0</variable>
         <variable constant="0" name="avatar_first_weapon" static="0" type="number">0</variable>
         <variable constant="0" name="avatar_which_weapon" static="0" type="number">0</variable>
         <variable constant="0" name="avatar_current_weapon" static="0" type="number">0</variable>
+        <comment>UID implantatu</comment>
+        <variable constant="0" name="avatar_head_implant" static="0" type="number">0</variable>
+        <variable constant="0" name="avatar_body_implant" static="0" type="number">0</variable>
+        <variable constant="0" name="avatar_arms_implant" static="0" type="number">0</variable>
+        <variable constant="0" name="avatar_legs_implant" static="0" type="number">0</variable>
+        <comment>bonusy ziskane implantaty</comment>
+        <variable constant="0" name="current_sprint_bonus" static="0" type="number">1</variable>
+        <variable constant="0" name="current_hp_boost_bonus" static="0" type="number">1</variable>
+        <variable constant="0" name="current_sword_speed_bonus" static="0" type="number">1</variable>
+        <variable constant="0" name="current_sword_damage_bonus" static="0" type="number">1</variable>
+        <variable constant="0" name="current_sprint_stamina_bonus" static="0" type="number">1</variable>
+        <variable constant="0" name="current_accuracy_bonus" static="0" type="number">1</variable>
+        <variable constant="0" name="current_speed_bonus" static="0" type="number">1</variable>
+        <variable constant="0" name="current_dodge_bonus" static="0" type="number">0</variable>
         <comment>promenne souvisejici se zmenou mapy</comment>
         <variable constant="0" name="to_load_map" static="0" type="number">1</variable>
         <variable constant="0" name="to_load_spawnpoint" static="0" type="number">1</variable>
@@ -63,6 +91,14 @@
                             </conditions>
                             <actions>
                                 <action id="-9" name="Destroy" type="Weapon" />
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-9" name="Is visible" type="Implant" />
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" type="Implant" />
                             </actions>
                         </event-block>
                     </sub-events>
@@ -190,7 +226,7 @@
                             <actions>
                                 <action id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">npc_simple</param>
-                                    <param id="1" name="Layer">0</param>
+                                    <param id="1" name="Layer">2</param>
                                     <param id="2" name="X">TMXImporter.PhysicalX</param>
                                     <param id="3" name="Y">TMXImporter.PhysicalY</param>
                                 </action>
@@ -271,7 +307,7 @@
                                     <actions>
                                         <action id="-3" name="Create object" type="System">
                                             <param id="0" name="Object to create">EnemyDude</param>
-                                            <param id="1" name="Layer">1</param>
+                                            <param id="1" name="Layer">2</param>
                                             <param id="2" name="X">TMXImporter.PhysicalX</param>
                                             <param id="3" name="Y">TMXImporter.PhysicalY</param>
                                         </action>
@@ -321,7 +357,7 @@
                                     <actions>
                                         <action id="-3" name="Create object" type="System">
                                             <param id="0" name="Object to create">EnemyDudeMelee</param>
-                                            <param id="1" name="Layer">1</param>
+                                            <param id="1" name="Layer">2</param>
                                             <param id="2" name="X">TMXImporter.PhysicalX</param>
                                             <param id="3" name="Y">TMXImporter.PhysicalY</param>
                                         </action>
@@ -424,7 +460,7 @@
                             <actions>
                                 <action id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">Avatar</param>
-                                    <param id="1" name="Layer">1</param>
+                                    <param id="1" name="Layer">2</param>
                                     <param id="2" name="X">TMXImporter.PhysicalX</param>
                                     <param id="3" name="Y">TMXImporter.PhysicalY</param>
                                 </action>
@@ -450,7 +486,7 @@
                             <actions>
                                 <action id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">Avatar</param>
-                                    <param id="1" name="Layer">1</param>
+                                    <param id="1" name="Layer">2</param>
                                     <param id="2" name="X">TMXImporter.PhysicalX</param>
                                     <param id="3" name="Y">TMXImporter.PhysicalY</param>
                                 </action>
@@ -476,7 +512,7 @@
                             <actions>
                                 <action id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">Avatar</param>
-                                    <param id="1" name="Layer">1</param>
+                                    <param id="1" name="Layer">2</param>
                                     <param id="2" name="X">TMXImporter.PhysicalX</param>
                                     <param id="3" name="Y">TMXImporter.PhysicalY</param>
                                 </action>
@@ -517,7 +553,7 @@
                                 </action>
                                 <action id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">SubMachineGun</param>
-                                    <param id="1" name="Layer">0</param>
+                                    <param id="1" name="Layer">1</param>
                                     <param id="2" name="X">-100</param>
                                     <param id="3" name="Y">-100</param>
                                 </action>
@@ -526,7 +562,7 @@
                                 </action>
                                 <action id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">Shotgun</param>
-                                    <param id="1" name="Layer">0</param>
+                                    <param id="1" name="Layer">1</param>
                                     <param id="2" name="X">-100</param>
                                     <param id="3" name="Y">-100</param>
                                 </action>
@@ -553,7 +589,7 @@
                         </event-block>
                     </sub-events>
                 </event-block>
-                <event-block any="1" collapsed="1">
+                <event-block any="1">
                     <conditions>
                         <condition id="-1" name="Every tick" type="System" />
                     </conditions>
@@ -562,13 +598,32 @@
                             <param id="0" name="Text">&quot;&quot;</param>
                         </action>
                         <action id="0" name="Set text" type="HPBar">
-                            <param id="0" name="Text">avatar_hp &amp; &quot;/&quot; &amp; avatar_max_hp</param>
+                            <param id="0" name="Text">int(avatar_hp) &amp; &quot;/&quot; &amp; avatar_max_hp</param>
                         </action>
                         <action id="0" name="Set text" type="StaminaBar">
-                            <param id="0" name="Text">avatar_stamina &amp; &quot;/&quot; &amp; avatar_max_stamina</param>
+                            <param id="0" name="Text">int(avatar_stamina) &amp; &quot;/&quot; &amp; avatar_max_stamina</param>
+                        </action>
+                        <action id="0" name="Set text" type="BioenergyBar">
+                            <param id="0" name="Text">int(avatar_bioenergy) &amp; &quot;/&quot; &amp; avatar_max_bioenergy</param>
                         </action>
                         <action id="0" name="Set text" type="FPSText">
                             <param id="0" name="Text">str(fps) &amp; &quot; FPS&quot;</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">avatar_current_bio_drain</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="5" name="Set frame" type="ImplantIndicatorArms">
+                            <param id="0" name="Frame number">0</param>
+                        </action>
+                        <action id="5" name="Set frame" type="ImplantIndicatorBody">
+                            <param id="0" name="Frame number">0</param>
+                        </action>
+                        <action id="5" name="Set frame" type="ImplantIndicatorHead">
+                            <param id="0" name="Frame number">0</param>
+                        </action>
+                        <action id="5" name="Set frame" type="ImplantIndicatorLegs">
+                            <param id="0" name="Frame number">0</param>
                         </action>
                     </actions>
                     <sub-events>
@@ -606,6 +661,67 @@
                                     </actions>
                                 </event-block>
                             </sub-events>
+                        </event-block>
+                        <comment>informace o implantatech</comment>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" type="Implant">
+                                    <param id="0" name="Unique ID">avatar_head_implant</param>
+                                </condition>
+                                <condition id="-8" name="Is boolean instance variable set" type="Implant">
+                                    <param id="0" name="Instance variable">is_active</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="5" name="Set frame" type="ImplantIndicatorHead">
+                                    <param id="0" name="Frame number">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" type="Implant">
+                                    <param id="0" name="Unique ID">avatar_body_implant</param>
+                                </condition>
+                                <condition id="-8" name="Is boolean instance variable set" type="Implant">
+                                    <param id="0" name="Instance variable">is_active</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="5" name="Set frame" type="ImplantIndicatorBody">
+                                    <param id="0" name="Frame number">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" type="Implant">
+                                    <param id="0" name="Unique ID">avatar_arms_implant</param>
+                                </condition>
+                                <condition id="-8" name="Is boolean instance variable set" type="Implant">
+                                    <param id="0" name="Instance variable">is_active</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="5" name="Set frame" type="ImplantIndicatorArms">
+                                    <param id="0" name="Frame number">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" type="Implant">
+                                    <param id="0" name="Unique ID">avatar_legs_implant</param>
+                                </condition>
+                                <condition id="-8" name="Is boolean instance variable set" type="Implant">
+                                    <param id="0" name="Instance variable">is_active</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="5" name="Set frame" type="ImplantIndicatorLegs">
+                                    <param id="0" name="Frame number">1</param>
+                                </action>
+                            </actions>
                         </event-block>
                         <event-block>
                             <conditions>
@@ -846,6 +962,11 @@
                                 <comment>vidi hrace - jde po nem (approach)</comment>
                                 <event-block>
                                     <conditions>
+                                        <condition id="-14" name="Compare variable" type="System">
+                                            <param id="0" name="Variable">avatar_hp</param>
+                                            <param id="1" name="Comparison">4</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
                                         <condition id="-3" name="Is on-screen" type="Enemy" />
                                         <condition id="-8" name="Compare two values" type="System">
                                             <param id="0" name="First value">distance(Avatar.X, Avatar.Y, Enemy.X, Enemy.Y)</param>
@@ -1192,7 +1313,7 @@
                                     </actions>
                                 </event-block>
                                 <comment>prisel cas, sekni mecem</comment>
-                                <event-block>
+                                <event-block collapsed="1">
                                     <conditions>
                                         <condition id="-7" name="Compare instance variable" type="Enemy">
                                             <param id="0" name="Instance variable">state_switch_timer</param>
@@ -1207,7 +1328,7 @@
                                         </action>
                                         <action id="0" name="Spawn another object" type="Enemy">
                                             <param id="0" name="Object">SamuraiSwordEnemy</param>
-                                            <param id="1" name="Layer">1</param>
+                                            <param id="1" name="Layer">3</param>
                                             <param id="2" name="Image point">0</param>
                                         </action>
                                         <action id="-13" name="Set boolean" type="Enemy">
@@ -1527,13 +1648,21 @@
                     <actions>
                         <action id="0" name="Spawn another object" type="Enemy">
                             <param id="0" name="Object">MonsterKill</param>
-                            <param id="1" name="Layer">1</param>
+                            <param id="1" name="Layer">3</param>
                             <param id="2" name="Image point">0</param>
                         </action>
                         <action id="0" name="Spawn another object" type="Enemy">
                             <param id="0" name="Object">SmallMedKit</param>
-                            <param id="1" name="Layer">0</param>
+                            <param id="1" name="Layer">1</param>
                             <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="0" name="Spawn another object" type="Enemy">
+                            <param id="0" name="Object">Implant</param>
+                            <param id="1" name="Layer">1</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="9" name="Set scale" type="Implant">
+                            <param id="0" name="Scale">0.25</param>
                         </action>
                     </actions>
                     <sub-events>
@@ -1659,7 +1788,7 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="-15" name="Pick nearest/furthest" type="Interactable">
                             <param id="0" name="Which">0</param>
@@ -1709,7 +1838,7 @@
                     </conditions>
                     <actions>
                         <action behavior="8Direction" id="4" name="Set max speed" type="Avatar">
-                            <param id="0" name="Max Speed">500</param>
+                            <param id="0" name="Max Speed">500*current_sprint_bonus</param>
                         </action>
                         <action id="-13" name="Set boolean" type="Avatar">
                             <param id="0" name="Instance variable">is_sprinting</param>
@@ -1725,7 +1854,7 @@
                     </conditions>
                     <actions>
                         <action behavior="8Direction" id="4" name="Set max speed" type="Avatar">
-                            <param id="0" name="Max Speed">200</param>
+                            <param id="0" name="Max Speed">200*current_speed_bonus</param>
                         </action>
                         <action id="-13" name="Set boolean" type="Avatar">
                             <param id="0" name="Instance variable">is_sprinting</param>
@@ -1769,7 +1898,7 @@
                         <action behavior="Bullet" id="3" name="Set angle of motion" type="Avatar">
                             <param id="0" name="Angle">Avatar.8Direction.MovingAngle</param>
                         </action>
-                        <action id="0" name="Set text" type="InfoText">
+                        <action disabled="1" id="0" name="Set text" type="InfoText">
                             <param id="0" name="Text">&quot;Dodging&quot;</param>
                         </action>
                         <action id="-11" name="Subtract from" type="System">
@@ -1783,6 +1912,10 @@
                         <action id="-9" name="Set value" type="System">
                             <param id="0" name="Variable">avatar_dodge_timer</param>
                             <param id="1" name="Value">35</param>
+                        </action>
+                        <action id="-10" name="Add to" type="System">
+                            <param id="0" name="Variable">avatar_dodge_chance</param>
+                            <param id="1" name="Value">1</param>
                         </action>
                     </actions>
                 </event-block>
@@ -1837,8 +1970,12 @@
                                 <action behavior="Bullet" id="5" name="Set enabled" type="Avatar">
                                     <param id="0" name="State">0</param>
                                 </action>
-                                <action id="0" name="Set text" type="InfoText">
+                                <action disabled="1" id="0" name="Set text" type="InfoText">
                                     <param id="0" name="Text">&quot;Finished dodge&quot;</param>
+                                </action>
+                                <action id="-11" name="Subtract from" type="System">
+                                    <param id="0" name="Variable">avatar_dodge_chance</param>
+                                    <param id="1" name="Value">1</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -1853,11 +1990,11 @@
                     <actions>
                         <action id="-11" name="Subtract from" type="System">
                             <param id="0" name="Variable">avatar_stamina</param>
-                            <param id="1" name="Value">2</param>
+                            <param id="1" name="Value">2*current_sprint_stamina_bonus</param>
                         </action>
                     </actions>
                 </event-block>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Avatar">
                             <param id="0" name="Instance variable">is_sprinting</param>
@@ -1907,7 +2044,7 @@
                             <param id="1" name="Value">0</param>
                         </action>
                         <action behavior="8Direction" id="4" name="Set max speed" type="Avatar">
-                            <param id="0" name="Max Speed">100</param>
+                            <param id="0" name="Max Speed">200*current_speed_bonus</param>
                         </action>
                         <action id="-13" name="Set boolean" type="Avatar">
                             <param id="0" name="Instance variable">is_sprinting</param>
@@ -2078,16 +2215,39 @@
                                     <param id="0" name="Instance variable">firing_timer</param>
                                     <param id="1" name="Value">Weapon.firing_interval</param>
                                 </action>
-                                <action id="-10" name="Add to" type="System">
-                                    <param id="0" name="Variable">firing_angle</param>
-                                    <param id="1" name="Value">random(-Weapon.current_spread, Weapon.current_spread)</param>
-                                </action>
                                 <action id="-10" name="Set value" type="Weapon">
                                     <param id="0" name="Instance variable">current_spread</param>
                                     <param id="1" name="Value">min(Weapon.current_spread+Weapon.recoil_per_shot,Weapon.max_spread)</param>
                                 </action>
                             </actions>
                             <sub-events>
+                                <comment>strili hrac? pokud ano, pridat bonusy z implantatu</comment>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="1" name="Compare parameter" type="Function">
+                                            <param id="0" name="Index">4</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Add to" type="System">
+                                            <param id="0" name="Variable">firing_angle</param>
+                                            <param id="1" name="Value">random(-Weapon.current_spread, Weapon.current_spread)*current_accuracy_bonus</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-22" name="Else" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Add to" type="System">
+                                            <param id="0" name="Variable">firing_angle</param>
+                                            <param id="1" name="Value">random(-Weapon.current_spread, Weapon.current_spread)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
                                 <event-block>
                                     <conditions>
                                         <condition id="-10" name="For" type="System">
@@ -2099,7 +2259,7 @@
                                     <actions>
                                         <action id="-3" name="Create object" type="System">
                                             <param id="0" name="Object to create">Bullet</param>
-                                            <param id="1" name="Layer">1</param>
+                                            <param id="1" name="Layer">3</param>
                                             <param id="2" name="X">firing_x</param>
                                             <param id="3" name="Y">firing_y</param>
                                         </action>
@@ -2142,6 +2302,11 @@
                                 <comment>pokud vystrelil hrac, probud kazdeho, kdo to slysel</comment>
                                 <event-block>
                                     <conditions>
+                                        <condition id="-14" name="Compare variable" type="System">
+                                            <param id="0" name="Variable">avatar_hp</param>
+                                            <param id="1" name="Comparison">4</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
                                         <condition id="1" name="Compare parameter" type="Function">
                                             <param id="0" name="Index">4</param>
                                             <param id="1" name="Comparison">0</param>
@@ -2235,7 +2400,7 @@
                     <actions>
                         <action id="0" name="Spawn another object" type="Bullet">
                             <param id="0" name="Object">BulletTrail</param>
-                            <param id="1" name="Layer">1</param>
+                            <param id="1" name="Layer">3</param>
                             <param id="2" name="Image point">0</param>
                         </action>
                         <action id="-10" name="Set value" type="Bullet">
@@ -2301,7 +2466,7 @@
                     <actions>
                         <action id="0" name="Spawn another object" type="Avatar">
                             <param id="0" name="Object">SamuraiSword</param>
-                            <param id="1" name="Layer">1</param>
+                            <param id="1" name="Layer">3</param>
                             <param id="2" name="Image point">0</param>
                         </action>
                         <action id="-13" name="Set boolean" type="Avatar">
@@ -2313,7 +2478,7 @@
                             <param id="1" name="From">1</param>
                         </action>
                         <action id="6" name="Set speed" type="SamuraiSword">
-                            <param id="0" name="Speed">20</param>
+                            <param id="0" name="Speed">20*current_sword_speed_bonus</param>
                         </action>
                         <action behavior="Pin" id="0" name="Pin to object" type="SamuraiSword">
                             <param id="0" name="Pin to">Avatar</param>
@@ -2415,7 +2580,7 @@
                     <actions>
                         <action id="0" name="Spawn another object" type="Enemy">
                             <param id="0" name="Object">BloodHit</param>
-                            <param id="1" name="Layer">1</param>
+                            <param id="1" name="Layer">3</param>
                             <param id="2" name="Image point">0</param>
                         </action>
                         <action id="-12" name="Subtract from" type="Enemy">
@@ -2443,14 +2608,16 @@
                             <param id="1" name="Comparison">1</param>
                             <param id="2" name="Value">0</param>
                         </condition>
-                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Avatar">
-                            <param id="0" name="Instance variable">is_dodging</param>
+                        <condition id="-8" name="Compare two values" type="System">
+                            <param id="0" name="First value">random(0,1)</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Second value">avatar_dodge_chance</param>
                         </condition>
                     </conditions>
                     <actions>
                         <action id="0" name="Spawn another object" type="Avatar">
                             <param id="0" name="Object">BloodHit</param>
-                            <param id="1" name="Layer">1</param>
+                            <param id="1" name="Layer">3</param>
                             <param id="2" name="Image point">0</param>
                         </action>
                         <action id="-11" name="Subtract from" type="System">
@@ -2475,13 +2642,13 @@
                         </action>
                         <action id="0" name="Spawn another object" type="Bullet">
                             <param id="0" name="Object">BulletHit</param>
-                            <param id="1" name="Layer">1</param>
+                            <param id="1" name="Layer">3</param>
                             <param id="2" name="Image point">0</param>
                         </action>
                         <action id="-9" name="Destroy" type="Bullet" />
                     </actions>
                 </event-block>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="-19" name="On destroyed" type="Bullet" />
                     </conditions>
@@ -2514,7 +2681,7 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="0" name="On collision with another object" type="SamuraiSword">
                             <param id="0" name="Object">Enemy</param>
@@ -2523,12 +2690,12 @@
                     <actions>
                         <action id="0" name="Spawn another object" type="Enemy">
                             <param id="0" name="Object">BloodHit</param>
-                            <param id="1" name="Layer">1</param>
+                            <param id="1" name="Layer">3</param>
                             <param id="2" name="Image point">0</param>
                         </action>
                         <action id="-12" name="Subtract from" type="Enemy">
                             <param id="0" name="Instance variable">hp</param>
-                            <param id="1" name="Value">50</param>
+                            <param id="1" name="Value">50*current_sword_damage_bonus</param>
                         </action>
                     </actions>
                     <sub-events>
@@ -2554,11 +2721,16 @@
                         <condition id="0" name="On collision with another object" type="SamuraiSwordEnemy">
                             <param id="0" name="Object">Avatar</param>
                         </condition>
+                        <condition id="-8" name="Compare two values" type="System">
+                            <param id="0" name="First value">random(0,1)</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Second value">avatar_dodge_chance</param>
+                        </condition>
                     </conditions>
                     <actions>
                         <action id="0" name="Spawn another object" type="Avatar">
                             <param id="0" name="Object">BloodHit</param>
-                            <param id="1" name="Layer">1</param>
+                            <param id="1" name="Layer">3</param>
                             <param id="2" name="Image point">0</param>
                         </action>
                         <action id="-11" name="Subtract from" type="System">
@@ -2600,7 +2772,7 @@
                         </event-block>
                     </sub-events>
                 </event-block>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="5" name="On any finished" type="SamuraiSwordEnemy" />
                     </conditions>
@@ -2647,6 +2819,952 @@
                         <action id="-9" name="Destroy" type="Kick" />
                         <action id="-13" name="Set boolean" type="Avatar">
                             <param id="0" name="Instance variable">is_melee_atacking</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group collapsed="1" description="" title="Implants">
+            <sub-events>
+                <event-block collapsed="1">
+                    <conditions>
+                        <condition id="0" name="On key pressed" type="Keyboard">
+                            <param id="0" name="Key">84 (T)</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-19" name="Pick all" type="System">
+                                    <param id="0" name="Object">Implant</param>
+                                </condition>
+                                <condition id="-14" name="Pick by unique ID" type="Implant">
+                                    <param id="0" name="Unique ID">avatar_head_implant</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-8" name="Is boolean instance variable set" type="Implant">
+                                            <param id="0" name="Instance variable">is_active</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Call function" type="Function">
+                                            <param id="0" name="Name">Implant.on_deactivate</param>
+                                            <param id="1" name="Parameter {n}">Implant.UID</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-22" name="Else" type="System" />
+                                        <condition id="-7" name="Compare instance variable" type="Implant">
+                                            <param id="0" name="Instance variable">bio_drain</param>
+                                            <param id="1" name="Comparison">3</param>
+                                            <param id="2" name="Value">avatar_bioenergy</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Call function" type="Function">
+                                            <param id="0" name="Name">Implant.on_activate</param>
+                                            <param id="1" name="Parameter {n}">Implant.UID</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions />
+                                    <actions>
+                                        <action id="0" name="Call function" type="Function">
+                                            <param id="0" name="Name">&quot;recalculate_implants&quot;</param>
+                                            <param id="1" name="Parameter {n}"></param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block collapsed="1">
+                    <conditions>
+                        <condition id="0" name="On key pressed" type="Keyboard">
+                            <param id="0" name="Key">71 (G)</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-19" name="Pick all" type="System">
+                                    <param id="0" name="Object">Implant</param>
+                                </condition>
+                                <condition id="-14" name="Pick by unique ID" type="Implant">
+                                    <param id="0" name="Unique ID">avatar_body_implant</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-8" name="Is boolean instance variable set" type="Implant">
+                                            <param id="0" name="Instance variable">is_active</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Call function" type="Function">
+                                            <param id="0" name="Name">Implant.on_deactivate</param>
+                                            <param id="1" name="Parameter {n}">Implant.UID</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-22" name="Else" type="System" />
+                                        <condition id="-7" name="Compare instance variable" type="Implant">
+                                            <param id="0" name="Instance variable">bio_drain</param>
+                                            <param id="1" name="Comparison">3</param>
+                                            <param id="2" name="Value">avatar_bioenergy</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Call function" type="Function">
+                                            <param id="0" name="Name">Implant.on_activate</param>
+                                            <param id="1" name="Parameter {n}">Implant.UID</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions />
+                                    <actions>
+                                        <action id="0" name="Call function" type="Function">
+                                            <param id="0" name="Name">&quot;recalculate_implants&quot;</param>
+                                            <param id="1" name="Parameter {n}"></param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block collapsed="1">
+                    <conditions>
+                        <condition id="0" name="On key pressed" type="Keyboard">
+                            <param id="0" name="Key">72 (H)</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-19" name="Pick all" type="System">
+                                    <param id="0" name="Object">Implant</param>
+                                </condition>
+                                <condition id="-14" name="Pick by unique ID" type="Implant">
+                                    <param id="0" name="Unique ID">avatar_arms_implant</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-8" name="Is boolean instance variable set" type="Implant">
+                                            <param id="0" name="Instance variable">is_active</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Call function" type="Function">
+                                            <param id="0" name="Name">Implant.on_deactivate</param>
+                                            <param id="1" name="Parameter {n}">Implant.UID</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-22" name="Else" type="System" />
+                                        <condition id="-7" name="Compare instance variable" type="Implant">
+                                            <param id="0" name="Instance variable">bio_drain</param>
+                                            <param id="1" name="Comparison">3</param>
+                                            <param id="2" name="Value">avatar_bioenergy</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Call function" type="Function">
+                                            <param id="0" name="Name">Implant.on_activate</param>
+                                            <param id="1" name="Parameter {n}">Implant.UID</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions />
+                                    <actions>
+                                        <action id="0" name="Call function" type="Function">
+                                            <param id="0" name="Name">&quot;recalculate_implants&quot;</param>
+                                            <param id="1" name="Parameter {n}"></param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block collapsed="1">
+                    <conditions>
+                        <condition id="0" name="On key pressed" type="Keyboard">
+                            <param id="0" name="Key">66 (B)</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-19" name="Pick all" type="System">
+                                    <param id="0" name="Object">Implant</param>
+                                </condition>
+                                <condition id="-14" name="Pick by unique ID" type="Implant">
+                                    <param id="0" name="Unique ID">avatar_legs_implant</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-8" name="Is boolean instance variable set" type="Implant">
+                                            <param id="0" name="Instance variable">is_active</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Call function" type="Function">
+                                            <param id="0" name="Name">Implant.on_deactivate</param>
+                                            <param id="1" name="Parameter {n}">Implant.UID</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-22" name="Else" type="System" />
+                                        <condition id="-7" name="Compare instance variable" type="Implant">
+                                            <param id="0" name="Instance variable">bio_drain</param>
+                                            <param id="1" name="Comparison">3</param>
+                                            <param id="2" name="Value">avatar_bioenergy</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Call function" type="Function">
+                                            <param id="0" name="Name">Implant.on_activate</param>
+                                            <param id="1" name="Parameter {n}">Implant.UID</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions />
+                                    <actions>
+                                        <action id="0" name="Call function" type="Function">
+                                            <param id="0" name="Name">&quot;recalculate_implants&quot;</param>
+                                            <param id="1" name="Parameter {n}"></param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-14" name="Pick by unique ID" type="Implant">
+                            <param id="0" name="Unique ID">avatar_head_implant</param>
+                        </condition>
+                        <condition id="-8" name="Is boolean instance variable set" type="Implant">
+                            <param id="0" name="Instance variable">is_active</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-11" name="Subtract from" type="System">
+                            <param id="0" name="Variable">avatar_bioenergy</param>
+                            <param id="1" name="Value">Implant.bio_drain</param>
+                        </action>
+                        <action id="-10" name="Add to" type="System">
+                            <param id="0" name="Variable">avatar_current_bio_drain</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-14" name="Pick by unique ID" type="Implant">
+                            <param id="0" name="Unique ID">avatar_body_implant</param>
+                        </condition>
+                        <condition id="-8" name="Is boolean instance variable set" type="Implant">
+                            <param id="0" name="Instance variable">is_active</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-11" name="Subtract from" type="System">
+                            <param id="0" name="Variable">avatar_bioenergy</param>
+                            <param id="1" name="Value">Implant.bio_drain</param>
+                        </action>
+                        <action id="-10" name="Add to" type="System">
+                            <param id="0" name="Variable">avatar_current_bio_drain</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-14" name="Pick by unique ID" type="Implant">
+                            <param id="0" name="Unique ID">avatar_arms_implant</param>
+                        </condition>
+                        <condition id="-8" name="Is boolean instance variable set" type="Implant">
+                            <param id="0" name="Instance variable">is_active</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-11" name="Subtract from" type="System">
+                            <param id="0" name="Variable">avatar_bioenergy</param>
+                            <param id="1" name="Value">Implant.bio_drain</param>
+                        </action>
+                        <action id="-10" name="Add to" type="System">
+                            <param id="0" name="Variable">avatar_current_bio_drain</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-14" name="Pick by unique ID" type="Implant">
+                            <param id="0" name="Unique ID">avatar_legs_implant</param>
+                        </condition>
+                        <condition id="-8" name="Is boolean instance variable set" type="Implant">
+                            <param id="0" name="Instance variable">is_active</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-11" name="Subtract from" type="System">
+                            <param id="0" name="Variable">avatar_bioenergy</param>
+                            <param id="1" name="Value">Implant.bio_drain</param>
+                        </action>
+                        <action id="-10" name="Add to" type="System">
+                            <param id="0" name="Variable">avatar_current_bio_drain</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-14" name="Compare variable" type="System">
+                            <param id="0" name="Variable">avatar_current_bio_drain</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">avatar_bioenergy_delay_timer</param>
+                            <param id="1" name="Value">avatar_bioenergy_delay_interval</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block collapsed="1">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" type="System">
+                            <param id="0" name="Variable">avatar_bioenergy</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">avatar_bioenergy</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">avatar_bioenergy_delay_timer</param>
+                            <param id="1" name="Value">avatar_bioenergy_delay_interval</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" type="Implant">
+                                    <param id="0" name="Unique ID">avatar_head_implant</param>
+                                </condition>
+                                <condition id="-8" name="Is boolean instance variable set" type="Implant">
+                                    <param id="0" name="Instance variable">is_active</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" type="Function">
+                                    <param id="0" name="Name">Implant.on_deactivate</param>
+                                    <param id="1" name="Parameter {n}">Implant.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" type="Implant">
+                                    <param id="0" name="Unique ID">avatar_body_implant</param>
+                                </condition>
+                                <condition id="-8" name="Is boolean instance variable set" type="Implant">
+                                    <param id="0" name="Instance variable">is_active</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" type="Function">
+                                    <param id="0" name="Name">Implant.on_deactivate</param>
+                                    <param id="1" name="Parameter {n}">Implant.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" type="Implant">
+                                    <param id="0" name="Unique ID">avatar_arms_implant</param>
+                                </condition>
+                                <condition id="-8" name="Is boolean instance variable set" type="Implant">
+                                    <param id="0" name="Instance variable">is_active</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" type="Function">
+                                    <param id="0" name="Name">Implant.on_deactivate</param>
+                                    <param id="1" name="Parameter {n}">Implant.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" type="Implant">
+                                    <param id="0" name="Unique ID">avatar_legs_implant</param>
+                                </condition>
+                                <condition id="-8" name="Is boolean instance variable set" type="Implant">
+                                    <param id="0" name="Instance variable">is_active</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" type="Function">
+                                    <param id="0" name="Name">Implant.on_deactivate</param>
+                                    <param id="1" name="Parameter {n}">Implant.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions />
+                            <actions>
+                                <action id="0" name="Call function" type="Function">
+                                    <param id="0" name="Name">&quot;recalculate_implants&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-14" name="Compare variable" type="System">
+                            <param id="0" name="Variable">avatar_current_bio_drain</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-11" name="Subtract from" type="System">
+                            <param id="0" name="Variable">avatar_bioenergy_delay_timer</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block collapsed="1">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" type="System">
+                            <param id="0" name="Variable">avatar_bioenergy_delay_timer</param>
+                            <param id="1" name="Comparison">3</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Add to" type="System">
+                            <param id="0" name="Variable">avatar_bioenergy</param>
+                            <param id="1" name="Value">avatar_bioenergy_regen</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Compare variable" type="System">
+                                    <param id="0" name="Variable">avatar_bioenergy</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Value">avatar_max_bioenergy</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">avatar_bioenergy</param>
+                                    <param id="1" name="Value">avatar_max_bioenergy</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <variable constant="0" name="hp_ratio" static="0" type="number">0</variable>
+                <variable constant="0" name="stamina_ratio" static="0" type="number">0</variable>
+                <event-block collapsed="1">
+                    <conditions>
+                        <condition id="0" name="On function" type="Function">
+                            <param id="0" name="Name">&quot;recalculate_implants&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">hp_ratio</param>
+                            <param id="1" name="Value">avatar_hp/avatar_max_hp</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">stamina_ratio</param>
+                            <param id="1" name="Value">avatar_stamina/avatar_max_stamina</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">avatar_max_hp</param>
+                            <param id="1" name="Value">10000</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">avatar_max_stamina</param>
+                            <param id="1" name="Value">100</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">avatar_max_cpu</param>
+                            <param id="1" name="Value">100</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">current_accuracy_bonus</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">current_hp_boost_bonus</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">current_speed_bonus</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">current_sprint_bonus</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">current_sprint_stamina_bonus</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">current_sword_damage_bonus</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">current_sword_speed_bonus</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-11" name="Subtract from" type="System">
+                            <param id="0" name="Variable">avatar_dodge_chance</param>
+                            <param id="1" name="Value">current_dodge_bonus</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">current_dodge_bonus</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-19" name="Pick all" type="System">
+                                    <param id="0" name="Object">Implant</param>
+                                </condition>
+                                <condition id="-14" name="Pick by unique ID" type="Implant">
+                                    <param id="0" name="Unique ID">avatar_head_implant</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">current_accuracy_bonus</param>
+                                    <param id="1" name="Value">Implant.accuracy_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">current_hp_boost_bonus</param>
+                                    <param id="1" name="Value">Implant.hp_boost_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">current_speed_bonus</param>
+                                    <param id="1" name="Value">Implant.speed_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">current_sprint_bonus</param>
+                                    <param id="1" name="Value">Implant.sprint_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">current_sprint_stamina_bonus</param>
+                                    <param id="1" name="Value">Implant.sprint_stamina_drain_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">current_sword_damage_bonus</param>
+                                    <param id="1" name="Value">Implant.sword_damage_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">current_sword_speed_bonus</param>
+                                    <param id="1" name="Value">Implant.sword_speed_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">current_dodge_bonus</param>
+                                    <param id="1" name="Value">Implant.dodge_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">avatar_max_hp</param>
+                                    <param id="1" name="Value">Implant.max_hp_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">avatar_max_stamina</param>
+                                    <param id="1" name="Value">Implant.max_stamina_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">avatar_max_cpu</param>
+                                    <param id="1" name="Value">Implant.cpu_bonus</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-19" name="Pick all" type="System">
+                                    <param id="0" name="Object">Implant</param>
+                                </condition>
+                                <condition id="-14" name="Pick by unique ID" type="Implant">
+                                    <param id="0" name="Unique ID">avatar_body_implant</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">current_accuracy_bonus</param>
+                                    <param id="1" name="Value">Implant.accuracy_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">current_hp_boost_bonus</param>
+                                    <param id="1" name="Value">Implant.hp_boost_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">current_speed_bonus</param>
+                                    <param id="1" name="Value">Implant.speed_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">current_sprint_bonus</param>
+                                    <param id="1" name="Value">Implant.sprint_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">current_sprint_stamina_bonus</param>
+                                    <param id="1" name="Value">Implant.sprint_stamina_drain_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">current_sword_damage_bonus</param>
+                                    <param id="1" name="Value">Implant.sword_damage_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">current_sword_speed_bonus</param>
+                                    <param id="1" name="Value">Implant.sword_speed_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">current_dodge_bonus</param>
+                                    <param id="1" name="Value">Implant.dodge_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">avatar_max_hp</param>
+                                    <param id="1" name="Value">Implant.max_hp_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">avatar_max_stamina</param>
+                                    <param id="1" name="Value">Implant.max_stamina_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">avatar_max_cpu</param>
+                                    <param id="1" name="Value">Implant.cpu_bonus</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-19" name="Pick all" type="System">
+                                    <param id="0" name="Object">Implant</param>
+                                </condition>
+                                <condition id="-14" name="Pick by unique ID" type="Implant">
+                                    <param id="0" name="Unique ID">avatar_arms_implant</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">current_accuracy_bonus</param>
+                                    <param id="1" name="Value">Implant.accuracy_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">current_hp_boost_bonus</param>
+                                    <param id="1" name="Value">Implant.hp_boost_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">current_speed_bonus</param>
+                                    <param id="1" name="Value">Implant.speed_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">current_sprint_bonus</param>
+                                    <param id="1" name="Value">Implant.sprint_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">current_sprint_stamina_bonus</param>
+                                    <param id="1" name="Value">Implant.sprint_stamina_drain_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">current_sword_damage_bonus</param>
+                                    <param id="1" name="Value">Implant.sword_damage_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">current_sword_speed_bonus</param>
+                                    <param id="1" name="Value">Implant.sword_speed_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">current_dodge_bonus</param>
+                                    <param id="1" name="Value">Implant.dodge_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">avatar_max_hp</param>
+                                    <param id="1" name="Value">Implant.max_hp_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">avatar_max_stamina</param>
+                                    <param id="1" name="Value">Implant.max_stamina_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">avatar_max_cpu</param>
+                                    <param id="1" name="Value">Implant.cpu_bonus</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-19" name="Pick all" type="System">
+                                    <param id="0" name="Object">Implant</param>
+                                </condition>
+                                <condition id="-14" name="Pick by unique ID" type="Implant">
+                                    <param id="0" name="Unique ID">avatar_legs_implant</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">current_accuracy_bonus</param>
+                                    <param id="1" name="Value">Implant.accuracy_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">current_hp_boost_bonus</param>
+                                    <param id="1" name="Value">Implant.hp_boost_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">current_speed_bonus</param>
+                                    <param id="1" name="Value">Implant.speed_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">current_sprint_bonus</param>
+                                    <param id="1" name="Value">Implant.sprint_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">current_sprint_stamina_bonus</param>
+                                    <param id="1" name="Value">Implant.sprint_stamina_drain_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">current_sword_damage_bonus</param>
+                                    <param id="1" name="Value">Implant.sword_damage_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">current_sword_speed_bonus</param>
+                                    <param id="1" name="Value">Implant.sword_speed_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">current_dodge_bonus</param>
+                                    <param id="1" name="Value">Implant.dodge_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">avatar_max_hp</param>
+                                    <param id="1" name="Value">Implant.max_hp_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">avatar_max_stamina</param>
+                                    <param id="1" name="Value">Implant.max_stamina_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">avatar_max_cpu</param>
+                                    <param id="1" name="Value">Implant.cpu_bonus</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions />
+                            <actions>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">avatar_dodge_chance</param>
+                                    <param id="1" name="Value">current_dodge_bonus</param>
+                                </action>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">avatar_hp</param>
+                                    <param id="1" name="Value">hp_ratio*avatar_max_hp</param>
+                                </action>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">avatar_stamina</param>
+                                    <param id="1" name="Value">stamina_ratio*avatar_max_stamina</param>
+                                </action>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">current_sprint_stamina_bonus</param>
+                                    <param id="1" name="Value">max(current_sprint_stamina_bonus,-1)</param>
+                                </action>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">current_accuracy_bonus</param>
+                                    <param id="1" name="Value">max(current_accuracy_bonus,-1)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On function" type="Function">
+                            <param id="0" name="Name">&quot;activate_synadrenaline&quot;</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" type="Synadrenaline">
+                            <param id="0" name="Unique ID">Function.Param(0)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" type="Synadrenaline">
+                            <param id="0" name="Instance variable">sprint_bonus</param>
+                            <param id="1" name="Value">0.5</param>
+                        </action>
+                        <action id="-10" name="Set value" type="Synadrenaline">
+                            <param id="0" name="Instance variable">sprint_stamina_drain_bonus</param>
+                            <param id="1" name="Value">-0.3</param>
+                        </action>
+                        <action id="-10" name="Set value" type="Synadrenaline">
+                            <param id="0" name="Instance variable">sword_speed_bonus</param>
+                            <param id="1" name="Value">0.5</param>
+                        </action>
+                        <action id="-13" name="Set boolean" type="Synadrenaline">
+                            <param id="0" name="Instance variable">is_active</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On function" type="Function">
+                            <param id="0" name="Name">&quot;deactivate_synadrenaline&quot;</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" type="Synadrenaline">
+                            <param id="0" name="Unique ID">Function.Param(0)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" type="Synadrenaline">
+                            <param id="0" name="Instance variable">sprint_bonus</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-10" name="Set value" type="Synadrenaline">
+                            <param id="0" name="Instance variable">sprint_stamina_drain_bonus</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-10" name="Set value" type="Synadrenaline">
+                            <param id="0" name="Instance variable">sword_speed_bonus</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-13" name="Set boolean" type="Synadrenaline">
+                            <param id="0" name="Instance variable">is_active</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On function" type="Function">
+                            <param id="0" name="Name">&quot;activate_arms&quot;</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" type="Cyberarms">
+                            <param id="0" name="Unique ID">Function.Param(0)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" type="Cyberarms">
+                            <param id="0" name="Instance variable">accuracy_bonus</param>
+                            <param id="1" name="Value">-0.5</param>
+                        </action>
+                        <action id="-10" name="Set value" type="Cyberarms">
+                            <param id="0" name="Instance variable">sword_damage_bonus</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-13" name="Set boolean" type="Cyberarms">
+                            <param id="0" name="Instance variable">is_active</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On function" type="Function">
+                            <param id="0" name="Name">&quot;deactivate_arms&quot;</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" type="Cyberarms">
+                            <param id="0" name="Unique ID">Function.Param(0)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" type="Cyberarms">
+                            <param id="0" name="Instance variable">accuracy_bonus</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-10" name="Set value" type="Cyberarms">
+                            <param id="0" name="Instance variable">sword_damage_bonus</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-13" name="Set boolean" type="Cyberarms">
+                            <param id="0" name="Instance variable">is_active</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On function" type="Function">
+                            <param id="0" name="Name">&quot;activate_legs&quot;</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" type="Cyberlegs">
+                            <param id="0" name="Unique ID">Function.Param(0)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" type="Cyberlegs">
+                            <param id="0" name="Instance variable">is_active</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-10" name="Set value" type="Cyberlegs">
+                            <param id="0" name="Instance variable">sprint_stamina_drain_bonus</param>
+                            <param id="1" name="Value">-1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On function" type="Function">
+                            <param id="0" name="Name">&quot;deactivate_legs&quot;</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" type="Cyberlegs">
+                            <param id="0" name="Unique ID">Function.Param(0)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" type="Cyberlegs">
+                            <param id="0" name="Instance variable">is_active</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-10" name="Set value" type="Cyberlegs">
+                            <param id="0" name="Instance variable">sprint_stamina_drain_bonus</param>
                             <param id="1" name="Value">0</param>
                         </action>
                     </actions>
@@ -2740,7 +3858,7 @@
         </event-group>
         <event-group collapsed="1" description="" title="Loot Pickup">
             <sub-events>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="0" name="On collision with another object" type="Avatar">
                             <param id="0" name="Object">Item</param>
@@ -2759,14 +3877,14 @@
                             <actions>
                                 <action id="-9" name="Set value" type="System">
                                     <param id="0" name="Variable">avatar_hp</param>
-                                    <param id="1" name="Value">min(avatar_hp + Item.boost_value, avatar_max_hp)</param>
+                                    <param id="1" name="Value">min(avatar_hp + current_hp_boost_bonus*Item.boost_value, avatar_max_hp)</param>
                                 </action>
                                 <action id="-9" name="Destroy" type="Item" />
                             </actions>
                         </event-block>
                     </sub-events>
                 </event-block>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="0" name="On function" type="Function">
                             <param id="0" name="Name">&quot;interact_box&quot;</param>
@@ -2815,10 +3933,10 @@
                     </sub-events>
                 </event-block>
                 <comment>sebrani zbrane ze zeme</comment>
-                <variable constant="0" name="weapon_pos_y" static="0" type="number">0</variable>
                 <variable constant="0" name="weapon_pos_x" static="0" type="number">0</variable>
+                <variable constant="0" name="weapon_pos_y" static="0" type="number">0</variable>
                 <variable constant="0" name="weapon_uid" static="0" type="number">0</variable>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="0" name="On function" type="Function">
                             <param id="0" name="Name">&quot;interact_weapon&quot;</param>
@@ -2852,7 +3970,7 @@
                         </action>
                     </actions>
                     <sub-events>
-                        <event-block>
+                        <event-block collapsed="1">
                             <conditions>
                                 <condition id="-19" name="Pick all" type="System">
                                     <param id="0" name="Object">Weapon</param>
@@ -2930,11 +4048,270 @@
                         </event-block>
                     </sub-events>
                 </event-block>
+                <variable constant="0" name="implant_pos_x" static="0" type="number">0</variable>
+                <variable constant="0" name="implant_pos_y" static="0" type="number">0</variable>
+                <variable constant="0" name="implant_uid" static="0" type="number">0</variable>
+                <variable constant="0" name="implant_slot" static="0" type="text"></variable>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On function" type="Function">
+                            <param id="0" name="Name">&quot;interact_implant&quot;</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" type="Implant">
+                            <param id="0" name="Unique ID">Function.Param(0)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">implant_pos_x</param>
+                            <param id="1" name="Value">Implant.X</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">implant_pos_y</param>
+                            <param id="1" name="Value">Implant.Y</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">implant_uid</param>
+                            <param id="1" name="Value">Implant.UID</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">implant_slot</param>
+                            <param id="1" name="Value">Implant.slot</param>
+                        </action>
+                        <action id="-15" name="Set visible" type="Implant">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                        <action id="-3" name="Set position" type="Implant">
+                            <param id="0" name="X">-100</param>
+                            <param id="1" name="Y">-100</param>
+                        </action>
+                        <action disabled="1" id="0" name="Set text" type="InfoText">
+                            <param id="0" name="Text">&quot;Picking up implant (&quot; &amp; implant_slot &amp; &quot;) &quot; &amp; implant_uid</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block collapsed="1">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" type="System">
+                                    <param id="0" name="Variable">implant_slot</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;body&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-19" name="Pick all" type="System">
+                                            <param id="0" name="Object">Implant</param>
+                                        </condition>
+                                        <condition id="-14" name="Pick by unique ID" type="Implant">
+                                            <param id="0" name="Unique ID">avatar_body_implant</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-3" name="Set position" type="Implant">
+                                            <param id="0" name="X">implant_pos_x</param>
+                                            <param id="1" name="Y">implant_pos_y</param>
+                                        </action>
+                                        <action id="9" name="Set scale" type="Implant">
+                                            <param id="0" name="Scale">0.25</param>
+                                        </action>
+                                        <action id="-8" name="Set angle" type="Implant">
+                                            <param id="0" name="Angle">random(0,360)</param>
+                                        </action>
+                                        <action id="0" name="Call function" type="Function">
+                                            <param id="0" name="Name">Implant.on_deactivate</param>
+                                            <param id="1" name="Parameter {n}">Implant.UID</param>
+                                        </action>
+                                        <action id="-15" name="Set visible" type="Implant">
+                                            <param id="0" name="Visibility">1</param>
+                                        </action>
+                                        <action disabled="1" id="1" name="Append text" type="InfoText">
+                                            <param id="0" name="Text">&quot; | Dropping implant &quot; &amp; avatar_body_implant</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions />
+                                    <actions>
+                                        <action id="-9" name="Set value" type="System">
+                                            <param id="0" name="Variable">avatar_body_implant</param>
+                                            <param id="1" name="Value">implant_uid</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block collapsed="1">
+                            <conditions>
+                                <condition id="-22" name="Else" type="System" />
+                                <condition id="-14" name="Compare variable" type="System">
+                                    <param id="0" name="Variable">implant_slot</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;head&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-19" name="Pick all" type="System">
+                                            <param id="0" name="Object">Implant</param>
+                                        </condition>
+                                        <condition id="-14" name="Pick by unique ID" type="Implant">
+                                            <param id="0" name="Unique ID">avatar_head_implant</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-3" name="Set position" type="Implant">
+                                            <param id="0" name="X">implant_pos_x</param>
+                                            <param id="1" name="Y">implant_pos_y</param>
+                                        </action>
+                                        <action id="9" name="Set scale" type="Implant">
+                                            <param id="0" name="Scale">0.25</param>
+                                        </action>
+                                        <action id="-8" name="Set angle" type="Implant">
+                                            <param id="0" name="Angle">random(0,360)</param>
+                                        </action>
+                                        <action id="0" name="Call function" type="Function">
+                                            <param id="0" name="Name">Implant.on_deactivate</param>
+                                            <param id="1" name="Parameter {n}">Implant.UID</param>
+                                        </action>
+                                        <action id="-15" name="Set visible" type="Implant">
+                                            <param id="0" name="Visibility">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions />
+                                    <actions>
+                                        <action id="-9" name="Set value" type="System">
+                                            <param id="0" name="Variable">avatar_head_implant</param>
+                                            <param id="1" name="Value">implant_uid</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block collapsed="1">
+                            <conditions>
+                                <condition id="-22" name="Else" type="System" />
+                                <condition id="-14" name="Compare variable" type="System">
+                                    <param id="0" name="Variable">implant_slot</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;arms&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-19" name="Pick all" type="System">
+                                            <param id="0" name="Object">Implant</param>
+                                        </condition>
+                                        <condition id="-14" name="Pick by unique ID" type="Implant">
+                                            <param id="0" name="Unique ID">avatar_arms_implant</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-3" name="Set position" type="Implant">
+                                            <param id="0" name="X">implant_pos_x</param>
+                                            <param id="1" name="Y">implant_pos_y</param>
+                                        </action>
+                                        <action id="9" name="Set scale" type="Implant">
+                                            <param id="0" name="Scale">0.25</param>
+                                        </action>
+                                        <action id="-8" name="Set angle" type="Implant">
+                                            <param id="0" name="Angle">random(0,360)</param>
+                                        </action>
+                                        <action id="0" name="Call function" type="Function">
+                                            <param id="0" name="Name">Implant.on_deactivate</param>
+                                            <param id="1" name="Parameter {n}">Implant.UID</param>
+                                        </action>
+                                        <action id="-15" name="Set visible" type="Implant">
+                                            <param id="0" name="Visibility">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions />
+                                    <actions>
+                                        <action id="-9" name="Set value" type="System">
+                                            <param id="0" name="Variable">avatar_arms_implant</param>
+                                            <param id="1" name="Value">implant_uid</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block collapsed="1">
+                            <conditions>
+                                <condition id="-22" name="Else" type="System" />
+                                <condition id="-14" name="Compare variable" type="System">
+                                    <param id="0" name="Variable">implant_slot</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;legs&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-19" name="Pick all" type="System">
+                                            <param id="0" name="Object">Implant</param>
+                                        </condition>
+                                        <condition id="-14" name="Pick by unique ID" type="Implant">
+                                            <param id="0" name="Unique ID">avatar_legs_implant</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-3" name="Set position" type="Implant">
+                                            <param id="0" name="X">implant_pos_x</param>
+                                            <param id="1" name="Y">implant_pos_y</param>
+                                        </action>
+                                        <action id="9" name="Set scale" type="Implant">
+                                            <param id="0" name="Scale">0.25</param>
+                                        </action>
+                                        <action id="-8" name="Set angle" type="Implant">
+                                            <param id="0" name="Angle">random(0,360)</param>
+                                        </action>
+                                        <action id="0" name="Call function" type="Function">
+                                            <param id="0" name="Name">Implant.on_deactivate</param>
+                                            <param id="1" name="Parameter {n}">Implant.UID</param>
+                                        </action>
+                                        <action id="-15" name="Set visible" type="Implant">
+                                            <param id="0" name="Visibility">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions />
+                                    <actions>
+                                        <action id="-9" name="Set value" type="System">
+                                            <param id="0" name="Variable">avatar_legs_implant</param>
+                                            <param id="1" name="Value">implant_uid</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block>
+                            <conditions />
+                            <actions>
+                                <action id="0" name="Call function" type="Function">
+                                    <param id="0" name="Name">&quot;recalculate_implants&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
             </sub-events>
         </event-group>
         <event-group collapsed="1" description="" title="Vision Tracing">
             <sub-events>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="0" name="On function" type="Function">
                             <param id="0" name="Name">&quot;checkLOS&quot;</param>
@@ -3004,7 +4381,7 @@
                     <actions>
                         <action id="0" name="Spawn another object" type="Avatar">
                             <param id="0" name="Object">SmallMedKit</param>
-                            <param id="1" name="Layer">2</param>
+                            <param id="1" name="Layer">1</param>
                             <param id="2" name="Image point">0</param>
                         </action>
                     </actions>
@@ -3028,7 +4405,7 @@
                             <actions>
                                 <action id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">SmallMedKit</param>
-                                    <param id="1" name="Layer">2</param>
+                                    <param id="1" name="Layer">1</param>
                                     <param id="2" name="X">Function.Param(0)</param>
                                     <param id="3" name="Y">Function.Param(1)</param>
                                 </action>
@@ -3046,7 +4423,7 @@
                             <actions>
                                 <action id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">Pistol</param>
-                                    <param id="1" name="Layer">2</param>
+                                    <param id="1" name="Layer">1</param>
                                     <param id="2" name="X">Function.Param(0)</param>
                                     <param id="3" name="Y">Function.Param(1)</param>
                                 </action>
@@ -3067,7 +4444,7 @@
                             <actions>
                                 <action id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">Revolver</param>
-                                    <param id="1" name="Layer">2</param>
+                                    <param id="1" name="Layer">1</param>
                                     <param id="2" name="X">Function.Param(0)</param>
                                     <param id="3" name="Y">Function.Param(1)</param>
                                 </action>
@@ -3088,7 +4465,7 @@
                             <actions>
                                 <action id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">Shotgun</param>
-                                    <param id="1" name="Layer">2</param>
+                                    <param id="1" name="Layer">1</param>
                                     <param id="2" name="X">Function.Param(0)</param>
                                     <param id="3" name="Y">Function.Param(1)</param>
                                 </action>
@@ -3109,7 +4486,7 @@
                             <actions>
                                 <action id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">SubMachineGun</param>
-                                    <param id="1" name="Layer">2</param>
+                                    <param id="1" name="Layer">1</param>
                                     <param id="2" name="X">Function.Param(0)</param>
                                     <param id="3" name="Y">Function.Param(1)</param>
                                 </action>
@@ -3130,7 +4507,7 @@
                             <actions>
                                 <action id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">SubMachineGun2</param>
-                                    <param id="1" name="Layer">2</param>
+                                    <param id="1" name="Layer">1</param>
                                     <param id="2" name="X">Function.Param(0)</param>
                                     <param id="3" name="Y">Function.Param(1)</param>
                                 </action>
@@ -3151,7 +4528,7 @@
                             <actions>
                                 <action id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">MachineGun</param>
-                                    <param id="1" name="Layer">2</param>
+                                    <param id="1" name="Layer">1</param>
                                     <param id="2" name="X">Function.Param(0)</param>
                                     <param id="3" name="Y">Function.Param(1)</param>
                                 </action>
@@ -3672,120 +5049,132 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-block>
-            <conditions>
-                <condition id="0" name="On function" type="Function">
-                    <param id="0" name="Name">&quot;init_npc_simple&quot;</param>
-                </condition>
-                <condition id="-14" name="Pick by unique ID" type="npc_simple">
-                    <param id="0" name="Unique ID">Function.Param(0)</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-8" name="Set angle" type="npc_simple">
-                    <param id="0" name="Angle">random(360)</param>
-                </action>
-                <action id="-10" name="Set value" type="npc_simple">
-                    <param id="0" name="Instance variable">stav</param>
-                    <param id="1" name="Value">2</param>
-                </action>
-                <action id="-10" name="Set value" type="npc_simple">
-                    <param id="0" name="Instance variable">waitingDelay</param>
-                    <param id="1" name="Value">50+random(10)</param>
-                </action>
-                <action id="-10" name="Set value" type="npc_simple">
-                    <param id="0" name="Instance variable">courage</param>
-                    <param id="1" name="Value">100+random(50)</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block>
-            <conditions>
-                <condition id="0" name="On function" type="Function">
-                    <param id="0" name="Name">&quot;init_EnemyDude&quot;</param>
-                </condition>
-                <condition id="-14" name="Pick by unique ID" type="EnemyDude">
-                    <param id="0" name="Unique ID">Function.Param(0)</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-3" name="Create object" type="System">
-                    <param id="0" name="Object to create">Weapon</param>
-                    <param id="1" name="Layer">0</param>
-                    <param id="2" name="X">-100</param>
-                    <param id="3" name="Y">-100</param>
-                </action>
-                <action id="-10" name="Set value" type="EnemyDude">
-                    <param id="0" name="Instance variable">stand_x</param>
-                    <param id="1" name="Value">EnemyDude.ImagePointX(0)</param>
-                </action>
-                <action id="-10" name="Set value" type="EnemyDude">
-                    <param id="0" name="Instance variable">stand_y</param>
-                    <param id="1" name="Value">EnemyDude.ImagePointY(0)</param>
-                </action>
-                <action id="-10" name="Set value" type="EnemyDude">
-                    <param id="0" name="Instance variable">target_x</param>
-                    <param id="1" name="Value">EnemyDude.stand_x + random(-5,5)</param>
-                </action>
-                <action id="-10" name="Set value" type="EnemyDude">
-                    <param id="0" name="Instance variable">target_y</param>
-                    <param id="1" name="Value">EnemyDude.stand_y + random(-5,5)</param>
-                </action>
-                <action id="-8" name="Set angle" type="EnemyDude">
-                    <param id="0" name="Angle">random(0,360)</param>
-                </action>
-                <action id="-10" name="Set value" type="EnemyDude">
-                    <param id="0" name="Instance variable">weapon_uid</param>
-                    <param id="1" name="Value">Weapon.UID</param>
-                </action>
-                <action id="-10" name="Set value" type="EnemyDude">
-                    <param id="0" name="Instance variable">state_switch_timer</param>
-                    <param id="1" name="Value">random(100,400)</param>
-                </action>
-                <action id="-10" name="Set value" type="EnemyDude">
-                    <param id="0" name="Instance variable">state</param>
-                    <param id="1" name="Value">&quot;sleep&quot;</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block>
-            <conditions>
-                <condition id="0" name="On function" type="Function">
-                    <param id="0" name="Name">&quot;init_EnemyDudeMeele&quot;</param>
-                </condition>
-                <condition id="-14" name="Pick by unique ID" type="EnemyDudeMelee">
-                    <param id="0" name="Unique ID">Function.Param(0)</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-10" name="Set value" type="EnemyDudeMelee">
-                    <param id="0" name="Instance variable">stand_x</param>
-                    <param id="1" name="Value">EnemyDudeMelee.ImagePointX(0)</param>
-                </action>
-                <action id="-10" name="Set value" type="EnemyDudeMelee">
-                    <param id="0" name="Instance variable">stand_y</param>
-                    <param id="1" name="Value">EnemyDudeMelee.ImagePointY(0)</param>
-                </action>
-                <action id="-10" name="Set value" type="EnemyDudeMelee">
-                    <param id="0" name="Instance variable">target_x</param>
-                    <param id="1" name="Value">EnemyDudeMelee.stand_x + random(-5,5)</param>
-                </action>
-                <action id="-10" name="Set value" type="EnemyDudeMelee">
-                    <param id="0" name="Instance variable">target_y</param>
-                    <param id="1" name="Value">EnemyDudeMelee.stand_y + random(-5,5)</param>
-                </action>
-                <action id="-8" name="Set angle" type="EnemyDudeMelee">
-                    <param id="0" name="Angle">random(0,360)</param>
-                </action>
-                <action id="-10" name="Set value" type="EnemyDudeMelee">
-                    <param id="0" name="Instance variable">state_switch_timer</param>
-                    <param id="1" name="Value">random(100,400)</param>
-                </action>
-                <action id="-10" name="Set value" type="EnemyDudeMelee">
-                    <param id="0" name="Instance variable">state</param>
-                    <param id="1" name="Value">&quot;sleep&quot;</param>
-                </action>
-            </actions>
-        </event-block>
+        <event-group collapsed="1" description="" title="Utility functions">
+            <sub-events>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On function" type="Function">
+                            <param id="0" name="Name">&quot;init_npc_simple&quot;</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" type="npc_simple">
+                            <param id="0" name="Unique ID">Function.Param(0)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-8" name="Set angle" type="npc_simple">
+                            <param id="0" name="Angle">random(360)</param>
+                        </action>
+                        <action id="-10" name="Set value" type="npc_simple">
+                            <param id="0" name="Instance variable">stav</param>
+                            <param id="1" name="Value">2</param>
+                        </action>
+                        <action id="-10" name="Set value" type="npc_simple">
+                            <param id="0" name="Instance variable">waitingDelay</param>
+                            <param id="1" name="Value">50+random(10)</param>
+                        </action>
+                        <action id="-10" name="Set value" type="npc_simple">
+                            <param id="0" name="Instance variable">courage</param>
+                            <param id="1" name="Value">100+random(50)</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On function" type="Function">
+                            <param id="0" name="Name">&quot;init_EnemyDude&quot;</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" type="EnemyDude">
+                            <param id="0" name="Unique ID">Function.Param(0)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" type="System">
+                            <param id="0" name="Object to create">Weapon</param>
+                            <param id="1" name="Layer">1</param>
+                            <param id="2" name="X">-100</param>
+                            <param id="3" name="Y">-100</param>
+                        </action>
+                        <action id="-10" name="Set value" type="EnemyDude">
+                            <param id="0" name="Instance variable">stand_x</param>
+                            <param id="1" name="Value">EnemyDude.ImagePointX(0)</param>
+                        </action>
+                        <action id="-10" name="Set value" type="EnemyDude">
+                            <param id="0" name="Instance variable">stand_y</param>
+                            <param id="1" name="Value">EnemyDude.ImagePointY(0)</param>
+                        </action>
+                        <action id="-10" name="Set value" type="EnemyDude">
+                            <param id="0" name="Instance variable">target_x</param>
+                            <param id="1" name="Value">EnemyDude.stand_x + random(-5,5)</param>
+                        </action>
+                        <action id="-10" name="Set value" type="EnemyDude">
+                            <param id="0" name="Instance variable">target_y</param>
+                            <param id="1" name="Value">EnemyDude.stand_y + random(-5,5)</param>
+                        </action>
+                        <action id="-8" name="Set angle" type="EnemyDude">
+                            <param id="0" name="Angle">random(0,360)</param>
+                        </action>
+                        <action id="-10" name="Set value" type="EnemyDude">
+                            <param id="0" name="Instance variable">weapon_uid</param>
+                            <param id="1" name="Value">Weapon.UID</param>
+                        </action>
+                        <action id="-10" name="Set value" type="EnemyDude">
+                            <param id="0" name="Instance variable">state_switch_timer</param>
+                            <param id="1" name="Value">random(100,400)</param>
+                        </action>
+                        <action id="-10" name="Set value" type="EnemyDude">
+                            <param id="0" name="Instance variable">state</param>
+                            <param id="1" name="Value">&quot;sleep&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On function" type="Function">
+                            <param id="0" name="Name">&quot;init_EnemyDudeMeele&quot;</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" type="EnemyDudeMelee">
+                            <param id="0" name="Unique ID">Function.Param(0)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" type="EnemyDudeMelee">
+                            <param id="0" name="Instance variable">stand_x</param>
+                            <param id="1" name="Value">EnemyDudeMelee.ImagePointX(0)</param>
+                        </action>
+                        <action id="-10" name="Set value" type="EnemyDudeMelee">
+                            <param id="0" name="Instance variable">stand_y</param>
+                            <param id="1" name="Value">EnemyDudeMelee.ImagePointY(0)</param>
+                        </action>
+                        <action id="-10" name="Set value" type="EnemyDudeMelee">
+                            <param id="0" name="Instance variable">target_x</param>
+                            <param id="1" name="Value">EnemyDudeMelee.stand_x + random(-5,5)</param>
+                        </action>
+                        <action id="-10" name="Set value" type="EnemyDudeMelee">
+                            <param id="0" name="Instance variable">target_y</param>
+                            <param id="1" name="Value">EnemyDudeMelee.stand_y + random(-5,5)</param>
+                        </action>
+                        <action id="-8" name="Set angle" type="EnemyDudeMelee">
+                            <param id="0" name="Angle">random(0,360)</param>
+                        </action>
+                        <action id="-10" name="Set value" type="EnemyDudeMelee">
+                            <param id="0" name="Instance variable">state_switch_timer</param>
+                            <param id="1" name="Value">random(100,400)</param>
+                        </action>
+                        <action id="-10" name="Set value" type="EnemyDudeMelee">
+                            <param id="0" name="Instance variable">state</param>
+                            <param id="1" name="Value">&quot;sleep&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On function" type="Function">
+                            <param id="0" name="Name">&quot;do_nothing&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                </event-block>
+            </sub-events>
+        </event-group>
     </events>
 </c2eventsheet>
