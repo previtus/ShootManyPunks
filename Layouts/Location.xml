@@ -1272,6 +1272,9 @@
                         <stav>0</stav>
                         <waitingDelay>0</waitingDelay>
                         <courage>100</courage>
+                        <tmp_distance_from_shooting>999</tmp_distance_from_shooting>
+                        <scareX>0</scareX>
+                        <scareY>0</scareY>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>

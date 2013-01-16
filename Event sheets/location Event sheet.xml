@@ -62,7 +62,7 @@
         <variable constant="0" name="quest_target_location" static="0" type="number">0</variable>
         <variable constant="0" name="quest_type" static="0" type="number">0</variable>
         <variable constant="0" name="remaining_quest_enemies" static="0" type="number">0</variable>
-        <event-group description="" title="TiledMap Import">
+        <event-group collapsed="1" description="" title="TiledMap Import">
             <sub-events>
                 <comment>Loading correct tmx string - correct location</comment>
                 <event-block>
@@ -709,6 +709,17 @@
                         </action>
                     </actions>
                     <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-3" name="Is on-screen" type="Avatar" />
+                            </conditions>
+                            <actions>
+                                <action id="-22" name="Set angle toward position" type="Avatar">
+                                    <param id="0" name="X">Mouse.X</param>
+                                    <param id="1" name="Y">Mouse.Y</param>
+                                </action>
+                            </actions>
+                        </event-block>
                         <comment>informace o zbrani</comment>
                         <event-block>
                             <conditions>
@@ -807,21 +818,77 @@
                         </event-block>
                         <event-block>
                             <conditions>
-                                <condition id="-3" name="Is on-screen" type="Avatar" />
+                                <condition id="0" name="On function" type="Function">
+                                    <param id="0" name="Name">&quot;interact_transport&quot;</param>
+                                </condition>
+                                <condition id="-14" name="Pick by unique ID" type="Transport">
+                                    <param id="0" name="Unique ID">Function.Param(0)</param>
+                                </condition>
                             </conditions>
                             <actions>
-                                <action id="-22" name="Set angle toward position" type="Avatar">
-                                    <param id="0" name="X">Mouse.X</param>
-                                    <param id="1" name="Y">Mouse.Y</param>
+                                <action disabled="1" id="-9" name="Destroy" type="Transport" />
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">to_load_map</param>
+                                    <param id="1" name="Value">Transport.target + 100</param>
                                 </action>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">to_load_spawnpoint</param>
+                                    <param id="1" name="Value">Transport.spawnPointTarget</param>
+                                </action>
+                                <action id="-26" name="Restart layout" type="System" />
                             </actions>
                         </event-block>
                         <event-block>
+                            <conditions>
+                                <condition id="0" name="On function" type="Function">
+                                    <param id="0" name="Name">&quot;interact_world_transport&quot;</param>
+                                </condition>
+                                <condition id="-14" name="Pick by unique ID" type="WorldMapTransport">
+                                    <param id="0" name="Unique ID">Function.Param(0)</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action disabled="1" id="-9" name="Destroy" type="WorldMapTransport" />
+                                <action id="-2" name="Go to layout" type="System">
+                                    <param id="0" name="Layout">WorldMap</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" title="NPC">
+            <sub-events>
+                <event-block any="1">
+                    <conditions>
+                        <condition id="-1" name="Every tick" type="System" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <variable comment="... in X pixels from shooting" constant="0" name="npc_gets_scared_in" static="0" type="number">120</variable>
+                        <event-block collapsed="1">
                             <conditions>
                                 <condition id="-3" name="Is on-screen" type="npc_simple" />
                             </conditions>
                             <actions />
                             <sub-events>
+                                <comment>if is scared</comment>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" type="npc_simple">
+                                            <param id="0" name="Instance variable">tmp_distance_from_shooting</param>
+                                            <param id="1" name="Comparison">3</param>
+                                            <param id="2" name="Value">npc_gets_scared_in</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" type="npc_simple">
+                                            <param id="0" name="Instance variable">stav</param>
+                                            <param id="1" name="Value">3</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
                                 <comment>Waiting - ceka dokud nevyprcha waitingDelay</comment>
                                 <event-block>
                                     <conditions>
@@ -965,43 +1032,48 @@
                                         </action>
                                     </actions>
                                 </event-block>
+                                <comment>PANIC! - utika od zdroje vyruseni - utika mimo mapu</comment>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" type="npc_simple">
+                                            <param id="0" name="Instance variable">stav</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">3</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-22" name="Set angle toward position" type="npc_simple">
+                                            <param id="0" name="X">npc_simple.scareX</param>
+                                            <param id="1" name="Y">npc_simple.scareY</param>
+                                        </action>
+                                        <action id="-18" name="Rotate clockwise" type="npc_simple">
+                                            <param id="0" name="Degrees">180</param>
+                                        </action>
+                                        <action id="-17" name="Move forward" type="npc_simple">
+                                            <param id="0" name="Distance">2</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
                             </sub-events>
                         </event-block>
                         <event-block>
                             <conditions>
                                 <condition id="0" name="On function" type="Function">
-                                    <param id="0" name="Name">&quot;interact_transport&quot;</param>
-                                </condition>
-                                <condition id="-14" name="Pick by unique ID" type="Transport">
-                                    <param id="0" name="Unique ID">Function.Param(0)</param>
+                                    <param id="0" name="Name">&quot;scareNPCs&quot;</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action disabled="1" id="-9" name="Destroy" type="Transport" />
-                                <action id="-9" name="Set value" type="System">
-                                    <param id="0" name="Variable">to_load_map</param>
-                                    <param id="1" name="Value">Transport.target + 100</param>
+                                <action id="-10" name="Set value" type="npc_simple">
+                                    <param id="0" name="Instance variable">tmp_distance_from_shooting</param>
+                                    <param id="1" name="Value">min (distance(npc_simple.X, npc_simple.Y, Function.Param(0), Function.Param(1)), npc_simple.tmp_distance_from_shooting)</param>
                                 </action>
-                                <action id="-9" name="Set value" type="System">
-                                    <param id="0" name="Variable">to_load_spawnpoint</param>
-                                    <param id="1" name="Value">Transport.spawnPointTarget</param>
+                                <action id="-10" name="Set value" type="npc_simple">
+                                    <param id="0" name="Instance variable">scareX</param>
+                                    <param id="1" name="Value">Function.Param(0)</param>
                                 </action>
-                                <action id="-26" name="Restart layout" type="System" />
-                            </actions>
-                        </event-block>
-                        <event-block>
-                            <conditions>
-                                <condition id="0" name="On function" type="Function">
-                                    <param id="0" name="Name">&quot;interact_world_transport&quot;</param>
-                                </condition>
-                                <condition id="-14" name="Pick by unique ID" type="WorldMapTransport">
-                                    <param id="0" name="Unique ID">Function.Param(0)</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action disabled="1" id="-9" name="Destroy" type="WorldMapTransport" />
-                                <action id="-2" name="Go to layout" type="System">
-                                    <param id="0" name="Layout">WorldMap</param>
+                                <action id="-10" name="Set value" type="npc_simple">
+                                    <param id="0" name="Instance variable">scareY</param>
+                                    <param id="1" name="Value">Function.Param(1)</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -2381,6 +2453,10 @@
                         <action id="-9" name="Set value" type="System">
                             <param id="0" name="Variable">firing_angle</param>
                             <param id="1" name="Value">Function.Param(3)</param>
+                        </action>
+                        <action id="0" name="Call function" type="Function">
+                            <param id="0" name="Name">&quot;scareNPCs&quot;</param>
+                            <param id="1" name="Parameter {n}">Function.Param(1){###}Function.Param(2)</param>
                         </action>
                     </actions>
                     <sub-events>
@@ -3975,7 +4051,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" title="Programs">
+        <event-group collapsed="1" description="" title="Programs">
             <sub-events>
                 <comment>AimAssist - pridat instanci</comment>
                 <event-block>
