@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <c2layout>
-    <name>Layout 1</name>
-    <event-sheet>Event sheet 1</event-sheet>
+    <name>Location</name>
+    <event-sheet>location Event sheet</event-sheet>
     <size>
         <width>1360</width>
         <height>680</height>
