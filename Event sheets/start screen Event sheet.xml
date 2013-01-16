@@ -3,6 +3,9 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>start screen Event sheet</name>
     <events>
+        <variable constant="0" name="map1_string" static="0" type="text"></variable>
+        <variable constant="0" name="map2_string" static="0" type="text"></variable>
+        <variable constant="0" name="map3_string" static="0" type="text"></variable>
         <event-block>
             <conditions>
                 <condition id="6" name="On object clicked" type="Mouse">
@@ -17,5 +20,40 @@
                 </action>
             </actions>
         </event-block>
+        <event-group collapsed="1" description="" disabled="1" title="pre-load">
+            <sub-events>
+                <event-block disabled="1">
+                    <conditions>
+                        <condition id="-2" name="On start of layout" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="1" name="Request project file" type="AJAX">
+                            <param id="0" name="Tag">&quot;map_load&quot;</param>
+                            <param id="1" name="File">map1_with_single_quote.tmx</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">map1_string</param>
+                            <param id="1" name="Value">AJAX.LastData</param>
+                        </action>
+                        <action id="1" name="Request project file" type="AJAX">
+                            <param id="0" name="Tag">&quot;map_load&quot;</param>
+                            <param id="1" name="File">map2_with_single_quote.tmx</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">map2_string</param>
+                            <param id="1" name="Value">AJAX.LastData</param>
+                        </action>
+                        <action id="1" name="Request project file" type="AJAX">
+                            <param id="0" name="Tag">&quot;map_load&quot;</param>
+                            <param id="1" name="File">map3_with_single_quote.tmx</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">map3_string</param>
+                            <param id="1" name="Value">AJAX.LastData</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
     </events>
 </c2eventsheet>

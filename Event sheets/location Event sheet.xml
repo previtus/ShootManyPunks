@@ -63,7 +63,7 @@
         <variable constant="0" name="quest_type" static="0" type="number">0</variable>
         <variable constant="0" name="quest_giver_location" static="0" type="number">0</variable>
         <variable constant="0" name="remaining_quest_enemies" static="0" type="number">0</variable>
-        <event-group collapsed="1" description="" title="TiledMap Import">
+        <event-group description="" title="TiledMap Import">
             <sub-events>
                 <comment>Loading correct tmx string - correct location</comment>
                 <event-block>
@@ -163,6 +163,9 @@
                         </condition>
                     </conditions>
                     <actions>
+                        <action disabled="1" id="1" name="Import tmx" type="TMXImporter">
+                            <param id="0" name="TMX string">map1_string</param>
+                        </action>
                         <action id="1" name="Import tmx" type="TMXImporter">
                             <param id="0" name="TMX string">AJAX.LastData</param>
                         </action>
@@ -613,6 +616,12 @@
                         <action behavior="Bullet" id="5" name="Set enabled" type="Avatar">
                             <param id="0" name="State">0</param>
                         </action>
+                        <action id="3" name="Start" type="Avatar">
+                            <param id="0" name="From">1</param>
+                        </action>
+                        <action id="6" name="Set speed" type="Avatar">
+                            <param id="0" name="Speed">24</param>
+                        </action>
                     </actions>
                     <sub-events>
                         <event-block>
@@ -665,6 +674,16 @@
                             </actions>
                         </event-block>
                     </sub-events>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="5" name="On any finished" type="Avatar" />
+                    </conditions>
+                    <actions>
+                        <action id="3" name="Start" type="Avatar">
+                            <param id="0" name="From">1</param>
+                        </action>
+                    </actions>
                 </event-block>
                 <event-block any="1" collapsed="1">
                     <conditions>
@@ -859,7 +878,136 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" title="NPC">
+        <event-group collapsed="1" description="" title="Animations">
+            <sub-events>
+                <event-block>
+                    <conditions>
+                        <condition id="-18" name="On created" type="Avatar" />
+                    </conditions>
+                    <actions>
+                        <action id="6" name="Set speed" type="Avatar">
+                            <param id="0" name="Speed">24</param>
+                        </action>
+                        <action id="5" name="Set frame" type="Avatar">
+                            <param id="0" name="Frame number">6</param>
+                        </action>
+                        <action id="3" name="Start" type="Avatar">
+                            <param id="0" name="From">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On key pressed" type="Keyboard">
+                            <param id="0" name="Key">16 (Shift)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="6" name="Set speed" type="Avatar">
+                            <param id="0" name="Speed">48</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="3" name="On key released" type="Keyboard">
+                            <param id="0" name="Key">16 (Shift)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="6" name="Set speed" type="Avatar">
+                            <param id="0" name="Speed">24</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition behavior="8Direction" id="0" inverted="1" name="Is moving" type="Avatar" />
+                    </conditions>
+                    <actions>
+                        <action id="3" name="Start" type="Avatar">
+                            <param id="0" name="From">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-18" name="On created" type="npc_simple" />
+                    </conditions>
+                    <actions>
+                        <action id="6" name="Set speed" type="npc_simple">
+                            <param id="0" name="Speed">24</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-3" name="Is on-screen" type="npc_simple" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="5" name="On any finished" type="npc_simple" />
+                            </conditions>
+                            <actions>
+                                <action id="6" name="Set speed" type="npc_simple">
+                                    <param id="0" name="Speed">24</param>
+                                </action>
+                                <action id="3" name="Start" type="npc_simple">
+                                    <param id="0" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-18" name="On created" type="Enemy" />
+                    </conditions>
+                    <actions>
+                        <action id="5" name="Set frame" type="Enemy">
+                            <param id="0" name="Frame number">24</param>
+                        </action>
+                        <action id="6" name="Set speed" type="Enemy">
+                            <param id="0" name="Speed">48</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block any="1">
+                    <conditions>
+                        <condition id="5" name="On any finished" type="Enemy" />
+                        <condition id="3" name="Compare frame" type="Enemy">
+                            <param id="0" name="Comparison">0</param>
+                            <param id="1" name="Number">24</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" type="Enemy">
+                                    <param id="0" name="Instance variable">state</param>
+                                    <param id="1" name="Comparison">1</param>
+                                    <param id="2" name="Value">&quot;sleep&quot;</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" type="Enemy">
+                                    <param id="0" name="Instance variable">state</param>
+                                    <param id="1" name="Comparison">1</param>
+                                    <param id="2" name="Value">&quot;shoot&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="3" name="Start" type="Enemy">
+                                    <param id="0" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group collapsed="1" description="" title="NPC">
             <sub-events>
                 <event-block any="1">
                     <conditions>
@@ -868,12 +1016,26 @@
                     <actions />
                     <sub-events>
                         <variable comment="... in X pixels from shooting" constant="0" name="npc_gets_scared_in" static="0" type="number">120</variable>
-                        <event-block collapsed="1">
+                        <event-block>
                             <conditions>
                                 <condition id="-3" name="Is on-screen" type="npc_simple" />
                             </conditions>
-                            <actions />
+                            <actions>
+                                <action disabled="1" id="6" name="Set speed" type="npc_simple">
+                                    <param id="0" name="Speed">24</param>
+                                </action>
+                            </actions>
                             <sub-events>
+                                <event-block disabled="1">
+                                    <conditions>
+                                        <condition id="5" name="On any finished" type="npc_simple" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="3" name="Start" type="npc_simple">
+                                            <param id="0" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
                                 <comment>if is scared</comment>
                                 <event-block>
                                     <conditions>
@@ -888,9 +1050,16 @@
                                             <param id="0" name="Instance variable">stav</param>
                                             <param id="1" name="Value">3</param>
                                         </action>
+                                        <action id="-10" name="Set value" type="npc_simple">
+                                            <param id="0" name="Instance variable">tmp_distance_from_shooting</param>
+                                            <param id="1" name="Value">999</param>
+                                        </action>
+                                        <action id="3" name="Start" type="npc_simple">
+                                            <param id="0" name="From">1</param>
+                                        </action>
                                     </actions>
                                 </event-block>
-                                <comment>Waiting - ceka dokud nevyprcha waitingDelay</comment>
+                                <comment>1 Waiting - ceka dokud nevyprcha waitingDelay</comment>
                                 <event-block>
                                     <conditions>
                                         <condition id="-7" name="Compare instance variable" type="npc_simple">
@@ -944,6 +1113,9 @@
                                                     <param id="0" name="Instance variable">stav</param>
                                                     <param id="1" name="Value">2</param>
                                                 </action>
+                                                <action id="3" name="Start" type="npc_simple">
+                                                    <param id="0" name="From">1</param>
+                                                </action>
                                                 <action id="-22" name="Set angle toward position" type="npc_simple">
                                                     <param id="0" name="X">npc_simple.spawnX</param>
                                                     <param id="1" name="Y">npc_simple.spawnY</param>
@@ -968,6 +1140,9 @@
                                                     <param id="0" name="Instance variable">stav</param>
                                                     <param id="1" name="Value">2</param>
                                                 </action>
+                                                <action id="3" name="Start" type="npc_simple">
+                                                    <param id="0" name="From">1</param>
+                                                </action>
                                                 <action id="-8" name="Set angle" type="npc_simple">
                                                     <param id="0" name="Angle">random(360)</param>
                                                 </action>
@@ -975,7 +1150,7 @@
                                         </event-block>
                                     </sub-events>
                                 </event-block>
-                                <comment>Walking - chodi dokud nevyprcha waitingDelay</comment>
+                                <comment>2 Walking - chodi dokud nevyprcha waitingDelay</comment>
                                 <event-block>
                                     <conditions>
                                         <condition id="-7" name="Compare instance variable" type="npc_simple">
@@ -1020,6 +1195,10 @@
                                             <param id="0" name="Instance variable">waitingDelay</param>
                                             <param id="1" name="Value">100+random(10)</param>
                                         </action>
+                                        <action id="5" name="Set frame" type="npc_simple">
+                                            <param id="0" name="Frame number">5+random(3)</param>
+                                        </action>
+                                        <action id="2" name="Stop" type="npc_simple" />
                                         <action id="-10" name="Set value" type="npc_simple">
                                             <param id="0" name="Instance variable">stav</param>
                                             <param id="1" name="Value">1</param>
@@ -1033,7 +1212,7 @@
                                         </action>
                                     </actions>
                                 </event-block>
-                                <comment>PANIC! - utika od zdroje vyruseni - utika mimo mapu</comment>
+                                <comment>3 PANIC! - utika od zdroje vyruseni - utika mimo mapu</comment>
                                 <event-block>
                                     <conditions>
                                         <condition id="-7" name="Compare instance variable" type="npc_simple">
@@ -1043,6 +1222,9 @@
                                         </condition>
                                     </conditions>
                                     <actions>
+                                        <action id="6" name="Set speed" type="npc_simple">
+                                            <param id="0" name="Speed">48</param>
+                                        </action>
                                         <action id="-22" name="Set angle toward position" type="npc_simple">
                                             <param id="0" name="X">npc_simple.scareX</param>
                                             <param id="1" name="Y">npc_simple.scareY</param>
@@ -1085,7 +1267,7 @@
         <event-group collapsed="1" description="" title="Enemy">
             <sub-events>
                 <comment>AI nepratel</comment>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="-11" name="For Each" type="System">
                             <param id="0" name="Object">Enemy</param>
@@ -1219,6 +1401,9 @@
                                 </action>
                                 <action behavior="Bullet" id="0" name="Set speed" type="Enemy">
                                     <param id="0" name="Speed">Enemy.speed</param>
+                                </action>
+                                <action id="3" name="Start" type="Enemy">
+                                    <param id="0" name="From">0</param>
                                 </action>
                             </actions>
                             <sub-events>
@@ -1661,6 +1846,9 @@
                                     <param id="0" name="Instance variable">state_switch_timer</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
+                                <action id="3" name="Start" type="Enemy">
+                                    <param id="0" name="From">1</param>
+                                </action>
                             </actions>
                             <sub-events>
                                 <comment>dosahl mista urceni (nebo uz je moc dlouho zasekly o zed) - muzes strilet (shoot)</comment>
@@ -1745,6 +1933,9 @@
                             <actions>
                                 <action behavior="Bullet" id="0" name="Set speed" type="Enemy">
                                     <param id="0" name="Speed">Enemy.speed</param>
+                                </action>
+                                <action id="3" name="Start" type="Enemy">
+                                    <param id="0" name="From">0</param>
                                 </action>
                             </actions>
                             <sub-events>
@@ -5352,7 +5543,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" title="Quests">
+        <event-group collapsed="1" description="" title="Quests">
             <sub-events>
                 <event-block>
                     <conditions>
