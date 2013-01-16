@@ -1695,30 +1695,6 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="QuestArrow">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-frame>0</initial-frame>
-                        <collisions>Enabled</collisions>
-                    </properties>
-                    <instance-variables>
-                        <boundQuestGiver>0</boundQuestGiver>
-                    </instance-variables>
-                    <blend-mode>0</blend-mode>
-                    <effect-fallback>0</effect-fallback>
-                    <world>
-                        <x>-359</x>
-                        <y>651</y>
-                        <z>0</z>
-                        <width>34</width>
-                        <height>34</height>
-                        <depth>0</depth>
-                        <hotspotX>-0.0078125</hotspotX>
-                        <hotspotY>0.45703125</hotspotY>
-                        <angle>0</angle>
-                        <opacity>0.5</opacity>
-                    </world>
-                </instance>
                 <instance type="BioenergyBar">
                     <properties>
                         <text></text>
