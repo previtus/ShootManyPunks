@@ -34,7 +34,7 @@
   </tile>
   <tile id='6'>
    <properties>
-    <property name='Monster' value='Star'/>
+    <property name='actor' value='EnemyDude'/>
     <property name='Solid' value='0'/>
    </properties>
   </tile>
