@@ -61,6 +61,7 @@
         <variable constant="0" name="is_on_quest" static="0" type="number">0</variable>
         <variable constant="0" name="quest_target_location" static="0" type="number">0</variable>
         <variable constant="0" name="quest_type" static="0" type="number">0</variable>
+        <variable constant="0" name="quest_giver_location" static="0" type="number">0</variable>
         <variable constant="0" name="remaining_quest_enemies" static="0" type="number">0</variable>
         <event-group collapsed="1" description="" title="TiledMap Import">
             <sub-events>
@@ -5351,83 +5352,45 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" title="Quests">
+        <event-group description="" title="Quests">
             <sub-events>
                 <event-block>
                     <conditions>
                         <condition id="-2" name="On start of layout" type="System" />
-                        <condition id="-14" name="Compare variable" type="System">
-                            <param id="0" name="Variable">is_on_quest</param>
-                            <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Value">0</param>
-                        </condition>
                         <condition id="-11" name="For Each" type="System">
                             <param id="0" name="Object">QuestGivers</param>
                         </condition>
                     </conditions>
-                    <actions>
-                        <action id="0" name="Spawn another object" type="QuestGiver">
-                            <param id="0" name="Object">QuestCircle</param>
-                            <param id="1" name="Layer">2</param>
-                            <param id="2" name="Image point">0</param>
-                        </action>
-                        <action id="-10" name="Set value" type="QuestGiver">
-                            <param id="0" name="Instance variable">quest_circle</param>
-                            <param id="1" name="Value">QuestCircle.UID</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block collapsed="1" disabled="1">
-                    <conditions>
-                        <condition id="-1" name="Every tick" type="System" />
-                        <condition id="-11" name="For Each" type="System">
-                            <param id="0" name="Object">QuestArrow</param>
-                        </condition>
-                        <condition id="-14" name="Pick by unique ID" type="QuestGivers">
-                            <param id="0" name="Unique ID">QuestArrow.boundQuestGiver</param>
-                        </condition>
-                    </conditions>
                     <actions />
                     <sub-events>
-                        <event-block disabled="1">
+                        <event-block any="1">
                             <conditions>
-                                <condition id="-3" inverted="1" name="Is on-screen" type="QuestGivers" />
+                                <condition id="-14" name="Compare variable" type="System">
+                                    <param id="0" name="Variable">is_on_quest</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                                <condition id="-14" name="Compare variable" type="System">
+                                    <param id="0" name="Variable">is_on_quest</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">2</param>
+                                </condition>
                             </conditions>
                             <actions>
-                                <action id="-3" name="Set position" type="QuestArrow">
-                                    <param id="0" name="X">QuestGivers.X</param>
-                                    <param id="1" name="Y">QuestGivers.Y</param>
+                                <action id="0" name="Spawn another object" type="QuestGiver">
+                                    <param id="0" name="Object">QuestCircle</param>
+                                    <param id="1" name="Layer">2</param>
+                                    <param id="2" name="Image point">0</param>
                                 </action>
-                                <action id="-22" name="Set angle toward position" type="QuestArrow">
-                                    <param id="0" name="X">scrollx</param>
-                                    <param id="1" name="Y">scrolly</param>
-                                </action>
-                                <action id="-17" name="Move forward" type="QuestArrow">
-                                    <param id="0" name="Distance">distance(QuestGivers.X, QuestGivers.Y,scrollx, scrolly) - 50</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <event-block disabled="1">
-                            <conditions>
-                                <condition id="-3" name="Is on-screen" type="QuestGivers" />
-                            </conditions>
-                            <actions>
-                                <action id="-4" name="Set position to another object" type="QuestArrow">
-                                    <param id="0" name="Object">QuestGivers</param>
-                                    <param id="1" name="Image point (optional)">0</param>
-                                </action>
-                                <action id="-22" name="Set angle toward position" type="QuestArrow">
-                                    <param id="0" name="X">QuestGivers.X</param>
-                                    <param id="1" name="Y">QuestGivers.Y</param>
-                                </action>
-                                <action id="-17" name="Move forward" type="QuestArrow">
-                                    <param id="0" name="Distance">-50</param>
+                                <action id="-10" name="Set value" type="QuestGiver">
+                                    <param id="0" name="Instance variable">quest_circle</param>
+                                    <param id="1" name="Value">QuestCircle.UID</param>
                                 </action>
                             </actions>
                         </event-block>
                     </sub-events>
                 </event-block>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="0" name="On function" type="Function">
                             <param id="0" name="Name">&quot;interact_quest&quot;</param>
@@ -5496,6 +5459,14 @@
                                 <action id="-9" name="Set value" type="System">
                                     <param id="0" name="Variable">quest_target_location</param>
                                     <param id="1" name="Value">3</param>
+                                </action>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">quest_giver_location</param>
+                                    <param id="1" name="Value">to_load_map</param>
+                                </action>
+                                <action id="0" name="Call function" type="Function">
+                                    <param id="0" name="Name">&quot;mark_quest_exits&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
                                 </action>
                                 <action id="-9" name="Destroy" type="QuestCircle" />
                             </actions>
@@ -5607,109 +5578,51 @@
                             <param id="1" name="Comparison">0</param>
                             <param id="2" name="Value">1</param>
                         </condition>
-                        <condition id="-14" name="Compare variable" type="System">
-                            <param id="0" name="Variable">quest_target_location</param>
-                            <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Value">to_load_map</param>
-                        </condition>
                     </conditions>
                     <actions />
                     <sub-events>
                         <event-block>
                             <conditions>
                                 <condition id="-14" name="Compare variable" type="System">
-                                    <param id="0" name="Variable">quest_type</param>
+                                    <param id="0" name="Variable">quest_target_location</param>
                                     <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Value">2</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="0" name="Set text" type="InfoText">
-                                    <param id="0" name="Text">&quot;Spawning Quest NPC&quot;</param>
-                                </action>
-                                <action id="-3" name="Create object" type="System">
-                                    <param id="0" name="Object to create">npc_simple</param>
-                                    <param id="1" name="Layer">2</param>
-                                    <param id="2" name="X">random(50,LayoutWidth-50)</param>
-                                    <param id="3" name="Y">random(50,LayoutHeight-50)</param>
-                                </action>
-                                <action id="-10" name="Set value" type="npc_simple">
-                                    <param id="0" name="Instance variable">is_quest_npc</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                                <action id="0" name="Spawn another object" type="npc_simple">
-                                    <param id="0" name="Object">QuestCircle</param>
-                                    <param id="1" name="Layer">2</param>
-                                    <param id="2" name="Image point">0</param>
-                                </action>
-                                <action behavior="Pin" id="0" name="Pin to object" type="QuestCircle">
-                                    <param id="0" name="Pin to">npc_simple</param>
-                                    <param id="1" name="Mode">0</param>
-                                </action>
-                                <action id="-10" name="Set value" type="npc_simple">
-                                    <param id="0" name="Instance variable">quest_circle</param>
-                                    <param id="1" name="Value">QuestCircle.UID</param>
-                                </action>
-                                <action id="-16" name="Wait" type="System">
-                                    <param id="0" name="Seconds">0</param>
-                                </action>
-                                <action id="0" name="Call function" type="Function">
-                                    <param id="0" name="Name">&quot;init_npc_simple&quot;</param>
-                                    <param id="1" name="Parameter {n}">npc_simple.UID</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <event-block>
-                            <conditions>
-                                <condition id="-14" name="Compare variable" type="System">
-                                    <param id="0" name="Variable">quest_type</param>
-                                    <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Value">1</param>
-                                </condition>
-                                <condition id="-10" name="For" type="System">
-                                    <param id="0" name="Name">&quot;Spawn Enemy Quest NPC&quot;</param>
-                                    <param id="1" name="Start index">0</param>
-                                    <param id="2" name="End index">random(4,8)</param>
+                                    <param id="2" name="Value">to_load_map</param>
                                 </condition>
                             </conditions>
                             <actions />
                             <sub-events>
-                                <event-block>
+                                <event-block collapsed="1">
                                     <conditions>
-                                        <condition id="-8" name="Compare two values" type="System">
-                                            <param id="0" name="First value">Random(0,5)</param>
-                                            <param id="1" name="Comparison">2</param>
-                                            <param id="2" name="Second value">3</param>
+                                        <condition id="-14" name="Compare variable" type="System">
+                                            <param id="0" name="Variable">quest_type</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">2</param>
                                         </condition>
                                     </conditions>
                                     <actions>
+                                        <action disabled="1" id="0" name="Set text" type="InfoText">
+                                            <param id="0" name="Text">&quot;Spawning Quest NPC&quot;</param>
+                                        </action>
                                         <action id="-3" name="Create object" type="System">
-                                            <param id="0" name="Object to create">EnemyDude</param>
-                                            <param id="1" name="Layer">1</param>
-                                            <param id="2" name="X">random(50, LayoutWidth-50)</param>
+                                            <param id="0" name="Object to create">npc_simple</param>
+                                            <param id="1" name="Layer">2</param>
+                                            <param id="2" name="X">random(50,LayoutWidth-50)</param>
                                             <param id="3" name="Y">random(50,LayoutHeight-50)</param>
                                         </action>
-                                        <action id="-10" name="Set value" type="EnemyDude">
+                                        <action id="-10" name="Set value" type="npc_simple">
                                             <param id="0" name="Instance variable">is_quest_npc</param>
                                             <param id="1" name="Value">1</param>
                                         </action>
-                                        <action id="-10" name="Add to" type="System">
-                                            <param id="0" name="Variable">remaining_quest_enemies</param>
-                                            <param id="1" name="Value">1</param>
-                                        </action>
-                                        <action id="0" name="Spawn another object" type="EnemyDude">
+                                        <action id="0" name="Spawn another object" type="npc_simple">
                                             <param id="0" name="Object">QuestCircle</param>
                                             <param id="1" name="Layer">2</param>
                                             <param id="2" name="Image point">0</param>
                                         </action>
-                                        <action id="5" name="Set frame" type="QuestCircle">
-                                            <param id="0" name="Frame number">1</param>
-                                        </action>
                                         <action behavior="Pin" id="0" name="Pin to object" type="QuestCircle">
-                                            <param id="0" name="Pin to">EnemyDude</param>
+                                            <param id="0" name="Pin to">npc_simple</param>
                                             <param id="1" name="Mode">0</param>
                                         </action>
-                                        <action id="-10" name="Set value" type="EnemyDude">
+                                        <action id="-10" name="Set value" type="npc_simple">
                                             <param id="0" name="Instance variable">quest_circle</param>
                                             <param id="1" name="Value">QuestCircle.UID</param>
                                         </action>
@@ -5717,60 +5630,138 @@
                                             <param id="0" name="Seconds">0</param>
                                         </action>
                                         <action id="0" name="Call function" type="Function">
-                                            <param id="0" name="Name">&quot;init_EnemyDude&quot;</param>
-                                            <param id="1" name="Parameter {n}">EnemyDude.UID</param>
+                                            <param id="0" name="Name">&quot;init_npc_simple&quot;</param>
+                                            <param id="1" name="Parameter {n}">npc_simple.UID</param>
                                         </action>
                                     </actions>
-                                </event-block>
-                                <event-block>
-                                    <conditions>
-                                        <condition id="-22" name="Else" type="System" />
-                                    </conditions>
-                                    <actions>
-                                        <action id="-3" name="Create object" type="System">
-                                            <param id="0" name="Object to create">EnemyDudeMelee</param>
-                                            <param id="1" name="Layer">1</param>
-                                            <param id="2" name="X">random(50, LayoutWidth-50)</param>
-                                            <param id="3" name="Y">random(50,LayoutHeight-50)</param>
-                                        </action>
-                                        <action id="-10" name="Set value" type="EnemyDudeMelee">
-                                            <param id="0" name="Instance variable">is_quest_npc</param>
-                                            <param id="1" name="Value">1</param>
-                                        </action>
-                                        <action id="-10" name="Add to" type="System">
-                                            <param id="0" name="Variable">remaining_quest_enemies</param>
-                                            <param id="1" name="Value">1</param>
-                                        </action>
-                                        <action id="0" name="Spawn another object" type="EnemyDudeMelee">
-                                            <param id="0" name="Object">QuestCircle</param>
-                                            <param id="1" name="Layer">2</param>
-                                            <param id="2" name="Image point">0</param>
-                                        </action>
-                                        <action id="5" name="Set frame" type="QuestCircle">
-                                            <param id="0" name="Frame number">1</param>
-                                        </action>
-                                        <action behavior="Pin" id="0" name="Pin to object" type="QuestCircle">
-                                            <param id="0" name="Pin to">EnemyDudeMelee</param>
-                                            <param id="1" name="Mode">0</param>
-                                        </action>
-                                        <action id="-10" name="Set value" type="EnemyDudeMelee">
-                                            <param id="0" name="Instance variable">quest_circle</param>
-                                            <param id="1" name="Value">QuestCircle.UID</param>
-                                        </action>
-                                        <action id="-16" name="Wait" type="System">
-                                            <param id="0" name="Seconds">0</param>
-                                        </action>
-                                        <action id="0" name="Call function" type="Function">
-                                            <param id="0" name="Name">&quot;init_EnemyDudeMelee&quot;</param>
-                                            <param id="1" name="Parameter {n}">EnemyDudeMelee.UID</param>
-                                        </action>
-                                    </actions>
+                                    <sub-events>
+                                        <event-block>
+                                            <conditions>
+                                                <condition id="-14" name="Compare variable" type="System">
+                                                    <param id="0" name="Variable">quest_type</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">1</param>
+                                                </condition>
+                                                <condition id="-10" name="For" type="System">
+                                                    <param id="0" name="Name">&quot;Spawn Enemy Quest NPC&quot;</param>
+                                                    <param id="1" name="Start index">0</param>
+                                                    <param id="2" name="End index">random(4,8)</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions />
+                                            <sub-events>
+                                                <event-block>
+                                                    <conditions>
+                                                        <condition id="-8" name="Compare two values" type="System">
+                                                            <param id="0" name="First value">Random(0,5)</param>
+                                                            <param id="1" name="Comparison">2</param>
+                                                            <param id="2" name="Second value">3</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-3" name="Create object" type="System">
+                                                            <param id="0" name="Object to create">EnemyDude</param>
+                                                            <param id="1" name="Layer">1</param>
+                                                            <param id="2" name="X">random(50, LayoutWidth-50)</param>
+                                                            <param id="3" name="Y">random(50,LayoutHeight-50)</param>
+                                                        </action>
+                                                        <action id="-10" name="Set value" type="EnemyDude">
+                                                            <param id="0" name="Instance variable">is_quest_npc</param>
+                                                            <param id="1" name="Value">1</param>
+                                                        </action>
+                                                        <action id="-10" name="Add to" type="System">
+                                                            <param id="0" name="Variable">remaining_quest_enemies</param>
+                                                            <param id="1" name="Value">1</param>
+                                                        </action>
+                                                        <action id="0" name="Spawn another object" type="EnemyDude">
+                                                            <param id="0" name="Object">QuestCircle</param>
+                                                            <param id="1" name="Layer">2</param>
+                                                            <param id="2" name="Image point">0</param>
+                                                        </action>
+                                                        <action id="5" name="Set frame" type="QuestCircle">
+                                                            <param id="0" name="Frame number">1</param>
+                                                        </action>
+                                                        <action behavior="Pin" id="0" name="Pin to object" type="QuestCircle">
+                                                            <param id="0" name="Pin to">EnemyDude</param>
+                                                            <param id="1" name="Mode">0</param>
+                                                        </action>
+                                                        <action id="-10" name="Set value" type="EnemyDude">
+                                                            <param id="0" name="Instance variable">quest_circle</param>
+                                                            <param id="1" name="Value">QuestCircle.UID</param>
+                                                        </action>
+                                                        <action id="-16" name="Wait" type="System">
+                                                            <param id="0" name="Seconds">0</param>
+                                                        </action>
+                                                        <action id="0" name="Call function" type="Function">
+                                                            <param id="0" name="Name">&quot;init_EnemyDude&quot;</param>
+                                                            <param id="1" name="Parameter {n}">EnemyDude.UID</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block>
+                                                    <conditions>
+                                                        <condition id="-22" name="Else" type="System" />
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-3" name="Create object" type="System">
+                                                            <param id="0" name="Object to create">EnemyDudeMelee</param>
+                                                            <param id="1" name="Layer">1</param>
+                                                            <param id="2" name="X">random(50, LayoutWidth-50)</param>
+                                                            <param id="3" name="Y">random(50,LayoutHeight-50)</param>
+                                                        </action>
+                                                        <action id="-10" name="Set value" type="EnemyDudeMelee">
+                                                            <param id="0" name="Instance variable">is_quest_npc</param>
+                                                            <param id="1" name="Value">1</param>
+                                                        </action>
+                                                        <action id="-10" name="Add to" type="System">
+                                                            <param id="0" name="Variable">remaining_quest_enemies</param>
+                                                            <param id="1" name="Value">1</param>
+                                                        </action>
+                                                        <action id="0" name="Spawn another object" type="EnemyDudeMelee">
+                                                            <param id="0" name="Object">QuestCircle</param>
+                                                            <param id="1" name="Layer">2</param>
+                                                            <param id="2" name="Image point">0</param>
+                                                        </action>
+                                                        <action id="5" name="Set frame" type="QuestCircle">
+                                                            <param id="0" name="Frame number">1</param>
+                                                        </action>
+                                                        <action behavior="Pin" id="0" name="Pin to object" type="QuestCircle">
+                                                            <param id="0" name="Pin to">EnemyDudeMelee</param>
+                                                            <param id="1" name="Mode">0</param>
+                                                        </action>
+                                                        <action id="-10" name="Set value" type="EnemyDudeMelee">
+                                                            <param id="0" name="Instance variable">quest_circle</param>
+                                                            <param id="1" name="Value">QuestCircle.UID</param>
+                                                        </action>
+                                                        <action id="-16" name="Wait" type="System">
+                                                            <param id="0" name="Seconds">0</param>
+                                                        </action>
+                                                        <action id="0" name="Call function" type="Function">
+                                                            <param id="0" name="Name">&quot;init_EnemyDudeMelee&quot;</param>
+                                                            <param id="1" name="Parameter {n}">EnemyDudeMelee.UID</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
+                                    </sub-events>
                                 </event-block>
                             </sub-events>
                         </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-22" name="Else" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" type="Function">
+                                    <param id="0" name="Name">&quot;mark_quest_exits&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
+                                </action>
+                            </actions>
+                        </event-block>
                     </sub-events>
                 </event-block>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="0" name="On function" type="Function">
                             <param id="0" name="Name">&quot;interact_npc&quot;</param>
@@ -5804,6 +5795,14 @@
                                 <action id="-9" name="Set value" type="System">
                                     <param id="0" name="Variable">is_on_quest</param>
                                     <param id="1" name="Value">2</param>
+                                </action>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">quest_target_location</param>
+                                    <param id="1" name="Value">quest_giver_location</param>
+                                </action>
+                                <action id="0" name="Call function" type="Function">
+                                    <param id="0" name="Name">&quot;mark_quest_exits&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
                                 </action>
                                 <action id="-10" name="Set value" type="NPC">
                                     <param id="0" name="Instance variable">is_quest_npc</param>
@@ -5854,6 +5853,14 @@
                         <action id="-9" name="Set value" type="System">
                             <param id="0" name="Variable">is_on_quest</param>
                             <param id="1" name="Value">2</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">quest_target_location</param>
+                            <param id="1" name="Value">quest_giver_location</param>
+                        </action>
+                        <action id="0" name="Call function" type="Function">
+                            <param id="0" name="Name">&quot;mark_quest_exits&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
                         </action>
                     </actions>
                 </event-block>
@@ -5986,5 +5993,59 @@
                 </event-block>
             </sub-events>
         </event-group>
+        <event-block>
+            <conditions>
+                <condition id="0" name="On function" type="Function">
+                    <param id="0" name="Name">&quot;mark_quest_exits&quot;</param>
+                </condition>
+                <condition id="-14" name="Compare variable" type="System">
+                    <param id="0" name="Variable">to_load_map</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Value">quest_target_location</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block>
+                    <conditions>
+                        <condition id="-11" name="For Each" type="System">
+                            <param id="0" name="Object">Transport</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" type="Transport">
+                            <param id="0" name="Instance variable">target</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">quest_target_location</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="Flash" id="0" name="Flash" type="Transport">
+                            <param id="0" name="&apos;On&apos; time">1</param>
+                            <param id="1" name="&apos;Off&apos; time">0.2</param>
+                            <param id="2" name="Duration">1000</param>
+                        </action>
+                        <action id="0" name="Set text" type="InfoText">
+                            <param id="0" name="Text">&quot;Flash started&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-11" name="For Each" type="System">
+                            <param id="0" name="Object">WorldMapTransport</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="Flash" id="0" name="Flash" type="WorldMapTransport">
+                            <param id="0" name="&apos;On&apos; time">1</param>
+                            <param id="1" name="&apos;Off&apos; time">0.2</param>
+                            <param id="2" name="Duration">1000</param>
+                        </action>
+                        <action id="0" name="Set text" type="InfoText">
+                            <param id="0" name="Text">&quot;Flash started&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
     </events>
 </c2eventsheet>

@@ -207,6 +207,9 @@
                         <target>0</target>
                         <spawnPointTarget>0</spawnPointTarget>
                     </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="Flash" />
+                    </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
@@ -256,6 +259,9 @@
                         <interact_func>interact_world_transport</interact_func>
                         <interact_description>Go to map</interact_description>
                     </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="Flash" />
+                    </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
