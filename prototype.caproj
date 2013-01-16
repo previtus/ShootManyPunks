@@ -7,16 +7,17 @@
     <unique-id>w2turdg6quee</unique-id>
     <saved-with-version>11400</saved-with-version>
     <used-plugins>
-        <plugin author="Scirra" id="Button" version="1">Button</plugin>
-        <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
-        <plugin author="Scirra" id="Function" version="1">Function</plugin>
-        <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
-        <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
-        <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
-        <plugin author="Rex.Rainbow" id="Rex_TMXImporter" version="0.109999999">TMX Importer</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="Text" version="1">Text</plugin>
         <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
+        <plugin author="Rex.Rainbow" id="Rex_TMXImporter" version="0.109999999">TMX Importer</plugin>
+        <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
+        <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
+        <plugin author="Scirra" id="Button" version="1">Button</plugin>
+        <plugin author="Scirra" id="Function" version="1">Function</plugin>
+        <plugin author="Scirra" id="Arr" version="1">Array</plugin>
+        <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
+        <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior author="Scirra" id="Anchor" version="1">Anchor</behavior>
@@ -51,7 +52,7 @@
         <prop name="Use iOS retina display">iPhone only</prop>
     </configuration-settings>
     <object-folder expanded="1">
-        <object-folder expanded="1" name="GUI">
+        <object-folder expanded="0" name="GUI">
             <object-type name="Debug">
                 <plugin id="Text" />
                 <behaviors>
@@ -196,6 +197,17 @@
                     </animation>
                 </animation-folder>
             </object-type>
+            <object-type name="CPUBar">
+                <plugin id="Text" />
+                <behaviors>
+                    <behavior-type name="Anchor">
+                        <behavior id="Anchor" />
+                    </behavior-type>
+                </behaviors>
+            </object-type>
+            <object-type name="ProgramBar">
+                <plugin id="Text" />
+            </object-type>
         </object-folder>
         <object-folder expanded="0" name="Guns">
             <object-type global="1" name="MachineGun">
@@ -313,7 +325,7 @@
             </object-type>
         </object-folder>
         <object-folder expanded="0" name="Implants">
-            <object-type name="Medicomp">
+            <object-type global="1" name="Medicomp">
                 <plugin id="Sprite" />
                 <animation-folder expanded="1">
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
@@ -321,7 +333,7 @@
                     </animation>
                 </animation-folder>
             </object-type>
-            <object-type name="AuxHeart">
+            <object-type global="1" name="AuxHeart">
                 <plugin id="Sprite" />
                 <animation-folder expanded="1">
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
@@ -329,7 +341,7 @@
                     </animation>
                 </animation-folder>
             </object-type>
-            <object-type name="Synadrenaline">
+            <object-type global="1" name="Synadrenaline">
                 <plugin id="Sprite" />
                 <animation-folder expanded="1">
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
@@ -337,7 +349,7 @@
                     </animation>
                 </animation-folder>
             </object-type>
-            <object-type name="CyberbrainMkI">
+            <object-type global="1" name="CyberbrainMkI">
                 <plugin id="Sprite" />
                 <animation-folder expanded="1">
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
@@ -345,7 +357,7 @@
                     </animation>
                 </animation-folder>
             </object-type>
-            <object-type name="SynNeuron">
+            <object-type global="1" name="SynNeuron">
                 <plugin id="Sprite" />
                 <animation-folder expanded="1">
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
@@ -353,7 +365,7 @@
                     </animation>
                 </animation-folder>
             </object-type>
-            <object-type name="Cyberarms">
+            <object-type global="1" name="Cyberarms">
                 <plugin id="Sprite" />
                 <animation-folder expanded="1">
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
@@ -361,7 +373,7 @@
                     </animation>
                 </animation-folder>
             </object-type>
-            <object-type name="Cyberlegs">
+            <object-type global="1" name="Cyberlegs">
                 <plugin id="Sprite" />
                 <animation-folder expanded="1">
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
@@ -863,6 +875,44 @@
                 </animation-folder>
             </object-type>
         </object-folder>
+        <object-folder expanded="0" name="Programs">
+            <object-type name="StealVisionROM">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="DisruptROM">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="AimAssistROM">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="AimAssist">
+                <plugin id="Arr" />
+                <instance-variables>
+                    <instance-variable name="number_active" type="number" />
+                </instance-variables>
+            </object-type>
+            <object-type name="Disrupt">
+                <plugin id="Arr" />
+            </object-type>
+            <object-type name="StealVision">
+                <plugin id="Arr" />
+            </object-type>
+        </object-folder>
         <object-type name="TMXImporter">
             <plugin id="Rex_TMXImporter" />
         </object-type>
@@ -1037,11 +1087,13 @@
         </family>
         <family name="Interactable" plugin-id="Sprite">
             <members>
+                <member>AimAssistROM</member>
                 <member>AuxHeart</member>
                 <member>Box</member>
                 <member>Cyberarms</member>
                 <member>CyberbrainMkI</member>
                 <member>Cyberlegs</member>
+                <member>DisruptROM</member>
                 <member>MachineGun</member>
                 <member>Medicomp</member>
                 <member>npc_simple</member>
@@ -1049,6 +1101,7 @@
                 <member>QuestGiver</member>
                 <member>Revolver</member>
                 <member>Shotgun</member>
+                <member>StealVisionROM</member>
                 <member>SubMachineGun</member>
                 <member>SubMachineGun2</member>
                 <member>Synadrenaline</member>
@@ -1099,6 +1152,29 @@
                 <instance-variable name="accuracy_bonus" type="number" />
                 <instance-variable name="dodge_bonus" type="number" />
                 <instance-variable name="bio_drain" type="number" />
+            </instance-variables>
+        </family>
+        <family name="ProgramROM" plugin-id="Sprite">
+            <members>
+                <member>AimAssistROM</member>
+                <member>DisruptROM</member>
+                <member>StealVisionROM</member>
+            </members>
+            <instance-variables>
+                <instance-variable name="prog_type" type="string" />
+            </instance-variables>
+        </family>
+        <family name="Program" plugin-id="Arr">
+            <members>
+                <member>AimAssist</member>
+                <member>Disrupt</member>
+                <member>StealVision</member>
+            </members>
+            <instance-variables>
+                <instance-variable name="cpu_usage" type="number" />
+                <instance-variable name="cooldown" type="number" />
+                <instance-variable name="cpu_delay" type="number" />
+                <instance-variable name="next_up" type="number" />
             </instance-variables>
         </family>
     </families>

@@ -1003,6 +1003,84 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
+                <instance type="StealVisionROM">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <instance-variables>
+                        <interact_func>interact_rom</interact_func>
+                        <interact_description>Mount Steal Vision ROM</interact_description>
+                        <prog_type>steal_vision</prog_type>
+                    </instance-variables>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>856</x>
+                        <y>-270</y>
+                        <z>0</z>
+                        <width>80</width>
+                        <height>80</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="DisruptROM">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <instance-variables>
+                        <interact_func>interact_rom</interact_func>
+                        <interact_description>Mount Disrupt ROM</interact_description>
+                        <prog_type>disrupt</prog_type>
+                    </instance-variables>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>941</x>
+                        <y>-269</y>
+                        <z>0</z>
+                        <width>80</width>
+                        <height>80</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="AimAssistROM">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <instance-variables>
+                        <interact_func>interact_rom</interact_func>
+                        <interact_description>Mount Aim Assist ROM</interact_description>
+                        <prog_type>aim_assist</prog_type>
+                    </instance-variables>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>1028</x>
+                        <y>-264</y>
+                        <z>0</z>
+                        <width>80</width>
+                        <height>80</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
             </instances>
             <effects />
         </layer>
@@ -1753,6 +1831,70 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
+                <instance type="CPUBar">
+                    <properties>
+                        <text></text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Arial,-27,400,0</font>
+                        <color>0,102,102</color>
+                        <horizontal-alignment>Left</horizontal-alignment>
+                        <vertical-alignment>Top</vertical-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="Anchor">
+                            <properties>
+                                <left-edge>Window left</left-edge>
+                                <top-edge>Window top</top-edge>
+                                <right-edge>None</right-edge>
+                                <bottom-edge>None</bottom-edge>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>448</x>
+                        <y>252</y>
+                        <z>0</z>
+                        <width>200</width>
+                        <height>30</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="ProgramBar">
+                    <properties>
+                        <text>Text</text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Arial,-16</font>
+                        <color>255,255,204</color>
+                        <horizontal-alignment>Left</horizontal-alignment>
+                        <vertical-alignment>Top</vertical-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>20</x>
+                        <y>43</y>
+                        <z>0</z>
+                        <width>200</width>
+                        <height>84</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
             </instances>
             <effects />
         </layer>
@@ -1763,6 +1905,46 @@
                 <x-at-00>0</x-at-00>
                 <y-at-00>0</y-at-00>
             </properties>
+        </instance>
+        <instance type="AimAssist">
+            <properties>
+                <width>0</width>
+                <height>3</height>
+                <depth>1</depth>
+            </properties>
+            <instance-variables>
+                <cpu_usage>30</cpu_usage>
+                <cooldown>240</cooldown>
+                <cpu_delay>240</cpu_delay>
+                <next_up>0</next_up>
+                <number_active>0</number_active>
+            </instance-variables>
+        </instance>
+        <instance type="Disrupt">
+            <properties>
+                <width>0</width>
+                <height>3</height>
+                <depth>1</depth>
+            </properties>
+            <instance-variables>
+                <cpu_usage>50</cpu_usage>
+                <cooldown>1200</cooldown>
+                <cpu_delay>300</cpu_delay>
+                <next_up>0</next_up>
+            </instance-variables>
+        </instance>
+        <instance type="StealVision">
+            <properties>
+                <width>0</width>
+                <height>3</height>
+                <depth>1</depth>
+            </properties>
+            <instance-variables>
+                <cpu_usage>70</cpu_usage>
+                <cooldown>1800</cooldown>
+                <cpu_delay>600</cpu_delay>
+                <next_up>0</next_up>
+            </instance-variables>
         </instance>
     </nonworld-instances>
     <effects />

@@ -47,6 +47,13 @@
         <variable constant="0" name="current_accuracy_bonus" static="0" type="number">1</variable>
         <variable constant="0" name="current_speed_bonus" static="0" type="number">1</variable>
         <variable constant="0" name="current_dodge_bonus" static="0" type="number">0</variable>
+        <comment>promenne pro programy (aneb kdyz array nejsou tak globalni, jak by mely)</comment>
+        <variable constant="0" name="stealvision_json" static="0" type="text"></variable>
+        <variable constant="0" name="stealvision_next_up" static="0" type="number">0</variable>
+        <variable constant="0" name="disrupt_json" static="0" type="text"></variable>
+        <variable constant="0" name="disrupt_next_up" static="0" type="number">0</variable>
+        <variable constant="0" name="aimassist_json" static="0" type="text"></variable>
+        <variable constant="0" name="aimassist_number_active" static="0" type="number">0</variable>
         <comment>promenne souvisejici se zmenou mapy</comment>
         <variable constant="0" name="to_load_map" static="0" type="number">1</variable>
         <variable constant="0" name="to_load_spawnpoint" static="0" type="number">1</variable>
@@ -589,7 +596,7 @@
                         </event-block>
                     </sub-events>
                 </event-block>
-                <event-block any="1">
+                <event-block any="1" collapsed="1">
                     <conditions>
                         <condition id="-1" name="Every tick" type="System" />
                     </conditions>
@@ -605,6 +612,12 @@
                         </action>
                         <action id="0" name="Set text" type="BioenergyBar">
                             <param id="0" name="Text">int(avatar_bioenergy) &amp; &quot;/&quot; &amp; avatar_max_bioenergy</param>
+                        </action>
+                        <action id="0" name="Set text" type="CPUBar">
+                            <param id="0" name="Text">int(avatar_cpu) &amp; &quot;/&quot; &amp; avatar_max_cpu</param>
+                        </action>
+                        <action id="0" name="Set text" type="ProgramBar">
+                            <param id="0" name="Text">&quot;Aim Assist: &quot; &amp; AimAssist.Width &amp; &quot; | &quot; &amp; AimAssist.number_active &amp; &quot; &quot; &amp; newline &amp; &quot;Disrupt: &quot; &amp; Disrupt.Width &amp; &quot; &quot; &amp; newline &amp; &quot;Steal Vision: &quot; &amp; StealVision.Width</param>
                         </action>
                         <action id="0" name="Set text" type="FPSText">
                             <param id="0" name="Text">str(fps) &amp; &quot; FPS&quot;</param>
@@ -1164,7 +1177,7 @@
                             </actions>
                             <sub-events>
                                 <comment>manipulace se zbrani</comment>
-                                <event-block>
+                                <event-block collapsed="1">
                                     <conditions>
                                         <condition id="-19" name="Pick all" type="System">
                                             <param id="0" name="Object">Weapon</param>
@@ -1274,8 +1287,88 @@
                                 </event-block>
                             </sub-events>
                         </event-block>
+                        <comment>steal_vision - nepritel je pod vlivem programu &quot;Steal Vision&quot;</comment>
+                        <event-block collapsed="1">
+                            <conditions>
+                                <condition id="-22" name="Else" type="System" />
+                                <condition id="-7" name="Compare instance variable" type="Enemy">
+                                    <param id="0" name="Instance variable">state</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;steal_vision&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-11" name="Add to" type="Enemy">
+                                    <param id="0" name="Instance variable">target_x</param>
+                                    <param id="1" name="Value">random(-1,1)</param>
+                                </action>
+                                <action id="-11" name="Add to" type="Enemy">
+                                    <param id="0" name="Instance variable">target_y</param>
+                                    <param id="1" name="Value">random(-1,1)</param>
+                                </action>
+                                <action id="-12" name="Subtract from" type="Enemy">
+                                    <param id="0" name="Instance variable">state_switch_timer</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action behavior="Bullet" id="0" name="Set speed" type="Enemy">
+                                    <param id="0" name="Speed">0</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" type="System">
+                                            <param id="0" name="First value">random(0,1)</param>
+                                            <param id="1" name="Comparison">3</param>
+                                            <param id="2" name="Second value">0.3</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Call function" type="Function">
+                                            <param id="0" name="Name">&quot;fireWeapon&quot;</param>
+                                            <param id="1" name="Parameter {n}">Enemy.weapon_uid{###}Enemy.ImagePointX(1){###}Enemy.ImagePointY(1){###}Enemy.Angle{###}1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-19" name="Pick all" type="System">
+                                            <param id="0" name="Object">Weapon</param>
+                                        </condition>
+                                        <condition id="-14" name="Pick by unique ID" type="Weapon">
+                                            <param id="0" name="Unique ID">Enemy.weapon_uid</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-13" name="Set boolean" type="Weapon">
+                                            <param id="0" name="Instance variable">single_shot_needs_reset</param>
+                                            <param id="1" name="Value">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" type="Enemy">
+                                            <param id="0" name="Instance variable">state_switch_timer</param>
+                                            <param id="1" name="Comparison">3</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" type="Enemy">
+                                            <param id="0" name="Instance variable">state</param>
+                                            <param id="1" name="Value">&quot;shoot&quot;</param>
+                                        </action>
+                                        <action id="-10" name="Set value" type="Enemy">
+                                            <param id="0" name="Instance variable">state_switch_timer</param>
+                                            <param id="1" name="Value">random(120,720)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
                         <comment>melee - do hrace jde sekat</comment>
-                        <event-block>
+                        <event-block collapsed="1">
                             <conditions>
                                 <condition id="-22" name="Else" type="System" />
                                 <condition id="-7" name="Compare instance variable" type="Enemy">
@@ -1656,16 +1749,54 @@
                             <param id="1" name="Layer">1</param>
                             <param id="2" name="Image point">0</param>
                         </action>
-                        <action id="0" name="Spawn another object" type="Enemy">
-                            <param id="0" name="Object">Implant</param>
-                            <param id="1" name="Layer">1</param>
-                            <param id="2" name="Image point">0</param>
-                        </action>
-                        <action id="9" name="Set scale" type="Implant">
-                            <param id="0" name="Scale">0.25</param>
-                        </action>
                     </actions>
                     <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-8" name="Compare two values" type="System">
+                                    <param id="0" name="First value">random(0,1)</param>
+                                    <param id="1" name="Comparison">3</param>
+                                    <param id="2" name="Second value">0.5</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" type="System">
+                                            <param id="0" name="First value">random(0,1)</param>
+                                            <param id="1" name="Comparison">3</param>
+                                            <param id="2" name="Second value">0.5</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Spawn another object" type="Enemy">
+                                            <param id="0" name="Object">ProgramROM</param>
+                                            <param id="1" name="Layer">1</param>
+                                            <param id="2" name="Image point">0</param>
+                                        </action>
+                                        <action id="9" name="Set scale" type="ProgramROM">
+                                            <param id="0" name="Scale">0.25</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-22" name="Else" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Spawn another object" type="Enemy">
+                                            <param id="0" name="Object">Implant</param>
+                                            <param id="1" name="Layer">1</param>
+                                            <param id="2" name="Image point">0</param>
+                                        </action>
+                                        <action id="9" name="Set scale" type="Implant">
+                                            <param id="0" name="Scale">0.25</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
                         <event-block>
                             <conditions>
                                 <condition id="-14" name="Pick by unique ID" type="Weapon">
@@ -2221,7 +2352,7 @@
                                 </action>
                             </actions>
                             <sub-events>
-                                <comment>strili hrac? pokud ano, pridat bonusy z implantatu</comment>
+                                <comment>strili hrac? pokud ano, pridat bonusy</comment>
                                 <event-block>
                                     <conditions>
                                         <condition id="1" name="Compare parameter" type="Function">
@@ -3617,9 +3748,13 @@
                                     <param id="0" name="Variable">current_sprint_stamina_bonus</param>
                                     <param id="1" name="Value">max(current_sprint_stamina_bonus,-1)</param>
                                 </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">current_accuracy_bonus</param>
+                                    <param id="1" name="Value">-0.3*AimAssist.number_active</param>
+                                </action>
                                 <action id="-9" name="Set value" type="System">
                                     <param id="0" name="Variable">current_accuracy_bonus</param>
-                                    <param id="1" name="Value">max(current_accuracy_bonus,-1)</param>
+                                    <param id="1" name="Value">max(current_accuracy_bonus,0.1)</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -3766,6 +3901,467 @@
                         <action id="-10" name="Set value" type="Cyberlegs">
                             <param id="0" name="Instance variable">sprint_stamina_drain_bonus</param>
                             <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group collapsed="1" description="" title="Programs">
+            <sub-events>
+                <comment>AimAssist - pridat instanci</comment>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On key pressed" type="Keyboard">
+                            <param id="0" name="Key">74 (J)</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" type="AimAssist">
+                            <param id="0" name="Instance variable">number_active</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Value">AimAssist.Width</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" type="System">
+                            <param id="0" name="Variable">avatar_cpu</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Value">AimAssist.cpu_usage</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" type="Function">
+                            <param id="0" name="Name">&quot;aim_assist_run&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                        <action id="-11" name="Subtract from" type="System">
+                            <param id="0" name="Variable">avatar_cpu</param>
+                            <param id="1" name="Value">AimAssist.cpu_usage</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>AimAssist - zrusit instanci</comment>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On key pressed" type="Keyboard">
+                            <param id="0" name="Key">77 (M)</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" type="AimAssist">
+                            <param id="0" name="Instance variable">number_active</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" type="Function">
+                            <param id="0" name="Name">&quot;aim_assist_close&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                        <action id="3" name="Set at XY" type="AimAssist">
+                            <param id="0" name="X">AimAssist.number_active</param>
+                            <param id="1" name="Y">0</param>
+                            <param id="2" name="Value">AimAssist.cpu_delay</param>
+                        </action>
+                        <action id="3" name="Set at XY" type="AimAssist">
+                            <param id="0" name="X">AimAssist.number_active</param>
+                            <param id="1" name="Y">1</param>
+                            <param id="2" name="Value">AimAssist.cpu_delay</param>
+                        </action>
+                        <action id="3" name="Set at XY" type="AimAssist">
+                            <param id="0" name="X">AimAssist.number_active</param>
+                            <param id="1" name="Y">2</param>
+                            <param id="2" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Disrupt - spustit instanci</comment>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On key pressed" type="Keyboard">
+                            <param id="0" name="Key">75 (K)</param>
+                        </condition>
+                        <condition id="1" name="Compare at XY" type="Disrupt">
+                            <param id="0" name="X">Disrupt.next_up</param>
+                            <param id="1" name="Y">0</param>
+                            <param id="2" name="Comparison">0</param>
+                            <param id="3" name="Value">0</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" type="System">
+                            <param id="0" name="Variable">avatar_cpu</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Value">Disrupt.cpu_usage</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" type="Function">
+                            <param id="0" name="Name">&quot;disrupt&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                        <action id="3" name="Set at XY" type="Disrupt">
+                            <param id="0" name="X">Disrupt.next_up</param>
+                            <param id="1" name="Y">0</param>
+                            <param id="2" name="Value">Disrupt.cooldown</param>
+                        </action>
+                        <action id="3" name="Set at XY" type="Disrupt">
+                            <param id="0" name="X">Disrupt.next_up</param>
+                            <param id="1" name="Y">1</param>
+                            <param id="2" name="Value">Disrupt.cpu_delay</param>
+                        </action>
+                        <action id="3" name="Set at XY" type="Disrupt">
+                            <param id="0" name="X">Disrupt.next_up</param>
+                            <param id="1" name="Y">2</param>
+                            <param id="2" name="Value">1</param>
+                        </action>
+                        <action id="-10" name="Set value" type="Disrupt">
+                            <param id="0" name="Instance variable">next_up</param>
+                            <param id="1" name="Value">(Disrupt.next_up+1)%(Disrupt.Width)</param>
+                        </action>
+                        <action id="-11" name="Subtract from" type="System">
+                            <param id="0" name="Variable">avatar_cpu</param>
+                            <param id="1" name="Value">Disrupt.cpu_usage</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Steal Vision - spustit instanci</comment>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On key pressed" type="Keyboard">
+                            <param id="0" name="Key">76 (L)</param>
+                        </condition>
+                        <condition id="1" name="Compare at XY" type="Disrupt">
+                            <param id="0" name="X">StealVision.next_up</param>
+                            <param id="1" name="Y">0</param>
+                            <param id="2" name="Comparison">0</param>
+                            <param id="3" name="Value">0</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" type="System">
+                            <param id="0" name="Variable">avatar_cpu</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Value">StealVision.cpu_usage</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" type="Function">
+                            <param id="0" name="Name">&quot;steal_vision&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                        <action id="3" name="Set at XY" type="StealVision">
+                            <param id="0" name="X">StealVision.next_up</param>
+                            <param id="1" name="Y">0</param>
+                            <param id="2" name="Value">StealVision.cooldown</param>
+                        </action>
+                        <action id="3" name="Set at XY" type="StealVision">
+                            <param id="0" name="X">StealVision.next_up</param>
+                            <param id="1" name="Y">1</param>
+                            <param id="2" name="Value">StealVision.cpu_delay</param>
+                        </action>
+                        <action id="3" name="Set at XY" type="StealVision">
+                            <param id="0" name="X">StealVision.next_up</param>
+                            <param id="1" name="Y">2</param>
+                            <param id="2" name="Value">1</param>
+                        </action>
+                        <action id="-10" name="Set value" type="StealVision">
+                            <param id="0" name="Instance variable">next_up</param>
+                            <param id="1" name="Value">(StealVision.next_up+1)%(StealVision.Width)</param>
+                        </action>
+                        <action id="-11" name="Subtract from" type="System">
+                            <param id="0" name="Variable">avatar_cpu</param>
+                            <param id="1" name="Value">StealVision.cpu_usage</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>cooldown</comment>
+                <event-block collapsed="1">
+                    <conditions>
+                        <condition id="-11" name="For Each" type="System">
+                            <param id="0" name="Object">Program</param>
+                        </condition>
+                        <condition id="3" name="For each element" type="Program">
+                            <param id="0" name="Axes">2</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="4" name="Compare current value" type="Program">
+                                    <param id="0" name="Comparison">4</param>
+                                    <param id="1" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="3" name="Set at XY" type="Program">
+                                    <param id="0" name="X">Program.CurX</param>
+                                    <param id="1" name="Y">0</param>
+                                    <param id="2" name="Value">Program.CurValue-1</param>
+                                </action>
+                                <action id="3" name="Set at XY" type="Program">
+                                    <param id="0" name="X">Program.CurX</param>
+                                    <param id="1" name="Y">1</param>
+                                    <param id="2" name="Value">Program.At(Program.CurX,1)-1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="1" name="Compare at XY" type="Program">
+                                    <param id="0" name="X">Program.CurX</param>
+                                    <param id="1" name="Y">0</param>
+                                    <param id="2" name="Comparison">3</param>
+                                    <param id="3" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="3" name="Set at XY" type="Program">
+                                    <param id="0" name="X">Program.CurX</param>
+                                    <param id="1" name="Y">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>pokud uz doslo cpu_delay, vratit systemove prostredky</comment>
+                        <event-block>
+                            <conditions>
+                                <condition id="1" name="Compare at XY" type="Program">
+                                    <param id="0" name="X">Program.CurX</param>
+                                    <param id="1" name="Y">1</param>
+                                    <param id="2" name="Comparison">3</param>
+                                    <param id="3" name="Value">0</param>
+                                </condition>
+                                <condition id="1" name="Compare at XY" type="Program">
+                                    <param id="0" name="X">Program.CurX</param>
+                                    <param id="1" name="Y">2</param>
+                                    <param id="2" name="Comparison">0</param>
+                                    <param id="3" name="Value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="3" name="Set at XY" type="Program">
+                                    <param id="0" name="X">Program.CurX</param>
+                                    <param id="1" name="Y">1</param>
+                                    <param id="2" name="Value">0</param>
+                                </action>
+                                <action id="3" name="Set at XY" type="Program">
+                                    <param id="0" name="X">Program.CurX</param>
+                                    <param id="1" name="Y">2</param>
+                                    <param id="2" name="Value">0</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">avatar_cpu</param>
+                                    <param id="1" name="Value">Program.cpu_usage</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>funkce jednotlivych programu</comment>
+                <event-block collapsed="1">
+                    <conditions>
+                        <condition id="0" name="On function" type="Function">
+                            <param id="0" name="Name">&quot;steal_vision&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-19" name="Pick all" type="System">
+                                    <param id="0" name="Object">Enemy</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" type="Enemy">
+                                    <param id="0" name="Instance variable">state</param>
+                                    <param id="1" name="Comparison">1</param>
+                                    <param id="2" name="Value">&quot;sleep&quot;</param>
+                                </condition>
+                                <condition id="-8" name="Compare two values" type="System">
+                                    <param id="0" name="First value">distance(Enemy.ImagePointX(0),Enemy.ImagePointY(0),Avatar.ImagePointX(0),Enemy.ImagePointY(0))</param>
+                                    <param id="1" name="Comparison">3</param>
+                                    <param id="2" name="Second value">400</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" type="Enemy">
+                                    <param id="0" name="Instance variable">state</param>
+                                    <param id="1" name="Value">&quot;steal_vision&quot;</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Enemy">
+                                    <param id="0" name="Instance variable">state_switch_timer</param>
+                                    <param id="1" name="Value">random(200,600)</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Enemy">
+                                    <param id="0" name="Instance variable">target_x</param>
+                                    <param id="1" name="Value">Enemy.ImagePointX(0)</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Enemy">
+                                    <param id="0" name="Instance variable">target_y</param>
+                                    <param id="1" name="Value">Enemy.ImagePointY(0)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block collapsed="1">
+                    <conditions>
+                        <condition id="0" name="On function" type="Function">
+                            <param id="0" name="Name">&quot;disrupt&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-19" name="Pick all" type="System">
+                                    <param id="0" name="Object">Enemy</param>
+                                </condition>
+                                <condition id="-11" name="For Each" type="System">
+                                    <param id="0" name="Object">Enemy</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" type="Enemy">
+                                    <param id="0" name="Instance variable">state</param>
+                                    <param id="1" name="Comparison">1</param>
+                                    <param id="2" name="Value">&quot;sleep&quot;</param>
+                                </condition>
+                                <condition id="-8" name="Compare two values" type="System">
+                                    <param id="0" name="First value">distance(Enemy.ImagePointX(0),Enemy.ImagePointY(0),Avatar.ImagePointX(0),Enemy.ImagePointY(0))</param>
+                                    <param id="1" name="Comparison">3</param>
+                                    <param id="2" name="Second value">400</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-19" name="Pick all" type="System">
+                                            <param id="0" name="Object">Weapon</param>
+                                        </condition>
+                                        <condition id="-14" name="Pick by unique ID" type="Weapon">
+                                            <param id="0" name="Unique ID">Enemy.weapon_uid</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" type="Weapon">
+                                            <param id="0" name="Instance variable">firing_timer</param>
+                                            <param id="1" name="Value">random(120,360)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On function" type="Function">
+                            <param id="0" name="Name">&quot;aim_assist_run&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-11" name="Add to" type="AimAssist">
+                            <param id="0" name="Instance variable">number_active</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="0" name="Call function" type="Function">
+                            <param id="0" name="Name">&quot;recalculate_implants&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On function" type="Function">
+                            <param id="0" name="Name">&quot;aim_assist_close&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-12" name="Subtract from" type="AimAssist">
+                            <param id="0" name="Instance variable">number_active</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="0" name="Call function" type="Function">
+                            <param id="0" name="Name">&quot;recalculate_implants&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>ukladani promennych programu pri zmene layoutu</comment>
+                <event-block>
+                    <conditions>
+                        <condition id="-19" name="On destroyed" type="AimAssist" />
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">aimassist_json</param>
+                            <param id="1" name="Value">AimAssist.AsJSON</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">aimassist_number_active</param>
+                            <param id="1" name="Value">AimAssist.number_active</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-19" name="On destroyed" type="Disrupt" />
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">disrupt_json</param>
+                            <param id="1" name="Value">Disrupt.AsJSON</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">disrupt_next_up</param>
+                            <param id="1" name="Value">Disrupt.next_up</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-19" name="On destroyed" type="StealVision" />
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">stealvision_json</param>
+                            <param id="1" name="Value">StealVision.AsJSON</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">stealvision_next_up</param>
+                            <param id="1" name="Value">StealVision.next_up</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-2" name="On start of layout" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="11" name="Load" type="AimAssist">
+                            <param id="0" name="JSON">aimassist_json</param>
+                        </action>
+                        <action id="-10" name="Set value" type="AimAssist">
+                            <param id="0" name="Instance variable">number_active</param>
+                            <param id="1" name="Value">aimassist_number_active</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">aimassist_json</param>
+                            <param id="1" name="Value">&quot;&quot;</param>
+                        </action>
+                        <action id="11" name="Load" type="Disrupt">
+                            <param id="0" name="JSON">disrupt_json</param>
+                        </action>
+                        <action id="-10" name="Set value" type="Disrupt">
+                            <param id="0" name="Instance variable">next_up</param>
+                            <param id="1" name="Value">disrupt_next_up</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">disrupt_json</param>
+                            <param id="1" name="Value">&quot;&quot;</param>
+                        </action>
+                        <action id="11" name="Load" type="StealVision">
+                            <param id="0" name="JSON">stealvision_json</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">stealvision_json</param>
+                            <param id="1" name="Value">&quot;&quot;</param>
+                        </action>
+                        <action id="-10" name="Set value" type="StealVision">
+                            <param id="0" name="Instance variable">next_up</param>
+                            <param id="1" name="Value">stealvision_next_up</param>
                         </action>
                     </actions>
                 </event-block>
@@ -4052,7 +4648,7 @@
                 <variable constant="0" name="implant_pos_y" static="0" type="number">0</variable>
                 <variable constant="0" name="implant_uid" static="0" type="number">0</variable>
                 <variable constant="0" name="implant_slot" static="0" type="text"></variable>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="0" name="On function" type="Function">
                             <param id="0" name="Name">&quot;interact_implant&quot;</param>
@@ -4307,6 +4903,75 @@
                         </event-block>
                     </sub-events>
                 </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On function" type="Function">
+                            <param id="0" name="Name">&quot;interact_rom&quot;</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" type="ProgramROM">
+                            <param id="0" name="Unique ID">Function.Param(0)</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" type="ProgramROM">
+                                    <param id="0" name="Instance variable">prog_type</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;steal_vision&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="5" name="Push" type="StealVision">
+                                    <param id="0" name="Where">0</param>
+                                    <param id="1" name="Value">0</param>
+                                    <param id="2" name="Axis">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-22" name="Else" type="System" />
+                                <condition id="-7" name="Compare instance variable" type="ProgramROM">
+                                    <param id="0" name="Instance variable">prog_type</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;aim_assist&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="5" name="Push" type="AimAssist">
+                                    <param id="0" name="Where">0</param>
+                                    <param id="1" name="Value">0</param>
+                                    <param id="2" name="Axis">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-22" name="Else" type="System" />
+                                <condition id="-7" name="Compare instance variable" type="ProgramROM">
+                                    <param id="0" name="Instance variable">prog_type</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;disrupt&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="5" name="Push" type="Disrupt">
+                                    <param id="0" name="Where">0</param>
+                                    <param id="1" name="Value">0</param>
+                                    <param id="2" name="Axis">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions />
+                            <actions>
+                                <action id="-9" name="Destroy" type="ProgramROM" />
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
             </sub-events>
         </event-group>
         <event-group collapsed="1" description="" title="Vision Tracing">
@@ -4422,12 +5087,12 @@
                             </conditions>
                             <actions>
                                 <action id="-3" name="Create object" type="System">
-                                    <param id="0" name="Object to create">Pistol</param>
+                                    <param id="0" name="Object to create">Weapon</param>
                                     <param id="1" name="Layer">1</param>
                                     <param id="2" name="X">Function.Param(0)</param>
                                     <param id="3" name="Y">Function.Param(1)</param>
                                 </action>
-                                <action id="9" name="Set scale" type="Pistol">
+                                <action id="9" name="Set scale" type="Weapon">
                                     <param id="0" name="Scale">0.25</param>
                                 </action>
                             </actions>
@@ -4443,12 +5108,12 @@
                             </conditions>
                             <actions>
                                 <action id="-3" name="Create object" type="System">
-                                    <param id="0" name="Object to create">Revolver</param>
+                                    <param id="0" name="Object to create">Implant</param>
                                     <param id="1" name="Layer">1</param>
                                     <param id="2" name="X">Function.Param(0)</param>
                                     <param id="3" name="Y">Function.Param(1)</param>
                                 </action>
-                                <action id="9" name="Set scale" type="Revolver">
+                                <action id="9" name="Set scale" type="Implant">
                                     <param id="0" name="Scale">0.25</param>
                                 </action>
                             </actions>
@@ -4464,12 +5129,12 @@
                             </conditions>
                             <actions>
                                 <action id="-3" name="Create object" type="System">
-                                    <param id="0" name="Object to create">Shotgun</param>
+                                    <param id="0" name="Object to create">ProgramROM</param>
                                     <param id="1" name="Layer">1</param>
                                     <param id="2" name="X">Function.Param(0)</param>
                                     <param id="3" name="Y">Function.Param(1)</param>
                                 </action>
-                                <action id="9" name="Set scale" type="Shotgun">
+                                <action id="9" name="Set scale" type="ProgramROM">
                                     <param id="0" name="Scale">0.25</param>
                                 </action>
                             </actions>
