@@ -13234,6 +13234,64 @@
                 <plugin id="Particles" />
                 <texture />
             </object-type>
+            <object-type name="Gunshot1">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="2" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="60">
+                        <frame duration="1" hotspotX="0.0806452" hotspotY="0.375">
+                            <collision-poly>
+                                <point x="0.691489" y="0.0983607" />
+                                <point x="0.925532" y="0.385246" />
+                                <point x="0.723404" y="0.721311" />
+                                <point x="0.505319" y="0.721311" />
+                                <point x="0.340426" y="0.639344" />
+                                <point x="0.0531915" y="0.385246" />
+                                <point x="0.324468" y="0.106557" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="Gunshot2">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="2" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="60">
+                        <frame duration="1" hotspotX="0.0746269" hotspotY="0.596154">
+                            <collision-poly>
+                                <point x="0.678218" y="0.296774" />
+                                <point x="0.920792" y="0.529032" />
+                                <point x="0.707921" y="0.8" />
+                                <point x="0.5" y="0.883871" />
+                                <point x="0.0594059" y="0.529032" />
+                                <point x="0.366337" y="0.354839" />
+                                <point x="0.5" y="0.251613" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.507463" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="Gunshot3">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="2" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="60">
+                        <frame duration="1" hotspotX="0.0757576" hotspotY="0.56">
+                            <collision-poly>
+                                <point x="0.626263" y="0.348993" />
+                                <point x="0.792929" y="0.503356" />
+                                <point x="0.636364" y="0.671141" />
+                                <point x="0.510101" y="0.865772" />
+                                <point x="0.20202" y="0.912752" />
+                                <point x="0.030303" y="0.503356" />
+                                <point x="0.186869" y="0.0738255" />
+                                <point x="0.510101" y="0.114094" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
         </object-folder>
         <object-folder expanded="0" name="Programs">
             <object-type name="StealVisionROM">
@@ -13526,10 +13584,6 @@
         <object-type global="1" name="AmmoCount">
             <plugin id="Dictionary" />
         </object-type>
-        <object-type name="Particles2">
-            <plugin id="Particles" />
-            <texture />
-        </object-type>
     </object-folder>
     <families>
         <family name="Enemy" plugin-id="Sprite">
@@ -13761,6 +13815,13 @@
                     <behavior id="Flash" />
                 </behavior-type>
             </behaviors>
+        </family>
+        <family name="Gunshot" plugin-id="Sprite">
+            <members>
+                <member>Gunshot1</member>
+                <member>Gunshot2</member>
+                <member>Gunshot3</member>
+            </members>
         </family>
     </families>
     <layout-folder expanded="0">

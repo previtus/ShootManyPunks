@@ -1078,7 +1078,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" title="Animations">
+        <event-group description="" title="Animations">
             <sub-events>
                 <event-block>
                     <conditions>
@@ -1264,6 +1264,14 @@
                             </actions>
                         </event-block>
                     </sub-events>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="5" name="On any finished" type="Gunshot" />
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" type="Gunshot" />
+                    </actions>
                 </event-block>
             </sub-events>
         </event-group>
@@ -3073,6 +3081,18 @@
                                     <param id="0" name="Instance variable">current_spread</param>
                                     <param id="1" name="Value">min(Weapon.current_spread+Weapon.recoil_per_shot,Weapon.max_spread)</param>
                                 </action>
+                                <action id="-3" name="Create object" type="System">
+                                    <param id="0" name="Object to create">Gunshot</param>
+                                    <param id="1" name="Layer">3</param>
+                                    <param id="2" name="X">Function.Param(1)</param>
+                                    <param id="3" name="Y">Function.Param(2)</param>
+                                </action>
+                                <action id="-8" name="Set angle" type="Gunshot">
+                                    <param id="0" name="Angle">Function.Param(3)</param>
+                                </action>
+                                <action id="3" name="Start" type="Gunshot">
+                                    <param id="0" name="From">1</param>
+                                </action>
                             </actions>
                             <sub-events>
                                 <comment>strili hrac? pokud ano, pridat bonusy</comment>
@@ -3137,11 +3157,6 @@
                                         </action>
                                         <action behavior="Bullet" id="0" name="Set speed" type="Bullet">
                                             <param id="0" name="Speed">Weapon.bullet_velocity + random(0,50)</param>
-                                        </action>
-                                        <action id="0" name="Spawn another object" type="Bullet">
-                                            <param id="0" name="Object">Particles2</param>
-                                            <param id="1" name="Layer">3</param>
-                                            <param id="2" name="Image point">0</param>
                                         </action>
                                     </actions>
                                     <sub-events>
