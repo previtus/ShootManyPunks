@@ -65,37 +65,12 @@
                         <is_dodging>false</is_dodging>
                     </instance-variables>
                     <behavior-instances>
-                        <behavior-instance type="8Direction">
-                            <properties>
-                                <max-speed>200</max-speed>
-                                <acceleration>600</acceleration>
-                                <deceleration>1200</deceleration>
-                                <directions>8 directions</directions>
-                                <set-angle>360 degree (smooth)</set-angle>
-                                <default-controls>Yes</default-controls>
-                            </properties>
-                        </behavior-instance>
-                        <behavior-instance type="ScrollTo" />
                         <behavior-instance type="BoundToLayout">
                             <properties>
                                 <bound-by>Edge</bound-by>
                             </properties>
                         </behavior-instance>
-                        <behavior-instance type="Bullet">
-                            <properties>
-                                <speed>0</speed>
-                                <acceleration>-5000</acceleration>
-                                <gravity>0</gravity>
-                                <bounce-off-solids>Yes</bounce-off-solids>
-                                <set-angle>No</set-angle>
-                            </properties>
-                        </behavior-instance>
-                        <behavior-instance type="CustomMovement">
-                            <properties>
-                                <stepping-mode>None</stepping-mode>
-                                <pixels-per-step>5</pixels-per-step>
-                            </properties>
-                        </behavior-instance>
+                        <behavior-instance type="Pin" />
                     </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -106,7 +81,7 @@
                         <width>34</width>
                         <height>34</height>
                         <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
+                        <hotspotX>0.30392158</hotspotX>
                         <hotspotY>0.5</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
@@ -299,6 +274,60 @@
                         <depth>0</depth>
                         <hotspotX>-0.200000003</hotspotX>
                         <hotspotY>1.222222209</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="AvatarLegs">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="8Direction">
+                            <properties>
+                                <max-speed>200</max-speed>
+                                <acceleration>600</acceleration>
+                                <deceleration>1200</deceleration>
+                                <directions>8 directions</directions>
+                                <set-angle>360 degree (smooth)</set-angle>
+                                <default-controls>Yes</default-controls>
+                            </properties>
+                        </behavior-instance>
+                        <behavior-instance type="ScrollTo" />
+                        <behavior-instance type="BoundToLayout">
+                            <properties>
+                                <bound-by>Edge</bound-by>
+                            </properties>
+                        </behavior-instance>
+                        <behavior-instance type="Bullet">
+                            <properties>
+                                <speed>0</speed>
+                                <acceleration>-5000</acceleration>
+                                <gravity>0</gravity>
+                                <bounce-off-solids>No</bounce-off-solids>
+                                <set-angle>Yes</set-angle>
+                            </properties>
+                        </behavior-instance>
+                        <behavior-instance type="CustomMovement">
+                            <properties>
+                                <stepping-mode>None</stepping-mode>
+                                <pixels-per-step>5</pixels-per-step>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>-376</x>
+                        <y>118</y>
+                        <z>0</z>
+                        <width>34</width>
+                        <height>34</height>
+                        <depth>0</depth>
+                        <hotspotX>0.30392158</hotspotX>
+                        <hotspotY>0.5</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
