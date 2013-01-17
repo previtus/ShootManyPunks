@@ -7057,7 +7057,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" title="Utility functions">
+        <event-group collapsed="1" description="" title="Utility functions">
             <sub-events>
                 <event-block>
                     <conditions>

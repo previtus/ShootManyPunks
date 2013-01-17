@@ -369,11 +369,11 @@
                         <x>-179</x>
                         <y>711</y>
                         <z>0</z>
-                        <width>25</width>
-                        <height>25</height>
+                        <width>40</width>
+                        <height>40</height>
                         <depth>0</depth>
-                        <hotspotX>0.454022974</hotspotX>
-                        <hotspotY>0.443749994</hotspotY>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
