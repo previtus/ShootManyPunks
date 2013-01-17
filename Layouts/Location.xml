@@ -124,11 +124,11 @@
                         <x>-181.047622681</x>
                         <y>363.941162109</y>
                         <z>0</z>
-                        <width>4.857142925</width>
-                        <height>2.470588207</height>
+                        <width>4.190476418</width>
+                        <height>2</height>
                         <depth>0</depth>
-                        <hotspotX>0.843137264</hotspotX>
-                        <hotspotY>0.476190478</hotspotY>
+                        <hotspotX>0.795454562</hotspotX>
+                        <hotspotY>0.588235319</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
@@ -693,8 +693,8 @@
                         <x>-277</x>
                         <y>492</y>
                         <z>0</z>
-                        <width>26.666666031</width>
-                        <height>26.666666031</height>
+                        <width>40</width>
+                        <height>40</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
@@ -1225,10 +1225,10 @@
                         <x>-253</x>
                         <y>702</y>
                         <z>0</z>
-                        <width>16</width>
-                        <height>16</height>
+                        <width>17</width>
+                        <height>13</height>
                         <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
+                        <hotspotX>0.692307711</hotspotX>
                         <hotspotY>0.5</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
@@ -1247,14 +1247,14 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>-254</x>
-                        <y>723</y>
+                        <x>-256</x>
+                        <y>729</y>
                         <z>0</z>
-                        <width>16</width>
+                        <width>20</width>
                         <height>16</height>
                         <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.5</hotspotY>
+                        <hotspotX>0.517241359</hotspotX>
+                        <hotspotY>0.521739125</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
@@ -1272,14 +1272,14 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>-255</x>
-                        <y>745</y>
+                        <x>-273</x>
+                        <y>731</y>
                         <z>0</z>
-                        <width>16</width>
-                        <height>16</height>
+                        <width>12</width>
+                        <height>17</height>
                         <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.5</hotspotY>
+                        <hotspotX>1.333333373</hotspotX>
+                        <hotspotY>0.846153855</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
@@ -1297,14 +1297,14 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>-276</x>
-                        <y>705</y>
+                        <x>-289</x>
+                        <y>684</y>
                         <z>0</z>
-                        <width>16</width>
-                        <height>16</height>
+                        <width>18</width>
+                        <height>23</height>
                         <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.5</hotspotY>
+                        <hotspotX>0.518518507</hotspotX>
+                        <hotspotY>0.514285743</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
@@ -1322,14 +1322,14 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>-277</x>
-                        <y>729</y>
+                        <x>-307</x>
+                        <y>728</y>
                         <z>0</z>
-                        <width>16</width>
+                        <width>17</width>
                         <height>16</height>
                         <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.5</hotspotY>
+                        <hotspotX>1</hotspotX>
+                        <hotspotY>0.458333343</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
@@ -1350,8 +1350,8 @@
                         <x>-279</x>
                         <y>751</y>
                         <z>0</z>
-                        <width>24</width>
-                        <height>24</height>
+                        <width>40</width>
+                        <height>16</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
@@ -1438,7 +1438,7 @@
                         <ammo_type>smg</ammo_type>
                         <look_type>pistol</look_type>
                         <interact_func>interact_weapon</interact_func>
-                        <interact_description>Pick up Tac4</interact_description>
+                        <interact_description>Pick up Scorpio SMG</interact_description>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -1484,7 +1484,7 @@
                         <ammo_type>rifle</ammo_type>
                         <look_type>machinegun</look_type>
                         <interact_func>interact_weapon</interact_func>
-                        <interact_description>Pick up AR57 rifle</interact_description>
+                        <interact_description>Pick up Krinkov rifle</interact_description>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -1530,7 +1530,7 @@
                         <ammo_type>rifle</ammo_type>
                         <look_type>machinegun</look_type>
                         <interact_func>interact_weapon</interact_func>
-                        <interact_description>Pick up AR57 rifle</interact_description>
+                        <interact_description>Pick up Taras mk2 rifle</interact_description>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -1576,7 +1576,7 @@
                         <ammo_type>shotgun</ammo_type>
                         <look_type>machinegun</look_type>
                         <interact_func>interact_weapon</interact_func>
-                        <interact_description>Pick up Scattergun S1</interact_description>
+                        <interact_description>Pick up ASG9</interact_description>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -1652,6 +1652,48 @@
                         <depth>0</depth>
                         <hotspotX>0.075757578</hotspotX>
                         <hotspotY>0.560000002</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="EnemyDude_Mrtvola">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>913</x>
+                        <y>-147</y>
+                        <z>0</z>
+                        <width>40</width>
+                        <height>40</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="EnemyDudeMelee_Mrtvola">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>1046</x>
+                        <y>-157</y>
+                        <z>0</z>
+                        <width>40</width>
+                        <height>40</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
@@ -1732,7 +1774,7 @@
                 </instance>
                 <instance type="MonsterKill">
                     <properties>
-                        <rate>50</rate>
+                        <rate>4</rate>
                         <spray-cone>360</spray-cone>
                         <type>One-shot</type>
                         <initial-particle-properties></initial-particle-properties>
@@ -2077,6 +2119,106 @@
             <blend-mode>0</blend-mode>
             <effect-fallback>0</effect-fallback>
             <instances>
+                <instance type="StatusBarBackground">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <hotspot>Top-left</hotspot>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>350.968719482</x>
+                        <y>571.152038574</y>
+                        <z>0</z>
+                        <width>98</width>
+                        <height>14</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>0.5</opacity>
+                    </world>
+                </instance>
+                <instance type="StatusBarBackground">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <hotspot>Top-left</hotspot>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>75</x>
+                        <y>549</y>
+                        <z>0</z>
+                        <width>162</width>
+                        <height>10</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>0.5</opacity>
+                    </world>
+                </instance>
+                <instance type="StatusBarBackground">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <hotspot>Top-left</hotspot>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>562.215026855</x>
+                        <y>569</y>
+                        <z>0</z>
+                        <width>162</width>
+                        <height>10</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>0.5</opacity>
+                    </world>
+                </instance>
+                <instance type="StatusBarBackground">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <hotspot>Top-left</hotspot>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>562.215026855</x>
+                        <y>549</y>
+                        <z>0</z>
+                        <width>162</width>
+                        <height>10</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>0.5</opacity>
+                    </world>
+                </instance>
+                <instance type="StatusBarBackground">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <hotspot>Top-left</hotspot>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>75</x>
+                        <y>569</y>
+                        <z>0</z>
+                        <width>162</width>
+                        <height>10</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>0.5</opacity>
+                    </world>
+                </instance>
                 <instance type="InfoText">
                     <properties>
                         <text>Text</text>
@@ -2102,8 +2244,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>8</x>
-                        <y>441</y>
+                        <x>7.999992847</x>
+                        <y>278.326446533</y>
                         <z>0</z>
                         <width>622</width>
                         <height>30</height>
@@ -2151,13 +2293,13 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="HPBar">
+                <instance type="StaminaText">
                     <properties>
-                        <text>Text</text>
+                        <text>00000</text>
                         <initial-visibility>Visible</initial-visibility>
-                        <font>Arial,-27,700,1</font>
-                        <color>153,0,0</color>
-                        <horizontal-alignment>Left</horizontal-alignment>
+                        <font>Courier New,-19,700,0</font>
+                        <color>255,255,194</color>
+                        <horizontal-alignment>Right</horizontal-alignment>
                         <vertical-alignment>Top</vertical-alignment>
                         <hotspot>Top-left</hotspot>
                         <wrapping>Word</wrapping>
@@ -2176,48 +2318,11 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>440</x>
-                        <y>8</y>
+                        <x>1</x>
+                        <y>546</y>
                         <z>0</z>
-                        <width>200</width>
-                        <height>35</height>
-                        <depth>0</depth>
-                        <hotspotX>0</hotspotX>
-                        <hotspotY>0</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
-                <instance type="StaminaBar">
-                    <properties>
-                        <text></text>
-                        <initial-visibility>Visible</initial-visibility>
-                        <font>Arial,-27,400,0</font>
-                        <color>255,153,51</color>
-                        <horizontal-alignment>Left</horizontal-alignment>
-                        <vertical-alignment>Top</vertical-alignment>
-                        <hotspot>Top-left</hotspot>
-                        <wrapping>Word</wrapping>
-                        <line-height>0</line-height>
-                    </properties>
-                    <behavior-instances>
-                        <behavior-instance type="Anchor">
-                            <properties>
-                                <left-edge>Window left</left-edge>
-                                <top-edge>Window top</top-edge>
-                                <right-edge>None</right-edge>
-                                <bottom-edge>None</bottom-edge>
-                            </properties>
-                        </behavior-instance>
-                    </behavior-instances>
-                    <blend-mode>0</blend-mode>
-                    <effect-fallback>0</effect-fallback>
-                    <world>
-                        <x>440</x>
-                        <y>68</y>
-                        <z>0</z>
-                        <width>200</width>
-                        <height>30</height>
+                        <width>72</width>
+                        <height>45.708999634</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
@@ -2279,11 +2384,11 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="WeaponInfo">
+                <instance type="MagText">
                     <properties>
                         <text>Text</text>
                         <initial-visibility>Visible</initial-visibility>
-                        <font>Arial,-16</font>
+                        <font>Courier New,-16,700,0</font>
                         <color>255,153,0</color>
                         <horizontal-alignment>Left</horizontal-alignment>
                         <vertical-alignment>Top</vertical-alignment>
@@ -2294,11 +2399,11 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>373</x>
-                        <y>434</y>
+                        <x>304.968719482</x>
+                        <y>567.152038574</y>
                         <z>0</z>
-                        <width>200</width>
-                        <height>30</height>
+                        <width>45.639373779</width>
+                        <height>34.78112793</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
@@ -2306,13 +2411,13 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="BioenergyBar">
+                <instance type="BioenergyText">
                     <properties>
-                        <text></text>
+                        <text>00000</text>
                         <initial-visibility>Visible</initial-visibility>
-                        <font>Arial,-27,400,0</font>
-                        <color>0,51,255</color>
-                        <horizontal-alignment>Left</horizontal-alignment>
+                        <font>Courier New,-19,700,0</font>
+                        <color>255,102,0</color>
+                        <horizontal-alignment>Right</horizontal-alignment>
                         <vertical-alignment>Top</vertical-alignment>
                         <hotspot>Top-left</hotspot>
                         <wrapping>Word</wrapping>
@@ -2331,11 +2436,11 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>445</x>
-                        <y>159</y>
+                        <x>488.214996338</x>
+                        <y>566</y>
                         <z>0</z>
-                        <width>200</width>
-                        <height>30</height>
+                        <width>72</width>
+                        <height>36.14799881</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
@@ -2352,8 +2457,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>570</x>
-                        <y>390</y>
+                        <x>472.457702637</x>
+                        <y>535.889770508</y>
                         <z>0</z>
                         <width>40</width>
                         <height>54</height>
@@ -2373,8 +2478,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>570</x>
-                        <y>390</y>
+                        <x>472.457702637</x>
+                        <y>535.889770508</y>
                         <z>0</z>
                         <width>40</width>
                         <height>54</height>
@@ -2394,8 +2499,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>570</x>
-                        <y>390</y>
+                        <x>472.457702637</x>
+                        <y>535.889770508</y>
                         <z>0</z>
                         <width>40</width>
                         <height>54</height>
@@ -2415,8 +2520,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>570</x>
-                        <y>390</y>
+                        <x>472.457702637</x>
+                        <y>535.889770508</y>
                         <z>0</z>
                         <width>40</width>
                         <height>54</height>
@@ -2427,13 +2532,13 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="CPUBar">
+                <instance type="CPUText">
                     <properties>
-                        <text></text>
+                        <text>00000</text>
                         <initial-visibility>Visible</initial-visibility>
-                        <font>Arial,-27,400,0</font>
-                        <color>0,102,102</color>
-                        <horizontal-alignment>Left</horizontal-alignment>
+                        <font>Courier New,-19,700,0</font>
+                        <color>0,102,204</color>
+                        <horizontal-alignment>Right</horizontal-alignment>
                         <vertical-alignment>Top</vertical-alignment>
                         <hotspot>Top-left</hotspot>
                         <wrapping>Word</wrapping>
@@ -2452,38 +2557,11 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>448</x>
-                        <y>252</y>
+                        <x>488.214996338</x>
+                        <y>546</y>
                         <z>0</z>
-                        <width>200</width>
-                        <height>30</height>
-                        <depth>0</depth>
-                        <hotspotX>0</hotspotX>
-                        <hotspotY>0</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
-                <instance type="ProgramBar">
-                    <properties>
-                        <text>Text</text>
-                        <initial-visibility>Visible</initial-visibility>
-                        <font>Arial,-16</font>
-                        <color>255,255,204</color>
-                        <horizontal-alignment>Left</horizontal-alignment>
-                        <vertical-alignment>Top</vertical-alignment>
-                        <hotspot>Top-left</hotspot>
-                        <wrapping>Word</wrapping>
-                        <line-height>0</line-height>
-                    </properties>
-                    <blend-mode>0</blend-mode>
-                    <effect-fallback>0</effect-fallback>
-                    <world>
-                        <x>20</x>
-                        <y>43</y>
-                        <z>0</z>
-                        <width>200</width>
-                        <height>84</height>
+                        <width>72</width>
+                        <height>37</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
@@ -2518,6 +2596,522 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
+                <instance type="StatusBarHP">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <hotspot>Top-left</hotspot>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>76</x>
+                        <y>570</y>
+                        <z>0</z>
+                        <width>160</width>
+                        <height>8</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="HPText">
+                    <properties>
+                        <text>00000</text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Courier New,-19,700,0</font>
+                        <color>153,0,0</color>
+                        <horizontal-alignment>Right</horizontal-alignment>
+                        <vertical-alignment>Top</vertical-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="Anchor">
+                            <properties>
+                                <left-edge>Window left</left-edge>
+                                <top-edge>Window top</top-edge>
+                                <right-edge>None</right-edge>
+                                <bottom-edge>None</bottom-edge>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>1</x>
+                        <y>566</y>
+                        <z>0</z>
+                        <width>72</width>
+                        <height>38.027999878</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="HPMaxText">
+                    <properties>
+                        <text>00000</text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Courier New,-19,700,0</font>
+                        <color>153,0,0</color>
+                        <horizontal-alignment>Left</horizontal-alignment>
+                        <vertical-alignment>Top</vertical-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="Anchor">
+                            <properties>
+                                <left-edge>Window left</left-edge>
+                                <top-edge>Window top</top-edge>
+                                <right-edge>None</right-edge>
+                                <bottom-edge>None</bottom-edge>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>238</x>
+                        <y>566</y>
+                        <z>0</z>
+                        <width>75</width>
+                        <height>39.392456055</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="CPUMaxText">
+                    <properties>
+                        <text>00000</text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Courier New,-19,700,0</font>
+                        <color>0,102,204</color>
+                        <horizontal-alignment>Left</horizontal-alignment>
+                        <vertical-alignment>Top</vertical-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="Anchor">
+                            <properties>
+                                <left-edge>Window left</left-edge>
+                                <top-edge>Window top</top-edge>
+                                <right-edge>None</right-edge>
+                                <bottom-edge>None</bottom-edge>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>725.215270996</x>
+                        <y>545.294250488</y>
+                        <z>0</z>
+                        <width>60.665100098</width>
+                        <height>53.905273438</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="StaminaMaxText">
+                    <properties>
+                        <text>00000</text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Courier New,-19,700,0</font>
+                        <color>255,255,194</color>
+                        <horizontal-alignment>Left</horizontal-alignment>
+                        <vertical-alignment>Top</vertical-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="Anchor">
+                            <properties>
+                                <left-edge>Window left</left-edge>
+                                <top-edge>Window top</top-edge>
+                                <right-edge>None</right-edge>
+                                <bottom-edge>None</bottom-edge>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>238</x>
+                        <y>546</y>
+                        <z>0</z>
+                        <width>62.714019775</width>
+                        <height>36.146736145</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="BioenergyMaxText">
+                    <properties>
+                        <text>00000</text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Courier New,-19,700,0</font>
+                        <color>255,102,0</color>
+                        <horizontal-alignment>Left</horizontal-alignment>
+                        <vertical-alignment>Top</vertical-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="Anchor">
+                            <properties>
+                                <left-edge>Window left</left-edge>
+                                <top-edge>Window top</top-edge>
+                                <right-edge>None</right-edge>
+                                <bottom-edge>None</bottom-edge>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>725.215026855</x>
+                        <y>566</y>
+                        <z>0</z>
+                        <width>61.348449707</width>
+                        <height>46.392410278</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="StatusBarStamina">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <hotspot>Top-left</hotspot>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>76</x>
+                        <y>550</y>
+                        <z>0</z>
+                        <width>160</width>
+                        <height>8</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="StatusBarBioenergy">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <hotspot>Top-left</hotspot>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>563.215026855</x>
+                        <y>570</y>
+                        <z>0</z>
+                        <width>160</width>
+                        <height>8</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="StatusBarCPU">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <hotspot>Top-left</hotspot>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>563.215026855</x>
+                        <y>550</y>
+                        <z>0</z>
+                        <width>160</width>
+                        <height>8</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="StatusBarDisruptCooldown">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <hotspot>Top-left</hotspot>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>400.112335205</x>
+                        <y>518.516357422</y>
+                        <z>0</z>
+                        <width>32</width>
+                        <height>8</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="StatusBarStealVisionCooldown">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <hotspot>Top-left</hotspot>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>356.025604248</x>
+                        <y>518.349182129</y>
+                        <z>0</z>
+                        <width>32</width>
+                        <height>8</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="StatusBarWeapon">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <hotspot>Top-left</hotspot>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>351.968719482</x>
+                        <y>572.152038574</y>
+                        <z>0</z>
+                        <width>96</width>
+                        <height>8</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="AmmoText">
+                    <properties>
+                        <text>Text</text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Courier New,-16,700,0</font>
+                        <color>255,153,0</color>
+                        <horizontal-alignment>Left</horizontal-alignment>
+                        <vertical-alignment>Top</vertical-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>451.968719482</x>
+                        <y>568.152038574</y>
+                        <z>0</z>
+                        <width>48.371643066</width>
+                        <height>36.147766113</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="StatusBarFiring">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <hotspot>Top-left</hotspot>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>351.968719482</x>
+                        <y>580.152038574</y>
+                        <z>0</z>
+                        <width>96</width>
+                        <height>4</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="AimAssistGUI">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>325</x>
+                        <y>545</y>
+                        <z>0</z>
+                        <width>28</width>
+                        <height>28</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="DisruptGUI">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>370</x>
+                        <y>545</y>
+                        <z>0</z>
+                        <width>27</width>
+                        <height>27</height>
+                        <depth>0</depth>
+                        <hotspotX>0.481481493</hotspotX>
+                        <hotspotY>0.518518507</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="StealVisionGUI">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>415</x>
+                        <y>545</y>
+                        <z>0</z>
+                        <width>28</width>
+                        <height>18</height>
+                        <depth>0</depth>
+                        <hotspotX>0.464285702</hotspotX>
+                        <hotspotY>0.666666687</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="AimAssistText">
+                    <properties>
+                        <text>0</text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Courier New,-15,700,0</font>
+                        <color>0,51,255</color>
+                        <horizontal-alignment>Center</horizontal-alignment>
+                        <vertical-alignment>Top</vertical-alignment>
+                        <hotspot>Center</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>325.292419434</x>
+                        <y>551.049987793</y>
+                        <z>0</z>
+                        <width>48.117275238</width>
+                        <height>28.979019165</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="DisruptText">
+                    <properties>
+                        <text>0</text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Courier New,-15,700,0</font>
+                        <color>0,51,255</color>
+                        <horizontal-alignment>Center</horizontal-alignment>
+                        <vertical-alignment>Top</vertical-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>355.22833252</x>
+                        <y>536.937988281</y>
+                        <z>0</z>
+                        <width>31.222259521</width>
+                        <height>28.30670166</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="StealVisionText">
+                    <properties>
+                        <text>0</text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Courier New,-15,700,0</font>
+                        <color>0,51,255</color>
+                        <horizontal-alignment>Center</horizontal-alignment>
+                        <vertical-alignment>Top</vertical-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>401.515319824</x>
+                        <y>536.938842773</y>
+                        <z>0</z>
+                        <width>31.222259521</width>
+                        <height>28.30670166</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
             </instances>
             <effects />
         </layer>
@@ -2532,7 +3126,7 @@
         <instance type="AimAssist">
             <properties>
                 <width>0</width>
-                <height>3</height>
+                <height>4</height>
                 <depth>1</depth>
             </properties>
             <instance-variables>
@@ -2546,7 +3140,7 @@
         <instance type="Disrupt">
             <properties>
                 <width>0</width>
-                <height>3</height>
+                <height>4</height>
                 <depth>1</depth>
             </properties>
             <instance-variables>
@@ -2554,12 +3148,13 @@
                 <cooldown>1200</cooldown>
                 <cpu_delay>300</cpu_delay>
                 <next_up>0</next_up>
+                <number_active>0</number_active>
             </instance-variables>
         </instance>
         <instance type="StealVision">
             <properties>
                 <width>0</width>
-                <height>3</height>
+                <height>4</height>
                 <depth>1</depth>
             </properties>
             <instance-variables>
@@ -2567,6 +3162,7 @@
                 <cooldown>1800</cooldown>
                 <cpu_delay>600</cpu_delay>
                 <next_up>0</next_up>
+                <number_active>0</number_active>
             </instance-variables>
         </instance>
         <instance type="AmmoCount" />

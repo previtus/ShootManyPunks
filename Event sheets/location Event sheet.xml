@@ -3,7 +3,6 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>location Event sheet</name>
     <events>
-        <variable constant="0" name="ammocount_json" static="0" type="text"></variable>
         <comment>promenne, ktere ma na sobe avatar (postava hrace) by meli byt glob. promenne - aby byly prenaseny mezi nactenim layoutu</comment>
         <comment>dostupne i napr. v layoutu WorldMap</comment>
         <variable constant="0" name="avatar_initialized" static="0" type="number">0</variable>
@@ -49,10 +48,13 @@
         <variable constant="0" name="current_speed_bonus" static="0" type="number">1</variable>
         <variable constant="0" name="current_dodge_bonus" static="0" type="number">0</variable>
         <comment>promenne pro programy (aneb kdyz array nejsou tak globalni, jak by mely)</comment>
+        <variable constant="0" name="ammocount_json" static="0" type="text"></variable>
         <variable constant="0" name="stealvision_json" static="0" type="text"></variable>
         <variable constant="0" name="stealvision_next_up" static="0" type="number">0</variable>
+        <variable constant="0" name="stealvision_number_active" static="0" type="number">0</variable>
         <variable constant="0" name="disrupt_json" static="0" type="text"></variable>
         <variable constant="0" name="disrupt_next_up" static="0" type="number">0</variable>
+        <variable constant="0" name="disrupt_number_active" static="0" type="number">0</variable>
         <variable constant="0" name="aimassist_json" static="0" type="text"></variable>
         <variable constant="0" name="aimassist_number_active" static="0" type="number">0</variable>
         <comment>promenne souvisejici se zmenou mapy</comment>
@@ -257,7 +259,7 @@
                         </event-block>
                     </sub-events>
                 </event-group>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="1" name="On each tile cell" type="TMXImporter" />
                     </conditions>
@@ -724,9 +726,9 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" title="Main">
+        <event-group description="" title="Main">
             <sub-events>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="-18" name="On created" type="Avatar" />
                     </conditions>
@@ -885,7 +887,7 @@
                         </event-block>
                     </sub-events>
                 </event-block>
-                <event-block any="1" collapsed="1">
+                <event-block any="1">
                     <conditions>
                         <condition id="-1" name="Every tick" type="System" />
                     </conditions>
@@ -893,20 +895,41 @@
                         <action id="0" name="Set text" type="Debug">
                             <param id="0" name="Text">&quot;&quot;</param>
                         </action>
-                        <action id="0" name="Set text" type="HPBar">
-                            <param id="0" name="Text">int(avatar_hp) &amp; &quot;/&quot; &amp; avatar_max_hp</param>
+                        <action id="0" name="Set text" type="HPText">
+                            <param id="0" name="Text">int(avatar_hp)</param>
                         </action>
-                        <action id="0" name="Set text" type="StaminaBar">
-                            <param id="0" name="Text">int(avatar_stamina) &amp; &quot;/&quot; &amp; avatar_max_stamina</param>
+                        <action id="0" name="Set text" type="HPMaxText">
+                            <param id="0" name="Text">int(avatar_max_hp)</param>
                         </action>
-                        <action id="0" name="Set text" type="BioenergyBar">
-                            <param id="0" name="Text">int(avatar_bioenergy) &amp; &quot;/&quot; &amp; avatar_max_bioenergy</param>
+                        <action id="-5" name="Set width" type="StatusBarHP">
+                            <param id="0" name="Width">clamp(160*(avatar_hp/avatar_max_hp),0,160)</param>
                         </action>
-                        <action id="0" name="Set text" type="CPUBar">
-                            <param id="0" name="Text">int(avatar_cpu) &amp; &quot;/&quot; &amp; avatar_max_cpu</param>
+                        <action id="0" name="Set text" type="StaminaText">
+                            <param id="0" name="Text">int(avatar_stamina)</param>
                         </action>
-                        <action id="0" name="Set text" type="ProgramBar">
-                            <param id="0" name="Text">&quot;Aim Assist: &quot; &amp; AimAssist.Width &amp; &quot; | &quot; &amp; AimAssist.number_active &amp; &quot; &quot; &amp; newline &amp; &quot;Disrupt: &quot; &amp; Disrupt.Width &amp; &quot; &quot; &amp; newline &amp; &quot;Steal Vision: &quot; &amp; StealVision.Width</param>
+                        <action id="0" name="Set text" type="StaminaMaxText">
+                            <param id="0" name="Text">int(avatar_max_stamina)</param>
+                        </action>
+                        <action id="-5" name="Set width" type="StatusBarStamina">
+                            <param id="0" name="Width">clamp(160*(avatar_stamina/avatar_max_stamina),0,160)</param>
+                        </action>
+                        <action id="0" name="Set text" type="BioenergyText">
+                            <param id="0" name="Text">int(avatar_bioenergy)</param>
+                        </action>
+                        <action id="0" name="Set text" type="BioenergyMaxText">
+                            <param id="0" name="Text">int(avatar_max_bioenergy)</param>
+                        </action>
+                        <action id="-5" name="Set width" type="StatusBarBioenergy">
+                            <param id="0" name="Width">clamp(160*(avatar_bioenergy/avatar_max_bioenergy),0,160)</param>
+                        </action>
+                        <action id="0" name="Set text" type="CPUText">
+                            <param id="0" name="Text">int(avatar_cpu)</param>
+                        </action>
+                        <action id="0" name="Set text" type="CPUMaxText">
+                            <param id="0" name="Text">int(avatar_max_cpu)</param>
+                        </action>
+                        <action id="-5" name="Set width" type="StatusBarCPU">
+                            <param id="0" name="Width">clamp(160*(avatar_cpu/avatar_max_cpu),0,160)</param>
                         </action>
                         <action id="0" name="Set text" type="FPSText">
                             <param id="0" name="Text">str(fps) &amp; &quot; FPS&quot;</param>
@@ -927,6 +950,15 @@
                         <action id="5" name="Set frame" type="ImplantIndicatorLegs">
                             <param id="0" name="Frame number">0</param>
                         </action>
+                        <action id="0" name="Set text" type="AimAssistText">
+                            <param id="0" name="Text">AimAssist.number_active &amp; &quot;|&quot; &amp; AimAssist.Width</param>
+                        </action>
+                        <action id="0" name="Set text" type="DisruptText">
+                            <param id="0" name="Text">Disrupt.Width - Disrupt.number_active</param>
+                        </action>
+                        <action id="0" name="Set text" type="StealVisionText">
+                            <param id="0" name="Text">StealVision.Width - StealVision.number_active</param>
+                        </action>
                     </actions>
                     <sub-events>
                         <event-block>
@@ -940,14 +972,105 @@
                                 </action>
                             </actions>
                         </event-block>
-                        <comment>informace o zbrani</comment>
+                        <variable constant="0" name="cur_min" static="0" type="number">0</variable>
                         <event-block>
+                            <conditions />
+                            <actions>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">cur_min</param>
+                                    <param id="1" name="Value">Disrupt.cooldown</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="3" name="For each element" type="Disrupt">
+                                            <param id="0" name="Axes">2</param>
+                                        </condition>
+                                        <condition id="4" name="Compare current value" type="Disrupt">
+                                            <param id="0" name="Comparison">4</param>
+                                            <param id="1" name="Value">0</param>
+                                        </condition>
+                                        <condition id="4" name="Compare current value" type="Disrupt">
+                                            <param id="0" name="Comparison">2</param>
+                                            <param id="1" name="Value">cur_min</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" type="System">
+                                            <param id="0" name="Variable">cur_min</param>
+                                            <param id="1" name="Value">Disrupt.CurValue</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions />
+                                    <actions>
+                                        <action id="-5" name="Set width" type="StatusBarDisruptCooldown">
+                                            <param id="0" name="Width">clamp(32*(cur_min/Disrupt.cooldown),0,32)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block>
+                            <conditions />
+                            <actions>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">cur_min</param>
+                                    <param id="1" name="Value">StealVision.cooldown</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="3" name="For each element" type="StealVision">
+                                            <param id="0" name="Axes">2</param>
+                                        </condition>
+                                        <condition id="4" name="Compare current value" type="StealVision">
+                                            <param id="0" name="Comparison">4</param>
+                                            <param id="1" name="Value">0</param>
+                                        </condition>
+                                        <condition id="4" name="Compare current value" type="StealVision">
+                                            <param id="0" name="Comparison">2</param>
+                                            <param id="1" name="Value">cur_min</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" type="System">
+                                            <param id="0" name="Variable">cur_min</param>
+                                            <param id="1" name="Value">StealVision.CurValue</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions />
+                                    <actions>
+                                        <action id="-5" name="Set width" type="StatusBarStealVisionCooldown">
+                                            <param id="0" name="Width">clamp(32*(cur_min/StealVision.cooldown),0,32)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <comment>informace o zbrani</comment>
+                        <event-block collapsed="1">
                             <conditions>
                                 <condition id="-14" name="Pick by unique ID" type="Weapon">
                                     <param id="0" name="Unique ID">avatar_current_weapon</param>
                                 </condition>
                             </conditions>
-                            <actions />
+                            <actions>
+                                <action id="0" name="Set text" type="MagText">
+                                    <param id="0" name="Text">int(Weapon.magazine_current)</param>
+                                </action>
+                                <action id="0" name="Set text" type="AmmoText">
+                                    <param id="0" name="Text">int(AmmoCount.Get(Weapon.ammo_type))</param>
+                                </action>
+                                <action id="-5" name="Set width" type="StatusBarFiring">
+                                    <param id="0" name="Width">96-clamp(96*(Weapon.firing_timer/Weapon.firing_interval),0,96)</param>
+                                </action>
+                            </actions>
                             <sub-events>
                                 <event-block>
                                     <conditions>
@@ -958,8 +1081,8 @@
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="0" name="Set text" type="WeaponInfo">
-                                            <param id="0" name="Text">str(Weapon.reload_timer) &amp; &quot;/&quot; &amp; str(Weapon.reload_interval)</param>
+                                        <action id="-5" name="Set width" type="StatusBarWeapon">
+                                            <param id="0" name="Width">96-clamp(96*(Weapon.reload_timer/Weapon.reload_interval),0,96)</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -968,8 +1091,8 @@
                                         <condition id="-22" name="Else" type="System" />
                                     </conditions>
                                     <actions>
-                                        <action id="0" name="Set text" type="WeaponInfo">
-                                            <param id="0" name="Text">str(Weapon.magazine_current) &amp; &quot;/&quot; &amp; str(AmmoCount.Get(Weapon.ammo_type))</param>
+                                        <action id="-5" name="Set width" type="StatusBarWeapon">
+                                            <param id="0" name="Width">clamp(96*(Weapon.magazine_current/Weapon.magazine_size),0,96)</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -1078,7 +1201,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" title="Animations">
+        <event-group collapsed="1" description="" title="Animations">
             <sub-events>
                 <event-block>
                     <conditions>
@@ -1284,7 +1407,7 @@
                     <actions />
                     <sub-events>
                         <variable comment="... in X pixels from shooting" constant="0" name="npc_gets_scared_in" static="0" type="number">120</variable>
-                        <event-block>
+                        <event-block collapsed="1">
                             <conditions>
                                 <condition id="-3" name="Is on-screen" type="npc_simple" />
                             </conditions>
@@ -2300,7 +2423,7 @@
                     </sub-events>
                 </event-block>
                 <comment>toto by mozna melo byt nekde v Main, zde ale vice logicke (reseni co s mrtvym hracem hned za odecitanim zivotu)</comment>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="-14" name="Compare variable" type="System">
                             <param id="0" name="Variable">avatar_hp</param>
@@ -2369,7 +2492,7 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="-7" name="Compare instance variable" type="Enemy">
                             <param id="0" name="Instance variable">hp</param>
@@ -2394,11 +2517,11 @@
                             <actions>
                                 <action id="0" name="Spawn another object" type="Enemy">
                                     <param id="0" name="Object">EnemyDudeMelee_Mrtvola</param>
-                                    <param id="1" name="Layer">0</param>
+                                    <param id="1" name="Layer">1</param>
                                     <param id="2" name="Image point">0</param>
                                 </action>
                                 <action id="5" name="Set frame" type="EnemyDude_Mrtvola">
-                                    <param id="0" name="Frame number">Enemy.sprite_id</param>
+                                    <param id="0" name="Frame number">Enemy.sprite_id-1</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -2409,11 +2532,11 @@
                             <actions>
                                 <action id="0" name="Spawn another object" type="Enemy">
                                     <param id="0" name="Object">EnemyDude_Mrtvola</param>
-                                    <param id="1" name="Layer">0</param>
+                                    <param id="1" name="Layer">1</param>
                                     <param id="2" name="Image point">0</param>
                                 </action>
                                 <action id="5" name="Set frame" type="EnemyDudeMelee_Mrtvola">
-                                    <param id="0" name="Frame number">Enemy.sprite_id</param>
+                                    <param id="0" name="Frame number">Enemy.sprite_id-1</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -5077,6 +5200,11 @@
                             <param id="1" name="Y">2</param>
                             <param id="2" name="Value">1</param>
                         </action>
+                        <action id="3" name="Set at XY" type="AimAssist">
+                            <param id="0" name="X">AimAssist.number_active</param>
+                            <param id="1" name="Y">3</param>
+                            <param id="2" name="Value">1</param>
+                        </action>
                     </actions>
                 </event-block>
                 <comment>Disrupt - spustit instanci</comment>
@@ -5117,6 +5245,11 @@
                             <param id="1" name="Y">2</param>
                             <param id="2" name="Value">1</param>
                         </action>
+                        <action id="3" name="Set at XY" type="Disrupt">
+                            <param id="0" name="X">Disrupt.next_up</param>
+                            <param id="1" name="Y">3</param>
+                            <param id="2" name="Value">1</param>
+                        </action>
                         <action id="-10" name="Set value" type="Disrupt">
                             <param id="0" name="Instance variable">next_up</param>
                             <param id="1" name="Value">(Disrupt.next_up+1)%(Disrupt.Width)</param>
@@ -5124,6 +5257,10 @@
                         <action id="-11" name="Subtract from" type="System">
                             <param id="0" name="Variable">avatar_cpu</param>
                             <param id="1" name="Value">Disrupt.cpu_usage</param>
+                        </action>
+                        <action id="-11" name="Add to" type="Disrupt">
+                            <param id="0" name="Instance variable">number_active</param>
+                            <param id="1" name="Value">1</param>
                         </action>
                     </actions>
                 </event-block>
@@ -5165,6 +5302,11 @@
                             <param id="1" name="Y">2</param>
                             <param id="2" name="Value">1</param>
                         </action>
+                        <action id="3" name="Set at XY" type="StealVision">
+                            <param id="0" name="X">StealVision.next_up</param>
+                            <param id="1" name="Y">3</param>
+                            <param id="2" name="Value">1</param>
+                        </action>
                         <action id="-10" name="Set value" type="StealVision">
                             <param id="0" name="Instance variable">next_up</param>
                             <param id="1" name="Value">(StealVision.next_up+1)%(StealVision.Width)</param>
@@ -5172,6 +5314,10 @@
                         <action id="-11" name="Subtract from" type="System">
                             <param id="0" name="Variable">avatar_cpu</param>
                             <param id="1" name="Value">StealVision.cpu_usage</param>
+                        </action>
+                        <action id="-11" name="Add to" type="StealVision">
+                            <param id="0" name="Instance variable">number_active</param>
+                            <param id="1" name="Value">1</param>
                         </action>
                     </actions>
                 </event-block>
@@ -5215,12 +5361,27 @@
                                     <param id="2" name="Comparison">3</param>
                                     <param id="3" name="Value">0</param>
                                 </condition>
+                                <condition id="1" name="Compare at XY" type="Program">
+                                    <param id="0" name="X">Program.CurX</param>
+                                    <param id="1" name="Y">3</param>
+                                    <param id="2" name="Comparison">0</param>
+                                    <param id="3" name="Value">1</param>
+                                </condition>
                             </conditions>
                             <actions>
                                 <action id="3" name="Set at XY" type="Program">
                                     <param id="0" name="X">Program.CurX</param>
                                     <param id="1" name="Y">0</param>
                                     <param id="2" name="Value">0</param>
+                                </action>
+                                <action id="3" name="Set at XY" type="Program">
+                                    <param id="0" name="X">Program.CurX</param>
+                                    <param id="1" name="Y">3</param>
+                                    <param id="2" name="Value">0</param>
+                                </action>
+                                <action id="-12" name="Subtract from" type="Program">
+                                    <param id="0" name="Instance variable">number_active</param>
+                                    <param id="1" name="Value">1</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -5398,10 +5559,6 @@
                             <param id="0" name="Variable">aimassist_json</param>
                             <param id="1" name="Value">AimAssist.AsJSON</param>
                         </action>
-                        <action id="-9" name="Set value" type="System">
-                            <param id="0" name="Variable">aimassist_number_active</param>
-                            <param id="1" name="Value">AimAssist.number_active</param>
-                        </action>
                     </actions>
                 </event-block>
                 <event-block>
@@ -5417,6 +5574,10 @@
                             <param id="0" name="Variable">disrupt_next_up</param>
                             <param id="1" name="Value">Disrupt.next_up</param>
                         </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">disrupt_number_active</param>
+                            <param id="1" name="Value">Disrupt.number_active</param>
+                        </action>
                     </actions>
                 </event-block>
                 <event-block>
@@ -5431,6 +5592,10 @@
                         <action id="-9" name="Set value" type="System">
                             <param id="0" name="Variable">stealvision_next_up</param>
                             <param id="1" name="Value">StealVision.next_up</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">stealvision_number_active</param>
+                            <param id="1" name="Value">StealVision.number_active</param>
                         </action>
                     </actions>
                 </event-block>
@@ -5457,6 +5622,10 @@
                             <param id="0" name="Instance variable">next_up</param>
                             <param id="1" name="Value">disrupt_next_up</param>
                         </action>
+                        <action id="-10" name="Set value" type="Disrupt">
+                            <param id="0" name="Instance variable">number_active</param>
+                            <param id="1" name="Value">disrupt_number_active</param>
+                        </action>
                         <action id="-9" name="Set value" type="System">
                             <param id="0" name="Variable">disrupt_json</param>
                             <param id="1" name="Value">&quot;&quot;</param>
@@ -5464,13 +5633,17 @@
                         <action id="11" name="Load" type="StealVision">
                             <param id="0" name="JSON">stealvision_json</param>
                         </action>
-                        <action id="-9" name="Set value" type="System">
-                            <param id="0" name="Variable">stealvision_json</param>
-                            <param id="1" name="Value">&quot;&quot;</param>
-                        </action>
                         <action id="-10" name="Set value" type="StealVision">
                             <param id="0" name="Instance variable">next_up</param>
                             <param id="1" name="Value">stealvision_next_up</param>
+                        </action>
+                        <action id="-10" name="Set value" type="StealVision">
+                            <param id="0" name="Instance variable">number_active</param>
+                            <param id="1" name="Value">stealvision_number_active</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">stealvision_json</param>
+                            <param id="1" name="Value">&quot;&quot;</param>
                         </action>
                     </actions>
                 </event-block>
@@ -6749,7 +6922,7 @@
                                     <param id="0" name="Seconds">0</param>
                                 </action>
                                 <action id="0" name="Set text" type="InfoText">
-                                    <param id="0" name="Text">&quot;Hele troubo, něco bych od tebe potřeboval.&quot;</param>
+                                    <param id="0" name="Text">&quot;Hey buddy, you look like you don&apos;t mind getting yer hands dirty. Interested in some work?&quot;</param>
                                 </action>
                                 <action id="-10" name="Set value" type="QuestGiver">
                                     <param id="0" name="Instance variable">status</param>
@@ -6761,7 +6934,7 @@
                                 </action>
                             </actions>
                         </event-block>
-                        <event-block>
+                        <event-block collapsed="1">
                             <conditions>
                                 <condition id="-7" name="Compare instance variable" type="QuestGiver">
                                     <param id="0" name="Instance variable">status</param>
@@ -6827,7 +7000,7 @@
                                     </conditions>
                                     <actions>
                                         <action id="0" name="Set text" type="InfoText">
-                                            <param id="0" name="Text">&quot;Došla mi trpělivost s pár volama, skoncuj to s nima.&quot;</param>
+                                            <param id="0" name="Text">&quot;Some dudes be messing with my business. Cap those foos, will ya?&quot;</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -6841,13 +7014,13 @@
                                     </conditions>
                                     <actions>
                                         <action id="0" name="Set text" type="InfoText">
-                                            <param id="0" name="Text">&quot;Vidím, že máš zájem, tak dobrá, dones mi zmrzlinu od Zmrzlináře Franka.&quot;</param>
+                                            <param id="0" name="Text">&quot;One of my boys got nicked and I need someone to get a delivery from Iceman Frank. Watch for the po-po.&quot;</param>
                                         </action>
                                     </actions>
                                 </event-block>
                             </sub-events>
                         </event-block>
-                        <event-block>
+                        <event-block collapsed="1">
                             <conditions>
                                 <condition id="-22" name="Else" type="System" />
                             </conditions>
@@ -6882,7 +7055,7 @@
                                             </conditions>
                                             <actions>
                                                 <action id="0" name="Set text" type="InfoText">
-                                                    <param id="0" name="Text">&quot;Dobrá práce, ti už mě prudit nebudou, tady máš odměnu.&quot;</param>
+                                                    <param id="0" name="Text">&quot;Those mofos won&apos;t make any trouble no more. Here&apos;s your reward.&quot;</param>
                                                 </action>
                                             </actions>
                                         </event-block>
@@ -6896,7 +7069,7 @@
                                             </conditions>
                                             <actions>
                                                 <action id="0" name="Set text" type="InfoText">
-                                                    <param id="0" name="Text">&quot;Sice jsem chtěl šmoulovou, ale dobrá, tady máš odměnu.&quot;</param>
+                                                    <param id="0" name="Text">&quot;Good work kid, glad to see not everyone in this wretched hive of villainy is a low down dirty deceiver.&quot;</param>
                                                 </action>
                                             </actions>
                                         </event-block>
@@ -6908,7 +7081,7 @@
                                     </conditions>
                                     <actions>
                                         <action id="0" name="Set text" type="InfoText">
-                                            <param id="0" name="Text">&quot;Neotravuj a běž pracovat.&quot;</param>
+                                            <param id="0" name="Text">&quot;Don&apos;t just stand there, get to work.&quot;</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -6916,7 +7089,7 @@
                         </event-block>
                     </sub-events>
                 </event-block>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="-2" name="On start of layout" type="System" />
                         <condition id="-14" name="Compare variable" type="System">
@@ -7144,7 +7317,7 @@
                             </conditions>
                             <actions>
                                 <action id="0" name="Set text" type="InfoText">
-                                    <param id="0" name="Text">&quot;Ahoj, já jsem Zmrzlinář Frank, tady máš zmrzlinu pro Bosse.&quot;</param>
+                                    <param id="0" name="Text">&quot;Fresh meat, huh? Let me just count the cash. Arright, pleasure doin&apos; business with you.&quot;</param>
                                 </action>
                                 <action id="-9" name="Set value" type="System">
                                     <param id="0" name="Variable">is_on_quest</param>
@@ -7171,7 +7344,7 @@
                             </conditions>
                             <actions>
                                 <action id="0" name="Set text" type="InfoText">
-                                    <param id="0" name="Text">&quot;Neotravuj mě.&quot;</param>
+                                    <param id="0" name="Text">&quot;Get out of my face.&quot;</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -7202,7 +7375,7 @@
                     </conditions>
                     <actions>
                         <action id="0" name="Set text" type="InfoText">
-                            <param id="0" name="Text">&quot;Už jsem je vyřídil všechny.&quot;</param>
+                            <param id="0" name="Text">&quot;All enemies dead.&quot;</param>
                         </action>
                         <action id="-9" name="Set value" type="System">
                             <param id="0" name="Variable">is_on_quest</param>

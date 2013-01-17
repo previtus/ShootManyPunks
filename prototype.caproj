@@ -54,8 +54,46 @@
         <prop name="Sampling">Point</prop>
         <prop name="Use iOS retina display">iPhone only</prop>
     </configuration-settings>
-    <object-folder expanded="1">
+    <object-folder expanded="0">
         <object-folder expanded="0" name="GUI">
+            <object-folder expanded="0" name="StatusBars">
+                <object-type name="StatusBarBackground">
+                    <plugin id="TiledBg" />
+                    <texture />
+                </object-type>
+                <object-type name="StatusBarBioenergy">
+                    <plugin id="TiledBg" />
+                    <texture />
+                </object-type>
+                <object-type name="StatusBarCPU">
+                    <plugin id="TiledBg" />
+                    <texture />
+                </object-type>
+                <object-type name="StatusBarDisruptCooldown">
+                    <plugin id="TiledBg" />
+                    <texture />
+                </object-type>
+                <object-type name="StatusBarFiring">
+                    <plugin id="TiledBg" />
+                    <texture />
+                </object-type>
+                <object-type name="StatusBarHP">
+                    <plugin id="TiledBg" />
+                    <texture />
+                </object-type>
+                <object-type name="StatusBarStamina">
+                    <plugin id="TiledBg" />
+                    <texture />
+                </object-type>
+                <object-type name="StatusBarStealVisionCooldown">
+                    <plugin id="TiledBg" />
+                    <texture />
+                </object-type>
+                <object-type name="StatusBarWeapon">
+                    <plugin id="TiledBg" />
+                    <texture />
+                </object-type>
+            </object-folder>
             <object-type name="Debug">
                 <plugin id="Text" />
                 <behaviors>
@@ -64,7 +102,7 @@
                     </behavior-type>
                 </behaviors>
             </object-type>
-            <object-type name="HPBar">
+            <object-type name="HPText">
                 <plugin id="Text" />
                 <behaviors>
                     <behavior-type name="Anchor">
@@ -80,7 +118,7 @@
                     </behavior-type>
                 </behaviors>
             </object-type>
-            <object-type name="StaminaBar">
+            <object-type name="StaminaText">
                 <plugin id="Text" />
                 <behaviors>
                     <behavior-type name="Anchor">
@@ -94,13 +132,13 @@
             <object-type name="FPSText">
                 <plugin id="Text" />
             </object-type>
-            <object-type name="WeaponInfo">
+            <object-type name="MagText">
                 <plugin id="Text" />
             </object-type>
             <object-type name="InteractText">
                 <plugin id="Text" />
             </object-type>
-            <object-type name="BioenergyBar">
+            <object-type name="BioenergyText">
                 <plugin id="Text" />
                 <behaviors>
                     <behavior-type name="Anchor">
@@ -144,16 +182,13 @@
                     </animation>
                 </animation-folder>
             </object-type>
-            <object-type name="CPUBar">
+            <object-type name="CPUText">
                 <plugin id="Text" />
                 <behaviors>
                     <behavior-type name="Anchor">
                         <behavior id="Anchor" />
                     </behavior-type>
                 </behaviors>
-            </object-type>
-            <object-type name="ProgramBar">
-                <plugin id="Text" />
             </object-type>
             <object-type name="StartScreen">
                 <plugin id="Sprite" />
@@ -170,6 +205,41 @@
                         <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
                     </animation>
                 </animation-folder>
+            </object-type>
+            <object-type name="HPMaxText">
+                <plugin id="Text" />
+                <behaviors>
+                    <behavior-type name="Anchor">
+                        <behavior id="Anchor" />
+                    </behavior-type>
+                </behaviors>
+            </object-type>
+            <object-type name="CPUMaxText">
+                <plugin id="Text" />
+                <behaviors>
+                    <behavior-type name="Anchor">
+                        <behavior id="Anchor" />
+                    </behavior-type>
+                </behaviors>
+            </object-type>
+            <object-type name="StaminaMaxText">
+                <plugin id="Text" />
+                <behaviors>
+                    <behavior-type name="Anchor">
+                        <behavior id="Anchor" />
+                    </behavior-type>
+                </behaviors>
+            </object-type>
+            <object-type name="BioenergyMaxText">
+                <plugin id="Text" />
+                <behaviors>
+                    <behavior-type name="Anchor">
+                        <behavior id="Anchor" />
+                    </behavior-type>
+                </behaviors>
+            </object-type>
+            <object-type name="AmmoText">
+                <plugin id="Text" />
             </object-type>
         </object-folder>
         <object-folder expanded="0" name="Guns">
@@ -13042,12 +13112,16 @@
                 </behaviors>
                 <animation-folder expanded="1">
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
-                        <frame duration="1" hotspotX="0.843137" hotspotY="0.47619">
+                        <frame duration="1" hotspotX="0.795455" hotspotY="0.588235">
                             <collision-poly>
-                                <point x="1" y="0" />
-                                <point x="1" y="1" />
-                                <point x="0" y="1" />
-                                <point x="0" y="0" />
+                                <point x="0.968037" y="0.51462" />
+                                <point x="0.869863" y="0.695906" />
+                                <point x="0.495434" y="0.637427" />
+                                <point x="0.13242" y="0.666667" />
+                                <point x="0.0593607" y="0.51462" />
+                                <point x="0.0981735" y="0.280702" />
+                                <point x="0.495434" y="0.479532" />
+                                <point x="0.853881" y="0.380117" />
                             </collision-poly>
                         </frame>
                     </animation>
@@ -13353,9 +13427,6 @@
             </object-type>
             <object-type name="AimAssist">
                 <plugin id="Arr" />
-                <instance-variables>
-                    <instance-variable name="number_active" type="number" />
-                </instance-variables>
             </object-type>
             <object-type name="Disrupt">
                 <plugin id="Arr" />
@@ -13388,7 +13459,16 @@
                 <plugin id="Sprite" />
                 <animation-folder expanded="1">
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                        <frame duration="1" hotspotX="0.692308" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.1" y="0.0497512" />
+                                <point x="1" y="0.0547264" />
+                                <point x="1" y="0.477612" />
+                                <point x="1" y="0.955224" />
+                                <point x="0.0538462" y="0.965174" />
+                                <point x="0.0153846" y="0.477612" />
+                            </collision-poly>
+                        </frame>
                     </animation>
                 </animation-folder>
             </object-type>
@@ -13396,7 +13476,18 @@
                 <plugin id="Sprite" />
                 <animation-folder expanded="1">
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                        <frame duration="1" hotspotX="0.517241" hotspotY="0.521739">
+                            <collision-poly>
+                                <point x="0" y="0.133047" />
+                                <point x="0.532203" y="0.0772532" />
+                                <point x="1" y="0.137339" />
+                                <point x="1" y="0.502146" />
+                                <point x="1" y="0.905579" />
+                                <point x="0.532203" y="0.939914" />
+                                <point x="0" y="0.922747" />
+                                <point x="0" y="0.502146" />
+                            </collision-poly>
+                        </frame>
                     </animation>
                 </animation-folder>
             </object-type>
@@ -13404,7 +13495,18 @@
                 <plugin id="Sprite" />
                 <animation-folder expanded="1">
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                        <frame duration="1" hotspotX="1.33333" hotspotY="0.846154">
+                            <collision-poly>
+                                <point x="0.0331492" y="0.0852713" />
+                                <point x="1" y="0.29845" />
+                                <point x="1" y="0.0813954" />
+                                <point x="1" y="0.395349" />
+                                <point x="1" y="0.717054" />
+                                <point x="1" y="0.302326" />
+                                <point x="0.0165746" y="0.72093" />
+                                <point x="0" y="0.395349" />
+                            </collision-poly>
+                        </frame>
                     </animation>
                 </animation-folder>
             </object-type>
@@ -13412,7 +13514,16 @@
                 <plugin id="Sprite" />
                 <animation-folder expanded="1">
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                        <frame duration="1" hotspotX="0.518519" hotspotY="0.514286">
+                            <collision-poly>
+                                <point x="0.122302" y="0.0960452" />
+                                <point x="0.866906" y="0.10452" />
+                                <point x="0.92446" y="0.5" />
+                                <point x="0.92446" y="0.940678" />
+                                <point x="0.0611511" y="0.951977" />
+                                <point x="0.057554" y="0.5" />
+                            </collision-poly>
+                        </frame>
                     </animation>
                 </animation-folder>
             </object-type>
@@ -13420,7 +13531,17 @@
                 <plugin id="Sprite" />
                 <animation-folder expanded="1">
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                        <frame duration="1" hotspotX="1" hotspotY="0.458333">
+                            <collision-poly>
+                                <point x="0.0888031" y="0.0337553" />
+                                <point x="1" y="0.864979" />
+                                <point x="1" y="0.0379747" />
+                                <point x="1" y="0.919831" />
+                                <point x="1" y="0.924051" />
+                                <point x="0.042471" y="0.962025" />
+                                <point x="0.023166" y="0.472574" />
+                            </collision-poly>
+                        </frame>
                     </animation>
                 </animation-folder>
             </object-type>
@@ -13428,7 +13549,18 @@
                 <plugin id="Sprite" />
                 <animation-folder expanded="1">
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.146119" y="0.380117" />
+                                <point x="0.504566" y="0.479532" />
+                                <point x="0.901827" y="0.280702" />
+                                <point x="0.940639" y="0.51462" />
+                                <point x="0.86758" y="0.666667" />
+                                <point x="0.504566" y="0.637427" />
+                                <point x="0.130137" y="0.695906" />
+                                <point x="0.0319635" y="0.51462" />
+                            </collision-poly>
+                        </frame>
                     </animation>
                 </animation-folder>
             </object-type>
@@ -13583,6 +13715,70 @@
         </object-type>
         <object-type global="1" name="AmmoCount">
             <plugin id="Dictionary" />
+        </object-type>
+        <object-type name="AimAssistGUI">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.149306" y="0.146853" />
+                            <point x="0.5" y="0.0034965" />
+                            <point x="0.857639" y="0.13986" />
+                            <point x="0.996528" y="0.5" />
+                            <point x="0.847222" y="0.84965" />
+                            <point x="0.5" y="0.98951" />
+                            <point x="0.15625" y="0.846154" />
+                            <point x="0.0104167" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="DisruptGUI">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                    <frame duration="1" hotspotX="0.481481" hotspotY="0.518519">
+                        <collision-poly>
+                            <point x="0.220974" y="0.265683" />
+                            <point x="0.7603" y="0.258303" />
+                            <point x="0.674157" y="0.527675" />
+                            <point x="0.595506" y="0.634686" />
+                            <point x="0.486891" y="0.642066" />
+                            <point x="0.142322" y="0.867159" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="StealVisionGUI">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                    <frame duration="1" hotspotX="0.464286" hotspotY="0.666667">
+                        <collision-poly>
+                            <point x="0.213287" y="0.181818" />
+                            <point x="0.503497" y="0.0160428" />
+                            <point x="0.811189" y="0.15508" />
+                            <point x="0.968531" y="0.625668" />
+                            <point x="0.692308" y="0.914438" />
+                            <point x="0.503497" y="0.97861" />
+                            <point x="0.304196" y="0.930481" />
+                            <point x="0.0559441" y="0.625668" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="AimAssistText">
+            <plugin id="Text" />
+        </object-type>
+        <object-type name="DisruptText">
+            <plugin id="Text" />
+        </object-type>
+        <object-type name="StealVisionText">
+            <plugin id="Text" />
         </object-type>
     </object-folder>
     <families>
@@ -13799,6 +13995,7 @@
                 <instance-variable name="cooldown" type="number" />
                 <instance-variable name="cpu_delay" type="number" />
                 <instance-variable name="next_up" type="number" />
+                <instance-variable name="number_active" type="number" />
             </instance-variables>
         </family>
         <family name="Location" plugin-id="Sprite">
@@ -13848,7 +14045,7 @@
     </global-instances>
     <sounds-folder expanded="1" />
     <music-folder expanded="1" />
-    <files-folder expanded="1">
+    <files-folder expanded="0">
         <file name="map1.tmx" />
         <file name="map2.tmx" />
         <file name="map3.tmx" />
