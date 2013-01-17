@@ -1078,7 +1078,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" title="Animations">
+        <event-group collapsed="1" description="" title="Animations">
             <sub-events>
                 <event-block>
                     <conditions>
@@ -3039,7 +3039,7 @@
                     </actions>
                     <sub-events>
                         <comment>pokud je zbran strelby schopna (ma naboje, neni zrovna uprostred nabijeni ani mezi vystrely)</comment>
-                        <event-block>
+                        <event-block collapsed="1">
                             <conditions>
                                 <condition id="-7" name="Compare instance variable" type="Weapon">
                                     <param id="0" name="Instance variable">firing_timer</param>
@@ -3137,6 +3137,11 @@
                                         </action>
                                         <action behavior="Bullet" id="0" name="Set speed" type="Bullet">
                                             <param id="0" name="Speed">Weapon.bullet_velocity + random(0,50)</param>
+                                        </action>
+                                        <action id="0" name="Spawn another object" type="Bullet">
+                                            <param id="0" name="Object">Particles2</param>
+                                            <param id="1" name="Layer">3</param>
+                                            <param id="2" name="Image point">0</param>
                                         </action>
                                     </actions>
                                     <sub-events>
@@ -5458,7 +5463,7 @@
         </event-group>
         <event-group collapsed="1" description="" title="Weapon change">
             <sub-events>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="0" name="On key pressed" type="Keyboard">
                             <param id="0" name="Key">32 (Space)</param>
