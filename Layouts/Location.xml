@@ -3,8 +3,8 @@
     <name>Location</name>
     <event-sheet>location Event sheet</event-sheet>
     <size>
-        <width>1360</width>
-        <height>680</height>
+        <width>1600</width>
+        <height>800</height>
     </size>
     <margins>
         <horizontal>500</horizontal>
@@ -44,11 +44,11 @@
                         <x>-201</x>
                         <y>490</y>
                         <z>0</z>
-                        <width>34</width>
-                        <height>35</height>
+                        <width>40</width>
+                        <height>40</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.514285743</hotspotY>
+                        <hotspotY>0.524999976</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
@@ -193,8 +193,8 @@
                         <x>-193</x>
                         <y>294</y>
                         <z>0</z>
-                        <width>34</width>
-                        <height>34</height>
+                        <width>40</width>
+                        <height>40</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
@@ -245,8 +245,8 @@
                         <x>-198</x>
                         <y>604</y>
                         <z>0</z>
-                        <width>34</width>
-                        <height>34</height>
+                        <width>40</width>
+                        <height>40</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
@@ -328,6 +328,27 @@
                         <depth>0</depth>
                         <hotspotX>0.30392158</hotspotX>
                         <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="EnemyDude_Mrtvola">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>-417</x>
+                        <y>677</y>
+                        <z>0</z>
+                        <width>34</width>
+                        <height>34</height>
+                        <depth>0</depth>
+                        <hotspotX>0.497518599</hotspotX>
+                        <hotspotY>0.477272719</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>

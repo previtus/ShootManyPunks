@@ -123,7 +123,7 @@
                             <actions>
                                 <action id="1" name="Request project file" type="AJAX">
                                     <param id="0" name="Tag">&quot;map_load&quot;</param>
-                                    <param id="1" name="File">map1_with_single_quote.tmx</param>
+                                    <param id="1" name="File">map1.tmx</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -138,7 +138,7 @@
                             <actions>
                                 <action id="1" name="Request project file" type="AJAX">
                                     <param id="0" name="Tag">&quot;map_load&quot;</param>
-                                    <param id="1" name="File">map2_with_single_quote.tmx</param>
+                                    <param id="1" name="File">map2.tmx</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -153,7 +153,7 @@
                             <actions>
                                 <action id="1" name="Request project file" type="AJAX">
                                     <param id="0" name="Tag">&quot;map_load&quot;</param>
-                                    <param id="1" name="File">map3_with_single_quote.tmx</param>
+                                    <param id="1" name="File">map3.tmx</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -173,8 +173,8 @@
                             <param id="0" name="TMX string">AJAX.LastData</param>
                         </action>
                         <action id="10" name="Set instance position of (0,0)" type="TMXImporter">
-                            <param id="0" name="X">17</param>
-                            <param id="1" name="Y">17</param>
+                            <param id="0" name="X">20</param>
+                            <param id="1" name="Y">20</param>
                         </action>
                         <action id="2" name="Create tiles" type="TMXImporter">
                             <param id="0" name="Tile">Tile</param>
@@ -396,7 +396,7 @@
                                         </action>
                                         <action id="-3" name="Create object" type="System">
                                             <param id="0" name="Object to create">Weapon</param>
-                                            <param id="1" name="Layer">0</param>
+                                            <param id="1" name="Layer">1</param>
                                             <param id="2" name="X">-100</param>
                                             <param id="3" name="Y">-100</param>
                                         </action>
@@ -1470,10 +1470,10 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" title="Enemy">
+        <event-group description="" title="Enemy">
             <sub-events>
                 <comment>AI nepratel</comment>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="-11" name="For Each" type="System">
                             <param id="0" name="Object">Enemy</param>
@@ -2269,7 +2269,7 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="-7" name="Compare instance variable" type="Enemy">
                             <param id="0" name="Instance variable">hp</param>
@@ -2281,6 +2281,11 @@
                         <action id="0" name="Spawn another object" type="Enemy">
                             <param id="0" name="Object">MonsterKill</param>
                             <param id="1" name="Layer">3</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="0" name="Spawn another object" type="Enemy">
+                            <param id="0" name="Object">EnemyDude_Mrtvola</param>
+                            <param id="1" name="Layer">0</param>
                             <param id="2" name="Image point">0</param>
                         </action>
                     </actions>
@@ -7057,7 +7062,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" title="Utility functions">
+        <event-group description="" title="Utility functions">
             <sub-events>
                 <event-block>
                     <conditions>

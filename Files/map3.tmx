@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<map version='1.0' orientation='orthogonal' width='40' height='20' tilewidth='34' tileheight='34'>
- <tileset firstgid='1' name='sett' tilewidth='34' tileheight='34'>
-  <image source='tiles/sett.png' width='340' height='102'/>
+<map version='1.0' orientation='orthogonal' width='40' height='20' tilewidth='40' tileheight='40'>
+ <tileset firstgid='1' name='sett' tilewidth='40' tileheight='40'>
+  <image source='tiles/sett.png' width='400' height='120'/>
   <tile id='0'>
    <properties>
     <property name='Solid' value='1'/>
