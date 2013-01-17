@@ -114,7 +114,7 @@
                 </instance>
                 <instance type="Bullet">
                     <properties>
-                        <initial-visibility>Visible</initial-visibility>
+                        <initial-visibility>Invisible</initial-visibility>
                         <initial-frame>0</initial-frame>
                         <collisions>Enabled</collisions>
                     </properties>
@@ -122,6 +122,8 @@
                         <damage>5</damage>
                         <trail_UID>0</trail_UID>
                         <team_id>0</team_id>
+                        <is_explosive>false</is_explosive>
+                        <blast_radius>0</blast_radius>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
@@ -371,6 +373,8 @@
                         <reload_timer>0</reload_timer>
                         <is_single_shot>false</is_single_shot>
                         <single_shot_needs_reset>false</single_shot_needs_reset>
+                        <is_explosive>false</is_explosive>
+                        <blast_radius>0</blast_radius>
                         <interact_func>interact_weapon</interact_func>
                         <interact_description>Pick up AR57 rifle</interact_description>
                     </instance-variables>
@@ -413,6 +417,8 @@
                         <reload_timer>0</reload_timer>
                         <is_single_shot>true</is_single_shot>
                         <single_shot_needs_reset>false</single_shot_needs_reset>
+                        <is_explosive>false</is_explosive>
+                        <blast_radius>0</blast_radius>
                         <interact_func>interact_weapon</interact_func>
                         <interact_description>Pick up Scattergun S1</interact_description>
                     </instance-variables>
@@ -455,6 +461,8 @@
                         <reload_timer>0</reload_timer>
                         <is_single_shot>false</is_single_shot>
                         <single_shot_needs_reset>false</single_shot_needs_reset>
+                        <is_explosive>false</is_explosive>
+                        <blast_radius>0</blast_radius>
                         <interact_func>interact_weapon</interact_func>
                         <interact_description>Pick up MP74</interact_description>
                     </instance-variables>
@@ -497,6 +505,8 @@
                         <reload_timer>0</reload_timer>
                         <is_single_shot>false</is_single_shot>
                         <single_shot_needs_reset>false</single_shot_needs_reset>
+                        <is_explosive>false</is_explosive>
+                        <blast_radius>0</blast_radius>
                         <interact_func>interact_weapon</interact_func>
                         <interact_description>Pick up MP70</interact_description>
                     </instance-variables>
@@ -539,6 +549,8 @@
                         <reload_timer>0</reload_timer>
                         <is_single_shot>true</is_single_shot>
                         <single_shot_needs_reset>false</single_shot_needs_reset>
+                        <is_explosive>false</is_explosive>
+                        <blast_radius>0</blast_radius>
                         <interact_func>interact_weapon</interact_func>
                         <interact_description>Pick up Ares Light Fire 70</interact_description>
                     </instance-variables>
@@ -581,6 +593,8 @@
                         <reload_timer>0</reload_timer>
                         <is_single_shot>true</is_single_shot>
                         <single_shot_needs_reset>false</single_shot_needs_reset>
+                        <is_explosive>false</is_explosive>
+                        <blast_radius>0</blast_radius>
                         <interact_func>interact_weapon</interact_func>
                         <interact_description>Pick up Diamondback</interact_description>
                     </instance-variables>
@@ -1087,6 +1101,50 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
+                <instance type="RocketLauncher">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <instance-variables>
+                        <projectiles_per_shot>1</projectiles_per_shot>
+                        <projectile_spread>0</projectile_spread>
+                        <min_spread>0</min_spread>
+                        <max_spread>0</max_spread>
+                        <current_spread>0</current_spread>
+                        <recoil_per_shot>0</recoil_per_shot>
+                        <center_speed>0</center_speed>
+                        <damage>80</damage>
+                        <bullet_velocity>600</bullet_velocity>
+                        <magazine_size>1</magazine_size>
+                        <magazine_current>1</magazine_current>
+                        <firing_interval>30</firing_interval>
+                        <firing_timer>0</firing_timer>
+                        <reload_interval>300</reload_interval>
+                        <reload_timer>0</reload_timer>
+                        <is_single_shot>true</is_single_shot>
+                        <single_shot_needs_reset>false</single_shot_needs_reset>
+                        <is_explosive>true</is_explosive>
+                        <blast_radius>150</blast_radius>
+                        <interact_func>interact_weapon</interact_func>
+                        <interact_description>Pick up RPG</interact_description>
+                    </instance-variables>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>-5</x>
+                        <y>-318</y>
+                        <z>0</z>
+                        <width>162</width>
+                        <height>57</height>
+                        <depth>0</depth>
+                        <hotspotX>0.506172836</hotspotX>
+                        <hotspotY>0.508771956</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
             </instances>
             <effects />
         </layer>
@@ -1439,6 +1497,45 @@
                     <world>
                         <x>-231</x>
                         <y>20</y>
+                        <z>0</z>
+                        <width>128</width>
+                        <height>128</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="Explosion">
+                    <properties>
+                        <rate>50</rate>
+                        <spray-cone>360</spray-cone>
+                        <type>One-shot</type>
+                        <initial-particle-properties></initial-particle-properties>
+                        <speed>100</speed>
+                        <size>32</size>
+                        <opacity>100</opacity>
+                        <grow-rate>0</grow-rate>
+                        <x-randomiser>0</x-randomiser>
+                        <y-randomiser>0</y-randomiser>
+                        <speed-randomiser->0</speed-randomiser->
+                        <size-randomiser>0</size-randomiser>
+                        <grow-rate-randomiser>0</grow-rate-randomiser>
+                        <particle-lifetime-properties></particle-lifetime-properties>
+                        <acceleration>-150</acceleration>
+                        <gravity>0</gravity>
+                        <angle-randomiser>0</angle-randomiser>
+                        <speed-randomiser>800</speed-randomiser>
+                        <opacity-randomiser>0</opacity-randomiser>
+                        <destroy-mode>Fade to invisible</destroy-mode>
+                        <timeout>1</timeout>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>-301</x>
+                        <y>-19</y>
                         <z>0</z>
                         <width>128</width>
                         <height>128</height>

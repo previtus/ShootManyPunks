@@ -7,18 +7,18 @@
     <unique-id>w2turdg6quee</unique-id>
     <saved-with-version>11400</saved-with-version>
     <used-plugins>
+        <plugin author="Scirra" id="Button" version="1">Button</plugin>
+        <plugin author="Scirra" id="AJAX" version="1">AJAX</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
-        <plugin author="Scirra" id="Function" version="1">Function</plugin>
+        <plugin author="Scirra" id="Arr" version="1">Array</plugin>
+        <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
+        <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
         <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
         <plugin author="Rex.Rainbow" id="Rex_TMXImporter" version="0.109999999">TMX Importer</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="Text" version="1">Text</plugin>
         <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
-        <plugin author="Scirra" id="AJAX" version="1">AJAX</plugin>
-        <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
-        <plugin author="Scirra" id="Arr" version="1">Array</plugin>
-        <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
-        <plugin author="Scirra" id="Button" version="1">Button</plugin>
+        <plugin author="Scirra" id="Function" version="1">Function</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior author="Scirra" id="Anchor" version="1">Anchor</behavior>
@@ -341,6 +341,25 @@
                     </animation>
                 </animation-folder>
             </object-type>
+            <object-type global="1" name="RocketLauncher">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.506173" hotspotY="0.508772">
+                            <collision-poly>
+                                <point x="0.0432099" y="0.122807" />
+                                <point x="0.5" y="0.0350877" />
+                                <point x="0.944444" y="0.157895" />
+                                <point x="0.944444" y="0.491228" />
+                                <point x="0.814815" y="0.473684" />
+                                <point x="0.5" y="0.578947" />
+                                <point x="0.179012" y="0.491228" />
+                                <point x="0.0185185" y="0.491228" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
         </object-folder>
         <object-folder expanded="0" name="Implants">
             <object-type global="1" name="Medicomp">
@@ -400,7 +419,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="Actors">
+        <object-folder expanded="0" name="Actors">
             <object-type name="EnemyDude">
                 <plugin id="Sprite" />
                 <animation-folder expanded="1">
@@ -1279,7 +1298,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="WorldMap">
+        <object-folder expanded="0" name="WorldMap">
             <object-type name="text_tmp_examplebackdoor">
                 <plugin id="Text" />
             </object-type>
@@ -1369,7 +1388,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="Map">
+        <object-folder expanded="0" name="Map">
             <object-type name="Box">
                 <plugin id="Sprite" />
                 <animation-folder expanded="1">
@@ -1456,6 +1475,8 @@
                     <instance-variable name="damage" type="number" />
                     <instance-variable name="trail_UID" type="number" />
                     <instance-variable name="team_id" type="number" />
+                    <instance-variable name="is_explosive" type="boolean" />
+                    <instance-variable name="blast_radius" type="number" />
                 </instance-variables>
                 <behaviors>
                     <behavior-type name="Bullet">
@@ -1694,6 +1715,10 @@
                     </animation>
                 </animation-folder>
             </object-type>
+            <object-type name="Explosion">
+                <plugin id="Particles" />
+                <texture />
+            </object-type>
         </object-folder>
         <object-folder expanded="0" name="Programs">
             <object-type name="StealVisionROM">
@@ -1872,6 +1897,7 @@
                 <member>MachineGun</member>
                 <member>Pistol</member>
                 <member>Revolver</member>
+                <member>RocketLauncher</member>
                 <member>Shotgun</member>
                 <member>SubMachineGun</member>
                 <member>SubMachineGun2</member>
@@ -1894,6 +1920,8 @@
                 <instance-variable comment="kolik jeste zbyva, nez bude zbran nabita" name="reload_timer" type="number" />
                 <instance-variable comment="je zbran poloautomaticka (tj. pistole a brokovnice maji true)" name="is_single_shot" type="boolean" />
                 <instance-variable comment="pokud je zbran poloautomaticka, je potreba pustit pred dalsim vystrelem spoust?" name="single_shot_needs_reset" type="boolean" />
+                <instance-variable name="is_explosive" type="boolean" />
+                <instance-variable name="blast_radius" type="number" />
             </instance-variables>
         </family>
         <family name="QuestGivers" plugin-id="Sprite">
@@ -1927,6 +1955,7 @@
                 <member>Pistol</member>
                 <member>QuestGiver</member>
                 <member>Revolver</member>
+                <member>RocketLauncher</member>
                 <member>Shotgun</member>
                 <member>StealVisionROM</member>
                 <member>SubMachineGun</member>
@@ -2020,7 +2049,7 @@
             </behaviors>
         </family>
     </families>
-    <layout-folder expanded="1">
+    <layout-folder expanded="0">
         <layout>StartScreen.xml</layout>
         <layout>Location.xml</layout>
         <layout>WorldMap.xml</layout>
@@ -2043,7 +2072,7 @@
     </global-instances>
     <sounds-folder expanded="1" />
     <music-folder expanded="1" />
-    <files-folder expanded="1">
+    <files-folder expanded="0">
         <file name="map2_with_single_quote.tmx" />
         <file name="map3_with_single_quote.tmx" />
         <file name="map1_with_single_quote.tmx" />
