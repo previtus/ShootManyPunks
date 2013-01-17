@@ -2905,10 +2905,11 @@
         <layout>Location.xml</layout>
         <layout>WorldMap.xml</layout>
     </layout-folder>
-    <event-folder expanded="0">
+    <event-folder expanded="1">
         <event-sheet>location Event sheet.xml</event-sheet>
         <event-sheet>WorldMapEvents.xml</event-sheet>
         <event-sheet>start screen Event sheet.xml</event-sheet>
+        <event-sheet>QuestRelated.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Mouse" />

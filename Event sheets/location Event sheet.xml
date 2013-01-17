@@ -6519,7 +6519,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" title="Quests">
+        <event-group collapsed="1" description="" title="Quests">
             <sub-events>
                 <event-block>
                     <conditions>
