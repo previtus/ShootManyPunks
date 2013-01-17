@@ -1302,6 +1302,56 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
+                <instance type="Stimpack">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <instance-variables>
+                        <boost_type>stamina</boost_type>
+                        <boost_value>20</boost_value>
+                    </instance-variables>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>-223</x>
+                        <y>722</y>
+                        <z>0</z>
+                        <width>18</width>
+                        <height>16</height>
+                        <depth>0</depth>
+                        <hotspotX>0.493150681</hotspotX>
+                        <hotspotY>0.479532152</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="BioBattery">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <instance-variables>
+                        <boost_type>bio</boost_type>
+                        <boost_value>100</boost_value>
+                    </instance-variables>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>-223</x>
+                        <y>743</y>
+                        <z>0</z>
+                        <width>18</width>
+                        <height>16</height>
+                        <depth>0</depth>
+                        <hotspotX>0.493150681</hotspotX>
+                        <hotspotY>0.479532152</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
             </instances>
             <effects />
         </layer>

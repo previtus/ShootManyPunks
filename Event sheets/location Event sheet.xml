@@ -2216,14 +2216,61 @@
                             <param id="1" name="Layer">3</param>
                             <param id="2" name="Image point">0</param>
                         </action>
-                        <action id="0" name="Spawn another object" type="Enemy">
-                            <param id="0" name="Object">SmallMedKit</param>
-                            <param id="1" name="Layer">1</param>
-                            <param id="2" name="Image point">0</param>
-                        </action>
                     </actions>
                     <sub-events>
                         <event-block>
+                            <conditions>
+                                <condition id="-8" name="Compare two values" type="System">
+                                    <param id="0" name="First value">random(0,1)</param>
+                                    <param id="1" name="Comparison">3</param>
+                                    <param id="2" name="Second value">0.5</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" type="Enemy">
+                                    <param id="0" name="Object">SmallMedKit</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block collapsed="1">
+                            <conditions>
+                                <condition id="-22" name="Else" type="System" />
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" type="System">
+                                            <param id="0" name="First value">random(0,1)</param>
+                                            <param id="1" name="Comparison">3</param>
+                                            <param id="2" name="Second value">0.5</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Spawn another object" type="Enemy">
+                                            <param id="0" name="Object">BioBattery</param>
+                                            <param id="1" name="Layer">1</param>
+                                            <param id="2" name="Image point">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-22" name="Else" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Spawn another object" type="Enemy">
+                                            <param id="0" name="Object">Stimpack</param>
+                                            <param id="1" name="Layer">1</param>
+                                            <param id="2" name="Image point">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block collapsed="1">
                             <conditions>
                                 <condition id="-8" name="Compare two values" type="System">
                                     <param id="0" name="First value">random(0,1)</param>
@@ -5130,9 +5177,9 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" title="Loot Pickup">
+        <event-group description="" title="Loot Pickup">
             <sub-events>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="0" name="On collision with another object" type="Avatar">
                             <param id="0" name="Object">Item</param>
@@ -5152,6 +5199,38 @@
                                 <action id="-9" name="Set value" type="System">
                                     <param id="0" name="Variable">avatar_hp</param>
                                     <param id="1" name="Value">min(avatar_hp + current_hp_boost_bonus*Item.boost_value, avatar_max_hp)</param>
+                                </action>
+                                <action id="-9" name="Destroy" type="Item" />
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" type="Item">
+                                    <param id="0" name="Instance variable">boost_type</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;bio&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">avatar_bioenergy</param>
+                                    <param id="1" name="Value">min(avatar_bioenergy + current_hp_boost_bonus*Item.boost_value, avatar_max_bioenergy)</param>
+                                </action>
+                                <action id="-9" name="Destroy" type="Item" />
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" type="Item">
+                                    <param id="0" name="Instance variable">boost_type</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;stamina&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">avatar_stamina</param>
+                                    <param id="1" name="Value">min(avatar_stamina + current_hp_boost_bonus*Item.boost_value, avatar_max_stamina)</param>
                                 </action>
                                 <action id="-9" name="Destroy" type="Item" />
                             </actions>
@@ -5778,6 +5857,7 @@
                     </conditions>
                     <actions />
                     <sub-events>
+                        <variable constant="0" name="roll" static="0" type="number">0</variable>
                         <event-block>
                             <conditions>
                                 <condition id="-8" name="Compare two values" type="System">
@@ -5869,13 +5949,10 @@
                             </conditions>
                             <actions>
                                 <action id="-3" name="Create object" type="System">
-                                    <param id="0" name="Object to create">SubMachineGun</param>
+                                    <param id="0" name="Object to create">BioBattery</param>
                                     <param id="1" name="Layer">1</param>
                                     <param id="2" name="X">Function.Param(0)</param>
                                     <param id="3" name="Y">Function.Param(1)</param>
-                                </action>
-                                <action id="9" name="Set scale" type="SubMachineGun">
-                                    <param id="0" name="Scale">0.25</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -5890,17 +5967,14 @@
                             </conditions>
                             <actions>
                                 <action id="-3" name="Create object" type="System">
-                                    <param id="0" name="Object to create">SubMachineGun2</param>
+                                    <param id="0" name="Object to create">Stimpack</param>
                                     <param id="1" name="Layer">1</param>
                                     <param id="2" name="X">Function.Param(0)</param>
                                     <param id="3" name="Y">Function.Param(1)</param>
                                 </action>
-                                <action id="9" name="Set scale" type="SubMachineGun2">
-                                    <param id="0" name="Scale">0.25</param>
-                                </action>
                             </actions>
                         </event-block>
-                        <event-block>
+                        <event-block collapsed="1">
                             <conditions>
                                 <condition id="-22" name="Else" type="System" />
                                 <condition id="-8" name="Compare two values" type="System">
@@ -5910,16 +5984,120 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-3" name="Create object" type="System">
-                                    <param id="0" name="Object to create">MachineGun</param>
-                                    <param id="1" name="Layer">1</param>
-                                    <param id="2" name="X">Function.Param(0)</param>
-                                    <param id="3" name="Y">Function.Param(1)</param>
-                                </action>
-                                <action id="9" name="Set scale" type="MachineGun">
-                                    <param id="0" name="Scale">0.25</param>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">roll</param>
+                                    <param id="1" name="Value">random(0,6)</param>
                                 </action>
                             </actions>
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" type="System">
+                                            <param id="0" name="Variable">roll</param>
+                                            <param id="1" name="Comparison">2</param>
+                                            <param id="2" name="Value">1</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-3" name="Create object" type="System">
+                                            <param id="0" name="Object to create">AmmoPistol</param>
+                                            <param id="1" name="Layer">1</param>
+                                            <param id="2" name="X">Function.Param(0)</param>
+                                            <param id="3" name="Y">Function.Param(1)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-22" name="Else" type="System" />
+                                        <condition id="-14" name="Compare variable" type="System">
+                                            <param id="0" name="Variable">roll</param>
+                                            <param id="1" name="Comparison">2</param>
+                                            <param id="2" name="Value">2</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-3" name="Create object" type="System">
+                                            <param id="0" name="Object to create">AmmoRevolver</param>
+                                            <param id="1" name="Layer">1</param>
+                                            <param id="2" name="X">Function.Param(0)</param>
+                                            <param id="3" name="Y">Function.Param(1)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-22" name="Else" type="System" />
+                                        <condition id="-14" name="Compare variable" type="System">
+                                            <param id="0" name="Variable">roll</param>
+                                            <param id="1" name="Comparison">2</param>
+                                            <param id="2" name="Value">3</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-3" name="Create object" type="System">
+                                            <param id="0" name="Object to create">AmmoRifle</param>
+                                            <param id="1" name="Layer">1</param>
+                                            <param id="2" name="X">Function.Param(0)</param>
+                                            <param id="3" name="Y">Function.Param(1)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-22" name="Else" type="System" />
+                                        <condition id="-14" name="Compare variable" type="System">
+                                            <param id="0" name="Variable">roll</param>
+                                            <param id="1" name="Comparison">2</param>
+                                            <param id="2" name="Value">4</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-3" name="Create object" type="System">
+                                            <param id="0" name="Object to create">AmmoRocket</param>
+                                            <param id="1" name="Layer">1</param>
+                                            <param id="2" name="X">Function.Param(0)</param>
+                                            <param id="3" name="Y">Function.Param(1)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-22" name="Else" type="System" />
+                                        <condition id="-14" name="Compare variable" type="System">
+                                            <param id="0" name="Variable">roll</param>
+                                            <param id="1" name="Comparison">2</param>
+                                            <param id="2" name="Value">5</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-3" name="Create object" type="System">
+                                            <param id="0" name="Object to create">AmmoShotgun</param>
+                                            <param id="1" name="Layer">1</param>
+                                            <param id="2" name="X">Function.Param(0)</param>
+                                            <param id="3" name="Y">Function.Param(1)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-22" name="Else" type="System" />
+                                        <condition id="-14" name="Compare variable" type="System">
+                                            <param id="0" name="Variable">roll</param>
+                                            <param id="1" name="Comparison">2</param>
+                                            <param id="2" name="Value">6</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-3" name="Create object" type="System">
+                                            <param id="0" name="Object to create">AmmoSMG</param>
+                                            <param id="1" name="Layer">1</param>
+                                            <param id="2" name="X">Function.Param(0)</param>
+                                            <param id="3" name="Y">Function.Param(1)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
                         </event-block>
                     </sub-events>
                 </event-block>
