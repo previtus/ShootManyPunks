@@ -66,7 +66,7 @@
         <variable constant="0" name="remaining_quest_enemies" static="0" type="number">0</variable>
         <comment>animace pohybu</comment>
         <variable constant="0" name="avatar_last_speed" static="0" type="number">0</variable>
-        <event-group description="" title="TiledMap Import">
+        <event-group collapsed="1" description="" title="TiledMap Import">
             <sub-events>
                 <comment>Loading correct tmx string - correct location</comment>
                 <event-block>
@@ -85,7 +85,7 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="-2" name="On start of layout" type="System" />
                     </conditions>
@@ -94,6 +94,8 @@
                         <action id="-9" name="Destroy" type="Avatar" />
                         <action id="-9" name="Destroy" type="Enemy" />
                         <action id="-9" name="Destroy" type="Box" />
+                        <action id="-9" name="Destroy" type="ProgramROM" />
+                        <action id="-9" name="Destroy" type="Bullet" />
                     </actions>
                     <sub-events>
                         <event-block>
@@ -1076,7 +1078,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" title="Animations">
+        <event-group description="" title="Animations">
             <sub-events>
                 <event-block>
                     <conditions>
@@ -1112,7 +1114,7 @@
                     </conditions>
                     <actions>
                         <action id="6" name="Set speed" type="AvatarLegs">
-                            <param id="0" name="Speed">AvatarLegs.8Direction.Speed / 20</param>
+                            <param id="0" name="Speed">AvatarLegs.8Direction.Speed</param>
                         </action>
                         <action id="-9" name="Set value" type="System">
                             <param id="0" name="Variable">avatar_last_speed</param>
@@ -1170,13 +1172,13 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block>
+                <event-block disabled="1">
                     <conditions>
                         <condition id="-3" name="Is on-screen" type="npc_simple" />
                     </conditions>
                     <actions />
                     <sub-events>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
                                 <condition id="5" name="On any finished" type="npc_simple" />
                             </conditions>
@@ -1204,7 +1206,7 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block any="1">
+                <event-block any="1" disabled="1">
                     <conditions>
                         <condition id="5" name="On any finished" type="Enemy" />
                         <condition id="3" name="Compare frame" type="Enemy">
@@ -1214,7 +1216,7 @@
                     </conditions>
                     <actions />
                     <sub-events>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
                                 <condition id="-7" name="Compare instance variable" type="Enemy">
                                     <param id="0" name="Instance variable">state</param>
@@ -1230,6 +1232,34 @@
                             <actions>
                                 <action id="3" name="Start" type="Enemy">
                                     <param id="0" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-1" name="Every tick" type="System" />
+                        <condition id="-11" name="For Each" type="System">
+                            <param id="0" name="Object">Enemy</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="6" name="Set speed" type="Enemy">
+                            <param id="0" name="Speed">Enemy.Bullet.Speed</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition behavior="Bullet" id="0" name="Compare speed" type="Enemy">
+                                    <param id="0" name="Comparison">0</param>
+                                    <param id="1" name="Speed">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="5" name="Set frame" type="Enemy">
+                                    <param id="0" name="Frame number">6</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -1527,7 +1557,7 @@
                             </actions>
                             <sub-events>
                                 <comment>vidi hrace - jde po nem (approach)</comment>
-                                <event-block collapsed="1">
+                                <event-block>
                                     <conditions>
                                         <condition id="-14" name="Compare variable" type="System">
                                             <param id="0" name="Variable">avatar_hp</param>
@@ -1929,7 +1959,7 @@
                                     <actions>
                                         <action id="-10" name="Set value" type="Enemy">
                                             <param id="0" name="Instance variable">state</param>
-                                            <param id="1" name="Value">&quot;shoot&quot;</param>
+                                            <param id="1" name="Value">&quot;approach&quot;</param>
                                         </action>
                                         <action id="-10" name="Set value" type="Enemy">
                                             <param id="0" name="Instance variable">state_switch_timer</param>
@@ -1940,7 +1970,7 @@
                             </sub-events>
                         </event-block>
                         <comment>melee - do hrace jde sekat</comment>
-                        <event-block>
+                        <event-block collapsed="1">
                             <conditions>
                                 <condition id="-22" name="Else" type="System" />
                                 <condition id="-7" name="Compare instance variable" type="Enemy">
@@ -2262,7 +2292,7 @@
                     </sub-events>
                 </event-block>
                 <comment>toto by mozna melo byt nekde v Main, zde ale vice logicke (reseni co s mrtvym hracem hned za odecitanim zivotu)</comment>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="-14" name="Compare variable" type="System">
                             <param id="0" name="Variable">avatar_hp</param>
@@ -2306,6 +2336,10 @@
                                 <action id="-10" name="Set value" type="Enemy">
                                     <param id="0" name="Instance variable">state</param>
                                     <param id="1" name="Value">&quot;sleep&quot;</param>
+                                </action>
+                                <action id="4" name="Set animation" type="Enemy">
+                                    <param id="0" name="Animation">&quot;Sleep&quot; &amp; Enemy.sprite_id</param>
+                                    <param id="1" name="From">1</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -3199,6 +3233,21 @@
                                             <param id="1" name="Value">&quot;approach&quot;</param>
                                         </action>
                                     </actions>
+                                    <sub-events>
+                                        <event-block>
+                                            <conditions>
+                                                <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Enemy">
+                                                    <param id="0" name="Instance variable">is_melee</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="4" name="Set animation" type="Enemy">
+                                                    <param id="0" name="Animation">&quot;Walk&quot; &amp; Enemy.sprite_id</param>
+                                                    <param id="1" name="From">1</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
                                 </event-block>
                             </sub-events>
                         </event-block>
@@ -3236,7 +3285,7 @@
                         </action>
                     </actions>
                     <sub-events>
-                        <event-block collapsed="1">
+                        <event-block>
                             <conditions>
                                 <condition id="-7" name="Compare instance variable" type="Weapon">
                                     <param id="0" name="Instance variable">reload_timer</param>
@@ -3790,6 +3839,10 @@
                                 <action id="-13" name="Set boolean" type="Enemy">
                                     <param id="0" name="Instance variable">is_melee_attacking</param>
                                     <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="4" name="Set animation" type="Enemy">
+                                    <param id="0" name="Animation">&quot;Sleep&quot; &amp; Enemy.sprite_id</param>
+                                    <param id="1" name="From">1</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -7147,7 +7200,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" title="Utility functions">
+        <event-group collapsed="1" description="" title="Utility functions">
             <sub-events>
                 <event-block>
                     <conditions>

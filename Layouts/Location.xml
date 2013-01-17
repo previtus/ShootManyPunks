@@ -789,11 +789,11 @@
                         <x>-222</x>
                         <y>-7</y>
                         <z>0</z>
-                        <width>5</width>
-                        <height>34</height>
+                        <width>88</width>
+                        <height>88</height>
                         <depth>0</depth>
-                        <hotspotX>0.600000024</hotspotX>
-                        <hotspotY>1.235294104</hotspotY>
+                        <hotspotX>0.193181813</hotspotX>
+                        <hotspotY>0.454545468</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
