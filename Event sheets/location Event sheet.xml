@@ -705,15 +705,23 @@
                         <condition id="-18" name="On created" type="Avatar" />
                     </conditions>
                     <actions>
-                        <action behavior="Bullet" id="5" name="Set enabled" type="Avatar">
-                            <param id="0" name="State">0</param>
-                        </action>
                         <action id="3" name="Start" type="Avatar">
                             <param id="0" name="From">1</param>
                         </action>
                         <action id="6" name="Set speed" type="Avatar">
                             <param id="0" name="Speed">24</param>
                         </action>
+                        <action behavior="Pin" id="0" name="Pin to object" type="Avatar">
+                            <param id="0" name="Pin to">AvatarLegs</param>
+                            <param id="1" name="Mode">1</param>
+                        </action>
+                        <action id="3" name="Start" type="AvatarLegs">
+                            <param id="0" name="From">1</param>
+                        </action>
+                        <action id="6" name="Set speed" type="AvatarLegs">
+                            <param id="0" name="Speed">24</param>
+                        </action>
+                        <action id="-24" name="Move to top" type="Avatar" />
                     </actions>
                     <sub-events>
                         <event-block>
@@ -791,17 +799,7 @@
                         </event-block>
                     </sub-events>
                 </event-block>
-                <event-block>
-                    <conditions>
-                        <condition id="5" name="On any finished" type="Avatar" />
-                    </conditions>
-                    <actions>
-                        <action id="3" name="Start" type="Avatar">
-                            <param id="0" name="From">1</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block any="1">
+                <event-block any="1" collapsed="1">
                     <conditions>
                         <condition id="-1" name="Every tick" type="System" />
                     </conditions>
@@ -1010,29 +1008,38 @@
                         <action id="3" name="Start" type="Avatar">
                             <param id="0" name="From">0</param>
                         </action>
+                        <action id="6" name="Set speed" type="AvatarLegs">
+                            <param id="0" name="Speed">24</param>
+                        </action>
+                        <action id="5" name="Set frame" type="AvatarLegs">
+                            <param id="0" name="Frame number">6</param>
+                        </action>
+                        <action id="3" name="Start" type="AvatarLegs">
+                            <param id="0" name="From">0</param>
+                        </action>
                     </actions>
                 </event-block>
                 <event-block>
                     <conditions>
-                        <condition behavior="8Direction" id="1" name="Compare speed" type="Avatar">
+                        <condition behavior="8Direction" id="1" name="Compare speed" type="AvatarLegs">
                             <param id="0" name="Comparison">1</param>
                             <param id="1" name="Speed">avatar_last_speed</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="6" name="Set speed" type="Avatar">
-                            <param id="0" name="Speed">Avatar.8Direction.Speed / 20</param>
+                        <action id="6" name="Set speed" type="AvatarLegs">
+                            <param id="0" name="Speed">AvatarLegs.8Direction.Speed / 20</param>
                         </action>
                         <action id="-9" name="Set value" type="System">
                             <param id="0" name="Variable">avatar_last_speed</param>
-                            <param id="1" name="Value">Avatar.8Direction.Speed</param>
+                            <param id="1" name="Value">AvatarLegs.8Direction.Speed</param>
                         </action>
                         <action disabled="1" id="0" name="Set text" type="InfoText">
                             <param id="0" name="Text">Avatar.AnimationSpeed</param>
                         </action>
                     </actions>
                 </event-block>
-                <event-block>
+                <event-block disabled="1">
                     <conditions>
                         <condition disabled="1" id="0" name="On key pressed" type="Keyboard">
                             <param id="0" name="Key">16 (Shift)</param>
@@ -1044,7 +1051,7 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block>
+                <event-block disabled="1">
                     <conditions>
                         <condition disabled="1" id="3" name="On key released" type="Keyboard">
                             <param id="0" name="Key">16 (Shift)</param>
@@ -1058,13 +1065,13 @@
                 </event-block>
                 <event-block>
                     <conditions>
-                        <condition behavior="8Direction" id="0" inverted="1" name="Is moving" type="Avatar" />
+                        <condition behavior="8Direction" id="0" inverted="1" name="Is moving" type="AvatarLegs" />
                     </conditions>
                     <actions>
                         <action disabled="1" id="3" name="Start" type="Avatar">
                             <param id="0" name="From">0</param>
                         </action>
-                        <action id="5" name="Set frame" type="Avatar">
+                        <action id="5" name="Set frame" type="AvatarLegs">
                             <param id="0" name="Frame number">6</param>
                         </action>
                     </actions>
@@ -1148,14 +1155,14 @@
         </event-group>
         <event-group collapsed="1" description="" title="NPC">
             <sub-events>
-                <event-block any="1">
+                <event-block any="1" collapsed="1">
                     <conditions>
                         <condition id="-1" name="Every tick" type="System" />
                     </conditions>
                     <actions />
                     <sub-events>
                         <variable comment="... in X pixels from shooting" constant="0" name="npc_gets_scared_in" static="0" type="number">120</variable>
-                        <event-block>
+                        <event-block collapsed="1">
                             <conditions>
                                 <condition id="-3" name="Is on-screen" type="npc_simple" />
                             </conditions>
@@ -2391,7 +2398,7 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action behavior="8Direction" id="7" name="Simulate control" type="Avatar">
+                        <action behavior="8Direction" id="7" name="Simulate control" type="AvatarLegs">
                             <param id="0" name="Control">2</param>
                         </action>
                     </actions>
@@ -2403,7 +2410,7 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action behavior="8Direction" id="7" name="Simulate control" type="Avatar">
+                        <action behavior="8Direction" id="7" name="Simulate control" type="AvatarLegs">
                             <param id="0" name="Control">3</param>
                         </action>
                     </actions>
@@ -2415,7 +2422,7 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action behavior="8Direction" id="7" name="Simulate control" type="Avatar">
+                        <action behavior="8Direction" id="7" name="Simulate control" type="AvatarLegs">
                             <param id="0" name="Control">0</param>
                         </action>
                     </actions>
@@ -2427,7 +2434,7 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action behavior="8Direction" id="7" name="Simulate control" type="Avatar">
+                        <action behavior="8Direction" id="7" name="Simulate control" type="AvatarLegs">
                             <param id="0" name="Control">1</param>
                         </action>
                     </actions>
@@ -2491,8 +2498,8 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action behavior="8Direction" id="4" name="Set max speed" type="Avatar">
-                            <param id="0" name="Max Speed">500*current_sprint_bonus</param>
+                        <action behavior="8Direction" id="4" name="Set max speed" type="AvatarLegs">
+                            <param id="0" name="Max Speed">500*current_speed_bonus</param>
                         </action>
                         <action id="-13" name="Set boolean" type="Avatar">
                             <param id="0" name="Instance variable">is_sprinting</param>
@@ -2507,7 +2514,7 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action behavior="8Direction" id="4" name="Set max speed" type="Avatar">
+                        <action behavior="8Direction" id="4" name="Set max speed" type="AvatarLegs">
                             <param id="0" name="Max Speed">200*current_speed_bonus</param>
                         </action>
                         <action id="-13" name="Set boolean" type="Avatar">
@@ -2530,28 +2537,29 @@
                             <param id="1" name="Comparison">5</param>
                             <param id="2" name="Value">30</param>
                         </condition>
-                        <condition behavior="8Direction" id="1" name="Compare speed" type="Avatar">
+                        <condition behavior="8Direction" id="1" name="Compare speed" type="AvatarLegs">
                             <param id="0" name="Comparison">4</param>
                             <param id="1" name="Speed">0</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action behavior="8Direction" id="8" name="Set enabled" type="Avatar">
+                        <action behavior="8Direction" id="8" name="Set enabled" type="AvatarLegs">
                             <param id="0" name="State">0</param>
                         </action>
-                        <action behavior="Bullet" id="5" name="Set enabled" type="Avatar">
+                        <action behavior="Bullet" id="5" name="Set enabled" type="AvatarLegs">
                             <param id="0" name="State">1</param>
                         </action>
                         <action id="-13" name="Set boolean" type="Avatar">
                             <param id="0" name="Instance variable">is_dodging</param>
                             <param id="1" name="Value">1</param>
                         </action>
-                        <action behavior="Bullet" id="0" name="Set speed" type="Avatar">
+                        <action behavior="Bullet" id="0" name="Set speed" type="AvatarLegs">
                             <param id="0" name="Speed">800</param>
                         </action>
-                        <action behavior="Bullet" id="3" name="Set angle of motion" type="Avatar">
-                            <param id="0" name="Angle">Avatar.8Direction.MovingAngle</param>
+                        <action behavior="Bullet" id="3" name="Set angle of motion" type="AvatarLegs">
+                            <param id="0" name="Angle">AvatarLegs.8Direction.MovingAngle</param>
                         </action>
+                        <action behavior="8Direction" id="0" name="Stop" type="AvatarLegs" />
                         <action disabled="1" id="0" name="Set text" type="InfoText">
                             <param id="0" name="Text">&quot;Dodging&quot;</param>
                         </action>
@@ -2573,7 +2581,7 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="-8" name="Is boolean instance variable set" type="Avatar">
                             <param id="0" name="Instance variable">is_dodging</param>
@@ -2588,7 +2596,7 @@
                     <sub-events>
                         <event-block>
                             <conditions>
-                                <condition id="0" name="On collision with another object" type="Avatar">
+                                <condition id="0" name="On collision with another object" type="AvatarLegs">
                                     <param id="0" name="Object">Tile</param>
                                 </condition>
                                 <condition id="-8" name="Is boolean instance variable set" type="Tile">
@@ -2596,10 +2604,10 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action behavior="CustomMovement" id="11" name="Push out solid at angle" type="Avatar">
-                                    <param id="0" name="Angle">Avatar.Bullet.AngleOfMotion-180</param>
+                                <action behavior="CustomMovement" id="11" name="Push out solid at angle" type="AvatarLegs">
+                                    <param id="0" name="Angle">AvatarLegs.Bullet.AngleOfMotion-180</param>
                                 </action>
-                                <action behavior="Bullet" id="0" name="Set speed" type="Avatar">
+                                <action behavior="Bullet" id="0" name="Set speed" type="AvatarLegs">
                                     <param id="0" name="Speed">0</param>
                                 </action>
                             </actions>
@@ -2617,11 +2625,10 @@
                                     <param id="0" name="Instance variable">is_dodging</param>
                                     <param id="1" name="Value">0</param>
                                 </action>
-                                <action behavior="8Direction" id="0" name="Stop" type="Avatar" />
-                                <action behavior="8Direction" id="8" name="Set enabled" type="Avatar">
+                                <action behavior="8Direction" id="8" name="Set enabled" type="AvatarLegs">
                                     <param id="0" name="State">1</param>
                                 </action>
-                                <action behavior="Bullet" id="5" name="Set enabled" type="Avatar">
+                                <action behavior="Bullet" id="5" name="Set enabled" type="AvatarLegs">
                                     <param id="0" name="State">0</param>
                                 </action>
                                 <action disabled="1" id="0" name="Set text" type="InfoText">
@@ -2697,7 +2704,7 @@
                             <param id="0" name="Variable">avatar_stamina</param>
                             <param id="1" name="Value">0</param>
                         </action>
-                        <action behavior="8Direction" id="4" name="Set max speed" type="Avatar">
+                        <action behavior="8Direction" id="4" name="Set max speed" type="AvatarLegs">
                             <param id="0" name="Max Speed">200*current_speed_bonus</param>
                         </action>
                         <action id="-13" name="Set boolean" type="Avatar">
@@ -5177,7 +5184,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" title="Loot Pickup">
+        <event-group collapsed="1" description="" title="Loot Pickup">
             <sub-events>
                 <event-block>
                     <conditions>
