@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<map version='1.0' orientation='orthogonal' width='20' height='15' tilewidth='40' tileheight='40'>
+ <tileset firstgid='1' name='Map1' tilewidth='40' tileheight='40'>
+  <image source='../../Documents/GitHub/ShootManyPunks/TiledFiles/Map1/Map1.png' trans='000000' width='160' height='600'/>
+  <tile id='31'>
+   <properties>
+    <property name='Solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='32'>
+   <properties>
+    <property name='Solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='33'>
+   <properties>
+    <property name='Solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='34'>
+   <properties>
+    <property name='Solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='35'>
+   <properties>
+    <property name='Solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='36'>
+   <properties>
+    <property name='Solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='37'>
+   <properties>
+    <property name='Solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='38'>
+   <properties>
+    <property name='Solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='39'>
+   <properties>
+    <property name='Solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='40'>
+   <properties>
+    <property name='Solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='41'>
+   <properties>
+    <property name='Solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='42'>
+   <properties>
+    <property name='Solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='43'>
+   <properties>
+    <property name='Solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='44'>
+   <properties>
+    <property name='Solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='45'>
+   <properties>
+    <property name='Solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='46'>
+   <properties>
+    <property name='Solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='47'>
+   <properties>
+    <property name='Solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='48'>
+   <properties>
+    <property name='Solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='49'>
+   <properties>
+    <property name='Solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='50'>
+   <properties>
+    <property name='Solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='51'>
+   <properties>
+    <property name='Solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='52'>
+   <properties>
+    <property name='Solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='53'>
+   <properties>
+    <property name='Solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='54'>
+   <properties>
+    <property name='Solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='55'>
+   <properties>
+    <property name='Solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='56'>
+   <properties>
+    <property name='Solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='57'>
+   <properties>
+    <property name='Solid' value='1'/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid='61' name='Actors' tilewidth='40' tileheight='40'>
+  <image source='../../Documents/GitHub/ShootManyPunks/TiledFiles/tiles_actors/actors.png' trans='ffffff' width='160' height='40'/>
+  <tile id='0'>
+   <properties>
+    <property name='actor' value='EnemyDude'/>
+   </properties>
+  </tile>
+  <tile id='1'>
+   <properties>
+    <property name='actor' value='EnemyDudeMelee'/>
+   </properties>
+  </tile>
+  <tile id='2'>
+   <properties>
+    <property name='actor' value='QuestGiver'/>
+   </properties>
+  </tile>
+  <tile id='3'>
+   <properties>
+    <property name='actor' value='npc_simple'/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name='map' width='20' height='15'>
+  <data encoding='base64'>
+   FQAAAAUAAAABAAAAJQAAACIAAAAiAAAAJgAAAAEAAAAGAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAABQAAAAEAAAAkAAAAIAAAACAAAAAjAAAAAQAAAAYAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAFAAAAAQAAACQAAAAgAAAAIAAAACMAAAABAAAABgAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAAAUAAAABAAAAJAAAACAAAAAgAAAAIwAAAAEAAAAGAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAABQAAAAEAAAAnAAAAIQAAACEAAAAoAAAAAQAAAAYAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAFAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAABgAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAAAkAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAIAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAABUAAAADAAAAAwAAAAMAAAADAAAAAwAAAAMAAAADAAAAAwAAAAMAAAADAAAAAwAAAAMAAAADAAAAAwAAAAMAAAADAAAAAwAAAAMAAAADAAAAAwAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAA
+  </data>
+ </layer>
+ <layer name='actors' width='20' height='15'>
+  <data encoding='base64'>
+   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+AAAAPgAAAAAAAAAAAAAAAAAAAD4AAAAAAAAAPgAAAAAAAAA+AAAAAAAAAD4AAAAAAAAAPgAAAAAAAAA+AAAAAAAAAAAAAAAAAAAAAAAAAD0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD0AAAAAAAAAAAAAAAAAAAA9AAAAAAAAAAAAAAAAAAAAPQAAAAAAAAAAAAAAAAAAAAAAAABAAAAA
+  </data>
+ </layer>
+</map>

@@ -1412,7 +1412,7 @@
             </instances>
             <effects />
         </layer>
-        <layer name="monsters">
+        <layer name="actors">
             <initially-visible>1</initially-visible>
             <background-color>255,255,255</background-color>
             <transparent>1</transparent>
