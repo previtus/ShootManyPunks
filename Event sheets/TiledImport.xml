@@ -27,7 +27,7 @@
                         <condition id="-2" name="On start of layout" type="System" />
                     </conditions>
                     <actions>
-                        <action id="-9" name="Destroy" type="Tile" />
+                        <action id="-9" name="Destroy" type="MapTile" />
                         <action id="-9" name="Destroy" type="Avatar" />
                         <action id="-9" name="Destroy" type="Enemy" />
                         <action id="-9" name="Destroy" type="Box" />
@@ -60,7 +60,7 @@
                             <actions>
                                 <action id="1" name="Request project file" type="AJAX">
                                     <param id="0" name="Tag">&quot;map_load&quot;</param>
-                                    <param id="1" name="File">Map1_.tmx</param>
+                                    <param id="1" name="File">mapa.tmx</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -75,7 +75,7 @@
                             <actions>
                                 <action id="1" name="Request project file" type="AJAX">
                                     <param id="0" name="Tag">&quot;map_load&quot;</param>
-                                    <param id="1" name="File">map2.tmx</param>
+                                    <param id="1" name="File">parkoviste2.tmx</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -87,12 +87,7 @@
                                     <param id="2" name="Value">3</param>
                                 </condition>
                             </conditions>
-                            <actions>
-                                <action id="1" name="Request project file" type="AJAX">
-                                    <param id="0" name="Tag">&quot;map_load&quot;</param>
-                                    <param id="1" name="File">map3.tmx</param>
-                                </action>
-                            </actions>
+                            <actions />
                         </event-block>
                     </sub-events>
                 </event-block>
@@ -123,7 +118,7 @@
                     </conditions>
                     <actions />
                     <sub-events>
-                        <event-block collapsed="1">
+                        <event-block>
                             <conditions>
                                 <condition id="-8" name="Compare two values" type="System">
                                     <param id="0" name="First value">TMXImporter.LayerName</param>
@@ -166,9 +161,6 @@
                                             <param id="0" name="Instance variable">isSolid</param>
                                             <param id="1" name="Value">1</param>
                                         </action>
-                                        <action id="0" name="Set text" type="InfoText">
-                                            <param id="0" name="Text">&quot;Setting SOLID&quot;</param>
-                                        </action>
                                     </actions>
                                 </event-block>
                                 <event-block>
@@ -202,9 +194,9 @@
                                 <event-block>
                                     <conditions>
                                         <condition id="-8" name="Compare two values" type="System">
-                                            <param id="0" name="First value">TMXImporter.TileProp(&quot;actor&quot;, 0)</param>
+                                            <param id="0" name="First value">TMXImporter.TileProp(&quot;actor&quot;)</param>
                                             <param id="1" name="Comparison">0</param>
-                                            <param id="2" name="Second value">&quot;1&quot;</param>
+                                            <param id="2" name="Second value">&quot;EnemyDude&quot;</param>
                                         </condition>
                                     </conditions>
                                     <actions>
@@ -228,7 +220,7 @@
                                         <condition id="-8" name="Compare two values" type="System">
                                             <param id="0" name="First value">TMXImporter.TileProp(&quot;actor&quot;, 0)</param>
                                             <param id="1" name="Comparison">0</param>
-                                            <param id="2" name="Second value">&quot;2&quot;</param>
+                                            <param id="2" name="Second value">&quot;EnemyDudeMelee&quot;</param>
                                         </condition>
                                     </conditions>
                                     <actions>
@@ -293,141 +285,158 @@
                         <comment>Spawn lootable chests</comment>
                         <event-block>
                             <conditions>
-                                <condition id="-8" name="Compare two values" type="System">
-                                    <param id="0" name="First value">TMXImporter.TileProp(&quot;box&quot;, 0)</param>
+                                <condition id="-22" name="Else" type="System" />
+                                <condition disabled="1" id="-8" name="Compare two values" type="System">
+                                    <param id="0" name="First value">TMXImporter.LayerName</param>
                                     <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Second value">&quot;1&quot;</param>
+                                    <param id="2" name="Second value">&quot;items&quot;</param>
                                 </condition>
                             </conditions>
-                            <actions>
-                                <action id="-3" name="Create object" type="System">
-                                    <param id="0" name="Object to create">Box</param>
-                                    <param id="1" name="Layer">1</param>
-                                    <param id="2" name="X">TMXImporter.PhysicalX</param>
-                                    <param id="3" name="Y">TMXImporter.PhysicalY</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <comment>Spawn transports</comment>
-                        <event-block>
-                            <conditions>
-                                <condition id="-8" name="Compare two values" type="System">
-                                    <param id="0" name="First value">TMXImporter.TileProp(&quot;transportTarget&quot;, 0)</param>
-                                    <param id="1" name="Comparison">4</param>
-                                    <param id="2" name="Second value">&quot;0&quot;</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-3" name="Create object" type="System">
-                                    <param id="0" name="Object to create">Transport</param>
-                                    <param id="1" name="Layer">0</param>
-                                    <param id="2" name="X">TMXImporter.PhysicalX</param>
-                                    <param id="3" name="Y">TMXImporter.PhysicalY</param>
-                                </action>
-                                <action disabled="1" id="-9" name="Destroy" type="Tile" />
-                                <action id="-10" name="Set value" type="Transport">
-                                    <param id="0" name="Instance variable">target</param>
-                                    <param id="1" name="Value">TMXImporter.TileProp(&quot;transportTarget&quot;)</param>
-                                </action>
-                                <action id="-10" name="Set value" type="Transport">
-                                    <param id="0" name="Instance variable">spawnPointTarget</param>
-                                    <param id="1" name="Value">TMXImporter.TileProp(&quot;startPointID&quot;)</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <event-block>
-                            <conditions>
-                                <condition id="-8" name="Compare two values" type="System">
-                                    <param id="0" name="First value">TMXImporter.TileProp(&quot;worldMap&quot;, 0)</param>
-                                    <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Second value">&quot;1&quot;</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-3" name="Create object" type="System">
-                                    <param id="0" name="Object to create">WorldMapTransport</param>
-                                    <param id="1" name="Layer">0</param>
-                                    <param id="2" name="X">TMXImporter.PhysicalX</param>
-                                    <param id="3" name="Y">TMXImporter.PhysicalY</param>
-                                </action>
-                                <action disabled="1" id="-9" name="Destroy" type="Tile" />
-                            </actions>
-                        </event-block>
-                        <comment>Spawnpoint of correct value loaded - place player there</comment>
-                        <event-block>
-                            <conditions>
-                                <condition id="-8" name="Compare two values" type="System">
-                                    <param id="0" name="First value">TMXImporter.TileProp(&quot;spID&quot;, 0)</param>
-                                    <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Second value">&quot;1&quot;</param>
-                                </condition>
-                                <condition id="-14" name="Compare variable" type="System">
-                                    <param id="0" name="Variable">to_load_spawnpoint</param>
-                                    <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Value">1</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-3" name="Create object" type="System">
-                                    <param id="0" name="Object to create">Avatar</param>
-                                    <param id="1" name="Layer">2</param>
-                                    <param id="2" name="X">TMXImporter.PhysicalX</param>
-                                    <param id="3" name="Y">TMXImporter.PhysicalY</param>
-                                </action>
-                                <action disabled="1" id="0" name="Set text" type="Debug">
-                                    <param id="0" name="Text">&quot;#1 at &quot;&amp;TMXImporter.PhysicalX &amp; &quot; : &quot;&amp; TMXImporter.PhysicalY</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <event-block>
-                            <conditions>
-                                <condition id="-8" name="Compare two values" type="System">
-                                    <param id="0" name="First value">TMXImporter.TileProp(&quot;spID&quot;, 0)</param>
-                                    <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Second value">&quot;2&quot;</param>
-                                </condition>
-                                <condition id="-14" name="Compare variable" type="System">
-                                    <param id="0" name="Variable">to_load_spawnpoint</param>
-                                    <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Value">2</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-3" name="Create object" type="System">
-                                    <param id="0" name="Object to create">Avatar</param>
-                                    <param id="1" name="Layer">2</param>
-                                    <param id="2" name="X">TMXImporter.PhysicalX</param>
-                                    <param id="3" name="Y">TMXImporter.PhysicalY</param>
-                                </action>
-                                <action disabled="1" id="0" name="Set text" type="Debug">
-                                    <param id="0" name="Text">&quot;#2 at &quot;&amp;TMXImporter.PhysicalX &amp; &quot; : &quot;&amp; TMXImporter.PhysicalY</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <event-block>
-                            <conditions>
-                                <condition id="-8" name="Compare two values" type="System">
-                                    <param id="0" name="First value">TMXImporter.TileProp(&quot;spID&quot;, 0)</param>
-                                    <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Second value">&quot;3&quot;</param>
-                                </condition>
-                                <condition id="-14" name="Compare variable" type="System">
-                                    <param id="0" name="Variable">to_load_spawnpoint</param>
-                                    <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Value">3</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-3" name="Create object" type="System">
-                                    <param id="0" name="Object to create">Avatar</param>
-                                    <param id="1" name="Layer">2</param>
-                                    <param id="2" name="X">TMXImporter.PhysicalX</param>
-                                    <param id="3" name="Y">TMXImporter.PhysicalY</param>
-                                </action>
-                                <action disabled="1" id="0" name="Set text" type="Debug">
-                                    <param id="0" name="Text">&quot;#3 at &quot;&amp;TMXImporter.PhysicalX &amp; &quot; : &quot;&amp; TMXImporter.PhysicalY</param>
-                                </action>
-                            </actions>
+                            <actions />
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" type="System">
+                                            <param id="0" name="First value">TMXImporter.TileProp(&quot;box&quot;, 0)</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">&quot;1&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-3" name="Create object" type="System">
+                                            <param id="0" name="Object to create">Box</param>
+                                            <param id="1" name="Layer">1</param>
+                                            <param id="2" name="X">TMXImporter.PhysicalX</param>
+                                            <param id="3" name="Y">TMXImporter.PhysicalY</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <comment>Spawn transports</comment>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" type="System">
+                                            <param id="0" name="First value">TMXImporter.TileProp(&quot;transport&quot;, 0)</param>
+                                            <param id="1" name="Comparison">4</param>
+                                            <param id="2" name="Second value">&quot;0&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-3" name="Create object" type="System">
+                                            <param id="0" name="Object to create">Transport</param>
+                                            <param id="1" name="Layer">0</param>
+                                            <param id="2" name="X">TMXImporter.PhysicalX</param>
+                                            <param id="3" name="Y">TMXImporter.PhysicalY</param>
+                                        </action>
+                                        <action id="-8" name="Set angle" type="Transport">
+                                            <param id="0" name="Angle">(TMXImporter.TileProp(&quot;transport&quot;) - 1) * 90</param>
+                                        </action>
+                                        <action id="-10" name="Set value" type="Transport">
+                                            <param id="0" name="Instance variable">target</param>
+                                            <param id="1" name="Value">TMXImporter.TileProp(&quot;transportTarget&quot;)</param>
+                                        </action>
+                                        <action id="-10" name="Set value" type="Transport">
+                                            <param id="0" name="Instance variable">spawnPointTarget</param>
+                                            <param id="1" name="Value">TMXImporter.TileProp(&quot;startPointID&quot;)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" type="System">
+                                            <param id="0" name="First value">TMXImporter.TileProp(&quot;exit&quot;, 0)</param>
+                                            <param id="1" name="Comparison">4</param>
+                                            <param id="2" name="Second value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-3" name="Create object" type="System">
+                                            <param id="0" name="Object to create">WorldMapTransport</param>
+                                            <param id="1" name="Layer">0</param>
+                                            <param id="2" name="X">TMXImporter.PhysicalX</param>
+                                            <param id="3" name="Y">TMXImporter.PhysicalY</param>
+                                        </action>
+                                        <action id="-8" name="Set angle" type="WorldMapTransport">
+                                            <param id="0" name="Angle">(TMXImporter.TileProp(&quot;exit&quot;) - 1) * 90</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <comment>Spawnpoint of correct value loaded - place player there</comment>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" type="System">
+                                            <param id="0" name="First value">TMXImporter.TileProp(&quot;spID&quot;, 0)</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">&quot;1&quot;</param>
+                                        </condition>
+                                        <condition id="-14" name="Compare variable" type="System">
+                                            <param id="0" name="Variable">to_load_spawnpoint</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">1</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-3" name="Create object" type="System">
+                                            <param id="0" name="Object to create">Avatar</param>
+                                            <param id="1" name="Layer">2</param>
+                                            <param id="2" name="X">TMXImporter.PhysicalX</param>
+                                            <param id="3" name="Y">TMXImporter.PhysicalY</param>
+                                        </action>
+                                        <action disabled="1" id="0" name="Set text" type="Debug">
+                                            <param id="0" name="Text">&quot;#1 at &quot;&amp;TMXImporter.PhysicalX &amp; &quot; : &quot;&amp; TMXImporter.PhysicalY</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" type="System">
+                                            <param id="0" name="First value">TMXImporter.TileProp(&quot;spID&quot;, 0)</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">&quot;2&quot;</param>
+                                        </condition>
+                                        <condition id="-14" name="Compare variable" type="System">
+                                            <param id="0" name="Variable">to_load_spawnpoint</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">2</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-3" name="Create object" type="System">
+                                            <param id="0" name="Object to create">Avatar</param>
+                                            <param id="1" name="Layer">2</param>
+                                            <param id="2" name="X">TMXImporter.PhysicalX</param>
+                                            <param id="3" name="Y">TMXImporter.PhysicalY</param>
+                                        </action>
+                                        <action disabled="1" id="0" name="Set text" type="Debug">
+                                            <param id="0" name="Text">&quot;#2 at &quot;&amp;TMXImporter.PhysicalX &amp; &quot; : &quot;&amp; TMXImporter.PhysicalY</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" type="System">
+                                            <param id="0" name="First value">TMXImporter.TileProp(&quot;spID&quot;, 0)</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">&quot;3&quot;</param>
+                                        </condition>
+                                        <condition id="-14" name="Compare variable" type="System">
+                                            <param id="0" name="Variable">to_load_spawnpoint</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">3</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-3" name="Create object" type="System">
+                                            <param id="0" name="Object to create">Avatar</param>
+                                            <param id="1" name="Layer">2</param>
+                                            <param id="2" name="X">TMXImporter.PhysicalX</param>
+                                            <param id="3" name="Y">TMXImporter.PhysicalY</param>
+                                        </action>
+                                        <action disabled="1" id="0" name="Set text" type="Debug">
+                                            <param id="0" name="Text">&quot;#3 at &quot;&amp;TMXImporter.PhysicalX &amp; &quot; : &quot;&amp; TMXImporter.PhysicalY</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
                         </event-block>
                     </sub-events>
                 </event-block>
