@@ -55,7 +55,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" title="OnMouseClick">
+        <event-group description="" title="OnMouseClick">
             <sub-events>
                 <event-block disabled="1">
                     <conditions>

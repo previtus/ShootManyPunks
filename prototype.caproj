@@ -833,13 +833,6 @@
                             </collision-poly>
                         </frame>
                     </animation>
-                    <animation framecount="5" loop="0" name="Sek1" pingpong="0" repeatcount="1" repeatto="0" speed="5">
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    </animation>
                 </animation-folder>
             </object-type>
             <object-type name="Avatar">
@@ -2948,6 +2941,5 @@
         <file name="map1.tmx" />
         <file name="map2.tmx" />
         <file name="map3.tmx" />
-        <file name="mapa4.tmx" />
     </files-folder>
 </c2project>
