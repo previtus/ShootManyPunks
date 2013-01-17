@@ -12,6 +12,7 @@
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="Arr" version="1">Array</plugin>
         <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
+        <plugin author="Scirra" id="Dictionary" version="1">Dictionary</plugin>
         <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
         <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
         <plugin author="Rex.Rainbow" id="Rex_TMXImporter" version="0.109999999">TMX Importer</plugin>
@@ -1758,6 +1759,64 @@
                 <plugin id="Arr" />
             </object-type>
         </object-folder>
+        <object-folder expanded="1" name="Items">
+            <object-type name="SmallMedKit">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.493151" hotspotY="0.479532" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="AmmoPistol">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="AmmoSMG">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="AmmoRevolver">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="AmmoRifle">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="AmmoShotgun">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="AmmoRocket">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+        </object-folder>
         <object-type name="TMXImporter">
             <plugin id="Rex_TMXImporter" />
         </object-type>
@@ -1769,14 +1828,6 @@
         </object-type>
         <object-type name="Audio">
             <plugin id="Audio" />
-        </object-type>
-        <object-type name="SmallMedKit">
-            <plugin id="Sprite" />
-            <animation-folder expanded="1">
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
-                    <frame duration="1" hotspotX="0.493151" hotspotY="0.479532" />
-                </animation>
-            </animation-folder>
         </object-type>
         <object-type name="VisionBullet">
             <plugin id="Sprite" />
@@ -1836,6 +1887,9 @@
             <plugin id="Particles" />
             <texture />
         </object-type>
+        <object-type global="1" name="AmmoCount">
+            <plugin id="Dictionary" />
+        </object-type>
     </object-folder>
     <families>
         <family name="Enemy" plugin-id="Sprite">
@@ -1872,6 +1926,12 @@
         </family>
         <family name="Item" plugin-id="Sprite">
             <members>
+                <member>AmmoPistol</member>
+                <member>AmmoRevolver</member>
+                <member>AmmoRifle</member>
+                <member>AmmoRocket</member>
+                <member>AmmoShotgun</member>
+                <member>AmmoSMG</member>
                 <member>SmallMedKit</member>
             </members>
             <instance-variables>
@@ -1922,6 +1982,7 @@
                 <instance-variable comment="pokud je zbran poloautomaticka, je potreba pustit pred dalsim vystrelem spoust?" name="single_shot_needs_reset" type="boolean" />
                 <instance-variable name="is_explosive" type="boolean" />
                 <instance-variable name="blast_radius" type="number" />
+                <instance-variable name="ammo_type" type="string" />
             </instance-variables>
         </family>
         <family name="QuestGivers" plugin-id="Sprite">

@@ -3,6 +3,7 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>location Event sheet</name>
     <events>
+        <variable constant="0" name="ammocount_json" static="0" type="text"></variable>
         <comment>promenne, ktere ma na sobe avatar (postava hrace) by meli byt glob. promenne - aby byly prenaseny mezi nactenim layoutu</comment>
         <comment>dostupne i napr. v layoutu WorldMap</comment>
         <variable constant="0" name="avatar_initialized" static="0" type="number">0</variable>
@@ -762,6 +763,30 @@
                                     <param id="0" name="Variable">avatar_current_weapon</param>
                                     <param id="1" name="Value">avatar_first_weapon</param>
                                 </action>
+                                <action id="0" name="Add key" type="AmmoCount">
+                                    <param id="0" name="Key">&quot;pistol&quot;</param>
+                                    <param id="1" name="Value">90</param>
+                                </action>
+                                <action id="0" name="Add key" type="AmmoCount">
+                                    <param id="0" name="Key">&quot;revolver&quot;</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="0" name="Add key" type="AmmoCount">
+                                    <param id="0" name="Key">&quot;smg&quot;</param>
+                                    <param id="1" name="Value">120</param>
+                                </action>
+                                <action id="0" name="Add key" type="AmmoCount">
+                                    <param id="0" name="Key">&quot;shotgun&quot;</param>
+                                    <param id="1" name="Value">40</param>
+                                </action>
+                                <action id="0" name="Add key" type="AmmoCount">
+                                    <param id="0" name="Key">&quot;rifle&quot;</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="0" name="Add key" type="AmmoCount">
+                                    <param id="0" name="Key">&quot;rocket&quot;</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
                             </actions>
                         </event-block>
                     </sub-events>
@@ -776,7 +801,7 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block any="1" collapsed="1">
+                <event-block any="1">
                     <conditions>
                         <condition id="-1" name="Every tick" type="System" />
                     </conditions>
@@ -860,7 +885,7 @@
                                     </conditions>
                                     <actions>
                                         <action id="0" name="Set text" type="WeaponInfo">
-                                            <param id="0" name="Text">str(Weapon.magazine_current) &amp; &quot;/&quot; &amp; str(Weapon.magazine_size)</param>
+                                            <param id="0" name="Text">str(Weapon.magazine_current) &amp; &quot;/&quot; &amp; str(AmmoCount.Get(Weapon.ammo_type))</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -1381,7 +1406,7 @@
         <event-group collapsed="1" description="" title="Enemy">
             <sub-events>
                 <comment>AI nepratel</comment>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="-11" name="For Each" type="System">
                             <param id="0" name="Object">Enemy</param>
@@ -2268,6 +2293,10 @@
                                 <action id="-15" name="Set visible" type="Weapon">
                                     <param id="0" name="Visibility">1</param>
                                 </action>
+                                <action id="0" name="Call function" type="Function">
+                                    <param id="0" name="Name">&quot;drop_proper_ammo&quot;</param>
+                                    <param id="1" name="Parameter {n}">Weapon.UID{###}Enemy.ImagePointX(0){###}Enemy.ImagePointY(0)</param>
+                                </action>
                             </actions>
                         </event-block>
                         <event-block>
@@ -2722,6 +2751,11 @@
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">0</param>
                                 </condition>
+                                <condition id="0" name="Compare value" type="AmmoCount">
+                                    <param id="0" name="Key">Weapon.ammo_type</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
                             </conditions>
                             <actions>
                                 <action id="-10" name="Set value" type="Weapon">
@@ -2998,7 +3032,7 @@
                         </action>
                     </actions>
                     <sub-events>
-                        <event-block>
+                        <event-block collapsed="1">
                             <conditions>
                                 <condition id="-7" name="Compare instance variable" type="Weapon">
                                     <param id="0" name="Instance variable">reload_timer</param>
@@ -3006,12 +3040,49 @@
                                     <param id="2" name="Value">0</param>
                                 </condition>
                             </conditions>
-                            <actions>
-                                <action id="-10" name="Set value" type="Weapon">
-                                    <param id="0" name="Instance variable">magazine_current</param>
-                                    <param id="1" name="Value">Weapon.magazine_size</param>
-                                </action>
-                            </actions>
+                            <actions />
+                            <sub-events>
+                                <variable constant="0" name="ammo" static="0" type="number">0</variable>
+                                <event-block any="1">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" type="System">
+                                            <param id="0" name="First value">Weapon.UID</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">avatar_first_weapon</param>
+                                        </condition>
+                                        <condition id="-8" name="Compare two values" type="System">
+                                            <param id="0" name="First value">Weapon.UID</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">avatar_second_weapon</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" type="System">
+                                            <param id="0" name="Variable">ammo</param>
+                                            <param id="1" name="Value">min(Weapon.magazine_size-Weapon.magazine_current,AmmoCount.Get(Weapon.ammo_type))</param>
+                                        </action>
+                                        <action id="-11" name="Add to" type="Weapon">
+                                            <param id="0" name="Instance variable">magazine_current</param>
+                                            <param id="1" name="Value">ammo</param>
+                                        </action>
+                                        <action id="1" name="Set key" type="AmmoCount">
+                                            <param id="0" name="Key">Weapon.ammo_type</param>
+                                            <param id="1" name="Value">AmmoCount.Get(Weapon.ammo_type)-ammo</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-22" name="Else" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" type="Weapon">
+                                            <param id="0" name="Instance variable">magazine_current</param>
+                                            <param id="1" name="Value">Weapon.magazine_size</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
                         </event-block>
                     </sub-events>
                 </event-block>
@@ -3294,48 +3365,76 @@
                                 </action>
                             </actions>
                             <sub-events>
-                                <event-block>
+                                <event-block collapsed="1">
                                     <conditions>
-                                        <condition id="-19" name="Pick all" type="System">
+                                        <condition id="-11" name="For Each" type="System">
                                             <param id="0" name="Object">Enemy</param>
                                         </condition>
                                         <condition id="-8" name="Compare two values" type="System">
-                                            <param id="0" name="First value">distance(Bullet.ImagePointX(0),Bullet.ImagePointY(0),Avatar.ImagePointX(0),Avatar.ImagePointY(0))</param>
+                                            <param id="0" name="First value">distance(Bullet.ImagePointX(0),Bullet.ImagePointY(0),Enemy.ImagePointX(0),Enemy.ImagePointY(0))</param>
                                             <param id="1" name="Comparison">2</param>
                                             <param id="2" name="Second value">Bullet.blast_radius</param>
                                         </condition>
-                                        <condition id="-8" name="Compare two values" type="System">
-                                            <param id="0" name="First value">Function.Call(&quot;checkLOS&quot;,Bullet.ImagePointX(0),Bullet.ImagePointY(0),Avatar.ImagePointX(0),Avatar.ImagePointY(0))</param>
-                                            <param id="1" name="Comparison">0</param>
-                                            <param id="2" name="Second value">1</param>
-                                        </condition>
                                     </conditions>
-                                    <actions>
-                                        <action id="-12" name="Subtract from" type="Enemy">
-                                            <param id="0" name="Instance variable">hp</param>
-                                            <param id="1" name="Value">max(0,Bullet.blast_radius - distance(Bullet.ImagePointX(0),Bullet.ImagePointY(0),Enemy.ImagePointX(0),Enemy.ImagePointY(0)))</param>
-                                        </action>
-                                    </actions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block any="1">
+                                            <conditions>
+                                                <condition id="-8" name="Compare two values" type="System">
+                                                    <param id="0" name="First value">Function.Call(&quot;checkLOS&quot;,Bullet.ImagePointX(0),Bullet.ImagePointY(0),Enemy.ImagePointX(0),Enemy.ImagePointY(0))</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Second value">1</param>
+                                                </condition>
+                                                <condition id="-8" name="Compare two values" type="System">
+                                                    <param id="0" name="First value">Function.Call(&quot;checkLOS&quot;,Enemy.ImagePointX(0),Enemy.ImagePointY(0),Bullet.ImagePointX(0),Bullet.ImagePointY(0))</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Second value">1</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-12" name="Subtract from" type="Enemy">
+                                                    <param id="0" name="Instance variable">hp</param>
+                                                    <param id="1" name="Value">max(0,Bullet.blast_radius - distance(Bullet.ImagePointX(0),Bullet.ImagePointY(0),Enemy.ImagePointX(0),Enemy.ImagePointY(0)))</param>
+                                                </action>
+                                                <action id="-10" name="Set value" type="Enemy">
+                                                    <param id="0" name="Instance variable">state</param>
+                                                    <param id="1" name="Value">&quot;approach&quot;</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
                                 </event-block>
-                                <event-block>
+                                <event-block collapsed="1">
                                     <conditions>
                                         <condition id="-8" name="Compare two values" type="System">
                                             <param id="0" name="First value">distance(Bullet.ImagePointX(0),Bullet.ImagePointY(0),Avatar.ImagePointX(0),Avatar.ImagePointY(0))</param>
                                             <param id="1" name="Comparison">2</param>
                                             <param id="2" name="Second value">Bullet.blast_radius</param>
                                         </condition>
-                                        <condition id="-8" name="Compare two values" type="System">
-                                            <param id="0" name="First value">Function.Call(&quot;checkLOS&quot;,Bullet.ImagePointX(0),Bullet.ImagePointY(0),Avatar.ImagePointX(0),Avatar.ImagePointY(0))</param>
-                                            <param id="1" name="Comparison">0</param>
-                                            <param id="2" name="Second value">1</param>
-                                        </condition>
                                     </conditions>
-                                    <actions>
-                                        <action id="-11" name="Subtract from" type="System">
-                                            <param id="0" name="Variable">avatar_hp</param>
-                                            <param id="1" name="Value">max(0,Bullet.blast_radius - distance(Bullet.ImagePointX(0),Bullet.ImagePointY(0),Avatar.ImagePointX(0),Avatar.ImagePointY(0)))</param>
-                                        </action>
-                                    </actions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block any="1">
+                                            <conditions>
+                                                <condition id="-8" name="Compare two values" type="System">
+                                                    <param id="0" name="First value">Function.Call(&quot;checkLOS&quot;,Avatar.ImagePointX(0),Avatar.ImagePointY(0),Bullet.ImagePointX(0),Bullet.ImagePointY(0))</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Second value">1</param>
+                                                </condition>
+                                                <condition id="-8" name="Compare two values" type="System">
+                                                    <param id="0" name="First value">Function.Call(&quot;checkLOS&quot;,Bullet.ImagePointX(0),Bullet.ImagePointY(0),Avatar.ImagePointX(0),Avatar.ImagePointY(0))</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Second value">1</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-11" name="Subtract from" type="System">
+                                                    <param id="0" name="Variable">avatar_hp</param>
+                                                    <param id="1" name="Value">max(0,Bullet.blast_radius - distance(Bullet.ImagePointX(0),Bullet.ImagePointY(0),Avatar.ImagePointX(0),Avatar.ImagePointY(0)))</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
                                 </event-block>
                             </sub-events>
                         </event-block>
@@ -3424,7 +3523,7 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="0" name="On collision with another object" type="Kick">
                             <param id="0" name="Object">Enemy</param>
@@ -3505,6 +3604,31 @@
                         <action id="-13" name="Set boolean" type="Avatar">
                             <param id="0" name="Instance variable">is_melee_atacking</param>
                             <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-19" name="On destroyed" type="AmmoCount" />
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">ammocount_json</param>
+                            <param id="1" name="Value">AmmoCount.AsJSON</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-2" name="On start of layout" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Load" type="AmmoCount">
+                            <param id="0" name="JSON">ammocount_json</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">ammocount_json</param>
+                            <param id="1" name="Value">&quot;&quot;</param>
                         </action>
                     </actions>
                 </event-block>
@@ -5032,6 +5156,47 @@
                                 <action id="-9" name="Destroy" type="Item" />
                             </actions>
                         </event-block>
+                        <event-block any="1">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" type="Item">
+                                    <param id="0" name="Instance variable">boost_type</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;pistol&quot;</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" type="Item">
+                                    <param id="0" name="Instance variable">boost_type</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;rifle&quot;</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" type="Item">
+                                    <param id="0" name="Instance variable">boost_type</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;smg&quot;</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" type="Item">
+                                    <param id="0" name="Instance variable">boost_type</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;revolver&quot;</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" type="Item">
+                                    <param id="0" name="Instance variable">boost_type</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;shotgun&quot;</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" type="Item">
+                                    <param id="0" name="Instance variable">boost_type</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;rocket&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="1" name="Set key" type="AmmoCount">
+                                    <param id="0" name="Key">Item.boost_type</param>
+                                    <param id="1" name="Value">AmmoCount.Get(Item.boost_type)+Item.boost_value</param>
+                                </action>
+                                <action id="-9" name="Destroy" type="Item" />
+                            </actions>
+                        </event-block>
                     </sub-events>
                 </event-block>
                 <event-block collapsed="1">
@@ -5544,14 +5709,14 @@
                             <param id="3" name="Y">Function.Param(1)</param>
                         </action>
                         <action id="-6" name="Set height" type="VisionTrace">
-                            <param id="0" name="Height">1</param>
+                            <param id="0" name="Height">0.1</param>
                         </action>
                         <action id="-22" name="Set angle toward position" type="VisionTrace">
                             <param id="0" name="X">Function.Param(2)</param>
                             <param id="1" name="Y">Function.Param(3)</param>
                         </action>
                         <action id="-5" name="Set width" type="VisionTrace">
-                            <param id="0" name="Width">distance(Function.Param(0),Function.Param(1),Function.Param(2),Function.Param(3))</param>
+                            <param id="0" name="Width">distance(Function.Param(0),Function.Param(1),Function.Param(2),Function.Param(3))-1</param>
                         </action>
                     </actions>
                     <sub-events>
@@ -5605,7 +5770,7 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="0" name="On function" type="Function">
                             <param id="0" name="Name">&quot;RandomLootDrop&quot;</param>
@@ -5753,6 +5918,144 @@
                                 </action>
                                 <action id="9" name="Set scale" type="MachineGun">
                                     <param id="0" name="Scale">0.25</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block collapsed="1">
+                    <conditions>
+                        <condition id="0" name="On function" type="Function">
+                            <param id="0" name="Name">&quot;drop_proper_ammo&quot;</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" type="Weapon">
+                            <param id="0" name="Unique ID">Function.Param(0)</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" type="Weapon">
+                                    <param id="0" name="Instance variable">ammo_type</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;pistol&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" type="System">
+                                    <param id="0" name="Object to create">AmmoPistol</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="X">Function.Param(1)</param>
+                                    <param id="3" name="Y">Function.Param(2)</param>
+                                </action>
+                                <action id="-8" name="Set angle" type="AmmoPistol">
+                                    <param id="0" name="Angle">random(0,360)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-22" name="Else" type="System" />
+                                <condition id="-7" name="Compare instance variable" type="Weapon">
+                                    <param id="0" name="Instance variable">ammo_type</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;smg&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" type="System">
+                                    <param id="0" name="Object to create">AmmoSMG</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="X">Function.Param(1)</param>
+                                    <param id="3" name="Y">Function.Param(2)</param>
+                                </action>
+                                <action id="-8" name="Set angle" type="AmmoSMG">
+                                    <param id="0" name="Angle">random(0,360)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-22" name="Else" type="System" />
+                                <condition id="-7" name="Compare instance variable" type="Weapon">
+                                    <param id="0" name="Instance variable">ammo_type</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;revolver&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" type="System">
+                                    <param id="0" name="Object to create">AmmoRevolver</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="X">Function.Param(1)</param>
+                                    <param id="3" name="Y">Function.Param(2)</param>
+                                </action>
+                                <action id="-8" name="Set angle" type="AmmoRevolver">
+                                    <param id="0" name="Angle">random(0,360)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-22" name="Else" type="System" />
+                                <condition id="-7" name="Compare instance variable" type="Weapon">
+                                    <param id="0" name="Instance variable">ammo_type</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;rifle&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" type="System">
+                                    <param id="0" name="Object to create">AmmoRifle</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="X">Function.Param(1)</param>
+                                    <param id="3" name="Y">Function.Param(2)</param>
+                                </action>
+                                <action id="-8" name="Set angle" type="AmmoRifle">
+                                    <param id="0" name="Angle">random(0,360)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-22" name="Else" type="System" />
+                                <condition id="-7" name="Compare instance variable" type="Weapon">
+                                    <param id="0" name="Instance variable">ammo_type</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;shotgun&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" type="System">
+                                    <param id="0" name="Object to create">AmmoShotgun</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="X">Function.Param(1)</param>
+                                    <param id="3" name="Y">Function.Param(2)</param>
+                                </action>
+                                <action id="-8" name="Set angle" type="AmmoShotgun">
+                                    <param id="0" name="Angle">random(0,360)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-22" name="Else" type="System" />
+                                <condition id="-7" name="Compare instance variable" type="Weapon">
+                                    <param id="0" name="Instance variable">ammo_type</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;rocket&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" type="System">
+                                    <param id="0" name="Object to create">AmmoRocket</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="X">Function.Param(1)</param>
+                                    <param id="3" name="Y">Function.Param(2)</param>
+                                </action>
+                                <action id="-8" name="Set angle" type="AmmoRocket">
+                                    <param id="0" name="Angle">random(0,360)</param>
                                 </action>
                             </actions>
                         </event-block>
