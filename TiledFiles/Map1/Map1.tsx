@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset name="Map1" tilewidth="64" tileheight="64">
- <image source="Map1.png" trans="000000" width="256" height="960"/>
+<tileset name="Map1" tilewidth="40" tileheight="40">
+ <image source="Map1.png" trans="000000" width="160" height="600"/>
  <tile id="31">
   <properties>
    <property name="Solid" value="1"/>

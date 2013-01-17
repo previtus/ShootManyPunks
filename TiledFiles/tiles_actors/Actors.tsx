@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset name="Actors" tilewidth="64" tileheight="64">
- <image source="actors.png" trans="ffffff" width="256" height="64"/>
+<tileset name="Actors" tilewidth="40" tileheight="40">
+ <image source="actors.png" trans="ffffff" width="160" height="40"/>
  <tile id="0">
   <properties>
    <property name="actor" value="EnemyDude"/>
