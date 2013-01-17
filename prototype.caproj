@@ -27,11 +27,11 @@
         <behavior author="Scirra" id="Pin" version="1">Pin</behavior>
         <behavior author="Scirra" id="bound" version="1">Bound to layout</behavior>
         <behavior author="Scirra" id="custom" version="1">Custom Movement</behavior>
-        <behavior author="Scirra" id="Anchor" version="1">Anchor</behavior>
-        <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
         <behavior author="Scirra" id="destroy" version="1">Destroy outside layout</behavior>
         <behavior author="Scirra" id="scrollto" version="1">Scroll To</behavior>
         <behavior author="Scirra" id="solid" version="1">Solid</behavior>
+        <behavior author="Scirra" id="Anchor" version="1">Anchor</behavior>
+        <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
     </used-behaviors>
     <used-effects />
     <configurations>
@@ -51,7 +51,7 @@
         <prop name="Hide address bar">No</prop>
         <prop name="Loader style">Progress bar &amp; logo</prop>
         <prop name="Preview browser">(default)</prop>
-        <prop name="Sampling">Linear</prop>
+        <prop name="Sampling">Point</prop>
         <prop name="Use iOS retina display">iPhone only</prop>
     </configuration-settings>
     <object-folder expanded="1">
@@ -420,7 +420,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="0" name="Actors">
+        <object-folder expanded="1" name="Actors">
             <object-type name="EnemyDude">
                 <plugin id="Sprite" />
                 <animation-folder expanded="1">
