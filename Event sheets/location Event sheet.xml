@@ -1655,7 +1655,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" title="Enemy">
+        <event-group description="" title="Enemy">
             <sub-events>
                 <comment>AI nepratel</comment>
                 <event-block collapsed="1">
@@ -2433,11 +2433,14 @@
                         <condition id="-4" name="Trigger once while true" type="System" />
                     </conditions>
                     <actions>
-                        <action id="-9" name="Destroy" type="Avatar" />
-                        <action id="-9" name="Destroy" type="SamuraiSword" />
-                        <action id="-9" name="Destroy" type="Kick" />
-                        <action id="0" name="Set text" type="InfoText">
+                        <action disabled="1" id="-9" name="Destroy" type="Avatar" />
+                        <action disabled="1" id="-9" name="Destroy" type="SamuraiSword" />
+                        <action disabled="1" id="-9" name="Destroy" type="Kick" />
+                        <action disabled="1" id="0" name="Set text" type="InfoText">
                             <param id="0" name="Text">&quot;You dead!&quot;</param>
+                        </action>
+                        <action id="-2" name="Go to layout" type="System">
+                            <param id="0" name="Layout">DeathScreen</param>
                         </action>
                     </actions>
                     <sub-events>

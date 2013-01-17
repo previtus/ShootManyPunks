@@ -8,6 +8,28 @@
         <variable constant="0" name="map3_string" static="0" type="text"></variable>
         <event-block>
             <conditions>
+                <condition id="7" name="Cursor is over object" type="Mouse">
+                    <param id="0" name="Object">StartButton</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="5" name="Set frame" type="StartButton">
+                    <param id="0" name="Frame number">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="-22" name="Else" type="System" />
+            </conditions>
+            <actions>
+                <action id="5" name="Set frame" type="StartButton">
+                    <param id="0" name="Frame number">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
                 <condition id="6" name="On object clicked" type="Mouse">
                     <param id="0" name="Mouse button">0</param>
                     <param id="1" name="Click type">0</param>
