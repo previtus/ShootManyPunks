@@ -182,7 +182,7 @@
                         <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
-                        <id>3</id>
+                        <id>4</id>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Flash" />
