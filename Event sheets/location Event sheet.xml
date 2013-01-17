@@ -700,7 +700,7 @@
         </event-group>
         <event-group collapsed="1" description="" title="Main">
             <sub-events>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="-18" name="On created" type="Avatar" />
                     </conditions>
@@ -796,6 +796,66 @@
                                     <param id="1" name="Value">0</param>
                                 </action>
                             </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-19" name="Pick all" type="System">
+                                    <param id="0" name="Object">Weapon</param>
+                                </condition>
+                                <condition id="-14" name="Pick by unique ID" type="Weapon">
+                                    <param id="0" name="Unique ID">avatar_current_weapon</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" type="Weapon">
+                                            <param id="0" name="Instance variable">look_type</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">&quot;pistol&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" type="Avatar">
+                                            <param id="0" name="Animation">&quot;Pistol&quot;</param>
+                                            <param id="1" name="From">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-22" name="Else" type="System" />
+                                        <condition id="-7" name="Compare instance variable" type="Weapon">
+                                            <param id="0" name="Instance variable">look_type</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">&quot;machinegun&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" type="Avatar">
+                                            <param id="0" name="Animation">&quot;Machinegun&quot;</param>
+                                            <param id="1" name="From">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-22" name="Else" type="System" />
+                                        <condition id="-7" name="Compare instance variable" type="Weapon">
+                                            <param id="0" name="Instance variable">look_type</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">&quot;rocketlauncher&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" type="Avatar">
+                                            <param id="0" name="Animation">&quot;Rocketlauncher&quot;</param>
+                                            <param id="1" name="From">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
                         </event-block>
                     </sub-events>
                 </event-block>
@@ -3239,6 +3299,13 @@
                             <param id="0" name="Variable">avatar_stamina_delay_timer</param>
                             <param id="1" name="Value">avatar_stamina_delay_interval</param>
                         </action>
+                        <action id="4" name="Set animation" type="Avatar">
+                            <param id="0" name="Animation">&quot;Sword&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="6" name="Set speed" type="Avatar">
+                            <param id="0" name="Speed">20*current_sword_speed_bonus</param>
+                        </action>
                     </actions>
                     <sub-events>
                         <event-block>
@@ -3279,7 +3346,7 @@
                 <event-block>
                     <conditions>
                         <condition id="0" name="On key pressed" type="Keyboard">
-                            <param id="0" name="Key">17 (Ctrl)</param>
+                            <param id="0" name="Key">81 (Q)</param>
                         </condition>
                         <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Avatar">
                             <param id="0" name="Instance variable">is_melee_atacking</param>
@@ -3314,6 +3381,13 @@
                         <action id="-9" name="Set value" type="System">
                             <param id="0" name="Variable">avatar_stamina_delay_timer</param>
                             <param id="1" name="Value">avatar_stamina_delay_interval</param>
+                        </action>
+                        <action id="4" name="Set animation" type="Avatar">
+                            <param id="0" name="Animation">&quot;Kick&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="6" name="Set speed" type="Avatar">
+                            <param id="0" name="Speed">20</param>
                         </action>
                     </actions>
                 </event-block>
@@ -3637,7 +3711,7 @@
                         </event-block>
                     </sub-events>
                 </event-block>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="5" name="On any finished" type="SamuraiSword" />
                     </conditions>
@@ -3648,8 +3722,70 @@
                             <param id="1" name="Value">0</param>
                         </action>
                     </actions>
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-19" name="Pick all" type="System">
+                                    <param id="0" name="Object">Weapon</param>
+                                </condition>
+                                <condition id="-14" name="Pick by unique ID" type="Weapon">
+                                    <param id="0" name="Unique ID">avatar_current_weapon</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" type="Weapon">
+                                            <param id="0" name="Instance variable">look_type</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">&quot;pistol&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" type="Avatar">
+                                            <param id="0" name="Animation">&quot;Pistol&quot;</param>
+                                            <param id="1" name="From">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-22" name="Else" type="System" />
+                                        <condition id="-7" name="Compare instance variable" type="Weapon">
+                                            <param id="0" name="Instance variable">look_type</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">&quot;machinegun&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" type="Avatar">
+                                            <param id="0" name="Animation">&quot;Machinegun&quot;</param>
+                                            <param id="1" name="From">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-22" name="Else" type="System" />
+                                        <condition id="-7" name="Compare instance variable" type="Weapon">
+                                            <param id="0" name="Instance variable">look_type</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">&quot;rocketlauncher&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" type="Avatar">
+                                            <param id="0" name="Animation">&quot;Rocketlauncher&quot;</param>
+                                            <param id="1" name="From">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
                 </event-block>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="5" name="On any finished" type="Kick" />
                     </conditions>
@@ -3660,6 +3796,68 @@
                             <param id="1" name="Value">0</param>
                         </action>
                     </actions>
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-19" name="Pick all" type="System">
+                                    <param id="0" name="Object">Weapon</param>
+                                </condition>
+                                <condition id="-14" name="Pick by unique ID" type="Weapon">
+                                    <param id="0" name="Unique ID">avatar_current_weapon</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" type="Weapon">
+                                            <param id="0" name="Instance variable">look_type</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">&quot;pistol&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" type="Avatar">
+                                            <param id="0" name="Animation">&quot;Pistol&quot;</param>
+                                            <param id="1" name="From">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-22" name="Else" type="System" />
+                                        <condition id="-7" name="Compare instance variable" type="Weapon">
+                                            <param id="0" name="Instance variable">look_type</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">&quot;machinegun&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" type="Avatar">
+                                            <param id="0" name="Animation">&quot;Machinegun&quot;</param>
+                                            <param id="1" name="From">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-22" name="Else" type="System" />
+                                        <condition id="-7" name="Compare instance variable" type="Weapon">
+                                            <param id="0" name="Instance variable">look_type</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">&quot;rocketlauncher&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" type="Avatar">
+                                            <param id="0" name="Animation">&quot;Rocketlauncher&quot;</param>
+                                            <param id="1" name="From">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
                 </event-block>
                 <event-block>
                     <conditions>
@@ -3688,7 +3886,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" title="Implants">
+        <event-group description="" title="Implants">
             <sub-events>
                 <event-block collapsed="1">
                     <conditions>
@@ -4291,6 +4489,10 @@
                                     <param id="0" name="Variable">avatar_max_cpu</param>
                                     <param id="1" name="Value">Implant.cpu_bonus</param>
                                 </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">avatar_cpu</param>
+                                    <param id="1" name="Value">Implant.cpu_bonus</param>
+                                </action>
                             </actions>
                         </event-block>
                         <event-block>
@@ -4345,6 +4547,10 @@
                                 </action>
                                 <action id="-10" name="Add to" type="System">
                                     <param id="0" name="Variable">avatar_max_cpu</param>
+                                    <param id="1" name="Value">Implant.cpu_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">avatar_cpu</param>
                                     <param id="1" name="Value">Implant.cpu_bonus</param>
                                 </action>
                             </actions>
@@ -4403,6 +4609,10 @@
                                     <param id="0" name="Variable">avatar_max_cpu</param>
                                     <param id="1" name="Value">Implant.cpu_bonus</param>
                                 </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">avatar_cpu</param>
+                                    <param id="1" name="Value">Implant.cpu_bonus</param>
+                                </action>
                             </actions>
                         </event-block>
                         <event-block>
@@ -4457,6 +4667,10 @@
                                 </action>
                                 <action id="-10" name="Add to" type="System">
                                     <param id="0" name="Variable">avatar_max_cpu</param>
+                                    <param id="1" name="Value">Implant.cpu_bonus</param>
+                                </action>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">avatar_cpu</param>
                                     <param id="1" name="Value">Implant.cpu_bonus</param>
                                 </action>
                             </actions>
@@ -5175,6 +5389,63 @@
                                         <action id="-10" name="Set value" type="Weapon">
                                             <param id="0" name="Instance variable">reload_timer</param>
                                             <param id="1" name="Value">Weapon.reload_interval</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" type="Weapon">
+                                    <param id="0" name="Unique ID">avatar_current_weapon</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" type="Weapon">
+                                            <param id="0" name="Instance variable">look_type</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">&quot;pistol&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" type="Avatar">
+                                            <param id="0" name="Animation">&quot;Pistol&quot;</param>
+                                            <param id="1" name="From">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-22" name="Else" type="System" />
+                                        <condition id="-7" name="Compare instance variable" type="Weapon">
+                                            <param id="0" name="Instance variable">look_type</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">&quot;machinegun&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" type="Avatar">
+                                            <param id="0" name="Animation">&quot;Machinegun&quot;</param>
+                                            <param id="1" name="From">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-22" name="Else" type="System" />
+                                        <condition id="-7" name="Compare instance variable" type="Weapon">
+                                            <param id="0" name="Instance variable">look_type</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">&quot;rocketlauncher&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" type="Avatar">
+                                            <param id="0" name="Animation">&quot;Rocketlauncher&quot;</param>
+                                            <param id="1" name="From">0</param>
                                         </action>
                                     </actions>
                                 </event-block>

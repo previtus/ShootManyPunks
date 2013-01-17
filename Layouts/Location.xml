@@ -217,11 +217,11 @@
                         <x>-191</x>
                         <y>0</y>
                         <z>0</z>
-                        <width>5</width>
-                        <height>34</height>
+                        <width>102</width>
+                        <height>102</height>
                         <depth>0</depth>
-                        <hotspotX>0.600000024</hotspotX>
-                        <hotspotY>1.235294104</hotspotY>
+                        <hotspotX>0.30392158</hotspotX>
+                        <hotspotY>0.5</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
@@ -269,11 +269,11 @@
                         <x>-135</x>
                         <y>-77</y>
                         <z>0</z>
-                        <width>30</width>
-                        <height>9</height>
+                        <width>102</width>
+                        <height>102</height>
                         <depth>0</depth>
-                        <hotspotX>-0.200000003</hotspotX>
-                        <hotspotY>1.222222209</hotspotY>
+                        <hotspotX>0.313725501</hotspotX>
+                        <hotspotY>0.509803951</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
@@ -405,6 +405,7 @@
                         <is_explosive>false</is_explosive>
                         <blast_radius>0</blast_radius>
                         <ammo_type>rifle</ammo_type>
+                        <look_type>machinegun</look_type>
                         <interact_func>interact_weapon</interact_func>
                         <interact_description>Pick up AR57 rifle</interact_description>
                     </instance-variables>
@@ -450,6 +451,7 @@
                         <is_explosive>false</is_explosive>
                         <blast_radius>0</blast_radius>
                         <ammo_type>shotgun</ammo_type>
+                        <look_type>machinegun</look_type>
                         <interact_func>interact_weapon</interact_func>
                         <interact_description>Pick up Scattergun S1</interact_description>
                     </instance-variables>
@@ -495,6 +497,7 @@
                         <is_explosive>false</is_explosive>
                         <blast_radius>0</blast_radius>
                         <ammo_type>smg</ammo_type>
+                        <look_type>pistol</look_type>
                         <interact_func>interact_weapon</interact_func>
                         <interact_description>Pick up MP74</interact_description>
                     </instance-variables>
@@ -540,6 +543,7 @@
                         <is_explosive>false</is_explosive>
                         <blast_radius>0</blast_radius>
                         <ammo_type>smg</ammo_type>
+                        <look_type>pistol</look_type>
                         <interact_func>interact_weapon</interact_func>
                         <interact_description>Pick up MP70</interact_description>
                     </instance-variables>
@@ -585,6 +589,7 @@
                         <is_explosive>false</is_explosive>
                         <blast_radius>0</blast_radius>
                         <ammo_type>pistol</ammo_type>
+                        <look_type>pistol</look_type>
                         <interact_func>interact_weapon</interact_func>
                         <interact_description>Pick up Ares Light Fire 70</interact_description>
                     </instance-variables>
@@ -630,6 +635,7 @@
                         <is_explosive>false</is_explosive>
                         <blast_radius>0</blast_radius>
                         <ammo_type>revolver</ammo_type>
+                        <look_type>pistol</look_type>
                         <interact_func>interact_weapon</interact_func>
                         <interact_description>Pick up Diamondback</interact_description>
                     </instance-variables>
@@ -1163,6 +1169,7 @@
                         <is_explosive>true</is_explosive>
                         <blast_radius>150</blast_radius>
                         <ammo_type>rocket</ammo_type>
+                        <look_type>rocketlauncher</look_type>
                         <interact_func>interact_weapon</interact_func>
                         <interact_description>Pick up RPG</interact_description>
                     </instance-variables>
