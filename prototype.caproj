@@ -13936,6 +13936,11 @@
                 <instance-variable name="is_quest_npc" type="number" />
                 <instance-variable name="sprite_id" type="number" />
             </instance-variables>
+            <behaviors>
+                <behavior-type name="Bullet">
+                    <behavior id="Bullet" />
+                </behavior-type>
+            </behaviors>
         </family>
         <family name="Interactable" plugin-id="Sprite">
             <members>
@@ -14085,8 +14090,8 @@
     <sounds-folder expanded="1" />
     <music-folder expanded="1" />
     <files-folder expanded="1">
-        <file name="01_ulicky2.tmx" />
-        <file name="02_ulicky1.tmx" />
-        <file name="03_parkoviste.tmx" />
+        <file name="02_ulicky2.tmx" />
+        <file name="03_parkovistee.tmx" />
+        <file name="01_ulicky1.tmx" />
     </files-folder>
 </c2project>
