@@ -69,7 +69,7 @@
         <variable constant="0" name="remaining_quest_enemies" static="0" type="number">0</variable>
         <comment>animace pohybu</comment>
         <variable constant="0" name="avatar_last_speed" static="0" type="number">0</variable>
-        <event-group collapsed="1" description="" disabled="1" title="TiledMap Import">
+        <event-group description="" disabled="1" title="TiledMap Import">
             <sub-events>
                 <comment>Loading correct tmx string - correct location</comment>
                 <event-block disabled="1">
@@ -88,7 +88,7 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block collapsed="1" disabled="1">
+                <event-block disabled="1">
                     <conditions>
                         <condition id="-2" name="On start of layout" type="System" />
                     </conditions>
@@ -172,7 +172,7 @@
                         <action id="3" name="Release tmx object" type="TMXImporter" />
                     </actions>
                 </event-block>
-                <event-group collapsed="1" description="" disabled="1" title="old_loading">
+                <event-group description="" disabled="1" title="old_loading">
                     <sub-events>
                         <event-block disabled="1">
                             <conditions>
@@ -714,7 +714,7 @@
         </event-group>
         <event-group description="" title="Main">
             <sub-events>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="-18" name="On created" type="Avatar" />
                     </conditions>
@@ -1040,7 +1040,7 @@
                             </sub-events>
                         </event-block>
                         <comment>informace o zbrani</comment>
-                        <event-block collapsed="1">
+                        <event-block>
                             <conditions>
                                 <condition id="-14" name="Pick by unique ID" type="Weapon">
                                     <param id="0" name="Unique ID">avatar_current_weapon</param>
@@ -1187,7 +1187,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" title="Animations">
+        <event-group description="" title="Animations">
             <sub-events>
                 <event-block>
                     <conditions>
@@ -1394,7 +1394,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" title="NPC">
+        <event-group description="" title="NPC">
             <sub-events>
                 <event-block any="1">
                     <conditions>
@@ -1651,10 +1651,10 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" title="Enemy">
+        <event-group description="" title="Enemy">
             <sub-events>
                 <comment>AI nepratel</comment>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="-11" name="For Each" type="System">
                             <param id="0" name="Object">Enemy</param>
@@ -1668,7 +1668,7 @@
                     <actions />
                     <sub-events>
                         <comment>sleep - nepritel neni probuzeny, pochoduje kolem sveho mistecka</comment>
-                        <event-block collapsed="1">
+                        <event-block>
                             <conditions>
                                 <condition id="-7" name="Compare instance variable" type="Enemy">
                                     <param id="0" name="Instance variable">state</param>
@@ -1684,7 +1684,7 @@
                             </actions>
                             <sub-events>
                                 <comment>vidi hrace - jde po nem (approach)</comment>
-                                <event-block collapsed="1">
+                                <event-block>
                                     <conditions>
                                         <condition id="-14" name="Compare variable" type="System">
                                             <param id="0" name="Variable">avatar_hp</param>
@@ -1794,7 +1794,7 @@
                             </sub-events>
                         </event-block>
                         <comment>approach - hrac je videt, ale neni na dostrel</comment>
-                        <event-block collapsed="1">
+                        <event-block>
                             <conditions>
                                 <condition id="-22" name="Else" type="System" />
                                 <condition id="-7" name="Compare instance variable" type="Enemy">
@@ -1882,7 +1882,7 @@
                             </sub-events>
                         </event-block>
                         <comment>shoot - hrac je na dostrel</comment>
-                        <event-block collapsed="1">
+                        <event-block>
                             <conditions>
                                 <condition id="-22" name="Else" type="System" />
                                 <condition id="-7" name="Compare instance variable" type="Enemy">
@@ -1914,7 +1914,7 @@
                             </actions>
                             <sub-events>
                                 <comment>manipulace se zbrani</comment>
-                                <event-block collapsed="1">
+                                <event-block>
                                     <conditions>
                                         <condition id="-19" name="Pick all" type="System">
                                             <param id="0" name="Object">Weapon</param>
@@ -2025,7 +2025,7 @@
                             </sub-events>
                         </event-block>
                         <comment>steal_vision - nepritel je pod vlivem programu &quot;Steal Vision&quot;</comment>
-                        <event-block collapsed="1">
+                        <event-block>
                             <conditions>
                                 <condition id="-22" name="Else" type="System" />
                                 <condition id="-7" name="Compare instance variable" type="Enemy">
@@ -2105,7 +2105,7 @@
                             </sub-events>
                         </event-block>
                         <comment>melee - do hrace jde sekat</comment>
-                        <event-block collapsed="1">
+                        <event-block>
                             <conditions>
                                 <condition id="-22" name="Else" type="System" />
                                 <condition id="-7" name="Compare instance variable" type="Enemy">
@@ -2238,7 +2238,7 @@
                             </sub-events>
                         </event-block>
                         <comment>displace - je potreba trochu popojit (aby nepritel nestal prilis dlouho na jednom miste)</comment>
-                        <event-block collapsed="1">
+                        <event-block>
                             <conditions>
                                 <condition id="-22" name="Else" type="System" />
                                 <condition id="-7" name="Compare instance variable" type="Enemy">
@@ -2330,7 +2330,7 @@
                             </sub-events>
                         </event-block>
                         <comment>catch_up - hrac zmizel, jde se na misto, kde byl videt naposled</comment>
-                        <event-block collapsed="1">
+                        <event-block>
                             <conditions>
                                 <condition id="-22" name="Else" type="System" />
                                 <condition id="-7" name="Compare instance variable" type="Enemy">
@@ -2411,7 +2411,7 @@
                     </sub-events>
                 </event-block>
                 <comment>toto by mozna melo byt nekde v Main, zde ale vice logicke (reseni co s mrtvym hracem hned za odecitanim zivotu)</comment>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="-14" name="Compare variable" type="System">
                             <param id="0" name="Variable">avatar_hp</param>
@@ -2544,7 +2544,7 @@
                                 </action>
                             </actions>
                         </event-block>
-                        <event-block collapsed="1">
+                        <event-block>
                             <conditions>
                                 <condition id="-22" name="Else" type="System" />
                             </conditions>
@@ -2580,7 +2580,7 @@
                                 </event-block>
                             </sub-events>
                         </event-block>
-                        <event-block collapsed="1">
+                        <event-block>
                             <conditions>
                                 <condition id="-8" name="Compare two values" type="System">
                                     <param id="0" name="First value">random(0,1)</param>
@@ -2692,7 +2692,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" title="Actions">
+        <event-group description="" title="Actions">
             <sub-events>
                 <event-block>
                     <conditions>
@@ -3037,7 +3037,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" title="Combat">
+        <event-group description="" title="Combat">
             <sub-events>
                 <event-block>
                     <conditions>
@@ -3057,7 +3057,7 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="-22" name="Else" type="System" />
                     </conditions>
@@ -3084,7 +3084,7 @@
                     </sub-events>
                 </event-block>
                 <comment>nabijeni</comment>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="0" name="On key pressed" type="Keyboard">
                             <param id="0" name="Key">82 (R)</param>
@@ -3129,7 +3129,7 @@
                 <variable constant="0" name="firing_y" static="0" type="number">0</variable>
                 <variable constant="0" name="firing_angle" static="0" type="number">0</variable>
                 <variable constant="0" name="current_firing_angle" static="0" type="number">0</variable>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="0" name="On function" type="Function">
                             <param id="0" name="Name">&quot;fireWeapon&quot;</param>
@@ -3240,7 +3240,7 @@
                                         </action>
                                     </actions>
                                 </event-block>
-                                <event-block collapsed="1">
+                                <event-block>
                                     <conditions>
                                         <condition id="-10" name="For" type="System">
                                             <param id="0" name="Name">&quot;&quot;</param>
@@ -3419,7 +3419,7 @@
                     </actions>
                 </event-block>
                 <comment>zbran nemuze strilet (prave se nabiji)</comment>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="-7" name="Compare instance variable" type="Weapon">
                             <param id="0" name="Instance variable">reload_timer</param>
@@ -3489,7 +3489,7 @@
                     </sub-events>
                 </event-block>
                 <comment>pridani stopovky</comment>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="-18" name="On created" type="Bullet" />
                     </conditions>
@@ -3519,7 +3519,7 @@
                         </event-block>
                     </sub-events>
                 </event-block>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="-11" name="For Each" type="System">
                             <param id="0" name="Object">Bullet</param>
@@ -3552,7 +3552,7 @@
                     </sub-events>
                 </event-block>
                 <comment>svih mecem</comment>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="0" name="On click" type="Mouse">
                             <param id="0" name="Mouse button">2</param>
@@ -3761,7 +3761,7 @@
                         <action id="-9" name="Destroy" type="Bullet" />
                     </actions>
                 </event-block>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="-19" name="On destroyed" type="Bullet" />
                     </conditions>
@@ -3787,7 +3787,7 @@
                                 </action>
                             </actions>
                             <sub-events>
-                                <event-block collapsed="1">
+                                <event-block>
                                     <conditions>
                                         <condition id="-11" name="For Each" type="System">
                                             <param id="0" name="Object">Enemy</param>
@@ -3826,7 +3826,7 @@
                                         </event-block>
                                     </sub-events>
                                 </event-block>
-                                <event-block collapsed="1">
+                                <event-block>
                                     <conditions>
                                         <condition id="-8" name="Compare two values" type="System">
                                             <param id="0" name="First value">distance(Bullet.ImagePointX(0),Bullet.ImagePointY(0),Avatar.ImagePointX(0),Avatar.ImagePointY(0))</param>
@@ -3887,7 +3887,7 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="0" name="On collision with another object" type="SamuraiSword">
                             <param id="0" name="Object">Enemy</param>
@@ -3905,7 +3905,7 @@
                         </action>
                     </actions>
                     <sub-events>
-                        <event-block collapsed="1">
+                        <event-block>
                             <conditions>
                                 <condition id="-7" name="Compare instance variable" type="Enemy">
                                     <param id="0" name="Instance variable">state</param>
@@ -3971,7 +3971,7 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="0" name="On collision with another object" type="Kick">
                             <param id="0" name="Object">Enemy</param>
@@ -3987,7 +3987,7 @@
                         </action>
                     </actions>
                     <sub-events>
-                        <event-block collapsed="1">
+                        <event-block>
                             <conditions>
                                 <condition id="-7" name="Compare instance variable" type="Enemy">
                                     <param id="0" name="Instance variable">state</param>
@@ -4030,7 +4030,7 @@
                         </event-block>
                     </sub-events>
                 </event-block>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="5" name="On any finished" type="SamuraiSwordEnemy" />
                     </conditions>
@@ -4061,7 +4061,7 @@
                         </event-block>
                     </sub-events>
                 </event-block>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="5" name="On any finished" type="SamuraiSword" />
                     </conditions>
@@ -4135,7 +4135,7 @@
                         </event-block>
                     </sub-events>
                 </event-block>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="5" name="On any finished" type="Kick" />
                     </conditions>
@@ -4236,9 +4236,9 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" title="Implants">
+        <event-group description="" title="Implants">
             <sub-events>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="0" name="On key pressed" type="Keyboard">
                             <param id="0" name="Key">84 (T)</param>
@@ -4299,7 +4299,7 @@
                         </event-block>
                     </sub-events>
                 </event-block>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="0" name="On key pressed" type="Keyboard">
                             <param id="0" name="Key">71 (G)</param>
@@ -4360,7 +4360,7 @@
                         </event-block>
                     </sub-events>
                 </event-block>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="0" name="On key pressed" type="Keyboard">
                             <param id="0" name="Key">72 (H)</param>
@@ -4421,7 +4421,7 @@
                         </event-block>
                     </sub-events>
                 </event-block>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="0" name="On key pressed" type="Keyboard">
                             <param id="0" name="Key">66 (B)</param>
@@ -4577,7 +4577,7 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="-14" name="Compare variable" type="System">
                             <param id="0" name="Variable">avatar_bioenergy</param>
@@ -4686,7 +4686,7 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="-14" name="Compare variable" type="System">
                             <param id="0" name="Variable">avatar_bioenergy_delay_timer</param>
@@ -4720,7 +4720,7 @@
                 </event-block>
                 <variable constant="0" name="hp_ratio" static="0" type="number">0</variable>
                 <variable constant="0" name="stamina_ratio" static="0" type="number">0</variable>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="0" name="On function" type="Function">
                             <param id="0" name="Name">&quot;recalculate_implants&quot;</param>
@@ -5202,7 +5202,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" title="Programs">
+        <event-group description="" title="Programs">
             <sub-events>
                 <comment>AimAssist - pridat instanci</comment>
                 <event-block>
@@ -5412,7 +5412,7 @@
                     </actions>
                 </event-block>
                 <comment>cooldown</comment>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="-11" name="For Each" type="System">
                             <param id="0" name="Object">Program</param>
@@ -5511,7 +5511,7 @@
                     </sub-events>
                 </event-block>
                 <comment>funkce jednotlivych programu</comment>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="0" name="On function" type="Function">
                             <param id="0" name="Name">&quot;steal_vision&quot;</param>
@@ -5556,7 +5556,7 @@
                         </event-block>
                     </sub-events>
                 </event-block>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="0" name="On function" type="Function">
                             <param id="0" name="Name">&quot;disrupt&quot;</param>
@@ -5735,9 +5735,9 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" title="Weapon change">
+        <event-group description="" title="Weapon change">
             <sub-events>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="0" name="On key pressed" type="Keyboard">
                             <param id="0" name="Key">32 (Space)</param>
@@ -5877,7 +5877,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" title="Loot Pickup">
+        <event-group description="" title="Loot Pickup">
             <sub-events>
                 <event-block>
                     <conditions>
@@ -5978,7 +5978,7 @@
                         </event-block>
                     </sub-events>
                 </event-block>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="0" name="On function" type="Function">
                             <param id="0" name="Name">&quot;interact_box&quot;</param>
@@ -6030,7 +6030,7 @@
                 <variable constant="0" name="weapon_pos_x" static="0" type="number">0</variable>
                 <variable constant="0" name="weapon_pos_y" static="0" type="number">0</variable>
                 <variable constant="0" name="weapon_uid" static="0" type="number">0</variable>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="0" name="On function" type="Function">
                             <param id="0" name="Name">&quot;interact_weapon&quot;</param>
@@ -6064,7 +6064,7 @@
                         </action>
                     </actions>
                     <sub-events>
-                        <event-block collapsed="1">
+                        <event-block>
                             <conditions>
                                 <condition id="-19" name="Pick all" type="System">
                                     <param id="0" name="Object">Weapon</param>
@@ -6146,7 +6146,7 @@
                 <variable constant="0" name="implant_pos_y" static="0" type="number">0</variable>
                 <variable constant="0" name="implant_uid" static="0" type="number">0</variable>
                 <variable constant="0" name="implant_slot" static="0" type="text"></variable>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="0" name="On function" type="Function">
                             <param id="0" name="Name">&quot;interact_implant&quot;</param>
@@ -6184,7 +6184,7 @@
                         </action>
                     </actions>
                     <sub-events>
-                        <event-block collapsed="1">
+                        <event-block>
                             <conditions>
                                 <condition id="-14" name="Compare variable" type="System">
                                     <param id="0" name="Variable">implant_slot</param>
@@ -6237,7 +6237,7 @@
                                 </event-block>
                             </sub-events>
                         </event-block>
-                        <event-block collapsed="1">
+                        <event-block>
                             <conditions>
                                 <condition id="-22" name="Else" type="System" />
                                 <condition id="-14" name="Compare variable" type="System">
@@ -6288,7 +6288,7 @@
                                 </event-block>
                             </sub-events>
                         </event-block>
-                        <event-block collapsed="1">
+                        <event-block>
                             <conditions>
                                 <condition id="-22" name="Else" type="System" />
                                 <condition id="-14" name="Compare variable" type="System">
@@ -6339,7 +6339,7 @@
                                 </event-block>
                             </sub-events>
                         </event-block>
-                        <event-block collapsed="1">
+                        <event-block>
                             <conditions>
                                 <condition id="-22" name="Else" type="System" />
                                 <condition id="-14" name="Compare variable" type="System">
@@ -6472,9 +6472,9 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" title="Vision Tracing">
+        <event-group description="" title="Vision Tracing">
             <sub-events>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="0" name="On function" type="Function">
                             <param id="0" name="Name">&quot;checkLOS&quot;</param>
@@ -6530,7 +6530,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" title="Loot Spawning">
+        <event-group description="" title="Loot Spawning">
             <sub-events>
                 <event-block>
                     <conditions>
@@ -6549,7 +6549,7 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="0" name="On function" type="Function">
                             <param id="0" name="Name">&quot;RandomLootDrop&quot;</param>
@@ -6674,7 +6674,7 @@
                                 </action>
                             </actions>
                         </event-block>
-                        <event-block collapsed="1">
+                        <event-block>
                             <conditions>
                                 <condition id="-22" name="Else" type="System" />
                                 <condition id="-8" name="Compare two values" type="System">
@@ -6801,7 +6801,7 @@
                         </event-block>
                     </sub-events>
                 </event-block>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="0" name="On function" type="Function">
                             <param id="0" name="Name">&quot;drop_proper_ammo&quot;</param>
@@ -6941,7 +6941,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" title="Quests">
+        <event-group description="" title="Quests">
             <sub-events>
                 <event-block>
                     <conditions>
@@ -7232,7 +7232,9 @@
                 </event-block>
                 <event-block>
                     <conditions>
-                        <condition id="-2" name="On start of layout" type="System" />
+                        <condition id="0" name="On function" type="Function">
+                            <param id="0" name="Name">&quot;SpawnQuestNPC&quot;</param>
+                        </condition>
                         <condition id="-14" name="Compare variable" type="System">
                             <param id="0" name="Variable">is_on_quest</param>
                             <param id="1" name="Comparison">0</param>
@@ -7427,6 +7429,15 @@
                                 </action>
                             </actions>
                         </event-block>
+                        <event-block>
+                            <conditions />
+                            <actions>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">quest_spawned</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
                     </sub-events>
                 </event-block>
                 <event-block>
@@ -7494,6 +7505,11 @@
                 <event-block>
                     <conditions>
                         <condition id="-14" name="Compare variable" type="System">
+                            <param id="0" name="Variable">quest_spawned</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" type="System">
                             <param id="0" name="Variable">is_on_quest</param>
                             <param id="1" name="Comparison">0</param>
                             <param id="2" name="Value">1</param>
@@ -7534,7 +7550,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" title="Utility functions">
+        <event-group description="" title="Utility functions">
             <sub-events>
                 <event-block>
                     <conditions>
@@ -7689,7 +7705,7 @@
                     </conditions>
                     <actions />
                 </event-block>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="0" name="On function" type="Function">
                             <param id="0" name="Name">&quot;mark_quest_exits&quot;</param>
@@ -7719,7 +7735,7 @@
                                     <param id="1" name="&apos;Off&apos; time">0.2</param>
                                     <param id="2" name="Duration">1000</param>
                                 </action>
-                                <action id="0" name="Set text" type="InfoText">
+                                <action disabled="1" id="0" name="Set text" type="InfoText">
                                     <param id="0" name="Text">&quot;Flash started&quot;</param>
                                 </action>
                             </actions>
@@ -7736,7 +7752,7 @@
                                     <param id="1" name="&apos;Off&apos; time">0.2</param>
                                     <param id="2" name="Duration">1000</param>
                                 </action>
-                                <action id="0" name="Set text" type="InfoText">
+                                <action disabled="1" id="0" name="Set text" type="InfoText">
                                     <param id="0" name="Text">&quot;Flash started&quot;</param>
                                 </action>
                             </actions>

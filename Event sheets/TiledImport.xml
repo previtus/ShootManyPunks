@@ -3,6 +3,7 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>TiledImport</name>
     <events>
+        <variable constant="0" name="quest_spawned" static="0" type="number">0</variable>
         <event-group description="" title="TiledMap Import">
             <sub-events>
                 <comment>Loading correct tmx string - correct location</comment>
@@ -33,6 +34,10 @@
                         <action id="-9" name="Destroy" type="Box" />
                         <action id="-9" name="Destroy" type="NPC" />
                         <action id="-9" name="Destroy" type="QuestGivers" />
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">quest_spawned</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
                     </actions>
                     <sub-events>
                         <event-block>
@@ -117,6 +122,13 @@
                         </action>
                         <action id="7" name="Retrieve tile array" type="TMXImporter" />
                         <action id="3" name="Release tmx object" type="TMXImporter" />
+                        <action id="-16" name="Wait" type="System">
+                            <param id="0" name="Seconds">0.5</param>
+                        </action>
+                        <action id="0" name="Call function" type="Function">
+                            <param id="0" name="Name">&quot;SpawnQuestNPC&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
                     </actions>
                 </event-block>
                 <event-block>
@@ -456,11 +468,10 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" title="SpawnablePosition">
+        <event-group description="" title="SpawnablePosition">
             <sub-events>
                 <variable constant="0" name="x" static="0" type="number">0</variable>
                 <variable constant="0" name="y" static="0" type="number">0</variable>
-                <variable constant="0" name="direction" static="0" type="number">1</variable>
                 <event-block>
                     <conditions>
                         <condition id="0" name="On function" type="Function">
@@ -470,100 +481,25 @@
                     <actions>
                         <action id="-9" name="Set value" type="System">
                             <param id="0" name="Variable">x</param>
-                            <param id="1" name="Value">round(random(0,LayoutWidth -40)/40)</param>
+                            <param id="1" name="Value">round(random(0,(LayoutWidth -40)/40))</param>
                         </action>
                         <action id="-9" name="Set value" type="System">
                             <param id="0" name="Variable">y</param>
-                            <param id="1" name="Value">round(random(0,LayoutHeight -40)/40)</param>
+                            <param id="1" name="Value">round(random(0,(LayoutHeight -40)/40))</param>
                         </action>
                     </actions>
                     <sub-events>
                         <event-block>
                             <conditions>
-                                <condition id="-15" name="Pick nearest/furthest" type="MapTile">
+                                <condition id="-15" name="Pick nearest/furthest" type="Enemy">
                                     <param id="0" name="Which">0</param>
                                     <param id="1" name="X">x * 40 + 20</param>
                                     <param id="2" name="Y">y * 40 + 20</param>
                                 </condition>
-                                <condition id="-23" name="While" type="System" />
-                                <condition id="-8" name="Is boolean instance variable set" type="MapTile">
-                                    <param id="0" name="Instance variable">isSolid</param>
-                                </condition>
                             </conditions>
                             <actions>
-                                <action id="-9" name="Set value" type="System">
-                                    <param id="0" name="Variable">direction</param>
-                                    <param id="1" name="Value">round(random(1,4))</param>
-                                </action>
-                            </actions>
-                            <sub-events>
-                                <event-block>
-                                    <conditions>
-                                        <condition id="-14" name="Compare variable" type="System">
-                                            <param id="0" name="Variable">direction</param>
-                                            <param id="1" name="Comparison">0</param>
-                                            <param id="2" name="Value">1</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action id="-9" name="Set value" type="System">
-                                            <param id="0" name="Variable">x</param>
-                                            <param id="1" name="Value">max(0, x - 1)</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block>
-                                    <conditions>
-                                        <condition id="-14" name="Compare variable" type="System">
-                                            <param id="0" name="Variable">direction</param>
-                                            <param id="1" name="Comparison">0</param>
-                                            <param id="2" name="Value">2</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action id="-9" name="Set value" type="System">
-                                            <param id="0" name="Variable">x</param>
-                                            <param id="1" name="Value">max(LayoutWidth/40 - 1, x + 1)</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block>
-                                    <conditions>
-                                        <condition id="-14" name="Compare variable" type="System">
-                                            <param id="0" name="Variable">direction</param>
-                                            <param id="1" name="Comparison">0</param>
-                                            <param id="2" name="Value">3</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action id="-9" name="Set value" type="System">
-                                            <param id="0" name="Variable">y</param>
-                                            <param id="1" name="Value">max(0, y - 1)</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block>
-                                    <conditions>
-                                        <condition id="-14" name="Compare variable" type="System">
-                                            <param id="0" name="Variable">direction</param>
-                                            <param id="1" name="Comparison">0</param>
-                                            <param id="2" name="Value">4</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action id="-9" name="Set value" type="System">
-                                            <param id="0" name="Variable">y</param>
-                                            <param id="1" name="Value">max(LayoutHeight/40 - 1, y + 1)</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                            </sub-events>
-                        </event-block>
-                        <event-block>
-                            <conditions />
-                            <actions>
                                 <action id="1" name="Set return value" type="Function">
-                                    <param id="0" name="Value">x * 40 +20 + 10000 * (y * 40 + 20)</param>
+                                    <param id="0" name="Value">Enemy.X + 10000 * (Enemy.Y)</param>
                                 </action>
                             </actions>
                         </event-block>
