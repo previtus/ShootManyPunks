@@ -7,8 +7,8 @@
     <unique-id>w2turdg6quee</unique-id>
     <saved-with-version>11400</saved-with-version>
     <used-plugins>
-        <plugin author="Scirra" id="Arr" version="1">Array</plugin>
         <plugin author="Scirra" id="AJAX" version="1">AJAX</plugin>
+        <plugin author="Scirra" id="Arr" version="1">Array</plugin>
         <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
         <plugin author="Scirra" id="Button" version="1">Button</plugin>
         <plugin author="Scirra" id="Dictionary" version="1">Dictionary</plugin>
@@ -14084,10 +14084,9 @@
     </global-instances>
     <sounds-folder expanded="1" />
     <music-folder expanded="1" />
-    <files-folder expanded="0">
-        <file name="map1.tmx" />
-        <file name="map2.tmx" />
-        <file name="map3.tmx" />
-        <file name="Map1_.tmx" />
+    <files-folder expanded="1">
+        <file name="01_ulicky2.tmx" />
+        <file name="02_ulicky1.tmx" />
+        <file name="03_parkoviste.tmx" />
     </files-folder>
 </c2project>

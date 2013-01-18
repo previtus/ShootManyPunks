@@ -3,6 +3,7 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>location Event sheet</name>
     <events>
+        <include>TiledImport</include>
         <comment>promenne, ktere ma na sobe avatar (postava hrace) by meli byt glob. promenne - aby byly prenaseny mezi nactenim layoutu</comment>
         <comment>dostupne i napr. v layoutu WorldMap</comment>
         <variable constant="0" name="avatar_initialized" static="0" type="number">0</variable>
@@ -68,10 +69,10 @@
         <variable constant="0" name="remaining_quest_enemies" static="0" type="number">0</variable>
         <comment>animace pohybu</comment>
         <variable constant="0" name="avatar_last_speed" static="0" type="number">0</variable>
-        <event-group collapsed="1" description="" title="TiledMap Import">
+        <event-group collapsed="1" description="" disabled="1" title="TiledMap Import">
             <sub-events>
                 <comment>Loading correct tmx string - correct location</comment>
-                <event-block>
+                <event-block disabled="1">
                     <conditions>
                         <condition id="-2" name="On start of layout" type="System" />
                         <condition id="-14" name="Compare variable" type="System">
@@ -87,7 +88,7 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block collapsed="1">
+                <event-block collapsed="1" disabled="1">
                     <conditions>
                         <condition id="-2" name="On start of layout" type="System" />
                     </conditions>
@@ -100,7 +101,7 @@
                         <action id="-9" name="Destroy" type="Bullet" />
                     </actions>
                     <sub-events>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
                                 <condition id="-9" name="Is visible" type="Weapon" />
                             </conditions>
@@ -108,7 +109,7 @@
                                 <action id="-9" name="Destroy" type="Weapon" />
                             </actions>
                         </event-block>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
                                 <condition id="-9" name="Is visible" type="Implant" />
                             </conditions>
@@ -116,7 +117,7 @@
                                 <action id="-9" name="Destroy" type="Implant" />
                             </actions>
                         </event-block>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
                                 <condition id="-14" name="Compare variable" type="System">
                                     <param id="0" name="Variable">to_load_map</param>
@@ -124,14 +125,9 @@
                                     <param id="2" name="Value">1</param>
                                 </condition>
                             </conditions>
-                            <actions>
-                                <action id="1" name="Request project file" type="AJAX">
-                                    <param id="0" name="Tag">&quot;map_load&quot;</param>
-                                    <param id="1" name="File">map1.tmx</param>
-                                </action>
-                            </actions>
+                            <actions />
                         </event-block>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
                                 <condition id="-14" name="Compare variable" type="System">
                                     <param id="0" name="Variable">to_load_map</param>
@@ -139,14 +135,9 @@
                                     <param id="2" name="Value">2</param>
                                 </condition>
                             </conditions>
-                            <actions>
-                                <action id="1" name="Request project file" type="AJAX">
-                                    <param id="0" name="Tag">&quot;map_load&quot;</param>
-                                    <param id="1" name="File">map2.tmx</param>
-                                </action>
-                            </actions>
+                            <actions />
                         </event-block>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
                                 <condition id="-14" name="Compare variable" type="System">
                                     <param id="0" name="Variable">to_load_map</param>
@@ -154,16 +145,11 @@
                                     <param id="2" name="Value">3</param>
                                 </condition>
                             </conditions>
-                            <actions>
-                                <action id="1" name="Request project file" type="AJAX">
-                                    <param id="0" name="Tag">&quot;map_load&quot;</param>
-                                    <param id="1" name="File">map3.tmx</param>
-                                </action>
-                            </actions>
+                            <actions />
                         </event-block>
                     </sub-events>
                 </event-block>
-                <event-block>
+                <event-block disabled="1">
                     <conditions>
                         <condition id="0" name="On completed" type="AJAX">
                             <param id="0" name="Tag">&quot;map_load&quot;</param>
@@ -259,13 +245,13 @@
                         </event-block>
                     </sub-events>
                 </event-group>
-                <event-block collapsed="1">
+                <event-block disabled="1">
                     <conditions>
                         <condition id="1" name="On each tile cell" type="TMXImporter" />
                     </conditions>
                     <actions />
                     <sub-events>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
                                 <condition id="-8" name="Compare two values" type="System">
                                     <param id="0" name="First value">TMXImporter.TileProp(&quot;Solid&quot;)</param>
@@ -283,7 +269,7 @@
                                 </action>
                             </actions>
                         </event-block>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
                                 <condition id="-8" name="Compare two values" type="System">
                                     <param id="0" name="First value">TMXImporter.TileProp(&quot;Solid&quot;, &quot;0&quot;)</param>
@@ -302,7 +288,7 @@
                             </actions>
                         </event-block>
                         <comment>Spawn npc - so far only one</comment>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
                                 <condition id="-8" name="Compare two values" type="System">
                                     <param id="0" name="First value">TMXImporter.TileProp(&quot;npc&quot;, 0)</param>
@@ -356,7 +342,7 @@
                             </actions>
                         </event-block>
                         <comment>Spawn lootable chests</comment>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
                                 <condition id="-8" name="Compare two values" type="System">
                                     <param id="0" name="First value">TMXImporter.TileProp(&quot;itemChest&quot;, 0)</param>
@@ -376,7 +362,7 @@
                         </event-block>
                         <comment>Spawn monsters</comment>
                         <variable constant="0" name="random_enemy" static="0" type="number">0</variable>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
                                 <condition id="-8" name="Compare two values" type="System">
                                     <param id="0" name="First value">TMXImporter.TileProp(&quot;Monster&quot;, 0)</param>
@@ -391,7 +377,7 @@
                                 </action>
                             </actions>
                             <sub-events>
-                                <event-block>
+                                <event-block disabled="1">
                                     <conditions>
                                         <condition id="-14" name="Compare variable" type="System">
                                             <param id="0" name="Variable">random_enemy</param>
@@ -453,7 +439,7 @@
                                         </action>
                                     </actions>
                                 </event-block>
-                                <event-block>
+                                <event-block disabled="1">
                                     <conditions>
                                         <condition id="-22" name="Else" type="System" />
                                     </conditions>
@@ -501,7 +487,7 @@
                                         </action>
                                     </actions>
                                 </event-block>
-                                <event-block>
+                                <event-block disabled="1">
                                     <conditions />
                                     <actions>
                                         <action id="-9" name="Destroy" type="Tile" />
@@ -509,7 +495,7 @@
                                 </event-block>
                             </sub-events>
                         </event-block>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
                                 <condition id="-8" name="Compare two values" type="System">
                                     <param id="0" name="First value">TMXImporter.TileProp(&quot;actor&quot;)</param>
@@ -533,7 +519,7 @@
                                 </action>
                             </actions>
                         </event-block>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
                                 <condition id="-8" name="Compare two values" type="System">
                                     <param id="0" name="First value">TMXImporter.TileProp(&quot;actor&quot;)</param>
@@ -557,7 +543,7 @@
                                 </action>
                             </actions>
                         </event-block>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
                                 <condition id="-8" name="Compare two values" type="System">
                                     <param id="0" name="First value">TMXImporter.TileProp(&quot;actor&quot;)</param>
@@ -574,7 +560,7 @@
                                 </action>
                             </actions>
                         </event-block>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
                                 <condition id="-8" name="Compare two values" type="System">
                                     <param id="0" name="First value">TMXImporter.TileProp(&quot;actor&quot;)</param>
@@ -599,7 +585,7 @@
                             </actions>
                         </event-block>
                         <comment>Spawn transports</comment>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
                                 <condition id="-8" name="Compare two values" type="System">
                                     <param id="0" name="First value">TMXImporter.TileProp(&quot;transportTarget&quot;, 0)</param>
@@ -625,7 +611,7 @@
                                 </action>
                             </actions>
                         </event-block>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
                                 <condition id="-8" name="Compare two values" type="System">
                                     <param id="0" name="First value">TMXImporter.TileProp(&quot;worldMap&quot;, 0)</param>
@@ -644,7 +630,7 @@
                             </actions>
                         </event-block>
                         <comment>Spawnpoint of correct value loaded - place player there</comment>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
                                 <condition id="-8" name="Compare two values" type="System">
                                     <param id="0" name="First value">TMXImporter.TileProp(&quot;spID&quot;, 0)</param>
@@ -670,7 +656,7 @@
                                 </action>
                             </actions>
                         </event-block>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
                                 <condition id="-8" name="Compare two values" type="System">
                                     <param id="0" name="First value">TMXImporter.TileProp(&quot;spID&quot;, 0)</param>
@@ -696,7 +682,7 @@
                                 </action>
                             </actions>
                         </event-block>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
                                 <condition id="-8" name="Compare two values" type="System">
                                     <param id="0" name="First value">TMXImporter.TileProp(&quot;spID&quot;, 0)</param>
@@ -887,7 +873,7 @@
                         </event-block>
                     </sub-events>
                 </event-block>
-                <event-block any="1">
+                <event-block any="1" collapsed="1">
                     <conditions>
                         <condition id="-1" name="Every tick" type="System" />
                     </conditions>
@@ -1655,7 +1641,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" title="Enemy">
+        <event-group collapsed="1" description="" title="Enemy">
             <sub-events>
                 <comment>AI nepratel</comment>
                 <event-block collapsed="1">
@@ -2767,7 +2753,7 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="-15" name="Pick nearest/furthest" type="Interactable">
                             <param id="0" name="Which">0</param>
@@ -2915,9 +2901,9 @@
                         <event-block>
                             <conditions>
                                 <condition id="0" name="On collision with another object" type="AvatarLegs">
-                                    <param id="0" name="Object">Tile</param>
+                                    <param id="0" name="Object">MapTile</param>
                                 </condition>
-                                <condition id="-8" name="Is boolean instance variable set" type="Tile">
+                                <condition id="-8" name="Is boolean instance variable set" type="MapTile">
                                     <param id="0" name="Instance variable">isSolid</param>
                                 </condition>
                             </conditions>
@@ -2973,7 +2959,7 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Avatar">
                             <param id="0" name="Instance variable">is_sprinting</param>
@@ -3549,7 +3535,7 @@
                     </sub-events>
                 </event-block>
                 <comment>svih mecem</comment>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="0" name="On click" type="Mouse">
                             <param id="0" name="Mouse button">2</param>
@@ -3740,9 +3726,9 @@
                 <event-block>
                     <conditions>
                         <condition id="0" name="On collision with another object" type="Bullet">
-                            <param id="0" name="Object">Tile</param>
+                            <param id="0" name="Object">MapTile</param>
                         </condition>
-                        <condition id="-8" name="Is boolean instance variable set" type="Tile">
+                        <condition id="-8" name="Is boolean instance variable set" type="MapTile">
                             <param id="0" name="Instance variable">isSolid</param>
                         </condition>
                     </conditions>
@@ -6418,10 +6404,10 @@
                     <sub-events>
                         <event-block>
                             <conditions>
-                                <condition id="1" name="Is overlapping another object" type="Tile">
+                                <condition id="1" name="Is overlapping another object" type="MapTile">
                                     <param id="0" name="Object">VisionTrace</param>
                                 </condition>
-                                <condition id="-8" name="Is boolean instance variable set" type="Tile">
+                                <condition id="-8" name="Is boolean instance variable set" type="MapTile">
                                     <param id="0" name="Instance variable">isSolid</param>
                                 </condition>
                             </conditions>
@@ -6858,31 +6844,62 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" title="Quests">
+        <event-group description="" title="Quests">
             <sub-events>
                 <event-block>
                     <conditions>
-                        <condition id="-2" name="On start of layout" type="System" />
-                        <condition id="-11" name="For Each" type="System">
-                            <param id="0" name="Object">QuestGivers</param>
+                        <condition id="0" name="On function" type="Function">
+                            <param id="0" name="Name">&quot;SetUpQG&quot;</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" type="QuestGiver">
+                            <param id="0" name="Unique ID">Function.Param(0)</param>
                         </condition>
                     </conditions>
                     <actions />
                     <sub-events>
-                        <event-block any="1">
+                        <event-block>
                             <conditions>
                                 <condition id="-14" name="Compare variable" type="System">
                                     <param id="0" name="Variable">is_on_quest</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">0</param>
                                 </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-16" name="Wait" type="System">
+                                    <param id="0" name="Seconds">0</param>
+                                </action>
+                                <action id="0" name="Spawn another object" type="QuestGiver">
+                                    <param id="0" name="Object">QuestCircle</param>
+                                    <param id="1" name="Layer">2</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="-10" name="Set value" type="QuestGiver">
+                                    <param id="0" name="Instance variable">quest_circle</param>
+                                    <param id="1" name="Value">QuestCircle.UID</param>
+                                </action>
+                                <action disabled="1" id="0" name="Set text" type="InfoText">
+                                    <param id="0" name="Text">&quot;spawning qC&quot; &amp; QuestGiver.quest_circle</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
                                 <condition id="-14" name="Compare variable" type="System">
                                     <param id="0" name="Variable">is_on_quest</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">2</param>
                                 </condition>
+                                <condition id="-8" name="Compare two values" type="System">
+                                    <param id="0" name="First value">to_load_map</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">quest_target_location</param>
+                                </condition>
                             </conditions>
                             <actions>
+                                <action id="-16" name="Wait" type="System">
+                                    <param id="0" name="Seconds">0</param>
+                                </action>
                                 <action id="0" name="Spawn another object" type="QuestGiver">
                                     <param id="0" name="Object">QuestCircle</param>
                                     <param id="1" name="Layer">2</param>
@@ -6895,6 +6912,15 @@
                             </actions>
                         </event-block>
                     </sub-events>
+                </event-block>
+                <event-block disabled="1">
+                    <conditions>
+                        <condition id="-2" name="On start of layout" type="System" />
+                        <condition id="-11" name="For Each" type="System">
+                            <param id="0" name="Object">QuestGiver</param>
+                        </condition>
+                    </conditions>
+                    <actions />
                 </event-block>
                 <event-block>
                     <conditions>
@@ -6935,9 +6961,12 @@
                                     <param id="0" name="Variable">quest_type</param>
                                     <param id="1" name="Value">round(random(1,2))</param>
                                 </action>
+                                <action disabled="1" id="0" name="Set text" type="InfoText">
+                                    <param id="0" name="Text">QuestGiver.quest_circle</param>
+                                </action>
                             </actions>
                         </event-block>
-                        <event-block collapsed="1">
+                        <event-block>
                             <conditions>
                                 <condition id="-7" name="Compare instance variable" type="QuestGiver">
                                     <param id="0" name="Instance variable">status</param>
@@ -6954,6 +6983,9 @@
                                 </condition>
                             </conditions>
                             <actions>
+                                <action id="-16" name="Wait" type="System">
+                                    <param id="0" name="Seconds">0</param>
+                                </action>
                                 <action id="-10" name="Set value" type="QuestGiver">
                                     <param id="0" name="Instance variable">status</param>
                                     <param id="1" name="Value">2</param>
@@ -6991,6 +7023,10 @@
                                             <param id="0" name="Variable">quest_target_location</param>
                                             <param id="1" name="Value">round(random(1,3))</param>
                                         </action>
+                                        <action id="0" name="Call function" type="Function">
+                                            <param id="0" name="Name">&quot;mark_quest_exits&quot;</param>
+                                            <param id="1" name="Parameter {n}"></param>
+                                        </action>
                                     </actions>
                                 </event-block>
                                 <event-block>
@@ -7023,7 +7059,7 @@
                                 </event-block>
                             </sub-events>
                         </event-block>
-                        <event-block collapsed="1">
+                        <event-block>
                             <conditions>
                                 <condition id="-22" name="Else" type="System" />
                             </conditions>
@@ -7035,6 +7071,11 @@
                                             <param id="0" name="Variable">is_on_quest</param>
                                             <param id="1" name="Comparison">0</param>
                                             <param id="2" name="Value">2</param>
+                                        </condition>
+                                        <condition id="-8" name="Compare two values" type="System">
+                                            <param id="0" name="First value">to_load_map</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">quest_target_location</param>
                                         </condition>
                                     </conditions>
                                     <actions>
@@ -7092,7 +7133,7 @@
                         </event-block>
                     </sub-events>
                 </event-block>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="-2" name="On start of layout" type="System" />
                         <condition id="-14" name="Compare variable" type="System">
@@ -7291,7 +7332,7 @@
                         </event-block>
                     </sub-events>
                 </event-block>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="0" name="On function" type="Function">
                             <param id="0" name="Name">&quot;interact_npc&quot;</param>
@@ -7396,7 +7437,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" title="Utility functions">
+        <event-group description="" title="Utility functions">
             <sub-events>
                 <event-block>
                     <conditions>
@@ -7575,7 +7616,7 @@
                                     <param id="1" name="&apos;Off&apos; time">0.2</param>
                                     <param id="2" name="Duration">1000</param>
                                 </action>
-                                <action disabled="1" id="0" name="Set text" type="InfoText">
+                                <action id="0" name="Set text" type="InfoText">
                                     <param id="0" name="Text">&quot;Flash started&quot;</param>
                                 </action>
                             </actions>
@@ -7592,7 +7633,7 @@
                                     <param id="1" name="&apos;Off&apos; time">0.2</param>
                                     <param id="2" name="Duration">1000</param>
                                 </action>
-                                <action disabled="1" id="0" name="Set text" type="InfoText">
+                                <action id="0" name="Set text" type="InfoText">
                                     <param id="0" name="Text">&quot;Flash started&quot;</param>
                                 </action>
                             </actions>
@@ -7606,7 +7647,7 @@
                 <variable constant="0" name="x" static="0" type="number">0</variable>
                 <variable constant="0" name="y" static="0" type="number">0</variable>
                 <variable constant="0" name="direction" static="0" type="number">1</variable>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="0" name="On function" type="Function">
                             <param id="0" name="Name">&quot;getSpawnablePosition&quot;</param>
@@ -7623,15 +7664,15 @@
                         </action>
                     </actions>
                     <sub-events>
-                        <event-block>
+                        <event-block collapsed="1">
                             <conditions>
-                                <condition id="-15" name="Pick nearest/furthest" type="Tile">
+                                <condition id="-15" name="Pick nearest/furthest" type="MapTile">
                                     <param id="0" name="Which">0</param>
                                     <param id="1" name="X">x * 64 + 32</param>
                                     <param id="2" name="Y">y * 64 + 32</param>
                                 </condition>
                                 <condition id="-23" name="While" type="System" />
-                                <condition id="-8" name="Is boolean instance variable set" type="Tile">
+                                <condition id="-8" name="Is boolean instance variable set" type="MapTile">
                                     <param id="0" name="Instance variable">isSolid</param>
                                 </condition>
                             </conditions>
