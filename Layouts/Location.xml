@@ -124,8 +124,8 @@
                         <x>-181.047622681</x>
                         <y>363.941162109</y>
                         <z>0</z>
-                        <width>4.190476418</width>
-                        <height>2</height>
+                        <width>44</width>
+                        <height>17</height>
                         <depth>0</depth>
                         <hotspotX>0.795454562</hotspotX>
                         <hotspotY>0.588235319</hotspotY>
@@ -427,6 +427,8 @@
                         <blast_radius>0</blast_radius>
                         <ammo_type>rifle</ammo_type>
                         <look_type>machinegun</look_type>
+                        <shot_sound>pistol</shot_sound>
+                        <reload_sound></reload_sound>
                         <interact_func>interact_weapon</interact_func>
                         <interact_description>Pick up AR57 rifle</interact_description>
                     </instance-variables>
@@ -473,6 +475,8 @@
                         <blast_radius>0</blast_radius>
                         <ammo_type>shotgun</ammo_type>
                         <look_type>machinegun</look_type>
+                        <shot_sound>shotgun</shot_sound>
+                        <reload_sound></reload_sound>
                         <interact_func>interact_weapon</interact_func>
                         <interact_description>Pick up Scattergun S1</interact_description>
                     </instance-variables>
@@ -519,6 +523,8 @@
                         <blast_radius>0</blast_radius>
                         <ammo_type>smg</ammo_type>
                         <look_type>machinegun</look_type>
+                        <shot_sound>p90</shot_sound>
+                        <reload_sound></reload_sound>
                         <interact_func>interact_weapon</interact_func>
                         <interact_description>Pick up Tac4</interact_description>
                     </instance-variables>
@@ -565,6 +571,8 @@
                         <blast_radius>0</blast_radius>
                         <ammo_type>smg</ammo_type>
                         <look_type>pistol</look_type>
+                        <shot_sound>40cal</shot_sound>
+                        <reload_sound></reload_sound>
                         <interact_func>interact_weapon</interact_func>
                         <interact_description>Pick up MP70</interact_description>
                     </instance-variables>
@@ -611,6 +619,8 @@
                         <blast_radius>0</blast_radius>
                         <ammo_type>pistol</ammo_type>
                         <look_type>pistol</look_type>
+                        <shot_sound>pistol</shot_sound>
+                        <reload_sound></reload_sound>
                         <interact_func>interact_weapon</interact_func>
                         <interact_description>Pick up Ares Light Fire 70</interact_description>
                     </instance-variables>
@@ -657,6 +667,8 @@
                         <blast_radius>0</blast_radius>
                         <ammo_type>revolver</ammo_type>
                         <look_type>pistol</look_type>
+                        <shot_sound>garand</shot_sound>
+                        <reload_sound></reload_sound>
                         <interact_func>interact_weapon</interact_func>
                         <interact_description>Pick up Diamondback</interact_description>
                     </instance-variables>
@@ -1191,6 +1203,8 @@
                         <blast_radius>150</blast_radius>
                         <ammo_type>rocket</ammo_type>
                         <look_type>rocketlauncher</look_type>
+                        <shot_sound>rocket_launch</shot_sound>
+                        <reload_sound></reload_sound>
                         <interact_func>interact_weapon</interact_func>
                         <interact_description>Pick up RPG</interact_description>
                     </instance-variables>
@@ -1437,6 +1451,8 @@
                         <blast_radius>0</blast_radius>
                         <ammo_type>smg</ammo_type>
                         <look_type>pistol</look_type>
+                        <shot_sound>gunfire</shot_sound>
+                        <reload_sound></reload_sound>
                         <interact_func>interact_weapon</interact_func>
                         <interact_description>Pick up Scorpio SMG</interact_description>
                     </instance-variables>
@@ -1483,6 +1499,8 @@
                         <blast_radius>0</blast_radius>
                         <ammo_type>rifle</ammo_type>
                         <look_type>machinegun</look_type>
+                        <shot_sound>garand</shot_sound>
+                        <reload_sound></reload_sound>
                         <interact_func>interact_weapon</interact_func>
                         <interact_description>Pick up Krinkov rifle</interact_description>
                     </instance-variables>
@@ -1529,6 +1547,8 @@
                         <blast_radius>0</blast_radius>
                         <ammo_type>rifle</ammo_type>
                         <look_type>machinegun</look_type>
+                        <shot_sound>m4</shot_sound>
+                        <reload_sound></reload_sound>
                         <interact_func>interact_weapon</interact_func>
                         <interact_description>Pick up Taras mk2 rifle</interact_description>
                     </instance-variables>
@@ -1575,6 +1595,8 @@
                         <blast_radius>0</blast_radius>
                         <ammo_type>shotgun</ammo_type>
                         <look_type>machinegun</look_type>
+                        <shot_sound>normal_shotgun</shot_sound>
+                        <reload_sound></reload_sound>
                         <interact_func>interact_weapon</interact_func>
                         <interact_description>Pick up ASG9</interact_description>
                     </instance-variables>
@@ -1686,8 +1708,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>1046</x>
-                        <y>-157</y>
+                        <x>977</x>
+                        <y>-145</y>
                         <z>0</z>
                         <width>40</width>
                         <height>40</height>
@@ -2401,7 +2423,7 @@
                         <initial-visibility>Visible</initial-visibility>
                         <font>Courier New,-16,700,0</font>
                         <color>255,153,0</color>
-                        <horizontal-alignment>Left</horizontal-alignment>
+                        <horizontal-alignment>Right</horizontal-alignment>
                         <vertical-alignment>Top</vertical-alignment>
                         <hotspot>Top-left</hotspot>
                         <wrapping>Word</wrapping>
@@ -2880,8 +2902,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>400.112335205</x>
-                        <y>518.516357422</y>
+                        <x>356.493988037</x>
+                        <y>520</y>
                         <z>0</z>
                         <width>32</width>
                         <height>8</height>
@@ -2900,8 +2922,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>356.025604248</x>
-                        <y>518.349182129</y>
+                        <x>401.183013916</x>
+                        <y>520</y>
                         <z>0</z>
                         <width>32</width>
                         <height>8</height>
@@ -3142,8 +3164,8 @@
             </properties>
             <instance-variables>
                 <cpu_usage>30</cpu_usage>
-                <cooldown>240</cooldown>
-                <cpu_delay>240</cpu_delay>
+                <cooldown>10</cooldown>
+                <cpu_delay>10</cpu_delay>
                 <next_up>0</next_up>
                 <number_active>0</number_active>
             </instance-variables>

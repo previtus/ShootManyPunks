@@ -22,7 +22,7 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="-2" name="On start of layout" type="System" />
                     </conditions>
@@ -31,6 +31,8 @@
                         <action id="-9" name="Destroy" type="Avatar" />
                         <action id="-9" name="Destroy" type="Enemy" />
                         <action id="-9" name="Destroy" type="Box" />
+                        <action id="-9" name="Destroy" type="NPC" />
+                        <action id="-9" name="Destroy" type="QuestGivers" />
                     </actions>
                     <sub-events>
                         <event-block>
@@ -454,7 +456,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" title="SpawnablePosition">
+        <event-group collapsed="1" description="" title="SpawnablePosition">
             <sub-events>
                 <variable constant="0" name="x" static="0" type="number">0</variable>
                 <variable constant="0" name="y" static="0" type="number">0</variable>

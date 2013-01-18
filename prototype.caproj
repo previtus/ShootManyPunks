@@ -7,15 +7,15 @@
     <unique-id>w2turdg6quee</unique-id>
     <saved-with-version>11400</saved-with-version>
     <used-plugins>
-        <plugin author="Scirra" id="AJAX" version="1">AJAX</plugin>
-        <plugin author="Scirra" id="Arr" version="1">Array</plugin>
-        <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
-        <plugin author="Scirra" id="Button" version="1">Button</plugin>
-        <plugin author="Scirra" id="Dictionary" version="1">Dictionary</plugin>
-        <plugin author="Scirra" id="Function" version="1">Function</plugin>
-        <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
         <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
+        <plugin author="Scirra" id="Dictionary" version="1">Dictionary</plugin>
+        <plugin author="Scirra" id="Arr" version="1">Array</plugin>
+        <plugin author="Scirra" id="Button" version="1">Button</plugin>
+        <plugin author="Scirra" id="Function" version="1">Function</plugin>
+        <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
+        <plugin author="Scirra" id="AJAX" version="1">AJAX</plugin>
+        <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Rex.Rainbow" id="Rex_TMXImporter" version="0.109999999">TMX Importer</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="Text" version="1">Text</plugin>
@@ -23,6 +23,7 @@
         <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
     </used-plugins>
     <used-behaviors>
+        <behavior author="Scirra" id="Pin" version="1">Pin</behavior>
         <behavior author="Scirra" id="bound" version="1">Bound to layout</behavior>
         <behavior author="Scirra" id="custom" version="1">Custom Movement</behavior>
         <behavior author="Scirra" id="destroy" version="1">Destroy outside layout</behavior>
@@ -32,7 +33,6 @@
         <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
         <behavior author="Scirra" id="EightDir" version="1">8 Direction</behavior>
         <behavior author="Scirra" id="Flash" version="1">Flash</behavior>
-        <behavior author="Scirra" id="Pin" version="1">Pin</behavior>
     </used-behaviors>
     <used-effects />
     <configurations>
@@ -13918,6 +13918,8 @@
                 <instance-variable name="blast_radius" type="number" />
                 <instance-variable name="ammo_type" type="string" />
                 <instance-variable name="look_type" type="string" />
+                <instance-variable name="shot_sound" type="string" />
+                <instance-variable name="reload_sound" type="string" />
             </instance-variables>
         </family>
         <family name="QuestGivers" plugin-id="Sprite">
@@ -14063,13 +14065,13 @@
             </members>
         </family>
     </families>
-    <layout-folder expanded="1">
+    <layout-folder expanded="0">
         <layout>StartScreen.xml</layout>
         <layout>Location.xml</layout>
         <layout>WorldMap.xml</layout>
         <layout>DeathScreen.xml</layout>
     </layout-folder>
-    <event-folder expanded="1">
+    <event-folder expanded="0">
         <event-sheet>location Event sheet.xml</event-sheet>
         <event-sheet>WorldMapEvents.xml</event-sheet>
         <event-sheet>start screen Event sheet.xml</event-sheet>
@@ -14087,7 +14089,42 @@
         <global-instance type="Function" />
         <global-instance type="AJAX" />
     </global-instances>
-    <sounds-folder expanded="1" />
+    <sounds-folder expanded="0">
+        <file-folder expanded="0" name="Gun sounds">
+            <file name="40cal.m4a" />
+            <file name="40cal.ogg" />
+            <file name="explosion.m4a" />
+            <file name="explosion.ogg" />
+            <file name="garand.m4a" />
+            <file name="garand.ogg" />
+            <file name="gunfire.m4a" />
+            <file name="gunfire.ogg" />
+            <file name="m4.m4a" />
+            <file name="m4.ogg" />
+            <file name="normal_shotgun.m4a" />
+            <file name="normal_shotgun.ogg" />
+            <file name="p90.m4a" />
+            <file name="p90.ogg" />
+            <file name="pistol.m4a" />
+            <file name="pistol.ogg" />
+            <file name="rocket_launch.m4a" />
+            <file name="rocket_launch.ogg" />
+            <file name="shotgun.ogg" />
+            <file name="shotgun.m4a" />
+        </file-folder>
+        <file-folder expanded="0" name="Implants and programs">
+            <file name="aimassist.m4a" />
+            <file name="aimassist.ogg" />
+            <file name="disrupt.m4a" />
+            <file name="disrupt.ogg" />
+            <file name="implant_off.m4a" />
+            <file name="implant_off.ogg" />
+            <file name="implant_on.m4a" />
+            <file name="implant_on.ogg" />
+            <file name="stealvision.m4a" />
+            <file name="stealvision.ogg" />
+        </file-folder>
+    </sounds-folder>
     <music-folder expanded="1" />
     <files-folder expanded="1">
         <file name="02_ulicky2.tmx" />
