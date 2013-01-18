@@ -23,7 +23,7 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="-2" name="On start of layout" type="System" />
                     </conditions>
@@ -38,6 +38,9 @@
                             <param id="0" name="Variable">quest_spawned</param>
                             <param id="1" name="Value">0</param>
                         </action>
+                        <action id="-9" name="Destroy" type="Bullet" />
+                        <action id="-9" name="Destroy" type="SamuraiSword" />
+                        <action id="-9" name="Destroy" type="SamuraiSwordEnemy" />
                     </actions>
                     <sub-events>
                         <event-block>

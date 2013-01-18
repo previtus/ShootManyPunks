@@ -42,6 +42,19 @@
                 </action>
             </actions>
         </event-block>
+        <event-block>
+            <conditions>
+                <condition id="-2" name="On start of layout" type="System" />
+            </conditions>
+            <actions>
+                <action id="0" name="Play" type="Audio">
+                    <param id="0" name="Audio file">DST-AngryRobotIII</param>
+                    <param id="2" name="Loop">1</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;music&quot;</param>
+                </action>
+            </actions>
+        </event-block>
         <event-group collapsed="1" description="" disabled="1" title="pre-load">
             <sub-events>
                 <event-block disabled="1">

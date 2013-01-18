@@ -55,11 +55,11 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>382</x>
-                        <y>291.5</y>
+                        <x>400</x>
+                        <y>300</y>
                         <z>0</z>
-                        <width>708</width>
-                        <height>615</height>
+                        <width>800</width>
+                        <height>600</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
@@ -69,11 +69,11 @@
                 </instance>
                 <instance type="text_WorldMap">
                     <properties>
-                        <text>WORLD MAP</text>
+                        <text>Welcome to the Sprawl</text>
                         <initial-visibility>Visible</initial-visibility>
-                        <font>Arial,-64,700,0</font>
-                        <color>255,255,255</color>
-                        <horizontal-alignment>Left</horizontal-alignment>
+                        <font>Courier New,-32,700,0</font>
+                        <color>0,204,0</color>
+                        <horizontal-alignment>Right</horizontal-alignment>
                         <vertical-alignment>Top</vertical-alignment>
                         <hotspot>Top-left</hotspot>
                         <wrapping>Word</wrapping>
@@ -82,10 +82,10 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>55</x>
-                        <y>20</y>
+                        <x>576</x>
+                        <y>9</y>
                         <z>0</z>
-                        <width>443</width>
+                        <width>212</width>
                         <height>104</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
@@ -94,80 +94,33 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="WorldMap_loc_Slumy">
+                <instance type="TransportText">
                     <properties>
+                        <text>Easy Parking</text>
                         <initial-visibility>Visible</initial-visibility>
-                        <initial-frame>0</initial-frame>
-                        <collisions>Enabled</collisions>
-                    </properties>
-                    <instance-variables>
-                        <id>1</id>
-                    </instance-variables>
-                    <behavior-instances>
-                        <behavior-instance type="Flash" />
-                    </behavior-instances>
-                    <blend-mode>0</blend-mode>
-                    <effect-fallback>0</effect-fallback>
-                    <world>
-                        <x>135</x>
-                        <y>410</y>
-                        <z>0</z>
-                        <width>82</width>
-                        <height>22</height>
-                        <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.5</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
-                <instance type="WorldMap_loc_Hospoda">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-frame>0</initial-frame>
-                        <collisions>Enabled</collisions>
-                    </properties>
-                    <instance-variables>
-                        <id>2</id>
-                    </instance-variables>
-                    <behavior-instances>
-                        <behavior-instance type="Flash" />
-                    </behavior-instances>
-                    <blend-mode>0</blend-mode>
-                    <effect-fallback>0</effect-fallback>
-                    <world>
-                        <x>436</x>
-                        <y>433</y>
-                        <z>0</z>
-                        <width>193</width>
-                        <height>22</height>
-                        <depth>0</depth>
-                        <hotspotX>0.502590656</hotspotX>
-                        <hotspotY>0.5</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
-                <instance type="text_tmp_examplebackdoor">
-                    <properties>
-                        <text>Back exit</text>
-                        <initial-visibility>Visible</initial-visibility>
-                        <font>Arial,-16</font>
-                        <color>0,255,51</color>
+                        <font>Courier New,-21,700,0</font>
+                        <color>0,255,0</color>
                         <horizontal-alignment>Left</horizontal-alignment>
                         <vertical-alignment>Top</vertical-alignment>
                         <hotspot>Top-left</hotspot>
                         <wrapping>Word</wrapping>
                         <line-height>0</line-height>
                     </properties>
+                    <instance-variables>
+                        <map_id>3</map_id>
+                        <spawnpoint_id>3</spawnpoint_id>
+                    </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="Flash" />
+                    </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>479</x>
-                        <y>449</y>
+                        <x>590</x>
+                        <y>374</y>
                         <z>0</z>
-                        <width>77</width>
-                        <height>25</height>
+                        <width>170</width>
+                        <height>26</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
@@ -175,14 +128,21 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="WorldMap_loc_Slumy2">
+                <instance type="TransportText">
                     <properties>
+                        <text>Back Alley</text>
                         <initial-visibility>Visible</initial-visibility>
-                        <initial-frame>0</initial-frame>
-                        <collisions>Enabled</collisions>
+                        <font>Courier New,-21,700,0</font>
+                        <color>0,255,0</color>
+                        <horizontal-alignment>Left</horizontal-alignment>
+                        <vertical-alignment>Top</vertical-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
                     </properties>
                     <instance-variables>
-                        <id>3</id>
+                        <map_id>1</map_id>
+                        <spawnpoint_id>1</spawnpoint_id>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Flash" />
@@ -190,14 +150,48 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>283</x>
-                        <y>383</y>
+                        <x>96</x>
+                        <y>334</y>
                         <z>0</z>
-                        <width>84</width>
-                        <height>24</height>
+                        <width>170</width>
+                        <height>26</height>
                         <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.5</hotspotY>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="TransportText">
+                    <properties>
+                        <text>Streets</text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Courier New,-21,700,0</font>
+                        <color>0,255,0</color>
+                        <horizontal-alignment>Left</horizontal-alignment>
+                        <vertical-alignment>Top</vertical-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <instance-variables>
+                        <map_id>2</map_id>
+                        <spawnpoint_id>1</spawnpoint_id>
+                    </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="Flash" />
+                    </behavior-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>309</x>
+                        <y>367</y>
+                        <z>0</z>
+                        <width>170</width>
+                        <height>26</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>

@@ -18,5 +18,15 @@
                 </action>
             </actions>
         </event-block>
+        <event-block>
+            <conditions>
+                <condition id="-2" name="On start of layout" type="System" />
+            </conditions>
+            <actions>
+                <action id="6" name="Stop" type="Audio">
+                    <param id="0" name="Tag">&quot;music&quot;</param>
+                </action>
+            </actions>
+        </event-block>
     </events>
 </c2eventsheet>

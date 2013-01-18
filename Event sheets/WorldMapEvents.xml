@@ -3,167 +3,27 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>WorldMapEvents</name>
     <events>
-        <event-group description="" disabled="1" title="OnMouseOver">
-            <sub-events>
-                <event-block disabled="1">
-                    <conditions>
-                        <condition id="7" name="Cursor is over object" type="Mouse">
-                            <param id="0" name="Object">WorldMap_loc_Slumy</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="5" name="Set frame" type="WorldMap_loc_Slumy">
-                            <param id="0" name="Frame number">1</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block disabled="1">
-                    <conditions>
-                        <condition id="7" inverted="1" name="Cursor is over object" type="Mouse">
-                            <param id="0" name="Object">WorldMap_loc_Slumy</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="5" name="Set frame" type="WorldMap_loc_Slumy">
-                            <param id="0" name="Frame number">0</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block disabled="1">
-                    <conditions>
-                        <condition id="7" name="Cursor is over object" type="Mouse">
-                            <param id="0" name="Object">WorldMap_loc_Hospoda</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="5" name="Set frame" type="WorldMap_loc_Hospoda">
-                            <param id="0" name="Frame number">1</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block disabled="1">
-                    <conditions>
-                        <condition id="7" inverted="1" name="Cursor is over object" type="Mouse">
-                            <param id="0" name="Object">WorldMap_loc_Hospoda</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="5" name="Set frame" type="WorldMap_loc_Hospoda">
-                            <param id="0" name="Frame number">0</param>
-                        </action>
-                    </actions>
-                </event-block>
-            </sub-events>
-        </event-group>
-        <event-group collapsed="1" description="" title="OnMouseClick">
-            <sub-events>
-                <event-block disabled="1">
-                    <conditions>
-                        <condition id="6" name="On object clicked" type="Mouse">
-                            <param id="0" name="Mouse button">0</param>
-                            <param id="1" name="Click type">0</param>
-                            <param id="2" name="Object clicked">WorldMap_loc_Slumy</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-9" name="Set value" type="System">
-                            <param id="0" name="Variable">to_load_map</param>
-                            <param id="1" name="Value">1</param>
-                        </action>
-                        <action id="-2" name="Go to layout" type="System">
-                            <param id="0" name="Layout">Location</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block disabled="1">
-                    <conditions>
-                        <condition id="6" name="On object clicked" type="Mouse">
-                            <param id="0" name="Mouse button">0</param>
-                            <param id="1" name="Click type">0</param>
-                            <param id="2" name="Object clicked">WorldMap_loc_Hospoda</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-9" name="Set value" type="System">
-                            <param id="0" name="Variable">to_load_map</param>
-                            <param id="1" name="Value">2</param>
-                        </action>
-                        <action id="-9" name="Set value" type="System">
-                            <param id="0" name="Variable">to_load_spawnpoint</param>
-                            <param id="1" name="Value">1</param>
-                        </action>
-                        <action id="-2" name="Go to layout" type="System">
-                            <param id="0" name="Layout">Location</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block>
-                    <conditions>
-                        <condition id="6" name="On object clicked" type="Mouse">
-                            <param id="0" name="Mouse button">0</param>
-                            <param id="1" name="Click type">0</param>
-                            <param id="2" name="Object clicked">text_tmp_examplebackdoor</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-9" name="Set value" type="System">
-                            <param id="0" name="Variable">to_load_map</param>
-                            <param id="1" name="Value">2</param>
-                        </action>
-                        <action id="-9" name="Set value" type="System">
-                            <param id="0" name="Variable">to_load_spawnpoint</param>
-                            <param id="1" name="Value">2</param>
-                        </action>
-                        <action id="-2" name="Go to layout" type="System">
-                            <param id="0" name="Layout">Location</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block>
-                    <conditions>
-                        <condition id="6" name="On object clicked" type="Mouse">
-                            <param id="0" name="Mouse button">0</param>
-                            <param id="1" name="Click type">0</param>
-                            <param id="2" name="Object clicked">text_tmp_exampleplaza</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-9" name="Set value" type="System">
-                            <param id="0" name="Variable">to_load_map</param>
-                            <param id="1" name="Value">3</param>
-                        </action>
-                        <action id="-9" name="Set value" type="System">
-                            <param id="0" name="Variable">to_load_spawnpoint</param>
-                            <param id="1" name="Value">1</param>
-                        </action>
-                        <action id="-2" name="Go to layout" type="System">
-                            <param id="0" name="Layout">Location</param>
-                        </action>
-                    </actions>
-                </event-block>
-            </sub-events>
-        </event-group>
         <event-block>
             <conditions>
                 <condition id="7" name="Cursor is over object" type="Mouse">
-                    <param id="0" name="Object">Location</param>
+                    <param id="0" name="Object">TransportText</param>
                 </condition>
             </conditions>
             <actions>
-                <action id="5" name="Set frame" type="Location">
-                    <param id="0" name="Frame number">1</param>
+                <action id="4" name="Set font color" type="TransportText">
+                    <param id="0" name="Color">rgb(255, 255, 255)</param>
                 </action>
             </actions>
         </event-block>
         <event-block>
             <conditions>
                 <condition id="7" inverted="1" name="Cursor is over object" type="Mouse">
-                    <param id="0" name="Object">Location</param>
+                    <param id="0" name="Object">TransportText</param>
                 </condition>
             </conditions>
             <actions>
-                <action id="5" name="Set frame" type="Location">
-                    <param id="0" name="Frame number">0</param>
+                <action id="4" name="Set font color" type="TransportText">
+                    <param id="0" name="Color">rgb(0, 255, 0)</param>
                 </action>
             </actions>
         </event-block>
@@ -172,13 +32,17 @@
                 <condition id="6" name="On object clicked" type="Mouse">
                     <param id="0" name="Mouse button">0</param>
                     <param id="1" name="Click type">0</param>
-                    <param id="2" name="Object clicked">Location</param>
+                    <param id="2" name="Object clicked">TransportText</param>
                 </condition>
             </conditions>
             <actions>
                 <action id="-9" name="Set value" type="System">
                     <param id="0" name="Variable">to_load_map</param>
-                    <param id="1" name="Value">Location.id</param>
+                    <param id="1" name="Value">TransportText.map_id</param>
+                </action>
+                <action id="-9" name="Set value" type="System">
+                    <param id="0" name="Variable">to_load_spawnpoint</param>
+                    <param id="1" name="Value">TransportText.spawnpoint_id</param>
                 </action>
                 <action id="-2" name="Go to layout" type="System">
                     <param id="0" name="Layout">Location</param>
@@ -189,21 +53,21 @@
             <conditions>
                 <condition id="-2" name="On start of layout" type="System" />
                 <condition id="-11" name="For Each" type="System">
-                    <param id="0" name="Object">Location</param>
+                    <param id="0" name="Object">TransportText</param>
                 </condition>
             </conditions>
             <actions />
             <sub-events>
                 <event-block>
                     <conditions>
-                        <condition id="-7" name="Compare instance variable" type="Location">
-                            <param id="0" name="Instance variable">id</param>
+                        <condition id="-7" name="Compare instance variable" type="TransportText">
+                            <param id="0" name="Instance variable">map_id</param>
                             <param id="1" name="Comparison">0</param>
                             <param id="2" name="Value">quest_target_location</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action behavior="Flash" id="0" name="Flash" type="Location">
+                        <action behavior="Flash" id="0" name="Flash" type="TransportText">
                             <param id="0" name="&apos;On&apos; time">0.5</param>
                             <param id="1" name="&apos;Off&apos; time">0.2</param>
                             <param id="2" name="Duration">1000</param>

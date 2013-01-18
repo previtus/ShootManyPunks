@@ -428,7 +428,6 @@
                         <ammo_type>rifle</ammo_type>
                         <look_type>machinegun</look_type>
                         <shot_sound>pistol</shot_sound>
-                        <reload_sound></reload_sound>
                         <interact_func>interact_weapon</interact_func>
                         <interact_description>Pick up AR57 rifle</interact_description>
                     </instance-variables>
@@ -476,7 +475,6 @@
                         <ammo_type>shotgun</ammo_type>
                         <look_type>machinegun</look_type>
                         <shot_sound>shotgun</shot_sound>
-                        <reload_sound></reload_sound>
                         <interact_func>interact_weapon</interact_func>
                         <interact_description>Pick up Scattergun S1</interact_description>
                     </instance-variables>
@@ -524,7 +522,6 @@
                         <ammo_type>smg</ammo_type>
                         <look_type>machinegun</look_type>
                         <shot_sound>p90</shot_sound>
-                        <reload_sound></reload_sound>
                         <interact_func>interact_weapon</interact_func>
                         <interact_description>Pick up Tac4</interact_description>
                     </instance-variables>
@@ -572,7 +569,6 @@
                         <ammo_type>smg</ammo_type>
                         <look_type>pistol</look_type>
                         <shot_sound>40cal</shot_sound>
-                        <reload_sound></reload_sound>
                         <interact_func>interact_weapon</interact_func>
                         <interact_description>Pick up MP70</interact_description>
                     </instance-variables>
@@ -620,7 +616,6 @@
                         <ammo_type>pistol</ammo_type>
                         <look_type>pistol</look_type>
                         <shot_sound>pistol</shot_sound>
-                        <reload_sound></reload_sound>
                         <interact_func>interact_weapon</interact_func>
                         <interact_description>Pick up Ares Light Fire 70</interact_description>
                     </instance-variables>
@@ -668,7 +663,6 @@
                         <ammo_type>revolver</ammo_type>
                         <look_type>pistol</look_type>
                         <shot_sound>garand</shot_sound>
-                        <reload_sound></reload_sound>
                         <interact_func>interact_weapon</interact_func>
                         <interact_description>Pick up Diamondback</interact_description>
                     </instance-variables>
@@ -1204,7 +1198,6 @@
                         <ammo_type>rocket</ammo_type>
                         <look_type>rocketlauncher</look_type>
                         <shot_sound>rocket_launch</shot_sound>
-                        <reload_sound></reload_sound>
                         <interact_func>interact_weapon</interact_func>
                         <interact_description>Pick up RPG</interact_description>
                     </instance-variables>
@@ -1452,7 +1445,6 @@
                         <ammo_type>smg</ammo_type>
                         <look_type>pistol</look_type>
                         <shot_sound>gunfire</shot_sound>
-                        <reload_sound></reload_sound>
                         <interact_func>interact_weapon</interact_func>
                         <interact_description>Pick up Scorpio SMG</interact_description>
                     </instance-variables>
@@ -1500,7 +1492,6 @@
                         <ammo_type>rifle</ammo_type>
                         <look_type>machinegun</look_type>
                         <shot_sound>garand</shot_sound>
-                        <reload_sound></reload_sound>
                         <interact_func>interact_weapon</interact_func>
                         <interact_description>Pick up Krinkov rifle</interact_description>
                     </instance-variables>
@@ -1548,7 +1539,6 @@
                         <ammo_type>rifle</ammo_type>
                         <look_type>machinegun</look_type>
                         <shot_sound>m4</shot_sound>
-                        <reload_sound></reload_sound>
                         <interact_func>interact_weapon</interact_func>
                         <interact_description>Pick up Taras mk2 rifle</interact_description>
                     </instance-variables>
@@ -1596,7 +1586,6 @@
                         <ammo_type>shotgun</ammo_type>
                         <look_type>machinegun</look_type>
                         <shot_sound>normal_shotgun</shot_sound>
-                        <reload_sound></reload_sound>
                         <interact_func>interact_weapon</interact_func>
                         <interact_description>Pick up ASG9</interact_description>
                     </instance-variables>
@@ -2254,12 +2243,12 @@
                 </instance>
                 <instance type="InfoText">
                     <properties>
-                        <text>Text</text>
+                        <text></text>
                         <initial-visibility>Visible</initial-visibility>
-                        <font>Arial Narrow,-21,700,0</font>
-                        <color>0,0,255</color>
+                        <font>Arial,-21,700,0</font>
+                        <color>255,255,204</color>
                         <horizontal-alignment>Left</horizontal-alignment>
-                        <vertical-alignment>Top</vertical-alignment>
+                        <vertical-alignment>Bottom</vertical-alignment>
                         <hotspot>Top-left</hotspot>
                         <wrapping>Word</wrapping>
                         <line-height>0</line-height>
@@ -2277,11 +2266,11 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>7.999992847</x>
-                        <y>278.326446533</y>
+                        <x>8</x>
+                        <y>328</y>
                         <z>0</z>
                         <width>622</width>
-                        <height>30</height>
+                        <height>179</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
@@ -2393,7 +2382,7 @@
                 <instance type="FPSText">
                     <properties>
                         <text>oi</text>
-                        <initial-visibility>Visible</initial-visibility>
+                        <initial-visibility>Invisible</initial-visibility>
                         <font>Courier New,-27,700,0</font>
                         <color>255,0,0</color>
                         <horizontal-alignment>Left</horizontal-alignment>
@@ -2405,8 +2394,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>532</x>
-                        <y>441</y>
+                        <x>699</x>
+                        <y>509</y>
                         <z>0</z>
                         <width>95</width>
                         <height>30</height>
@@ -2493,11 +2482,11 @@
                         <x>472.457702637</x>
                         <y>535.889770508</y>
                         <z>0</z>
-                        <width>40</width>
-                        <height>54</height>
+                        <width>59</width>
+                        <height>59</height>
                         <depth>0</depth>
-                        <hotspotX>0.524999976</hotspotX>
-                        <hotspotY>0.5</hotspotY>
+                        <hotspotX>0.508474588</hotspotX>
+                        <hotspotY>0.508474588</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
@@ -2514,11 +2503,11 @@
                         <x>472.457702637</x>
                         <y>535.889770508</y>
                         <z>0</z>
-                        <width>40</width>
-                        <height>54</height>
+                        <width>59</width>
+                        <height>59</height>
                         <depth>0</depth>
-                        <hotspotX>0.524999976</hotspotX>
-                        <hotspotY>0.5</hotspotY>
+                        <hotspotX>0.508474588</hotspotX>
+                        <hotspotY>0.508474588</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
@@ -2535,11 +2524,11 @@
                         <x>472.457702637</x>
                         <y>535.889770508</y>
                         <z>0</z>
-                        <width>40</width>
-                        <height>54</height>
+                        <width>59</width>
+                        <height>59</height>
                         <depth>0</depth>
-                        <hotspotX>0.524999976</hotspotX>
-                        <hotspotY>0.5</hotspotY>
+                        <hotspotX>0.508474588</hotspotX>
+                        <hotspotY>0.508474588</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
@@ -2556,11 +2545,11 @@
                         <x>472.457702637</x>
                         <y>535.889770508</y>
                         <z>0</z>
-                        <width>40</width>
-                        <height>54</height>
+                        <width>59</width>
+                        <height>59</height>
                         <depth>0</depth>
-                        <hotspotX>0.524999976</hotspotX>
-                        <hotspotY>0.5</hotspotY>
+                        <hotspotX>0.508474588</hotspotX>
+                        <hotspotY>0.508474588</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
@@ -2902,8 +2891,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>356.493988037</x>
-                        <y>520</y>
+                        <x>355.222320557</x>
+                        <y>551.878601074</y>
                         <z>0</z>
                         <width>32</width>
                         <height>8</height>
@@ -2923,7 +2912,7 @@
                     <effect-fallback>0</effect-fallback>
                     <world>
                         <x>401.183013916</x>
-                        <y>520</y>
+                        <y>551.878601074</y>
                         <z>0</z>
                         <width>32</width>
                         <height>8</height>
@@ -3011,7 +3000,7 @@
                     <effect-fallback>0</effect-fallback>
                     <world>
                         <x>325</x>
-                        <y>545</y>
+                        <y>535.944824219</y>
                         <z>0</z>
                         <width>28</width>
                         <height>28</height>
@@ -3032,7 +3021,7 @@
                     <effect-fallback>0</effect-fallback>
                     <world>
                         <x>370</x>
-                        <y>545</y>
+                        <y>535.944824219</y>
                         <z>0</z>
                         <width>27</width>
                         <height>27</height>
@@ -3053,7 +3042,7 @@
                     <effect-fallback>0</effect-fallback>
                     <world>
                         <x>415</x>
-                        <y>545</y>
+                        <y>535.944824219</y>
                         <z>0</z>
                         <width>28</width>
                         <height>18</height>
@@ -3080,7 +3069,7 @@
                     <effect-fallback>0</effect-fallback>
                     <world>
                         <x>325.292419434</x>
-                        <y>551.049987793</y>
+                        <y>541.994812012</y>
                         <z>0</z>
                         <width>48.117275238</width>
                         <height>28.979019165</height>
@@ -3107,7 +3096,7 @@
                     <effect-fallback>0</effect-fallback>
                     <world>
                         <x>355.22833252</x>
-                        <y>536.937988281</y>
+                        <y>527.8828125</y>
                         <z>0</z>
                         <width>31.222259521</width>
                         <height>28.30670166</height>
@@ -3134,7 +3123,7 @@
                     <effect-fallback>0</effect-fallback>
                     <world>
                         <x>401.515319824</x>
-                        <y>536.938842773</y>
+                        <y>527.883666992</y>
                         <z>0</z>
                         <width>31.222259521</width>
                         <height>28.30670166</height>
